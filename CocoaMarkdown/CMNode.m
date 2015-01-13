@@ -20,6 +20,7 @@ static NSString * str(const char *buf) {
 
 @implementation CMNode {
     BOOL _freeWhenDone;
+    cmark_node *_node;
 }
 
 #pragma mark - Initialization

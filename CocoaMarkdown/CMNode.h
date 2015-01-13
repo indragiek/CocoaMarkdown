@@ -15,11 +15,6 @@
 @interface CMNode : NSObject
 
 /**
- *  Pointer to the underlying node.
- */
-@property (readonly) cmark_node *node;
-
-/**
  *  Designated initializer.
  *
  *  @param node Pointer to the node to wrap.
