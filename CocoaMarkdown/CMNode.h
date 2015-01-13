@@ -61,7 +61,8 @@
 @property (readonly) NSString *humanReadableType;
 
 /**
- *  String contents of the receiver, or `nil` if there is none.
+ *  String contents of the receiver, or `nil` if there is none or if the receiver's
+ *  type is not `CMARK_NODE_TEXT`
  */
 @property (readonly) NSString *stringValue;
 

@@ -10,6 +10,8 @@
 #import "CMNode_Private.h"
 
 static CMNode * wrap(cmark_node *node) {
+    if (node == NULL) return nil;
+    
     return [[CMNode alloc] initWithNode:node freeWhenDone:NO];
 }
 
@@ -21,7 +23,6 @@ static NSString * str(const char *buf) {
 
 @implementation CMNode {
     BOOL _freeWhenDone;
-    cmark_node *_node;
 }
 
 #pragma mark - Initialization
@@ -40,6 +41,21 @@ static NSString * str(const char *buf) {
     if (_freeWhenDone) {
         cmark_node_free(_node);
     }
+}
+
+#pragma mark - NSObject
+
+- (BOOL)isEqual:(CMNode *)node
+{
+    if (self == node) return YES;
+    if (![node isMemberOfClass:self.class]) return NO;
+    
+    return _node == node->_node;
+}
+
+- (NSUInteger)hash
+{
+    return (NSUInteger)_node;
 }
 
 #pragma mark - Tree Traversal
