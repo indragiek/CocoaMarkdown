@@ -7,6 +7,7 @@
 //
 
 #import "CMNode.h"
+#import "CMNode_Private.h"
 
 static CMNode * wrap(cmark_node *node) {
     return [[CMNode alloc] initWithNode:node freeWhenDone:NO];

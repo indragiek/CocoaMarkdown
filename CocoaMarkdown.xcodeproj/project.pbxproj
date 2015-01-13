@@ -47,6 +47,7 @@
 		725D3E8A1A64A12500268677 /* CMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 725D3E881A64A12500268677 /* CMDocument.m */; };
 		725D3E8D1A64A36E00268677 /* CMNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 725D3E8B1A64A36E00268677 /* CMNode.h */; };
 		725D3E8E1A64A36E00268677 /* CMNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 725D3E8C1A64A36E00268677 /* CMNode.m */; };
+		72FCCCAC1A6579E60023724D /* CMNode_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 72FCCCAB1A6579E60023724D /* CMNode_Private.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		725D3E881A64A12500268677 /* CMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDocument.m; sourceTree = "<group>"; };
 		725D3E8B1A64A36E00268677 /* CMNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMNode.h; sourceTree = "<group>"; };
 		725D3E8C1A64A36E00268677 /* CMNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMNode.m; sourceTree = "<group>"; };
+		72FCCCAB1A6579E60023724D /* CMNode_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMNode_Private.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				725D3E881A64A12500268677 /* CMDocument.m */,
 				725D3E8B1A64A36E00268677 /* CMNode.h */,
 				725D3E8C1A64A36E00268677 /* CMNode.m */,
+				72FCCCAB1A6579E60023724D /* CMNode_Private.h */,
 				725D3E2A1A649A7A00268677 /* Supporting Files */,
 			);
 			path = CocoaMarkdown;
@@ -240,6 +243,7 @@
 				725D3E4B1A649DAC00268677 /* config.h in Headers */,
 				725D3E621A649E4800268677 /* utf8.h in Headers */,
 				725D3E841A649F1100268677 /* debug.h in Headers */,
+				72FCCCAC1A6579E60023724D /* CMNode_Private.h in Headers */,
 				725D3E861A649F2000268677 /* parser.h in Headers */,
 				725D3E891A64A12500268677 /* CMDocument.h in Headers */,
 				725D3E701A649EA400268677 /* inlines.h in Headers */,
@@ -553,6 +557,7 @@
 				725D3E3F1A649A7A00268677 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		725D3E401A649A7A00268677 /* Build configuration list for PBXNativeTarget "CocoaMarkdownTests" */ = {
 			isa = XCConfigurationList;
@@ -561,6 +566,7 @@
 				725D3E421A649A7A00268677 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
