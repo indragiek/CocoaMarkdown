@@ -43,6 +43,10 @@
 		725D3E821A649F0700268677 /* chunk.h in Headers */ = {isa = PBXBuildFile; fileRef = 725D3E811A649F0700268677 /* chunk.h */; };
 		725D3E841A649F1100268677 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 725D3E831A649F1100268677 /* debug.h */; };
 		725D3E861A649F2000268677 /* parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 725D3E851A649F2000268677 /* parser.h */; };
+		725D3E891A64A12500268677 /* CMDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 725D3E871A64A12500268677 /* CMDocument.h */; };
+		725D3E8A1A64A12500268677 /* CMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 725D3E881A64A12500268677 /* CMDocument.m */; };
+		725D3E8D1A64A36E00268677 /* CMNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 725D3E8B1A64A36E00268677 /* CMNode.h */; };
+		725D3E8E1A64A36E00268677 /* CMNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 725D3E8C1A64A36E00268677 /* CMNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +99,10 @@
 		725D3E811A649F0700268677 /* chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chunk.h; path = CommonMark/src/chunk.h; sourceTree = "<group>"; };
 		725D3E831A649F1100268677 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = debug.h; path = CommonMark/src/debug.h; sourceTree = "<group>"; };
 		725D3E851A649F2000268677 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = parser.h; path = CommonMark/src/parser.h; sourceTree = "<group>"; };
+		725D3E871A64A12500268677 /* CMDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDocument.h; sourceTree = "<group>"; };
+		725D3E881A64A12500268677 /* CMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDocument.m; sourceTree = "<group>"; };
+		725D3E8B1A64A36E00268677 /* CMNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMNode.h; sourceTree = "<group>"; };
+		725D3E8C1A64A36E00268677 /* CMNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +147,10 @@
 			isa = PBXGroup;
 			children = (
 				725D3E2C1A649A7A00268677 /* CocoaMarkdown.h */,
+				725D3E871A64A12500268677 /* CMDocument.h */,
+				725D3E881A64A12500268677 /* CMDocument.m */,
+				725D3E8B1A64A36E00268677 /* CMNode.h */,
+				725D3E8C1A64A36E00268677 /* CMNode.m */,
 				725D3E2A1A649A7A00268677 /* Supporting Files */,
 			);
 			path = CocoaMarkdown;
@@ -220,6 +232,7 @@
 				725D3E581A649E0400268677 /* houdini.h in Headers */,
 				725D3E721A649EA400268677 /* iterator.h in Headers */,
 				725D3E2D1A649A7A00268677 /* CocoaMarkdown.h in Headers */,
+				725D3E8D1A64A36E00268677 /* CMNode.h in Headers */,
 				725D3E471A649B0300268677 /* cmark.h in Headers */,
 				725D3E5C1A649E0B00268677 /* buffer.h in Headers */,
 				725D3E821A649F0700268677 /* chunk.h in Headers */,
@@ -228,6 +241,7 @@
 				725D3E621A649E4800268677 /* utf8.h in Headers */,
 				725D3E841A649F1100268677 /* debug.h in Headers */,
 				725D3E861A649F2000268677 /* parser.h in Headers */,
+				725D3E891A64A12500268677 /* CMDocument.h in Headers */,
 				725D3E701A649EA400268677 /* inlines.h in Headers */,
 				725D3E4C1A649DAC00268677 /* cmark_export.h in Headers */,
 				725D3E7A1A649EBF00268677 /* scanners.h in Headers */,
@@ -340,9 +354,11 @@
 				725D3E771A649EBF00268677 /* references.c in Sources */,
 				725D3E681A649E8400268677 /* blocks.c in Sources */,
 				725D3E651A649E6500268677 /* cmark_ctype.c in Sources */,
+				725D3E8E1A64A36E00268677 /* CMNode.m in Sources */,
 				725D3E461A649B0300268677 /* cmark.c in Sources */,
 				725D3E5B1A649E0B00268677 /* buffer.c in Sources */,
 				725D3E561A649E0400268677 /* houdini_html_e.c in Sources */,
+				725D3E8A1A64A12500268677 /* CMDocument.m in Sources */,
 				725D3E6F1A649EA400268677 /* inlines.c in Sources */,
 				725D3E4F1A649DFE00268677 /* node.c in Sources */,
 				725D3E791A649EBF00268677 /* scanners.c in Sources */,
