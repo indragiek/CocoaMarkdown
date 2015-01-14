@@ -112,7 +112,7 @@ static NSString * str(const char *buf) {
     return str(cmark_node_get_literal(_node));
 }
 
-- (int)headerLevel
+- (NSInteger)headerLevel
 {
     return cmark_node_get_header_level(_node);
 }
@@ -132,7 +132,7 @@ static NSString * str(const char *buf) {
     return cmark_node_get_list_delim(_node);
 }
 
-- (int)listStartingNumber
+- (NSInteger)listStartingNumber
 {
     return cmark_node_get_list_start(_node);
 }
@@ -156,22 +156,22 @@ static NSString * str(const char *buf) {
     return str(cmark_node_get_title(_node));
 }
 
-- (int)startLine
+- (NSInteger)startLine
 {
     return cmark_node_get_start_line(_node);
 }
 
-- (int)startColumn
+- (NSInteger)startColumn
 {
     return cmark_node_get_start_column(_node);
 }
 
-- (int)endLine
+- (NSInteger)endLine
 {
     return cmark_node_get_start_column(_node);
 }
 
-- (int)endColumn
+- (NSInteger)endColumn
 {
     return cmark_node_get_end_column(_node);
 }

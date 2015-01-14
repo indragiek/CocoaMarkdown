@@ -12,14 +12,14 @@
 @class CMIterator;
 
 /**
- *  Immutable interface to a CommonMark node.
+ *  Immutable NSIntegererface to a CommonMark node.
  */
 @interface CMNode : NSObject
 
 /**
  *  Designated initializer.
  *
- *  @param node Pointer to the node to wrap.
+ *  @param node PoNSIntegerer to the node to wrap.
  *  @param free Whether to free the underlying node when the
  *  receiver is deallocated.
  *
@@ -78,7 +78,7 @@
 /**
  *  Header level of the receiver, or `0` if the receiver is not a header.
  */
-@property (readonly) int headerLevel;
+@property (readonly) NSInteger headerLevel;
 
 /**
  *  Info string from a fenced code block, or `nil` if there is none.
@@ -101,7 +101,7 @@
  *  Starting number of the list, or `0` if the receiver is not
  *  an ordered list.
  */
-@property (readonly) int listStartingNumber;
+@property (readonly) NSInteger listStartingNumber;
 
 /**
  *  `YES` if the receiver is a tight list, `NO` otherwise.
@@ -121,21 +121,21 @@
 /**
  *  The line on which the receiver begins.
  */
-@property (readonly) int startLine;
+@property (readonly) NSInteger startLine;
 
 /**
  *  The column on which the receiver begins.
  */
-@property (readonly) int startColumn;
+@property (readonly) NSInteger startColumn;
 
 /**
  *  The line on which the receiver ends.
  */
-@property (readonly) int endLine;
+@property (readonly) NSInteger endLine;
 
 /**
  *  The column on which the receiver ends.
  */
-@property (readonly) int endColumn;
+@property (readonly) NSInteger endColumn;
 
 @end
