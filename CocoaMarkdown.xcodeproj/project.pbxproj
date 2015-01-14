@@ -19,7 +19,7 @@
 		72650F4F1A65F2F900C6FC03 /* CMIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 72650F4D1A65F2F900C6FC03 /* CMIterator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72650F501A65F2F900C6FC03 /* CMIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 72650F4E1A65F2F900C6FC03 /* CMIterator.m */; };
 		72650F521A65F81600C6FC03 /* CMIteratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 72650F511A65F81600C6FC03 /* CMIteratorSpec.m */; };
-		72650F551A6601EA00C6FC03 /* CMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 72650F531A6601EA00C6FC03 /* CMParser.h */; };
+		72650F551A6601EA00C6FC03 /* CMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 72650F531A6601EA00C6FC03 /* CMParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72650F561A6601EA00C6FC03 /* CMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 72650F541A6601EA00C6FC03 /* CMParser.m */; };
 		72FCCCAC1A6579E60023724D /* CMNode_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 72FCCCAB1A6579E60023724D /* CMNode_Private.h */; };
 		72FCCCD21A657CB80023724D /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FCCCB81A657C9F0023724D /* Quick.framework */; };
@@ -333,8 +333,8 @@
 				725D3E891A64A12500268677 /* CMDocument.h in Headers */,
 				72650F4F1A65F2F900C6FC03 /* CMIterator.h in Headers */,
 				725D3E8D1A64A36E00268677 /* CMNode.h in Headers */,
-				72FCCCFB1A657F570023724D /* cmark.h in Headers */,
 				72650F551A6601EA00C6FC03 /* CMParser.h in Headers */,
+				72FCCCFB1A657F570023724D /* cmark.h in Headers */,
 				72FCCCF91A657F430023724D /* cmark_export.h in Headers */,
 				72FCCCAC1A6579E60023724D /* CMNode_Private.h in Headers */,
 			);
