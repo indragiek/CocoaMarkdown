@@ -62,10 +62,11 @@
 - (instancetype)initWithDocument:(CMDocument *)document delegate:(id<CMParserDelegate>)delegate queue:(dispatch_queue_t)queue
 {
     NSParameterAssert(document);
+    NSParameterAssert(delegate);
     
     if ((self = [super init])) {
         _document = document;
-        _queue = queue;
+        _queue = queue ?: dispatch_get_main_queue();
         self.delegate = delegate;
     }
     return self;
