@@ -19,6 +19,8 @@
 		72650F4F1A65F2F900C6FC03 /* CMIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 72650F4D1A65F2F900C6FC03 /* CMIterator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72650F501A65F2F900C6FC03 /* CMIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = 72650F4E1A65F2F900C6FC03 /* CMIterator.m */; };
 		72650F521A65F81600C6FC03 /* CMIteratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 72650F511A65F81600C6FC03 /* CMIteratorSpec.m */; };
+		72650F551A6601EA00C6FC03 /* CMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 72650F531A6601EA00C6FC03 /* CMParser.h */; };
+		72650F561A6601EA00C6FC03 /* CMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 72650F541A6601EA00C6FC03 /* CMParser.m */; };
 		72FCCCAC1A6579E60023724D /* CMNode_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 72FCCCAB1A6579E60023724D /* CMNode_Private.h */; };
 		72FCCCD21A657CB80023724D /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FCCCB81A657C9F0023724D /* Quick.framework */; };
 		72FCCCD31A657CBC0023724D /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FCCCCB1A657CA40023724D /* Nimble.framework */; };
@@ -139,6 +141,8 @@
 		72650F4D1A65F2F900C6FC03 /* CMIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMIterator.h; sourceTree = "<group>"; };
 		72650F4E1A65F2F900C6FC03 /* CMIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMIterator.m; sourceTree = "<group>"; };
 		72650F511A65F81600C6FC03 /* CMIteratorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMIteratorSpec.m; sourceTree = "<group>"; };
+		72650F531A6601EA00C6FC03 /* CMParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMParser.h; sourceTree = "<group>"; };
+		72650F541A6601EA00C6FC03 /* CMParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMParser.m; sourceTree = "<group>"; };
 		72FCCCAB1A6579E60023724D /* CMNode_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMNode_Private.h; sourceTree = "<group>"; };
 		72FCCCAE1A657C9F0023724D /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = External/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
 		72FCCCC31A657CA40023724D /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = External/Quick/Externals/Nimble/Nimble.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -214,6 +218,8 @@
 				725D3E8C1A64A36E00268677 /* CMNode.m */,
 				72650F4D1A65F2F900C6FC03 /* CMIterator.h */,
 				72650F4E1A65F2F900C6FC03 /* CMIterator.m */,
+				72650F531A6601EA00C6FC03 /* CMParser.h */,
+				72650F541A6601EA00C6FC03 /* CMParser.m */,
 				72FCCCAB1A6579E60023724D /* CMNode_Private.h */,
 				725D3E2A1A649A7A00268677 /* Supporting Files */,
 			);
@@ -328,6 +334,7 @@
 				72650F4F1A65F2F900C6FC03 /* CMIterator.h in Headers */,
 				725D3E8D1A64A36E00268677 /* CMNode.h in Headers */,
 				72FCCCFB1A657F570023724D /* cmark.h in Headers */,
+				72650F551A6601EA00C6FC03 /* CMParser.h in Headers */,
 				72FCCCF91A657F430023724D /* cmark_export.h in Headers */,
 				72FCCCAC1A6579E60023724D /* CMNode_Private.h in Headers */,
 			);
@@ -529,6 +536,7 @@
 				725D3E8E1A64A36E00268677 /* CMNode.m in Sources */,
 				72FCCCEF1A657E280023724D /* inlines.c in Sources */,
 				72FCCCEB1A657E280023724D /* houdini_href_e.c in Sources */,
+				72650F561A6601EA00C6FC03 /* CMParser.m in Sources */,
 				725D3E8A1A64A12500268677 /* CMDocument.m in Sources */,
 				72FCCCE81A657E280023724D /* buffer.c in Sources */,
 				72FCCCE91A657E280023724D /* cmark_ctype.c in Sources */,

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cmark.h"
 
+@class CMIterator;
+
 /**
  *  Immutable interface to a CommonMark node.
  */
@@ -24,6 +26,14 @@
  *  @return An initialized instance of the receiver.
  */
 - (instancetype)initWithNode:(cmark_node *)node freeWhenDone:(BOOL)free;
+
+/**
+ *  Creates an iterator for the node tree that has the
+ *  receiver as its root.
+ *
+ *  @return A new iterator.
+ */
+- (CMIterator *)iterator;
 
 /**
  *  The next node in the sequence, or `nil` if there is none.
@@ -61,8 +71,7 @@
 @property (readonly) NSString *humanReadableType;
 
 /**
- *  String contents of the receiver, or `nil` if there is none or if the receiver's
- *  type is not `CMARK_NODE_TEXT`
+ *  String contents of the receiver, or `nil` if there is none.
  */
 @property (readonly) NSString *stringValue;
 

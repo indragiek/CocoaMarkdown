@@ -8,6 +8,7 @@
 
 #import "CMNode.h"
 #import "CMNode_Private.h"
+#import "CMIterator.h"
 
 static CMNode * wrap(cmark_node *node) {
     if (node == NULL) return nil;
@@ -58,6 +59,13 @@ static NSString * str(const char *buf) {
 - (NSUInteger)hash
 {
     return (NSUInteger)_node;
+}
+
+#pragma mark - Iteration
+
+- (CMIterator *)iterator
+{
+    return [[CMIterator alloc] initWithRootNode:self];
 }
 
 #pragma mark - Tree Traversal
