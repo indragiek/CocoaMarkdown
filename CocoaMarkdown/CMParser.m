@@ -88,6 +88,8 @@
 
 - (void)abortParsing
 {
+    if (!self.parsing) return;
+    
     self.parsing = NO;
     if (_delegateFlags.didAbort) {
         dispatch_async(_queue, ^{
