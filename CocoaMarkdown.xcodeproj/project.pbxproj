@@ -13,6 +13,9 @@
 		725D3E8A1A64A12500268677 /* CMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 725D3E881A64A12500268677 /* CMDocument.m */; };
 		725D3E8D1A64A36E00268677 /* CMNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 725D3E8B1A64A36E00268677 /* CMNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		725D3E8E1A64A36E00268677 /* CMNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 725D3E8C1A64A36E00268677 /* CMNode.m */; };
+		72650F3B1A65EEF200C6FC03 /* test.md in Sources */ = {isa = PBXBuildFile; fileRef = 72650F3A1A65EEF200C6FC03 /* test.md */; };
+		72650F4A1A65F16000C6FC03 /* CMDocumentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 72650F491A65F16000C6FC03 /* CMDocumentSpec.m */; };
+		72650F4C1A65F2D400C6FC03 /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72650F3A1A65EEF200C6FC03 /* test.md */; };
 		72FCCCAC1A6579E60023724D /* CMNode_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 72FCCCAB1A6579E60023724D /* CMNode_Private.h */; };
 		72FCCCD21A657CB80023724D /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FCCCB81A657C9F0023724D /* Quick.framework */; };
 		72FCCCD31A657CBC0023724D /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FCCCCB1A657CA40023724D /* Nimble.framework */; };
@@ -128,6 +131,8 @@
 		725D3E881A64A12500268677 /* CMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDocument.m; sourceTree = "<group>"; };
 		725D3E8B1A64A36E00268677 /* CMNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMNode.h; sourceTree = "<group>"; };
 		725D3E8C1A64A36E00268677 /* CMNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMNode.m; sourceTree = "<group>"; };
+		72650F3A1A65EEF200C6FC03 /* test.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = test.md; sourceTree = "<group>"; };
+		72650F491A65F16000C6FC03 /* CMDocumentSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDocumentSpec.m; sourceTree = "<group>"; };
 		72FCCCAB1A6579E60023724D /* CMNode_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMNode_Private.h; sourceTree = "<group>"; };
 		72FCCCAE1A657C9F0023724D /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = External/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
 		72FCCCC31A657CA40023724D /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = External/Quick/Externals/Nimble/Nimble.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -218,9 +223,11 @@
 		725D3E361A649A7A00268677 /* CocoaMarkdownTests */ = {
 			isa = PBXGroup;
 			children = (
-				72FCCCAD1A657C940023724D /* Frameworks */,
-				725D3E371A649A7A00268677 /* Supporting Files */,
 				72FCCCD41A657CCC0023724D /* CMNodeSpec.m */,
+				72650F491A65F16000C6FC03 /* CMDocumentSpec.m */,
+				72FCCCAD1A657C940023724D /* Frameworks */,
+				72650F391A65EEF200C6FC03 /* Resources */,
+				725D3E371A649A7A00268677 /* Supporting Files */,
 			);
 			path = CocoaMarkdownTests;
 			sourceTree = "<group>";
@@ -257,6 +264,14 @@
 				72FCCCE61A657E280023724D /* xml.c */,
 			);
 			name = CommonMark;
+			sourceTree = "<group>";
+		};
+		72650F391A65EEF200C6FC03 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				72650F3A1A65EEF200C6FC03 /* test.md */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		72FCCCAD1A657C940023724D /* Frameworks */ = {
@@ -477,6 +492,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72650F4C1A65F2D400C6FC03 /* test.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +529,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72650F3B1A65EEF200C6FC03 /* test.md in Sources */,
+				72650F4A1A65F16000C6FC03 /* CMDocumentSpec.m in Sources */,
 				72FCCCD51A657CCC0023724D /* CMNodeSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

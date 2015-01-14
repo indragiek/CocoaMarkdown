@@ -13,6 +13,8 @@
 
 - (instancetype)initWithData:(NSData *)data
 {
+    NSParameterAssert(data);
+    
     if ((self = [super init])) {
         cmark_node *node = cmark_parse_document((const char *)data.bytes, data.length);
         _rootNode = [[CMNode alloc] initWithNode:node freeWhenDone:YES];
