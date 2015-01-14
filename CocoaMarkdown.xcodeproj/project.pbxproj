@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		720597241A66F6DA0072AFD6 /* CMParserTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 720597231A66F6DA0072AFD6 /* CMParserTestObject.m */; };
+		720597311A66FD530072AFD6 /* CMParserTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 720597301A66FD530072AFD6 /* CMParserTestObject.m */; };
 		725D3E2D1A649A7A00268677 /* CocoaMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 725D3E2C1A649A7A00268677 /* CocoaMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		725D3E331A649A7A00268677 /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 725D3E271A649A7A00268677 /* CocoaMarkdown.framework */; };
 		725D3E891A64A12500268677 /* CMDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 725D3E871A64A12500268677 /* CMDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -128,8 +128,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		720597221A66F6DA0072AFD6 /* CMParserTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMParserTestObject.h; path = CocoaMarkdown/CMParserTestObject.h; sourceTree = SOURCE_ROOT; };
-		720597231A66F6DA0072AFD6 /* CMParserTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CMParserTestObject.m; path = CocoaMarkdown/CMParserTestObject.m; sourceTree = SOURCE_ROOT; };
+		7205972F1A66FD530072AFD6 /* CMParserTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMParserTestObject.h; sourceTree = "<group>"; };
+		720597301A66FD530072AFD6 /* CMParserTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMParserTestObject.m; sourceTree = "<group>"; };
 		725D3E271A649A7A00268677 /* CocoaMarkdown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaMarkdown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		725D3E2B1A649A7A00268677 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		725D3E2C1A649A7A00268677 /* CocoaMarkdown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaMarkdown.h; sourceTree = "<group>"; };
@@ -243,8 +243,8 @@
 				72FCCCD41A657CCC0023724D /* CMNodeSpec.m */,
 				72650F491A65F16000C6FC03 /* CMDocumentSpec.m */,
 				72650F511A65F81600C6FC03 /* CMIteratorSpec.m */,
-				720597221A66F6DA0072AFD6 /* CMParserTestObject.h */,
-				720597231A66F6DA0072AFD6 /* CMParserTestObject.m */,
+				7205972F1A66FD530072AFD6 /* CMParserTestObject.h */,
+				720597301A66FD530072AFD6 /* CMParserTestObject.m */,
 				72FCCCAD1A657C940023724D /* Frameworks */,
 				72650F391A65EEF200C6FC03 /* Resources */,
 				725D3E371A649A7A00268677 /* Supporting Files */,
@@ -555,7 +555,7 @@
 			files = (
 				72650F521A65F81600C6FC03 /* CMIteratorSpec.m in Sources */,
 				72650F3B1A65EEF200C6FC03 /* test.md in Sources */,
-				720597241A66F6DA0072AFD6 /* CMParserTestObject.m in Sources */,
+				720597311A66FD530072AFD6 /* CMParserTestObject.m in Sources */,
 				72650F4A1A65F16000C6FC03 /* CMDocumentSpec.m in Sources */,
 				72FCCCD51A657CCC0023724D /* CMNodeSpec.m in Sources */,
 			);
