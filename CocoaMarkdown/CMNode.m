@@ -28,6 +28,12 @@ static NSString * str(const char *buf) {
 
 #pragma mark - Initialization
 
+- (instancetype)init
+{
+    NSAssert(NO, @"CMNode instance can not be created.");
+    return nil;
+}
+
 - (instancetype)initWithNode:(cmark_node *)node freeWhenDone:(BOOL)free
 {
     NSParameterAssert(node);

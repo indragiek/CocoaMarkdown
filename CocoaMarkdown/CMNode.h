@@ -12,20 +12,9 @@
 @class CMIterator;
 
 /**
- *  Immutable NSIntegererface to a CommonMark node.
+ *  Immutable interface to a CommonMark node.
  */
 @interface CMNode : NSObject
-
-/**
- *  Designated initializer.
- *
- *  @param node PoNSIntegerer to the node to wrap.
- *  @param free Whether to free the underlying node when the
- *  receiver is deallocated.
- *
- *  @return An initialized instance of the receiver.
- */
-- (instancetype)initWithNode:(cmark_node *)node freeWhenDone:(BOOL)free;
 
 /**
  *  Creates an iterator for the node tree that has the

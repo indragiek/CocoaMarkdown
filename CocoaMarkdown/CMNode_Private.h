@@ -9,5 +9,16 @@
 #import "CMNode.h"
 
 @interface CMNode ()
+/**
+ *  Designated initializer.
+ *
+ *  @param node Pointer to the node to wrap.
+ *  @param free Whether to free the underlying node when the
+ *  receiver is deallocated.
+ *
+ *  @return An initialized instance of the receiver.
+ */
+- (instancetype)initWithNode:(cmark_node *)node freeWhenDone:(BOOL)free;
+
 @property (readonly) cmark_node *node;
 @end

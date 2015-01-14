@@ -7,7 +7,7 @@
 //
 
 #import "CMDocument.h"
-#import "CMNode.h"
+#import "CMNode_Private.h"
 
 @implementation CMDocument
 
