@@ -17,6 +17,8 @@
     
     if ((self = [super init])) {
         cmark_node *node = cmark_parse_document((const char *)data.bytes, data.length);
+        if (node == NULL) return nil;
+        
         _rootNode = [[CMNode alloc] initWithNode:node freeWhenDone:YES];
     }
     return self;
@@ -30,6 +32,7 @@
         
         cmark_node *node = cmark_parse_file(fp);
         fclose(fp);
+        if (node == NULL) return nil;
         
         _rootNode = [[CMNode alloc] initWithNode:node freeWhenDone:YES];
     }

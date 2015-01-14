@@ -29,6 +29,8 @@ static NSString * str(const char *buf) {
 
 - (instancetype)initWithNode:(cmark_node *)node freeWhenDone:(BOOL)free
 {
+    NSParameterAssert(node);
+    
     if ((self = [super init])) {
         _node = node;
         _freeWhenDone = free;

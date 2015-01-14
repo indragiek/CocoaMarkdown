@@ -14,5 +14,6 @@ FOUNDATION_EXPORT double CocoaMarkdownVersionNumber;
 //! Project version string for CocoaMarkdown.
 FOUNDATION_EXPORT const unsigned char CocoaMarkdownVersionString[];
 
-#import <CocoaMarkdown/CMNode.h>
 #import <CocoaMarkdown/CMDocument.h>
+#import <CocoaMarkdown/CMIterator.h>
+#import <CocoaMarkdown/CMNode.h>
