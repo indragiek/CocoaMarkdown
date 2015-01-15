@@ -43,7 +43,7 @@
 /**
  *  Delegate to receive callbacks during parsing.
  */
-@property (nonatomic, readonly) id<CMParserDelegate> delegate;
+@property (nonatomic, weak, readonly) id<CMParserDelegate> delegate;
 
 /**
  *  Queue to call delegate methods on.
