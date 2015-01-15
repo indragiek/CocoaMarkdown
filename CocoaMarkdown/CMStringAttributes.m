@@ -94,14 +94,13 @@ static UIFont * MonospaceFont()
 static NSParagraphStyle * DefaultIndentedParagraphStyle()
 {
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.firstLineHeadIndent = 30;
     style.headIndent = 30;
     return style;
 }
 
 NSDictionary * CMDefaultCodeBlockAttributes()
 {
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.headIndent = 30;
     return @{
 #if TARGET_OS_IPHONE
         NSFontAttributeName: MonospaceFont(),
