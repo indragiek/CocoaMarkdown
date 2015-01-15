@@ -75,12 +75,12 @@ NSDictionary * CMDefaultLinkAttributes()
 {
     return @{
 #if TARGET_OS_IPHONE
-             NSForegroundColorAttributeName: UIColor.blueColor,
+        NSForegroundColorAttributeName: UIColor.blueColor,
 #else
-             NSForegroundColorAttributeName: NSColor.blueColor,
+        NSForegroundColorAttributeName: NSColor.blueColor,
 #endif
-             NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)
-             };
+        NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)
+    };
 }
 
 #if TARGET_OS_IPHONE

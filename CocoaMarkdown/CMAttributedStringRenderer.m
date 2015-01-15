@@ -126,17 +126,18 @@
 
 - (void)parser:(CMParser *)parser didEndHeaderWithLevel:(NSInteger)level
 {
+    [self appendString:@"\n"];
     [self popAttributeRun];
 }
 
 - (void)parserDidStartParagraph:(CMParser *)parser
 {
-    [self appendEmptyLineIfNotTightForNode:parser.currentNode];
+    [self appendLineBreakIfNotTightForNode:parser.currentNode];
 }
 
 - (void)parserDidEndParagraph:(CMParser *)parser
 {
-    [self appendEmptyLineIfNotTightForNode:parser.currentNode];
+    [self appendLineBreakIfNotTightForNode:parser.currentNode];
 }
 
 - (void)parserDidStartEmphasis:(CMParser *)parser
@@ -223,6 +224,7 @@
 {
     CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_unorderedListAttributes];
     [self pushAttributeRun:run];
+    [self appendString:@"\n"];
 }
 
 - (void)parser:(CMParser *)parser didEndUnorderedListWithTightness:(BOOL)tight
@@ -234,6 +236,7 @@
 {
     CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_orderedListAttributes orderedListNumber:num];
     [self pushAttributeRun:run];
+    [self appendString:@"\n"];
 }
 
 - (void)parser:(CMParser *)parser didEndOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
@@ -256,7 +259,8 @@
         }
         case CMARK_ORDERED_LIST: {
             CMAttributeRun *parentRun = _stack.lastObject;
-            [self appendString:[NSString stringWithFormat:@"%ld ", parentRun.orderedListItemNumber]];
+            [self appendString:[NSString stringWithFormat:@"%ld. ", parentRun.orderedListItemNumber]];
+            parentRun.orderedListItemNumber++;
             CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_orderedListItemAttributes];
             [self pushAttributeRun:run];
             break;
@@ -268,6 +272,7 @@
 
 - (void)parserDidEndListItem:(CMParser *)parser
 {
+    [self appendString:@"\n"];
     [self popAttributeRun];
 }
 
@@ -299,11 +304,11 @@
     return run;
 }
 
-- (void)appendEmptyLineIfNotTightForNode:(CMNode *)node
+- (void)appendLineBreakIfNotTightForNode:(CMNode *)node
 {
     CMNode *grandparent = node.parent.parent;
     if (!grandparent.listTight) {
-        [self appendString:@"\n\n"];
+        [self appendString:@"\n"];
     }
 }
 
