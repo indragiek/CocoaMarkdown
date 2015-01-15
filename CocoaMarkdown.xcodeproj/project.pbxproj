@@ -10,6 +10,8 @@
 		720597311A66FD530072AFD6 /* CMParserTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 720597301A66FD530072AFD6 /* CMParserTestObject.m */; };
 		720597331A6702E80072AFD6 /* CMParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 720597321A6702E80072AFD6 /* CMParserSpec.m */; };
 		720597431A6707080072AFD6 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7205973C1A6706F90072AFD6 /* Nimble.framework */; };
+		720597561A6781E50072AFD6 /* CMAttributedStringRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 720597541A6781E50072AFD6 /* CMAttributedStringRenderer.h */; };
+		720597571A6781E50072AFD6 /* CMAttributedStringRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 720597551A6781E50072AFD6 /* CMAttributedStringRenderer.m */; };
 		725D3E2D1A649A7A00268677 /* CocoaMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 725D3E2C1A649A7A00268677 /* CocoaMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		725D3E331A649A7A00268677 /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 725D3E271A649A7A00268677 /* CocoaMarkdown.framework */; };
 		725D3E891A64A12500268677 /* CMDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 725D3E871A64A12500268677 /* CMDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -147,6 +149,8 @@
 		720597301A66FD530072AFD6 /* CMParserTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMParserTestObject.m; sourceTree = "<group>"; };
 		720597321A6702E80072AFD6 /* CMParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMParserSpec.m; sourceTree = "<group>"; };
 		720597341A6706F80072AFD6 /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = External/Nimble/Nimble.xcodeproj; sourceTree = SOURCE_ROOT; };
+		720597541A6781E50072AFD6 /* CMAttributedStringRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMAttributedStringRenderer.h; sourceTree = "<group>"; };
+		720597551A6781E50072AFD6 /* CMAttributedStringRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMAttributedStringRenderer.m; sourceTree = "<group>"; };
 		725D3E271A649A7A00268677 /* CocoaMarkdown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaMarkdown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		725D3E2B1A649A7A00268677 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		725D3E2C1A649A7A00268677 /* CocoaMarkdown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaMarkdown.h; sourceTree = "<group>"; };
@@ -245,12 +249,14 @@
 				725D3E871A64A12500268677 /* CMDocument.h */,
 				725D3E881A64A12500268677 /* CMDocument.m */,
 				725D3E8B1A64A36E00268677 /* CMNode.h */,
+				72FCCCAB1A6579E60023724D /* CMNode_Private.h */,
 				725D3E8C1A64A36E00268677 /* CMNode.m */,
 				72650F4D1A65F2F900C6FC03 /* CMIterator.h */,
 				72650F4E1A65F2F900C6FC03 /* CMIterator.m */,
 				72650F531A6601EA00C6FC03 /* CMParser.h */,
 				72650F541A6601EA00C6FC03 /* CMParser.m */,
-				72FCCCAB1A6579E60023724D /* CMNode_Private.h */,
+				720597541A6781E50072AFD6 /* CMAttributedStringRenderer.h */,
+				720597551A6781E50072AFD6 /* CMAttributedStringRenderer.m */,
 				725D3E2A1A649A7A00268677 /* Supporting Files */,
 			);
 			path = CocoaMarkdown;
@@ -359,6 +365,7 @@
 				72FCCCFB1A657F570023724D /* cmark.h in Headers */,
 				72FCCCF91A657F430023724D /* cmark_export.h in Headers */,
 				72FCCCAC1A6579E60023724D /* CMNode_Private.h in Headers */,
+				720597561A6781E50072AFD6 /* CMAttributedStringRenderer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +570,7 @@
 				72650F561A6601EA00C6FC03 /* CMParser.m in Sources */,
 				725D3E8A1A64A12500268677 /* CMDocument.m in Sources */,
 				72FCCCE81A657E280023724D /* buffer.c in Sources */,
+				720597571A6781E50072AFD6 /* CMAttributedStringRenderer.m in Sources */,
 				72FCCCE91A657E280023724D /* cmark_ctype.c in Sources */,
 				72FCCCF41A657E280023724D /* references.c in Sources */,
 			);
