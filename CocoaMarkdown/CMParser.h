@@ -14,7 +14,11 @@
 @protocol CMParserDelegate;
 
 /**
- *  Parses a CommonMark document.
+ *  Not really a parser. This class takes a `CMDocument` (which contains the
+ *  tree for the already-parsed Markdown data) and traverses the tree to 
+ *  implement `NSXMLParser`-style delegate callbacks.
+ *
+ *  This is useful for implementing custom renderers.
  */
 @interface CMParser : NSObject
 
