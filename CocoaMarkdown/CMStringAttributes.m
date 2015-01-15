@@ -104,12 +104,12 @@ NSDictionary * CMDefaultCodeBlockAttributes()
     style.headIndent = 30;
     return @{
 #if TARGET_OS_IPHONE
-             NSFontAttributeName: MonospaceFont(),
+        NSFontAttributeName: MonospaceFont(),
 #else
-             NSFontAttributeName: [NSFont userFixedPitchFontOfSize:12.0],
+        NSFontAttributeName: [NSFont userFixedPitchFontOfSize:12.0],
 #endif
-             NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()
-             };
+        NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()
+    };
 }
 
 NSDictionary * CMDefaultInlineCodeAttributes()

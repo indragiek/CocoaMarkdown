@@ -332,7 +332,7 @@
                 (baseFont = allAttributes[NSFontAttributeName]) &&
                 (adjustedFont = CMFontWithTraits(run.fontTraits, baseFont))) {
                 
-                NSMutableDictionary *attributes = [run.attributes mutableCopy];
+                NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:run.attributes];
                 attributes[NSFontAttributeName] = adjustedFont;
                 [allAttributes addEntriesFromDictionary:attributes];
             } else if (run.attributes != nil) {

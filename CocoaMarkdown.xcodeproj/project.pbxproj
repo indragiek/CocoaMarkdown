@@ -1400,6 +1400,7 @@
 				72FE7EE71A68692400F23F46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		72FE7F0B1A68695100F23F46 /* Build configuration list for PBXNativeTarget "Example-Mac" */ = {
 			isa = XCConfigurationList;
@@ -1408,6 +1409,7 @@
 				72FE7F0D1A68695100F23F46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
