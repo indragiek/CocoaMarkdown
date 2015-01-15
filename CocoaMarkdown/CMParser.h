@@ -21,6 +21,9 @@
  *  callbacks.
  *
  *  This is useful for implementing custom renderers.
+ *
+ *  @warning This class is not thread-safe and can only be accessed from a single
+ *  thread at a time.
  */
 @interface CMParser : NSObject
 
@@ -29,11 +32,10 @@
  *
  *  @param document CommonMark document.
  *  @param delegate Delegate to receive callbacks during parsing.
- *  @param queue    Queue to call delegate methods on.
  *
  *  @return An initialized instance of the receiver.
  */
-- (instancetype)initWithDocument:(CMDocument *)document delegate:(id<CMParserDelegate>)delegate queue:(dispatch_queue_t)queue;
+- (instancetype)initWithDocument:(CMDocument *)document delegate:(id<CMParserDelegate>)delegate;
 
 /**
  *  Document being parsed.
@@ -46,17 +48,9 @@
 @property (nonatomic, weak, readonly) id<CMParserDelegate> delegate;
 
 /**
- *  Queue to call delegate methods on.
- */
-@property (nonatomic, readonly) dispatch_queue_t queue;
-
-/**
  *  Returns the node currently being parsed, or `nil` if not parsing.
- *
- *  @warning This is only safe to access from the queue in which the parser
- *  delegate methods are called on.
  */
-@property (nonatomic, readonly) CMNode *currentNode;
+@property (atomic, readonly) CMNode *currentNode;
 
 /**
  *  Start parsing.

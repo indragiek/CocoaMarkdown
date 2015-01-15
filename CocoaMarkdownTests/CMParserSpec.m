@@ -20,7 +20,7 @@ beforeEach(^{
 it(@"should parse a document", ^{
     [results parse];
 
-    expect(@(results.didEndDocument)).toEventually(equal(@1));
+    expect(@(results.didEndDocument)).to(equal(@1));
     expect(@(results.didStartDocument)).to(equal(@1));
     expect(@(results.didAbort)).to(equal(@0));
     
@@ -77,7 +77,7 @@ it(@"should abort parsing", ^{
     results.abortOnStart = YES;
     [results parse];
     
-    expect(@(results.didAbort)).toEventually(equal(@1));
+    expect(@(results.didAbort)).to(equal(@1));
     expect(@(results.didEndDocument)).to(equal(@0));
 });
 

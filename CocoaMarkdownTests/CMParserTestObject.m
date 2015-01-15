@@ -35,7 +35,8 @@
 {
     NSParameterAssert(document);
     if ((self = [super init])) {
-        _parser = [[CMParser alloc] initWithDocument:document delegate:self queue:dispatch_get_main_queue()];
+        _parser = [[CMParser alloc] initWithDocument:document delegate:self];
+        
         _foundText = [[NSMutableArray alloc] init];
         _didStartHeader = [[NSMutableArray alloc] init];
         _didEndHeader = [[NSMutableArray alloc] init];

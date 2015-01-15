@@ -11,7 +11,8 @@
 
 @implementation CMAttributedStringRenderer
 
-- (instancetype)initWithDocument:(CMDocument *)document {
+- (instancetype)initWithDocument:(CMDocument *)document
+{
     if ((self = [super init])) {
         _document = document;
         _textAttributes = CMDefaultTextAttributes();

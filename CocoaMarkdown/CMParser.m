@@ -13,6 +13,11 @@
 
 #import <libkern/OSAtomic.h>
 
+@interface CMParser ()
+@property (atomic, readwrite) CMNode *currentNode;
+@property (nonatomic, weak, readwrite) id<CMParserDelegate> delegate;
+@end
+
 @implementation CMParser {
     struct {
         unsigned int didStartDocument:1;
@@ -52,15 +57,14 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithDocument:(CMDocument *)document delegate:(id<CMParserDelegate>)delegate queue:(dispatch_queue_t)queue
+- (instancetype)initWithDocument:(CMDocument *)document delegate:(id<CMParserDelegate>)delegate
 {
     NSParameterAssert(document);
     NSParameterAssert(delegate);
     
     if ((self = [super init])) {
         _document = document;
-        _queue = queue ?: dispatch_get_main_queue();
-        [self setDelegate:delegate];
+        self.delegate = delegate;
     }
     return self;
 }
@@ -72,14 +76,13 @@
     if (_parsing) return;
     OSAtomicOr32Barrier(1, &_parsing);
     
-    dispatch_async(_queue, ^{
-        [[_document.rootNode iterator] enumerateUsingBlock:^(CMNode *node, cmark_event_type event, BOOL *stop) {
-            _currentNode = node;
-            [self handleNode:node event:event];
-            if (!_parsing) *stop = YES;
-        }];
-        OSAtomicAnd32Barrier(0, &_parsing);
-    });
+    [[_document.rootNode iterator] enumerateUsingBlock:^(CMNode *node, cmark_event_type event, BOOL *stop) {
+        self.currentNode = node;
+        [self handleNode:node event:event];
+        if (!_parsing) *stop = YES;
+    }];
+    
+    OSAtomicAnd32Barrier(0, &_parsing);
 }
 
 - (void)abortParsing
@@ -88,9 +91,7 @@
     OSAtomicAnd32Barrier(0, &_parsing);
     
     if (_delegateFlags.didAbort) {
-        dispatch_async(_queue, ^{
-            [_delegate parserDidAbort:self];
-        });
+        [_delegate parserDidAbort:self];
     }
 }
 
