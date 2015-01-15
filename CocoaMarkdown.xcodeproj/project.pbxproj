@@ -104,6 +104,7 @@
 		72FE7EFE1A68695100F23F46 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7EFC1A68695100F23F46 /* MainMenu.xib */; };
 		72FE7F131A68697900F23F46 /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; };
 		72FE7F151A68698C00F23F46 /* CocoaMarkdown.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		72FE7F191A686ACD00F23F46 /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7F171A686AC300F23F46 /* test.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -295,6 +296,7 @@
 		72FE7EF81A68695100F23F46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72FE7EFA1A68695100F23F46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		72FE7EFD1A68695100F23F46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		72FE7F171A686AC300F23F46 /* test.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = test.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -507,6 +509,7 @@
 				72FE7ED11A68692400F23F46 /* Main.storyboard */,
 				72FE7ED41A68692400F23F46 /* Images.xcassets */,
 				72FE7ED61A68692400F23F46 /* LaunchScreen.xib */,
+				72FE7F161A686AC300F23F46 /* Resources */,
 				72FE7ECB1A68692400F23F46 /* Supporting Files */,
 			);
 			path = "Example-iOS";
@@ -538,6 +541,15 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		72FE7F161A686AC300F23F46 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				72FE7F171A686AC300F23F46 /* test.md */,
+			);
+			name = Resources;
+			path = CocoaMarkdownTests/Resources;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -863,6 +875,7 @@
 				72FE7ED31A68692400F23F46 /* Main.storyboard in Resources */,
 				72FE7ED81A68692400F23F46 /* LaunchScreen.xib in Resources */,
 				72FE7ED51A68692400F23F46 /* Images.xcassets in Resources */,
+				72FE7F191A686ACD00F23F46 /* test.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
