@@ -25,6 +25,11 @@
 - (instancetype)initWithDocument:(CMDocument *)document;
 
 /**
+ *  The document to render.
+ */
+@property (nonatomic, readonly) CMDocument *document;
+
+/**
  *  Renders the Markdown document to an attributed string.
  *
  *  @return An attributed string containing the contents of the Markdown document,
