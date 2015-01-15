@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Indragie Karunaratne. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for CocoaMarkdown.
 FOUNDATION_EXPORT double CocoaMarkdownVersionNumber;
