@@ -14,9 +14,11 @@
 @protocol CMParserDelegate;
 
 /**
- *  Not really a parser. This class takes a `CMDocument` (which contains the
- *  tree for the already-parsed Markdown data) and traverses the tree to 
- *  implement `NSXMLParser`-style delegate callbacks.
+ *  Not really a parser, but you can pretend it is. 
+ *
+ *  This class takes a `CMDocument` (which contains the tree for the already-parsed 
+ *  Markdown data) and traverses the tree to implement `NSXMLParser`-style delegate 
+ *  callbacks.
  *
  *  This is useful for implementing custom renderers.
  */
@@ -34,9 +36,19 @@
 - (instancetype)initWithDocument:(CMDocument *)document delegate:(id<CMParserDelegate>)delegate queue:(dispatch_queue_t)queue;
 
 /**
+ *  Document being parsed.
+ */
+@property (nonatomic, readonly) CMDocument *document;
+
+/**
  *  Delegate to receive callbacks during parsing.
  */
-@property (nonatomic, weak) id<CMParserDelegate> delegate;
+@property (nonatomic, readonly) id<CMParserDelegate> delegate;
+
+/**
+ *  Queue to call delegate methods on.
+ */
+@property (nonatomic, readonly) dispatch_queue_t queue;
 
 /**
  *  Returns the node currently being parsed, or `nil` if not parsing.

@@ -47,9 +47,6 @@
         unsigned int didStartListItem:1;
         unsigned int didEndListItem:1;
     } _delegateFlags;
-    
-    CMDocument *_document;
-    dispatch_queue_t _queue;
     volatile uint32_t _parsing;
 }
 
@@ -63,7 +60,7 @@
     if ((self = [super init])) {
         _document = document;
         _queue = queue ?: dispatch_get_main_queue();
-        self.delegate = delegate;
+        [self setDelegate:delegate];
     }
     return self;
 }
