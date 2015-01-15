@@ -65,6 +65,9 @@
 - (void)parserDidStartDocument:(CMParser *)parser
 {
     _didStartDocument++;
+    if (_abortOnStart) {
+        [parser abortParsing];
+    }
 }
 
 - (void)parserDidEndDocument:(CMParser *)parser
@@ -129,37 +132,44 @@
 
 - (void)parser:(CMParser *)parser didStartLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
-    [_didStartLink addObject:@[URL, title]];
+    NSParameterAssert(URL);
+    [_didStartLink addObject:@[URL, title ?: NSNull.null]];
 }
 
 - (void)parser:(CMParser *)parser didEndLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
-    [_didEndLink addObject:@[URL, title]];
+    NSParameterAssert(URL);
+    [_didEndLink addObject:@[URL, title ?: NSNull.null]];
 }
 
 - (void)parser:(CMParser *)parser didStartImageWithURL:(NSURL *)URL title:(NSString *)title
 {
-    [_didStartImage addObject:@[URL, title]];
+    NSParameterAssert(URL);
+    [_didStartImage addObject:@[URL, title ?: NSNull.null]];
 }
 
 - (void)parser:(CMParser *)parser didEndImageWithURL:(NSURL *)URL title:(NSString *)title
 {
-    [_didEndImage addObject:@[URL, title]];
+    NSParameterAssert(URL);
+    [_didEndImage addObject:@[URL, title ?: NSNull.null]];
 }
 
 - (void)parser:(CMParser *)parser foundHTML:(NSString *)HTML
 {
+    NSParameterAssert(HTML);
     [_foundHTML addObject:HTML];
 }
 
 - (void)parser:(CMParser *)parser foundInlineHTML:(NSString *)HTML
 {
+    NSParameterAssert(HTML);
     [_foundInlineHTML addObject:HTML];
 }
 
 - (void)parser:(CMParser *)parser foundCodeBlock:(NSString *)code info:(NSString *)info
 {
-    [_foundCodeBlock addObject:@[code, info]];
+    NSParameterAssert(code);
+    [_foundCodeBlock addObject:@[code, info ?: NSNull.null]];
 }
 
 - (void)parser:(CMParser *)parser foundInlineCode:(NSString *)code

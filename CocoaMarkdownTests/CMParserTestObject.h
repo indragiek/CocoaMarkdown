@@ -43,6 +43,8 @@
 @property (nonatomic, readonly) NSInteger didStartListItem;
 @property (nonatomic, readonly) NSInteger didEndListItem;
 
+@property (nonatomic) BOOL abortOnStart;
+
 - (instancetype)initWithDocument:(CMDocument *)document;
 - (void)parse;
 @end

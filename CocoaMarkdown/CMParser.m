@@ -13,10 +13,6 @@
 
 #import <libkern/OSAtomic.h>
 
-@interface CMParser ()
-@property (nonatomic) BOOL parsing;
-@end
-
 @implementation CMParser {
     struct {
         unsigned int didStartDocument:1;
@@ -76,22 +72,24 @@
 
 - (void)parse
 {
-    if (self.parsing) return;
-
-    self.parsing = YES;
-    [[_document.rootNode iterator] enumerateUsingBlock:^(CMNode *node, cmark_event_type event, BOOL *stop) {
-        _currentNode = node;
-        [self handleNode:node event:event];
-        if (self.parsing) *stop = YES;
-    }];
-    self.parsing = NO;
+    if (_parsing) return;
+    OSAtomicOr32Barrier(1, &_parsing);
+    
+    dispatch_async(_queue, ^{
+        [[_document.rootNode iterator] enumerateUsingBlock:^(CMNode *node, cmark_event_type event, BOOL *stop) {
+            _currentNode = node;
+            [self handleNode:node event:event];
+            if (!_parsing) *stop = YES;
+        }];
+        OSAtomicAnd32Barrier(0, &_parsing);
+    });
 }
 
 - (void)abortParsing
 {
-    if (!self.parsing) return;
+    if (!_parsing) return;
+    OSAtomicAnd32Barrier(0, &_parsing);
     
-    self.parsing = NO;
     if (_delegateFlags.didAbort) {
         dispatch_async(_queue, ^{
             [_delegate parserDidAbort:self];
@@ -109,156 +107,110 @@
                     [_delegate parserDidStartDocument:self];
                 }
             } else if (_delegateFlags.didEndDocument) {
-                dispatch_async(_queue, ^{
-                    [_delegate parserDidEndDocument:self];
-                });
+                [_delegate parserDidEndDocument:self];
             }
             break;
         case CMARK_NODE_TEXT:
             if (_delegateFlags.foundText) {
-                dispatch_async(_queue, ^{
-                    [_delegate parser:self foundText:node.stringValue];
-                });
+                [_delegate parser:self foundText:node.stringValue];
             }
             break;
         case CMARK_NODE_HRULE:
             if (_delegateFlags.foundHRule) {
-                dispatch_async(_queue, ^{
-                    [_delegate parserFoundHRule:self];
-                });
+                [_delegate parserFoundHRule:self];
             }
             break;
         case CMARK_NODE_HEADER:
             if (event == CMARK_EVENT_ENTER) {
                 if (_delegateFlags.didStartHeader) {
-                    dispatch_async(_queue, ^{
-                        [_delegate parser:self didStartHeaderWithLevel:node.headerLevel];
-                    });
+                    [_delegate parser:self didStartHeaderWithLevel:node.headerLevel];
                 }
             } else if (_delegateFlags.didEndHeader) {
-                dispatch_async(_queue, ^{
-                    [_delegate parser:self didEndHeaderWithLevel:node.headerLevel];
-                });
+                [_delegate parser:self didEndHeaderWithLevel:node.headerLevel];
             }
             break;
         case CMARK_NODE_PARAGRAPH:
             if (event == CMARK_EVENT_ENTER) {
                 if (_delegateFlags.didStartParagraph) {
-                    dispatch_async(_queue, ^{
-                        [_delegate parserDidStartParagraph:self];
-                    });
+                    [_delegate parserDidStartParagraph:self];
                 }
             } else if (_delegateFlags.didEndParagraph) {
-                dispatch_async(_queue, ^{
-                    [_delegate parserDidEndParagraph:self];
-                });
+                [_delegate parserDidEndParagraph:self];
             }
             break;
         case CMARK_NODE_EMPH:
             if (event == CMARK_EVENT_ENTER) {
                 if (_delegateFlags.didStartEmphasis) {
-                    dispatch_async(_queue, ^{
-                        [_delegate parserDidStartEmphasis:self];
-                    });
+                    [_delegate parserDidStartEmphasis:self];
                 }
             } else if (_delegateFlags.didEndEmphasis) {
-                dispatch_async(_queue, ^{
-                    [_delegate parserDidEndEmphasis:self];
-                });
+                [_delegate parserDidEndEmphasis:self];
             }
             break;
         case CMARK_NODE_STRONG:
             if (event == CMARK_EVENT_ENTER) {
                 if (_delegateFlags.didStartStrong) {
-                    dispatch_async(_queue, ^{
-                        [_delegate parserDidStartStrong:self];
-                    });
+                    [_delegate parserDidStartStrong:self];
                 }
             } else if (_delegateFlags.didEndStrong) {
-                dispatch_async(_queue, ^{
-                    [_delegate parserDidEndStrong:self];
-                });
+                [_delegate parserDidEndStrong:self];
             }
             break;
         case CMARK_NODE_LINK:
             if (event == CMARK_EVENT_ENTER) {
                 if (_delegateFlags.didStartLink) {
-                    dispatch_async(_queue, ^{
-                        [_delegate parser:self didStartLinkWithURL:node.URL title:node.title];
-                    });
+                    [_delegate parser:self didStartLinkWithURL:node.URL title:node.title];
                 }
             } else if (_delegateFlags.didEndLink) {
-                dispatch_async(_queue, ^{
-                    [_delegate parser:self didEndLinkWithURL:node.URL title:node.title];
-                });
+                [_delegate parser:self didEndLinkWithURL:node.URL title:node.title];
             }
             break;
         case CMARK_NODE_IMAGE:
             if (event == CMARK_EVENT_ENTER) {
                 if (_delegateFlags.didStartImage) {
-                    dispatch_async(_queue, ^{
-                        [_delegate parser:self didStartImageWithURL:node.URL title:node.title];
-                    });
-                } else if (_delegateFlags.didEndImage) {
-                    dispatch_async(_queue, ^{
-                        [_delegate parser:self didEndImageWithURL:node.URL title:node.title];
-                    });
+                    [_delegate parser:self didStartImageWithURL:node.URL title:node.title];
                 }
+            } else if (_delegateFlags.didEndImage) {
+                [_delegate parser:self didEndImageWithURL:node.URL title:node.title];
             }
             break;
         case CMARK_NODE_HTML:
             if (_delegateFlags.foundHTML) {
-                dispatch_async(_queue, ^{
-                    [_delegate parser:self foundHTML:node.stringValue];
-                });
+                [_delegate parser:self foundHTML:node.stringValue];
             }
             break;
         case CMARK_NODE_INLINE_HTML:
             if (_delegateFlags.foundInlineHTML) {
-                dispatch_async(_queue, ^{
-                    [_delegate parser:self foundInlineHTML:node.stringValue];
-                });
+                [_delegate parser:self foundInlineHTML:node.stringValue];
             }
             break;
         case CMARK_NODE_CODE_BLOCK:
             if (_delegateFlags.foundCodeBlock) {
-                dispatch_async(_queue, ^{
-                    [_delegate parser:self foundCodeBlock:node.stringValue info:node.fencedCodeInfo];
-                });
+                [_delegate parser:self foundCodeBlock:node.stringValue info:node.fencedCodeInfo];
             }
             break;
         case CMARK_NODE_CODE:
             if (_delegateFlags.foundInlineCode) {
-                dispatch_async(_queue, ^{
-                    [_delegate parser:self foundInlineCode:node.stringValue];
-                });
+                [_delegate parser:self foundInlineCode:node.stringValue];
             }
             break;
         case CMARK_NODE_SOFTBREAK:
             if (_delegateFlags.foundSoftBreak) {
-                dispatch_async(_queue, ^{
-                    [_delegate parserFoundSoftBreak:self];
-                });
+                [_delegate parserFoundSoftBreak:self];
             }
             break;
         case CMARK_NODE_LINEBREAK:
             if (_delegateFlags.foundLineBreak) {
-                dispatch_async(_queue, ^{
-                    [_delegate parserFoundLineBreak:self];
-                });
+                [_delegate parserFoundLineBreak:self];
             }
             break;
         case CMARK_NODE_BLOCK_QUOTE:
             if (event == CMARK_EVENT_ENTER) {
                 if (_delegateFlags.didStartBlockQuote) {
-                    dispatch_async(_queue, ^{
-                        [_delegate parserDidStartBlockQuote:self];
-                    });
+                    [_delegate parserDidStartBlockQuote:self];
                 }
             } else if (_delegateFlags.didEndBlockQuote) {
-                dispatch_async(_queue, ^{
-                    [_delegate parserDidEndBlockQuote:self];
-                });
+                [_delegate parserDidEndBlockQuote:self];
             }
             break;
         case CMARK_NODE_LIST:
@@ -266,27 +218,19 @@
                 case CMARK_ORDERED_LIST:
                     if (event == CMARK_EVENT_ENTER) {
                         if (_delegateFlags.didStartOrderedList) {
-                            dispatch_async(_queue, ^{
-                                [_delegate parser:self didStartOrderedListWithStartingNumber:node.listStartingNumber tight:node.listTight];
-                            });
+                            [_delegate parser:self didStartOrderedListWithStartingNumber:node.listStartingNumber tight:node.listTight];
                         }
                     } else if (_delegateFlags.didEndOrderedList) {
-                        dispatch_async(_queue, ^{
-                            [_delegate parser:self didEndOrderedListWithStartingNumber:node.listStartingNumber tight:node.listTight];
-                        });
+                        [_delegate parser:self didEndOrderedListWithStartingNumber:node.listStartingNumber tight:node.listTight];
                     }
                     break;
                 case CMARK_BULLET_LIST:
                     if (event == CMARK_EVENT_ENTER) {
                         if (_delegateFlags.didStartUnorderedList) {
-                            dispatch_async(_queue, ^{
-                                [_delegate parser:self didStartUnorderedListWithTightness:node.listTight];
-                            });
+                            [_delegate parser:self didStartUnorderedListWithTightness:node.listTight];
                         }
                     } else if (_delegateFlags.didEndUnorderedList) {
-                        dispatch_async(_queue, ^{
-                            [_delegate parser:self didEndUnorderedListWithTightness:node.listTight];
-                        });
+                        [_delegate parser:self didEndUnorderedListWithTightness:node.listTight];
                     }
                     break;
                 default:
@@ -296,14 +240,10 @@
         case CMARK_NODE_ITEM:
             if (event == CMARK_EVENT_ENTER) {
                 if (_delegateFlags.didStartListItem) {
-                    dispatch_async(_queue, ^{
-                        [_delegate parserDidStartListItem:self];
-                    });
+                    [_delegate parserDidStartListItem:self];
                 }
             } else if (_delegateFlags.didEndListItem) {
-                dispatch_async(_queue, ^{
-                    [_delegate parserDidEndListItem:self];
-                });
+                [_delegate parserDidEndListItem:self];
             }
             break;
         default:
@@ -312,20 +252,6 @@
 }
 
 #pragma mark - Accessors
-
-- (BOOL)parsing
-{
-    return _parsing != 0;
-}
-
-- (void)setParsing:(BOOL)parsing
-{
-    if (parsing) {
-        OSAtomicOr32Barrier(1, &_parsing);
-    } else {
-        OSAtomicAnd32Barrier(0, &_parsing);
-    }
-}
 
 - (void)setDelegate:(id<CMParserDelegate>)delegate
 {

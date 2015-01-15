@@ -35,8 +35,10 @@
 @property (nonatomic, weak) id<CMParserDelegate> delegate;
 
 /**
- *  Returns the node currently being parsed, or `nil` if
- *  not parsing.
+ *  Returns the node currently being parsed, or `nil` if not parsing.
+ *
+ *  @warning This is only safe to access from the queue in which the parser
+ *  delegate methods are called on.
  */
 @property (nonatomic, readonly) CMNode *currentNode;
 
