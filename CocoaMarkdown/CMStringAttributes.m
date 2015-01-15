@@ -8,7 +8,8 @@
 
 #import "CMStringAttributes.h"
 
-NSDictionary * CMDefaultTextAttributes() {
+NSDictionary * CMDefaultTextAttributes()
+{
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]};
 #else
@@ -16,7 +17,8 @@ NSDictionary * CMDefaultTextAttributes() {
 #endif
 }
 
-NSDictionary * CMDefaultH1Attributes() {
+NSDictionary * CMDefaultH1Attributes()
+{
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]};
 #else
@@ -24,7 +26,8 @@ NSDictionary * CMDefaultH1Attributes() {
 #endif
 }
 
-NSDictionary * CMDefaultH2Attributes() {
+NSDictionary * CMDefaultH2Attributes()
+{
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]};
 #else
@@ -32,7 +35,8 @@ NSDictionary * CMDefaultH2Attributes() {
 #endif
 }
 
-NSDictionary * CMDefaultH3Attributes() {
+NSDictionary * CMDefaultH3Attributes()
+{
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]};
 #else
@@ -40,7 +44,8 @@ NSDictionary * CMDefaultH3Attributes() {
 #endif
 }
 
-NSDictionary * CMDefaultH4Attributes() {
+NSDictionary * CMDefaultH4Attributes()
+{
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]};
 #else
@@ -48,7 +53,8 @@ NSDictionary * CMDefaultH4Attributes() {
 #endif
 }
 
-NSDictionary * CMDefaultH5Attributes() {
+NSDictionary * CMDefaultH5Attributes()
+{
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]};
 #else
@@ -56,7 +62,8 @@ NSDictionary * CMDefaultH5Attributes() {
 #endif
 }
 
-NSDictionary * CMDefaultH6Attributes() {
+NSDictionary * CMDefaultH6Attributes()
+{
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]};
 #else
@@ -64,7 +71,8 @@ NSDictionary * CMDefaultH6Attributes() {
 #endif
 }
 
-NSDictionary * CMDefaultLinkAttributes() {
+NSDictionary * CMDefaultLinkAttributes()
+{
     return @{
 #if TARGET_OS_IPHONE
         NSForegroundColorAttributeName: UIColor.blueColor,
@@ -76,19 +84,22 @@ NSDictionary * CMDefaultLinkAttributes() {
 }
 
 #if TARGET_OS_IPHONE
-static UIFont * MonospaceFont() {
+static UIFont * MonospaceFont()
+{
     CGFloat size = [[UIFont preferredFontForTextStyle:UIFontTextStyleBody] pointSize];
     return [UIFont fontWithName:@"Menlo" size:size] ?: [UIFont fontWithName:@"Courier" size:size];
 }
 #endif
 
-static NSParagraphStyle * DefaultIndentedParagraphStyle() {
+static NSParagraphStyle * DefaultIndentedParagraphStyle()
+{
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.headIndent = 30;
     return style;
 }
 
-NSDictionary * CMDefaultCodeBlockAttributes() {
+NSDictionary * CMDefaultCodeBlockAttributes()
+{
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.headIndent = 30;
     return @{
@@ -101,7 +112,8 @@ NSDictionary * CMDefaultCodeBlockAttributes() {
     };
 }
 
-NSDictionary * CMDefaultInlineCodeAttributes() {
+NSDictionary * CMDefaultInlineCodeAttributes()
+{
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: MonospaceFont()};
 #else
@@ -109,14 +121,23 @@ NSDictionary * CMDefaultInlineCodeAttributes() {
 #endif
 }
 
-NSDictionary * CMDefaultBlockQuoteAttributes() {
+NSDictionary * CMDefaultBlockQuoteAttributes()
+{
     return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
 }
 
-NSDictionary * CMDefaultOrderedListAttributes() {
+NSDictionary * CMDefaultOrderedListAttributes()
+{
     return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
 }
 
-NSDictionary * CMDefaultUnorderedListAttributes() {
+NSDictionary * CMDefaultUnorderedListAttributes()
+{
     return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
+}
+
+CMFont * CMFontWithTraits(CMFontSymbolicTraits traits, CMFont *font)
+{
+    CMFontDescriptor *descriptor = [font.fontDescriptor fontDescriptorWithSymbolicTraits:font.fontDescriptor.symbolicTraits | (traits & 0xFFFF)];
+    return [CMFont fontWithDescriptor:descriptor size:font.pointSize];
 }

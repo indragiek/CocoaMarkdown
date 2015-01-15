@@ -7,12 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#else
-#import <Cocoa/Cocoa.h>
-#endif
+#import "CMPlatformDefines.h"
 
 NSDictionary * CMDefaultTextAttributes();
 NSDictionary * CMDefaultH1Attributes();
@@ -27,3 +22,4 @@ NSDictionary * CMDefaultInlineCodeAttributes();
 NSDictionary * CMDefaultBlockQuoteAttributes();
 NSDictionary * CMDefaultOrderedListAttributes();
 NSDictionary * CMDefaultUnorderedListAttributes();
+CMFont * CMFontWithTraits(CMFontSymbolicTraits traits, CMFont *font);
