@@ -137,6 +137,18 @@ NSDictionary * CMDefaultUnorderedListAttributes()
 
 CMFont * CMFontWithTraits(CMFontSymbolicTraits traits, CMFont *font)
 {
-    CMFontDescriptor *descriptor = [font.fontDescriptor fontDescriptorWithSymbolicTraits:font.fontDescriptor.symbolicTraits | (traits & 0xFFFF)];
-    return [CMFont fontWithDescriptor:descriptor size:font.pointSize];
+    CMFontSymbolicTraits combinedTraits = font.fontDescriptor.symbolicTraits | (traits & 0xFFFF);
+#if TARGET_OS_IPHONE
+    UIFontDescriptor *descriptor = [font.fontDescriptor fontDescriptorWithSymbolicTraits:combinedTraits];
+    return [UIFont fontWithDescriptor:descriptor size:font.pointSize];
+#else
+    NSDictionary *attributes = @{
+        NSFontFamilyAttribute: font.familyName,
+        NSFontTraitsAttribute: @{
+            NSFontSymbolicTrait: @(combinedTraits)
+        },
+    };
+    NSFontDescriptor *descriptor = [NSFontDescriptor fontDescriptorWithFontAttributes:attributes];
+    return [NSFont fontWithDescriptor:descriptor size:font.pointSize];
+#endif
 }
