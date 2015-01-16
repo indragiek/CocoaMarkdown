@@ -12,16 +12,12 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
-
+    @IBOutlet var textView: NSTextView!
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
+        let path = NSBundle.mainBundle().pathForResource("test", ofType: "md")!
+        let document = CMDocument(contentsOfFile: path)
+        let renderer = CMAttributedStringRenderer(document: document)
+        textView.textStorage?.appendAttributedString(renderer.render())
     }
-
-    func applicationWillTerminate(aNotification: NSNotification) {
-        // Insert code here to tear down your application
-    }
-
-
 }
-

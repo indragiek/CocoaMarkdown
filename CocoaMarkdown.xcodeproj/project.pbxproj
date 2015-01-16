@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		720DA5811A68A00900DD05AF /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; };
+		720DA5821A68A01600DD05AF /* CocoaMarkdown.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		722694BC1A687B4100E1D3DC /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7F171A686AC300F23F46 /* test.md */; };
+		722694BD1A687BD400E1D3DC /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F54981A68663400CC7448 /* Nimble.framework */; };
+		722694BE1A687BD800E1D3DC /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F54A21A68663400CC7448 /* Quick.framework */; };
 		729F53E01A68641400CC7448 /* CocoaMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F53DF1A68641400CC7448 /* CocoaMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		729F53E61A68641400CC7448 /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53DA1A68641400CC7448 /* CocoaMarkdown.framework */; };
 		729F54061A68649200CC7448 /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; };
@@ -90,8 +95,6 @@
 		72FE7E961A6867F900F23F46 /* cmark_export.h in Headers */ = {isa = PBXBuildFile; fileRef = 72FE7E941A6867F900F23F46 /* cmark_export.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72FE7E9B1A68684000F23F46 /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7E981A68683300F23F46 /* test.md */; };
 		72FE7E9C1A68684700F23F46 /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7E981A68683300F23F46 /* test.md */; };
-		72FE7E9D1A68686100F23F46 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F54A21A68663400CC7448 /* Quick.framework */; };
-		72FE7E9E1A68686400F23F46 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F54981A68663400CC7448 /* Nimble.framework */; };
 		72FE7ECE1A68692400F23F46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE7ECD1A68692400F23F46 /* AppDelegate.swift */; };
 		72FE7ED01A68692400F23F46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE7ECF1A68692400F23F46 /* ViewController.swift */; };
 		72FE7ED31A68692400F23F46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7ED11A68692400F23F46 /* Main.storyboard */; };
@@ -102,12 +105,17 @@
 		72FE7EF91A68695100F23F46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FE7EF81A68695100F23F46 /* AppDelegate.swift */; };
 		72FE7EFB1A68695100F23F46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7EFA1A68695100F23F46 /* Images.xcassets */; };
 		72FE7EFE1A68695100F23F46 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7EFC1A68695100F23F46 /* MainMenu.xib */; };
-		72FE7F131A68697900F23F46 /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; };
-		72FE7F151A68698C00F23F46 /* CocoaMarkdown.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		72FE7F191A686ACD00F23F46 /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7F171A686AC300F23F46 /* test.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		720DA57F1A68A00300DD05AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 729F53D11A68641300CC7448 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 729F53FA1A68649200CC7448;
+			remoteInfo = "CocoaMarkdown-Mac";
+		};
 		729F53E71A68641400CC7448 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 729F53D11A68641300CC7448 /* Project object */;
@@ -199,13 +207,6 @@
 			remoteGlobalIDString = 729F53D91A68641400CC7448;
 			remoteInfo = "CocoaMarkdown-iOS";
 		};
-		72FE7F111A68697200F23F46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 729F53D11A68641300CC7448 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 729F53FA1A68649200CC7448;
-			remoteInfo = "CocoaMarkdown-Mac";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -226,7 +227,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				72FE7F151A68698C00F23F46 /* CocoaMarkdown.framework in Copy Frameworks */,
+				720DA5821A68A01600DD05AF /* CocoaMarkdown.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +235,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		722E33D31A68A0A5004DE919 /* Example-Mac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Mac-Bridging-Header.h"; sourceTree = "<group>"; };
 		729F53DA1A68641400CC7448 /* CocoaMarkdown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaMarkdown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		729F53DE1A68641400CC7448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		729F53DF1A68641400CC7448 /* CocoaMarkdown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaMarkdown.h; sourceTree = "<group>"; };
@@ -321,8 +323,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72FE7E9E1A68686400F23F46 /* Nimble.framework in Frameworks */,
-				72FE7E9D1A68686100F23F46 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +330,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				722694BE1A687BD800E1D3DC /* Quick.framework in Frameworks */,
+				722694BD1A687BD400E1D3DC /* Nimble.framework in Frameworks */,
 				729F54061A68649200CC7448 /* CocoaMarkdown.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,7 +348,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72FE7F131A68697900F23F46 /* CocoaMarkdown.framework in Frameworks */,
+				720DA5811A68A00900DD05AF /* CocoaMarkdown.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +532,7 @@
 				72FE7EFA1A68695100F23F46 /* Images.xcassets */,
 				72FE7EFC1A68695100F23F46 /* MainMenu.xib */,
 				72FE7EF61A68695100F23F46 /* Supporting Files */,
+				722E33D31A68A0A5004DE919 /* Example-Mac-Bridging-Header.h */,
 			);
 			path = "Example-Mac";
 			sourceTree = "<group>";
@@ -695,7 +698,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				72FE7F121A68697200F23F46 /* PBXTargetDependency */,
+				720DA5801A68A00300DD05AF /* PBXTargetDependency */,
 			);
 			name = "Example-Mac";
 			productName = "Example-Mac";
@@ -885,6 +888,7 @@
 			files = (
 				72FE7EFB1A68695100F23F46 /* Images.xcassets in Resources */,
 				72FE7EFE1A68695100F23F46 /* MainMenu.xib in Resources */,
+				722694BC1A687B4100E1D3DC /* test.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -995,6 +999,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		720DA5801A68A00300DD05AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 729F53FA1A68649200CC7448 /* CocoaMarkdown-Mac */;
+			targetProxy = 720DA57F1A68A00300DD05AF /* PBXContainerItemProxy */;
+		};
 		729F53E81A68641400CC7448 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 729F53D91A68641400CC7448 /* CocoaMarkdown-iOS */;
@@ -1009,11 +1018,6 @@
 			isa = PBXTargetDependency;
 			target = 729F53D91A68641400CC7448 /* CocoaMarkdown-iOS */;
 			targetProxy = 72FE7EEB1A68693200F23F46 /* PBXContainerItemProxy */;
-		};
-		72FE7F121A68697200F23F46 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 729F53FA1A68649200CC7448 /* CocoaMarkdown-Mac */;
-			targetProxy = 72FE7F111A68697200F23F46 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1327,6 +1331,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Example-Mac/Example-Mac-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -1342,6 +1347,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Example-Mac/Example-Mac-Bridging-Header.h";
 			};
 			name = Release;
 		};
