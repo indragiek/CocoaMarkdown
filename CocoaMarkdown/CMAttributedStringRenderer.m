@@ -28,6 +28,7 @@
 {
     if ((self = [super init])) {
         _document = document;
+        _attributes = attributes;
     }
     return self;
 }
