@@ -1,14 +1,15 @@
 //
-//  CMStringAttributes.m
+//  CMTextAttributes.m
 //  CocoaMarkdown
 //
-//  Created by Indragie on 1/14/15.
+//  Created by Indragie on 1/15/15.
 //  Copyright (c) 2015 Indragie Karunaratne. All rights reserved.
 //
 
-#import "CMStringAttributes.h"
+#import "CMTextAttributes.h"
+#import "CMPlatformDefines.h"
 
-NSDictionary * CMDefaultTextAttributes()
+static NSDictionary * CMDefaultTextAttributes()
 {
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]};
@@ -17,7 +18,7 @@ NSDictionary * CMDefaultTextAttributes()
 #endif
 }
 
-NSDictionary * CMDefaultH1Attributes()
+static NSDictionary * CMDefaultH1Attributes()
 {
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]};
@@ -26,7 +27,7 @@ NSDictionary * CMDefaultH1Attributes()
 #endif
 }
 
-NSDictionary * CMDefaultH2Attributes()
+static NSDictionary * CMDefaultH2Attributes()
 {
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]};
@@ -35,7 +36,7 @@ NSDictionary * CMDefaultH2Attributes()
 #endif
 }
 
-NSDictionary * CMDefaultH3Attributes()
+static NSDictionary * CMDefaultH3Attributes()
 {
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]};
@@ -44,7 +45,7 @@ NSDictionary * CMDefaultH3Attributes()
 #endif
 }
 
-NSDictionary * CMDefaultH4Attributes()
+static NSDictionary * CMDefaultH4Attributes()
 {
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]};
@@ -53,7 +54,7 @@ NSDictionary * CMDefaultH4Attributes()
 #endif
 }
 
-NSDictionary * CMDefaultH5Attributes()
+static NSDictionary * CMDefaultH5Attributes()
 {
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]};
@@ -62,7 +63,7 @@ NSDictionary * CMDefaultH5Attributes()
 #endif
 }
 
-NSDictionary * CMDefaultH6Attributes()
+static NSDictionary * CMDefaultH6Attributes()
 {
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]};
@@ -71,7 +72,7 @@ NSDictionary * CMDefaultH6Attributes()
 #endif
 }
 
-NSDictionary * CMDefaultLinkAttributes()
+static NSDictionary * CMDefaultLinkAttributes()
 {
     return @{
 #if TARGET_OS_IPHONE
@@ -99,7 +100,7 @@ static NSParagraphStyle * DefaultIndentedParagraphStyle()
     return style;
 }
 
-NSDictionary * CMDefaultCodeBlockAttributes()
+static NSDictionary * CMDefaultCodeBlockAttributes()
 {
     return @{
 #if TARGET_OS_IPHONE
@@ -111,7 +112,7 @@ NSDictionary * CMDefaultCodeBlockAttributes()
     };
 }
 
-NSDictionary * CMDefaultInlineCodeAttributes()
+static NSDictionary * CMDefaultInlineCodeAttributes()
 {
 #if TARGET_OS_IPHONE
     return @{NSFontAttributeName: MonospaceFont()};
@@ -120,35 +121,41 @@ NSDictionary * CMDefaultInlineCodeAttributes()
 #endif
 }
 
-NSDictionary * CMDefaultBlockQuoteAttributes()
+static NSDictionary * CMDefaultBlockQuoteAttributes()
 {
     return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
 }
 
-NSDictionary * CMDefaultOrderedListAttributes()
+static NSDictionary * CMDefaultOrderedListAttributes()
 {
     return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
 }
 
-NSDictionary * CMDefaultUnorderedListAttributes()
+static NSDictionary * CMDefaultUnorderedListAttributes()
 {
     return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
 }
 
-CMFont * CMFontWithTraits(CMFontSymbolicTraits traits, CMFont *font)
+@implementation CMTextAttributes
+
+- (instancetype)init
 {
-    CMFontSymbolicTraits combinedTraits = font.fontDescriptor.symbolicTraits | (traits & 0xFFFF);
-#if TARGET_OS_IPHONE
-    UIFontDescriptor *descriptor = [font.fontDescriptor fontDescriptorWithSymbolicTraits:combinedTraits];
-    return [UIFont fontWithDescriptor:descriptor size:font.pointSize];
-#else
-    NSDictionary *attributes = @{
-        NSFontFamilyAttribute: font.familyName,
-        NSFontTraitsAttribute: @{
-            NSFontSymbolicTrait: @(combinedTraits)
-        },
-    };
-    NSFontDescriptor *descriptor = [NSFontDescriptor fontDescriptorWithFontAttributes:attributes];
-    return [NSFont fontWithDescriptor:descriptor size:font.pointSize];
-#endif
+    if ((self = [super init])) {
+        _textAttributes = CMDefaultTextAttributes();
+        _h1Attributes = CMDefaultH1Attributes();
+        _h2Attributes = CMDefaultH2Attributes();
+        _h3Attributes = CMDefaultH3Attributes();
+        _h4Attributes = CMDefaultH4Attributes();
+        _h5Attributes = CMDefaultH5Attributes();
+        _h6Attributes = CMDefaultH6Attributes();
+        _linkAttributes = CMDefaultLinkAttributes();
+        _codeBlockAttributes = CMDefaultCodeBlockAttributes();
+        _inlineCodeAttributes = CMDefaultInlineCodeAttributes();
+        _blockQuoteAttributes = CMDefaultBlockQuoteAttributes();
+        _orderedListAttributes = CMDefaultOrderedListAttributes();
+        _unorderedListAttributes = CMDefaultUnorderedListAttributes();
+    }
+    return self;
 }
+
+@end

@@ -7,78 +7,28 @@
 //
 
 #import "CMAttributedStringRenderer.h"
-#import "CMStringAttributes.h"
+#import "CMTextAttributes.h"
+#import "CMAttributeHelpers.h"
 #import "CMNode.h"
 #import "CMParser.h"
-
-@interface CMAttributeRun : NSObject
-@property (nonatomic, readonly) NSDictionary *attributes;
-@property (nonatomic, readonly) CMFontSymbolicTraits fontTraits;
-@property (nonatomic) NSInteger orderedListItemNumber;
-@property (nonatomic, readonly) BOOL listTight;
-@end
-
-@implementation CMAttributeRun
-
-- (instancetype)initWithAttributes:(NSDictionary *)attributes
-                        fontTraits:(CMFontSymbolicTraits)fontTraits
-                 orderedListNumber:(NSInteger)orderedListNumber
-{
-    if ((self = [super init])) {
-        _attributes = attributes;
-        _fontTraits = fontTraits;
-        _orderedListItemNumber = orderedListNumber;
-    }
-    return self;
-}
-
-- (instancetype)initWithAttributes:(NSDictionary *)attributes
-{
-    return [self initWithAttributes:attributes fontTraits:0 orderedListNumber:0];
-}
-
-- (instancetype)initWithAttributes:(NSDictionary *)attributes
-                        fontTraits:(CMFontSymbolicTraits)fontTraits
-{
-    return [self initWithAttributes:attributes fontTraits:fontTraits orderedListNumber:0];
-}
-
-- (instancetype)initWithAttributes:(NSDictionary *)attributes
-                 orderedListNumber:(NSInteger)orderedListNumber
-{
-    return [self initWithAttributes:attributes fontTraits:0 orderedListNumber:orderedListNumber];
-}
-
-@end
+#import "CMAttributeRun.h"
 
 @interface CMAttributedStringRenderer () <CMParserDelegate>
 @end
 
 @implementation CMAttributedStringRenderer {
+    CMDocument *_document;
+    CMTextAttributes *_attributes;
     NSMutableArray *_stack;
     NSMutableAttributedString *_buffer;
     NSDictionary *_cachedCascadedAttributes;
     NSAttributedString *_renderedAttributedString;
 }
 
-- (instancetype)initWithDocument:(CMDocument *)document
+- (instancetype)initWithDocument:(CMDocument *)document attributes:(CMTextAttributes *)attributes
 {
     if ((self = [super init])) {
         _document = document;
-        
-        _textAttributes = CMDefaultTextAttributes();
-        _h1Attributes = CMDefaultH1Attributes();
-        _h2Attributes = CMDefaultH2Attributes();
-        _h3Attributes = CMDefaultH3Attributes();
-        _h4Attributes = CMDefaultH4Attributes();
-        _h5Attributes = CMDefaultH5Attributes();
-        _h6Attributes = CMDefaultH6Attributes();
-        _linkAttributes = CMDefaultLinkAttributes();
-        _codeBlockAttributes = CMDefaultCodeBlockAttributes();
-        _inlineCodeAttributes = CMDefaultInlineCodeAttributes();
-        _blockQuoteAttributes = CMDefaultBlockQuoteAttributes();
-        _orderedListAttributes = CMDefaultOrderedListAttributes();
-        _unorderedListAttributes = CMDefaultUnorderedListAttributes();
     }
     return self;
 }
@@ -104,7 +54,7 @@
 
 - (void)parserDidStartDocument:(CMParser *)parser
 {
-    CMAttributeRun *rootRun = [[CMAttributeRun alloc] initWithAttributes:_textAttributes];
+    CMAttributeRun *rootRun = [[CMAttributeRun alloc] initWithAttributes:_attributes.textAttributes];
     [self pushAttributeRun:rootRun];
 }
 
@@ -142,8 +92,8 @@
 
 - (void)parserDidStartEmphasis:(CMParser *)parser
 {
-    BOOL hasExplicitFont = _emphasisAttributes[NSFontAttributeName] != nil;
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_emphasisAttributes fontTraits:hasExplicitFont ? 0 : CMFontTraitItalic];
+    BOOL hasExplicitFont = _attributes.emphasisAttributes[NSFontAttributeName] != nil;
+    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.emphasisAttributes fontTraits:hasExplicitFont ? 0 : CMFontTraitItalic];
     [self pushAttributeRun:run];
 }
 
@@ -154,8 +104,8 @@
 
 - (void)parserDidStartStrong:(CMParser *)parser
 {
-    BOOL hasExplicitFont = _strongAttributes[NSFontAttributeName] != nil;
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_strongAttributes fontTraits:hasExplicitFont ? 0 : CMFontTraitBold];
+    BOOL hasExplicitFont = _attributes.strongAttributes[NSFontAttributeName] != nil;
+    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.strongAttributes fontTraits:hasExplicitFont ? 0 : CMFontTraitBold];
     [self pushAttributeRun:run];
 }
 
@@ -172,7 +122,7 @@
         baseAttributes[NSToolTipAttributeName] = title;
     }
 #endif
-    [baseAttributes addEntriesFromDictionary:_linkAttributes];
+    [baseAttributes addEntriesFromDictionary:_attributes.linkAttributes];
     
     CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:baseAttributes];
     [self pushAttributeRun:run];
@@ -185,7 +135,7 @@
 
 - (void)parser:(CMParser *)parser foundCodeBlock:(NSString *)code info:(NSString *)info
 {
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_codeBlockAttributes];
+    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.codeBlockAttributes];
     [self pushAttributeRun:run];
     [self appendString:[NSString stringWithFormat:@"\n\n%@\n\n", code]];
     [self popAttributeRun];
@@ -193,7 +143,7 @@
 
 - (void)parser:(CMParser *)parser foundInlineCode:(NSString *)code
 {
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_inlineCodeAttributes];
+    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.inlineCodeAttributes];
     [self pushAttributeRun:run];
     [self appendString:code];
     [self popAttributeRun];
@@ -211,7 +161,7 @@
 
 - (void)parserDidStartBlockQuote:(CMParser *)parser
 {
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_blockQuoteAttributes];
+    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.blockQuoteAttributes];
     [self pushAttributeRun:run];
 }
 
@@ -222,7 +172,7 @@
 
 - (void)parser:(CMParser *)parser didStartUnorderedListWithTightness:(BOOL)tight
 {
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_unorderedListAttributes];
+    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.unorderedListAttributes];
     [self pushAttributeRun:run];
     [self appendString:@"\n"];
 }
@@ -234,7 +184,7 @@
 
 - (void)parser:(CMParser *)parser didStartOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_orderedListAttributes orderedListNumber:num];
+    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.orderedListAttributes orderedListNumber:num];
     [self pushAttributeRun:run];
     [self appendString:@"\n"];
 }
@@ -253,7 +203,7 @@
             break;
         case CMARK_BULLET_LIST: {
             [self appendString:@"\u2022 "];
-            CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_unorderedListItemAttributes];
+            CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.unorderedListItemAttributes];
             [self pushAttributeRun:run];
             break;
         }
@@ -261,7 +211,7 @@
             CMAttributeRun *parentRun = _stack.lastObject;
             [self appendString:[NSString stringWithFormat:@"%ld. ", parentRun.orderedListItemNumber]];
             parentRun.orderedListItemNumber++;
-            CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_orderedListItemAttributes];
+            CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.orderedListItemAttributes];
             [self pushAttributeRun:run];
             break;
         }
@@ -281,12 +231,12 @@
 - (NSDictionary *)attributesForHeaderLevel:(NSInteger)level
 {
     switch (level) {
-        case 1: return _h1Attributes;
-        case 2: return _h2Attributes;
-        case 3: return _h3Attributes;
-        case 4: return _h4Attributes;
-        case 5: return _h5Attributes;
-        default: return _h6Attributes;
+        case 1: return _attributes.h1Attributes;
+        case 2: return _attributes.h2Attributes;
+        case 3: return _attributes.h3Attributes;
+        case 4: return _attributes.h4Attributes;
+        case 5: return _attributes.h5Attributes;
+        default: return _attributes.h6Attributes;
     }
 }
 
