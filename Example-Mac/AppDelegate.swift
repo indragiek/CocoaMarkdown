@@ -17,8 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         let path = NSBundle.mainBundle().pathForResource("test", ofType: "md")!
         let document = CMDocument(contentsOfFile: path)
-        let renderer = CMAttributedStringRenderer(document: document)
-        renderer.textAttributes = [NSFontAttributeName: NSFont(name: "HelveticaNeue", size: 14)!];
+        let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
         textView.textStorage?.appendAttributedString(renderer.render())
     }
 }

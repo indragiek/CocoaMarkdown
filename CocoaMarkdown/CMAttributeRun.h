@@ -15,10 +15,12 @@
 @property (nonatomic) NSInteger orderedListItemNumber;
 @property (nonatomic, readonly) BOOL listTight;
 
-- (instancetype)initWithAttributes:(NSDictionary *)attributes;
 - (instancetype)initWithAttributes:(NSDictionary *)attributes
-                        fontTraits:(CMFontSymbolicTraits)fontTraits;
-- (instancetype)initWithAttributes:(NSDictionary *)attributes
+                        fontTraits:(CMFontSymbolicTraits)fontTraits
                  orderedListNumber:(NSInteger)orderedListNumber;
 
 @end
+
+CMAttributeRun * CMDefaultAttributeRun(NSDictionary *attributes);
+CMAttributeRun * CMTraitAttributeRun(NSDictionary *attributes, CMFontSymbolicTraits traits);
+CMAttributeRun * CMOrderedListAttributeRun(NSDictionary *attributes, NSInteger startingNumber);

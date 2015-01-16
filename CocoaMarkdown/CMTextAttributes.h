@@ -22,6 +22,13 @@
 - (instancetype)init;
 
 /**
+ *  @param level The header level.
+ *
+ *  @return The attributes for the specified header level.
+ */
+- (NSDictionary *)attributesForHeaderLevel:(NSInteger)level;
+
+/**
  *  Attributes used to style text.
  *
  *  On iOS, defaults to using the Dynamic Type font with style `UIFontTextStyleBody`

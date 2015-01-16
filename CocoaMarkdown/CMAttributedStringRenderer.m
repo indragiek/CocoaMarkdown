@@ -8,7 +8,7 @@
 
 #import "CMAttributedStringRenderer.h"
 #import "CMTextAttributes.h"
-#import "CMAttributeHelpers.h"
+#import "CMCascadingAttributeStack.h"
 #import "CMNode.h"
 #import "CMParser.h"
 #import "CMAttributeRun.h"
@@ -19,10 +19,9 @@
 @implementation CMAttributedStringRenderer {
     CMDocument *_document;
     CMTextAttributes *_attributes;
-    NSMutableArray *_stack;
+    CMCascadingAttributeStack *_stack;
     NSMutableAttributedString *_buffer;
-    NSDictionary *_cachedCascadedAttributes;
-    NSAttributedString *_renderedAttributedString;
+    NSAttributedString *_attributedString;
 }
 
 - (instancetype)initWithDocument:(CMDocument *)document attributes:(CMTextAttributes *)attributes
@@ -35,27 +34,26 @@
 
 - (NSAttributedString *)render
 {
-    if (_renderedAttributedString == nil) {
-        _stack = [[NSMutableArray alloc] init];
+    if (_attributedString == nil) {
+        _stack = [[CMCascadingAttributeStack alloc] init];
         _buffer = [[NSMutableAttributedString alloc] init];
         
         CMParser *parser = [[CMParser alloc] initWithDocument:_document delegate:self];
         [parser parse];
         
-        _renderedAttributedString = [_buffer copy];
+        _attributedString = [_buffer copy];
         _stack = nil;
         _buffer = nil;
     }
     
-    return _renderedAttributedString;
+    return _attributedString;
 }
 
 #pragma mark - CMParserDelegate
 
 - (void)parserDidStartDocument:(CMParser *)parser
 {
-    CMAttributeRun *rootRun = [[CMAttributeRun alloc] initWithAttributes:_attributes.textAttributes];
-    [self pushAttributeRun:rootRun];
+    [_stack push:CMDefaultAttributeRun(_attributes.textAttributes)];
 }
 
 - (void)parserDidEndDocument:(CMParser *)parser
@@ -70,14 +68,13 @@
 
 - (void)parser:(CMParser *)parser didStartHeaderWithLevel:(NSInteger)level
 {
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:[self attributesForHeaderLevel:level]];
-    [self pushAttributeRun:run];
+    [_stack push:CMDefaultAttributeRun([_attributes attributesForHeaderLevel:level])];
 }
 
 - (void)parser:(CMParser *)parser didEndHeaderWithLevel:(NSInteger)level
 {
     [self appendString:@"\n"];
-    [self popAttributeRun];
+    [_stack pop];
 }
 
 - (void)parserDidStartParagraph:(CMParser *)parser
@@ -93,25 +90,23 @@
 - (void)parserDidStartEmphasis:(CMParser *)parser
 {
     BOOL hasExplicitFont = _attributes.emphasisAttributes[NSFontAttributeName] != nil;
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.emphasisAttributes fontTraits:hasExplicitFont ? 0 : CMFontTraitItalic];
-    [self pushAttributeRun:run];
+    [_stack push:CMTraitAttributeRun(_attributes.emphasisAttributes, hasExplicitFont ? 0 : CMFontTraitItalic)];
 }
 
 - (void)parserDidEndEmphasis:(CMParser *)parser
 {
-    [self popAttributeRun];
+    [_stack pop];
 }
 
 - (void)parserDidStartStrong:(CMParser *)parser
 {
     BOOL hasExplicitFont = _attributes.strongAttributes[NSFontAttributeName] != nil;
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.strongAttributes fontTraits:hasExplicitFont ? 0 : CMFontTraitBold];
-    [self pushAttributeRun:run];
+    [_stack push:CMTraitAttributeRun(_attributes.strongAttributes, hasExplicitFont ? 0 : CMFontTraitBold)];
 }
 
 - (void)parserDidEndStrong:(CMParser *)parse
 {
-    [self popAttributeRun];
+    [_stack pop];
 }
 
 - (void)parser:(CMParser *)parser didStartLinkWithURL:(NSURL *)URL title:(NSString *)title
@@ -123,30 +118,26 @@
     }
 #endif
     [baseAttributes addEntriesFromDictionary:_attributes.linkAttributes];
-    
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:baseAttributes];
-    [self pushAttributeRun:run];
+    [_stack push:CMDefaultAttributeRun(baseAttributes)];
 }
 
 - (void)parser:(CMParser *)parser didEndLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
-    [self popAttributeRun];
+    [_stack pop];
 }
 
 - (void)parser:(CMParser *)parser foundCodeBlock:(NSString *)code info:(NSString *)info
 {
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.codeBlockAttributes];
-    [self pushAttributeRun:run];
+    [_stack push:CMDefaultAttributeRun(_attributes.codeBlockAttributes)];
     [self appendString:[NSString stringWithFormat:@"\n\n%@\n\n", code]];
-    [self popAttributeRun];
+    [_stack pop];
 }
 
 - (void)parser:(CMParser *)parser foundInlineCode:(NSString *)code
 {
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.inlineCodeAttributes];
-    [self pushAttributeRun:run];
+    [_stack push:CMDefaultAttributeRun(_attributes.inlineCodeAttributes)];
     [self appendString:code];
-    [self popAttributeRun];
+    [_stack pop];
 }
 
 - (void)parserFoundSoftBreak:(CMParser *)parser
@@ -161,37 +152,34 @@
 
 - (void)parserDidStartBlockQuote:(CMParser *)parser
 {
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.blockQuoteAttributes];
-    [self pushAttributeRun:run];
+    [_stack push:CMDefaultAttributeRun(_attributes.blockQuoteAttributes)];
 }
 
 - (void)parserDidEndBlockQuote:(CMParser *)parser
 {
-    [self popAttributeRun];
+    [_stack pop];
 }
 
 - (void)parser:(CMParser *)parser didStartUnorderedListWithTightness:(BOOL)tight
 {
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.unorderedListAttributes];
-    [self pushAttributeRun:run];
+    [_stack push:CMDefaultAttributeRun(_attributes.unorderedListAttributes)];
     [self appendString:@"\n"];
 }
 
 - (void)parser:(CMParser *)parser didEndUnorderedListWithTightness:(BOOL)tight
 {
-    [self popAttributeRun];
+    [_stack pop];
 }
 
 - (void)parser:(CMParser *)parser didStartOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
-    CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.orderedListAttributes orderedListNumber:num];
-    [self pushAttributeRun:run];
+    [_stack push:CMOrderedListAttributeRun(_attributes.orderedListAttributes, num)];
     [self appendString:@"\n"];
 }
 
 - (void)parser:(CMParser *)parser didEndOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
-    [self popAttributeRun];
+    [_stack pop];
 }
 
 - (void)parserDidStartListItem:(CMParser *)parser
@@ -203,16 +191,14 @@
             break;
         case CMARK_BULLET_LIST: {
             [self appendString:@"\u2022 "];
-            CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.unorderedListItemAttributes];
-            [self pushAttributeRun:run];
+            [_stack push:CMDefaultAttributeRun(_attributes.unorderedListItemAttributes)];
             break;
         }
         case CMARK_ORDERED_LIST: {
-            CMAttributeRun *parentRun = _stack.lastObject;
+            CMAttributeRun *parentRun = [_stack peek];
             [self appendString:[NSString stringWithFormat:@"%ld. ", parentRun.orderedListItemNumber]];
             parentRun.orderedListItemNumber++;
-            CMAttributeRun *run = [[CMAttributeRun alloc] initWithAttributes:_attributes.orderedListItemAttributes];
-            [self pushAttributeRun:run];
+            [_stack push:CMDefaultAttributeRun(_attributes.orderedListItemAttributes)];
             break;
         }
         default:
@@ -223,36 +209,10 @@
 - (void)parserDidEndListItem:(CMParser *)parser
 {
     [self appendString:@"\n"];
-    [self popAttributeRun];
+    [_stack pop];
 }
 
 #pragma mark - Private
-
-- (NSDictionary *)attributesForHeaderLevel:(NSInteger)level
-{
-    switch (level) {
-        case 1: return _attributes.h1Attributes;
-        case 2: return _attributes.h2Attributes;
-        case 3: return _attributes.h3Attributes;
-        case 4: return _attributes.h4Attributes;
-        case 5: return _attributes.h5Attributes;
-        default: return _attributes.h6Attributes;
-    }
-}
-
-- (void)pushAttributeRun:(CMAttributeRun *)run
-{
-    [_stack addObject:run];
-    _cachedCascadedAttributes = nil;
-}
-
-- (CMAttributeRun *)popAttributeRun
-{
-    CMAttributeRun *run = _stack.lastObject;
-    [_stack removeLastObject];
-    _cachedCascadedAttributes = nil;
-    return run;
-}
 
 - (void)appendLineBreakIfNotTightForNode:(CMNode *)node
 {
@@ -264,34 +224,7 @@
 
 - (void)appendString:(NSString *)string
 {
-    [_buffer appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:[self cascadedAttributes]]];
-}
-
-- (NSDictionary *)cascadedAttributes
-{
-    if (_stack.count == 0) {
-        return nil;
-    }
-    
-    if (_cachedCascadedAttributes == nil) {
-        NSMutableDictionary *allAttributes = [[NSMutableDictionary alloc] init];
-        for (CMAttributeRun *run in _stack) {
-            CMFont *baseFont;
-            CMFont *adjustedFont;
-            if (run.fontTraits != 0 &&
-                (baseFont = allAttributes[NSFontAttributeName]) &&
-                (adjustedFont = CMFontWithTraits(run.fontTraits, baseFont))) {
-                
-                NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:run.attributes];
-                attributes[NSFontAttributeName] = adjustedFont;
-                [allAttributes addEntriesFromDictionary:attributes];
-            } else if (run.attributes != nil) {
-                [allAttributes addEntriesFromDictionary:run.attributes];
-            }
-        }
-        _cachedCascadedAttributes = allAttributes;
-    }
-    return _cachedCascadedAttributes;
+    [_buffer appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:_stack.cascadedAttributes]];
 }
 
 @end

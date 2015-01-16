@@ -158,4 +158,16 @@ static NSDictionary * CMDefaultUnorderedListAttributes()
     return self;
 }
 
+- (NSDictionary *)attributesForHeaderLevel:(NSInteger)level
+{
+    switch (level) {
+        case 1: return _h1Attributes;
+        case 2: return _h2Attributes;
+        case 3: return _h3Attributes;
+        case 4: return _h4Attributes;
+        case 5: return _h5Attributes;
+        default: return _h6Attributes;
+    }
+}
+
 @end
