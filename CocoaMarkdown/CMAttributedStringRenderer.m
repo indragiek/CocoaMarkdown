@@ -177,6 +177,8 @@
             if (element != nil) {
                 [self appendHTMLElement:element];
             }
+        } else if (CMIsHTMLClosingTag(HTML)) {
+            NSAssert(NO, @"Found closing tag %@ without a matching opening tag", HTML);
         } else if (CMIsHTMLOpeningTag(HTML)) {
             element = [self newHTMLElementForTagName:tagName HTML:HTML];
             if (element != nil) {

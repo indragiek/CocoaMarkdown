@@ -447,17 +447,12 @@
 				722E33DF1A68E7E4004DE919 /* CMAttributeRun.m */,
 				722E33EA1A68EADA004DE919 /* CMCascadingAttributeStack.h */,
 				722E33EB1A68EADA004DE919 /* CMCascadingAttributeStack.m */,
+				725115DE1A6970A300337419 /* CMStack.h */,
+				725115DF1A6970A300337419 /* CMStack.m */,
 				722E33E41A68E86B004DE919 /* CMTextAttributes.h */,
 				722E33E51A68E86B004DE919 /* CMTextAttributes.m */,
 			);
 			name = "Attributed Strings";
-			sourceTree = "<group>";
-		};
-		7251160E1A69762300337419 /* HTML */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = HTML;
 			sourceTree = "<group>";
 		};
 		7251160F1A69762800337419 /* HTML */ = {
@@ -502,7 +497,6 @@
 		729F53DC1A68641400CC7448 /* CocoaMarkdown */ = {
 			isa = PBXGroup;
 			children = (
-				7251160E1A69762300337419 /* HTML */,
 				7251160D1A69761700337419 /* Attributed Strings */,
 				729F53DF1A68641400CC7448 /* CocoaMarkdown.h */,
 				729F54161A6864F400CC7448 /* CMDocument.h */,
@@ -514,8 +508,6 @@
 				729F541C1A6864F400CC7448 /* CMNode.m */,
 				729F541D1A6864F400CC7448 /* CMParser.h */,
 				729F541E1A6864F400CC7448 /* CMParser.m */,
-				725115DE1A6970A300337419 /* CMStack.h */,
-				725115DF1A6970A300337419 /* CMStack.m */,
 				729F541F1A6864F400CC7448 /* CMPlatformDefines.h */,
 				729F53DD1A68641400CC7448 /* Supporting Files */,
 				725116061A6973B200337419 /* Frameworks */,
