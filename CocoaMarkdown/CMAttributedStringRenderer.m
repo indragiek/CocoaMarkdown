@@ -81,9 +81,10 @@
 
 - (void)parser:(CMParser *)parser foundText:(NSString *)text
 {
-    CMHTMLElement *block = [_HTMLStack peek];
-    if (block != nil) {
-        [block.buffer appendString:text];
+    CMHTMLElement *element = [_HTMLStack peek];
+    if (element != nil) {
+        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:text attributes:_attributeStack.cascadedAttributes];
+        [element appendAttributedString:attrString];
     } else {
         [self appendString:text];
     }
@@ -171,12 +172,10 @@
                 [self appendHTMLElement:element];
             }
         } else if (CMIsHTMLClosingTag(HTML)) {
-            if ((element = [_HTMLStack peek])) {
-                [element.buffer appendString:HTML];
-                if ([tagName isEqualToString:element.tagName]) {
-                    [self appendHTMLElement:element];
-                    [_HTMLStack pop];
-                }
+            if ((element = [_HTMLStack pop])) {
+                NSAssert([element.tagName isEqualToString:tagName], @"Closing tag does not match opening tag");
+                [element appendString:HTML];
+                [self appendHTMLElement:element];
             }
         } else if (CMIsHTMLTag(HTML)) {
             element = [self newHTMLElementForTagName:tagName HTML:HTML];
@@ -281,7 +280,7 @@
     id<CMHTMLElementTransformer> transformer = _tagNameToTransformerMapping[tagName];
     if (transformer != nil) {
         CMHTMLElement *element = [[CMHTMLElement alloc] initWithTransformer:transformer];
-        [element.buffer appendString:HTML];
+        [element appendString:HTML];
         return element;
     }
     return nil;
@@ -304,14 +303,20 @@
 - (void)appendHTMLElement:(CMHTMLElement *)element
 {
     NSError *error = nil;
-    ONOXMLDocument *document = [ONOXMLDocument HTMLDocumentWithString:element.buffer encoding:NSUTF8StringEncoding error:&error];
+    ONOXMLDocument *document = [ONOXMLDocument HTMLDocumentWithString:element.buffer.string encoding:NSUTF8StringEncoding error:&error];
     if (document == nil) {
         NSLog(@"Error creating HTML document for buffer \"%@\": %@", element.buffer, error);
         return;
     }
     NSAttributedString *attrString = [element.transformer attributedStringForElement:document.rootElement[0][0] attributes:_attributeStack.cascadedAttributes];
+    
     if (attrString != nil) {
-        [_buffer appendAttributedString:attrString];
+        CMHTMLElement *parentElement = [_HTMLStack peek];
+        if (parentElement == nil) {
+            [_buffer appendAttributedString:attrString];
+        } else {
+            [parentElement appendAttributedString:attrString];
+        }
     }
 }
 
