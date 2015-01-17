@@ -83,8 +83,7 @@
 {
     CMHTMLElement *element = [_HTMLStack peek];
     if (element != nil) {
-        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:text attributes:_attributeStack.cascadedAttributes];
-        [element appendAttributedString:attrString];
+        [element.buffer appendString:text];
     } else {
         [self appendString:text];
     }
@@ -174,7 +173,7 @@
         } else if (CMIsHTMLClosingTag(HTML)) {
             if ((element = [_HTMLStack pop])) {
                 NSAssert([element.tagName isEqualToString:tagName], @"Closing tag does not match opening tag");
-                [element appendString:HTML];
+                [element.buffer appendString:HTML];
                 [self appendHTMLElement:element];
             }
         } else if (CMIsHTMLTag(HTML)) {
@@ -280,7 +279,7 @@
     id<CMHTMLElementTransformer> transformer = _tagNameToTransformerMapping[tagName];
     if (transformer != nil) {
         CMHTMLElement *element = [[CMHTMLElement alloc] initWithTransformer:transformer];
-        [element appendString:HTML];
+        [element.buffer appendString:HTML];
         return element;
     }
     return nil;
@@ -303,19 +302,22 @@
 - (void)appendHTMLElement:(CMHTMLElement *)element
 {
     NSError *error = nil;
-    ONOXMLDocument *document = [ONOXMLDocument HTMLDocumentWithString:element.buffer.string encoding:NSUTF8StringEncoding error:&error];
+    ONOXMLDocument *document = [ONOXMLDocument HTMLDocumentWithString:element.buffer encoding:NSUTF8StringEncoding error:&error];
     if (document == nil) {
         NSLog(@"Error creating HTML document for buffer \"%@\": %@", element.buffer, error);
         return;
     }
-    NSAttributedString *attrString = [element.transformer attributedStringForElement:document.rootElement[0][0] attributes:_attributeStack.cascadedAttributes];
+    
+    ONOXMLElement *XMLElement = document.rootElement[0][0];
+    NSDictionary *attributes = _attributeStack.cascadedAttributes;
+    NSAttributedString *attrString = [element.transformer attributedStringForElement:XMLElement attributes:attributes];
     
     if (attrString != nil) {
         CMHTMLElement *parentElement = [_HTMLStack peek];
         if (parentElement == nil) {
             [_buffer appendAttributedString:attrString];
         } else {
-            [parentElement appendAttributedString:attrString];
+            [parentElement.buffer appendString:attrString.string];
         }
     }
 }

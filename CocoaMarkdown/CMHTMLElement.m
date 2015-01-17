@@ -9,15 +9,13 @@
 #import "CMHTMLElement.h"
 #import "CMHTMLElementTransformer.h"
 
-@implementation CMHTMLElement {
-    NSMutableAttributedString *_buffer;
-}
+@implementation CMHTMLElement
 
 - (instancetype)initWithTransformer:(id<CMHTMLElementTransformer>)transformer
 {
     if ((self = [super init])) {
         _transformer = transformer;
-        _buffer = [[NSMutableAttributedString alloc] init];
+        _buffer = [[NSMutableString alloc] init];
     }
     return self;
 }
@@ -25,17 +23,6 @@
 - (NSString *)tagName;
 {
     return [_transformer.class tagName];
-}
-
-- (void)appendString:(NSString *)string
-{
-    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string];
-    [self appendAttributedString:attrString];
-}
-
-- (void)appendAttributedString:(NSAttributedString *)attrString
-{
-    [_buffer appendAttributedString:attrString];
 }
 
 @end

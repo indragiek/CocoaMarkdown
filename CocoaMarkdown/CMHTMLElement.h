@@ -13,11 +13,8 @@
 @interface CMHTMLElement : NSObject
 @property (nonatomic, readonly) id<CMHTMLElementTransformer> transformer;
 @property (nonatomic, readonly) NSString *tagName;
-@property (nonatomic, readonly) NSAttributedString *buffer;
+@property (nonatomic, readonly) NSMutableString *buffer;
 
 - (instancetype)initWithTransformer:(id<CMHTMLElementTransformer>)transformer;
-
-- (void)appendString:(NSString *)string;
-- (void)appendAttributedString:(NSAttributedString *)attrString;
 
 @end
