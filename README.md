@@ -18,7 +18,7 @@ CocoaMarkdown aims to solve two primary problems better than existing libraries:
 
 `CMNode` and `CMIterator` wrap CommonMark's C types with an object-oriented interface for traversal of the Markdown AST.
 
-```
+```swift
 let document = CMDocument(contentsOfFile: path)
 document.rootNode.iterator().enumerateUsingBlock { (node, _, _) in
     print("String value: \(node.stringValue)")
@@ -29,7 +29,7 @@ document.rootNode.iterator().enumerateUsingBlock { (node, _, _) in
 
 The `CMParser` class isn't _really_ a parser (it just traverses the AST), but it defines an `NSXMLParser`-style delegate API that provides handy callbacks for building your own renderers:
 
-```
+```objective-c
 @protocol CMParserDelegate <NSObject>
 @optional
 - (void)parserDidStartDocument:(CMParser *)parser;
@@ -49,7 +49,7 @@ The `CMParser` class isn't _really_ a parser (it just traverses the AST), but it
 
 Going from a Markdown document to rendering it on screen is as easy as:
 
-```
+```swift
 let document = CMDocument(contentsOfFile: path)
 let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
 textView.attributedText = renderer.render()
@@ -57,7 +57,7 @@ textView.attributedText = renderer.render()
 
 All attributes used to style the text are customizable using the `CMTextAttributes` class:
 
-```
+```swift
 let attributes = CMTextAttributes()
 attributes.linkAttributes = [
     NSForegroundColorAttributeName: UIColor.redColor()
@@ -75,7 +75,7 @@ HTML elements can be supported by implementing `CMHTMLElementTransformer`. The f
 
 Transformers can be registered with the renderer to use them:
 
-```
+```swift
 ...
 renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())       renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
 textView.attributedText = renderer.render()
