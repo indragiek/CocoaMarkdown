@@ -18,6 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let path = NSBundle.mainBundle().pathForResource("test", ofType: "md")!
         let document = CMDocument(contentsOfFile: path)
         let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
+        renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
+        renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
         textView.textStorage?.appendAttributedString(renderer.render())
     }
 }
