@@ -9,13 +9,24 @@
 #import "CMHTMLStrikethroughTransformer.h"
 #import "Ono.h"
 
-#if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#else
-#import <Cocoa/Cocoa.h>
-#endif
+@implementation CMHTMLStrikethroughTransformer {
+    NSUnderlineStyle _style;
+    CMColor *_color;
+}
 
-@implementation CMHTMLStrikethroughTransformer
+- (instancetype)init
+{
+    return [self initWithStrikethroughStyle:NSUnderlineStyleSingle color:CMColor.blackColor];
+}
+
+- (instancetype)initWithStrikethroughStyle:(NSUnderlineStyle)style color:(CMColor *)color
+{
+    if ((self = [super init])) {
+        _style = style;
+        _color = color;
+    }
+    return self;
+}
 
 + (NSString *)tagName { return @"s"; };
 

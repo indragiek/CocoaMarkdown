@@ -24,6 +24,7 @@
 #define CMFont NSFont
 #define CMFontTraitItalic NSFontItalicTrait
 #define CMFontTraitBold NSFontBoldTrait
+
 #endif
 
 #endif
