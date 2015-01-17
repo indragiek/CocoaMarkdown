@@ -50,7 +50,7 @@ BOOL CMIsHTMLVoidTagName(NSString *name)
     return [voidNames containsObject:name];
 }
 
-BOOL CMIsHTMLOpeningTag(NSString *tag)
+BOOL CMIsHTMLTag(NSString *tag)
 {
     return [tag hasPrefix:@"<"] && [tag hasSuffix:@">"];
 }

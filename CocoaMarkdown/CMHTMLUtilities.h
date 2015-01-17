@@ -10,5 +10,5 @@
 
 NSString * CMTagNameFromHTMLTag(NSString *tag);
 BOOL CMIsHTMLVoidTagName(NSString *name);
-BOOL CMIsHTMLOpeningTag(NSString *tag);
+BOOL CMIsHTMLTag(NSString *tag);
 BOOL CMIsHTMLClosingTag(NSString *tag);

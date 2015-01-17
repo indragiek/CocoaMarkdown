@@ -164,22 +164,21 @@
 {
     NSString *tagName = CMTagNameFromHTMLTag(HTML);
     if (tagName.length != 0) {
-        CMHTMLElement *element = [_HTMLStack peek];
-        if (element != nil) {
-            [element.buffer appendString:HTML];
-            
-            if ([tagName isEqualToString:element.tagName] && CMIsHTMLClosingTag(HTML)) {
-                [self appendHTMLElement:element];
-                [_HTMLStack pop];
-            }
-        } else if (CMIsHTMLVoidTagName(tagName)) {
+        CMHTMLElement *element = nil;
+        if (CMIsHTMLVoidTagName(tagName)) {
             element = [self newHTMLElementForTagName:tagName HTML:HTML];
             if (element != nil) {
                 [self appendHTMLElement:element];
             }
         } else if (CMIsHTMLClosingTag(HTML)) {
-            NSAssert(NO, @"Found closing tag %@ without a matching opening tag", HTML);
-        } else if (CMIsHTMLOpeningTag(HTML)) {
+            if ((element = [_HTMLStack peek])) {
+                [element.buffer appendString:HTML];
+                if ([tagName isEqualToString:element.tagName]) {
+                    [self appendHTMLElement:element];
+                    [_HTMLStack pop];
+                }
+            }
+        } else if (CMIsHTMLTag(HTML)) {
             element = [self newHTMLElementForTagName:tagName HTML:HTML];
             if (element != nil) {
                 [_HTMLStack push:element];
