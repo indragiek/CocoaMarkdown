@@ -30,6 +30,8 @@
     return self;
 }
 
+#pragma mark - CMHTMLElementTransformer
+
 + (NSString *)tagName { return @"s"; };
 
 - (NSAttributedString *)attributedStringForElement:(ONOXMLElement *)element attributes:(NSDictionary *)attributes

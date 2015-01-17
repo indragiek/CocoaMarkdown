@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CMHTMLElementTransformer.h"
+#import "CMHTMLScriptTransformer.h"
 
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
@@ -18,7 +19,7 @@
 /**
  *  Transforms HTML superscript elements (<sup>) into attributed strings.
  */
-@interface CMHTMLSuperscriptTransformer : NSObject <CMHTMLElementTransformer>
+@interface CMHTMLSuperscriptTransformer : CMHTMLScriptTransformer
 
 /**
  *  Initializes the receiver with the default font ratio (0.7)
