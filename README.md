@@ -16,7 +16,7 @@ CocoaMarkdown aims to solve two primary problems better than existing libraries:
 
 #### Traversing the Markdown AST
 
-`CMNode` and `CMIterator` wrap CommonMark's C types with an object-oriented interface for traversal of the Markdown AST.
+[`CMNode`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMNode.h) and [`CMIterator`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMIterator.h) wrap CommonMark's C types with an object-oriented interface for traversal of the Markdown AST.
 
 ```swift
 let document = CMDocument(contentsOfFile: path)
@@ -27,7 +27,7 @@ document.rootNode.iterator().enumerateUsingBlock { (node, _, _) in
 
 #### Building Custom Renderers
 
-The `CMParser` class isn't _really_ a parser (it just traverses the AST), but it defines an `NSXMLParser`-style delegate API that provides handy callbacks for building your own renderers:
+The [`CMParser`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMParser.h) class isn't _really_ a parser (it just traverses the AST), but it defines an `NSXMLParser`-style delegate API that provides handy callbacks for building your own renderers:
 
 ```objective-c
 @protocol CMParserDelegate <NSObject>
@@ -41,11 +41,11 @@ The `CMParser` class isn't _really_ a parser (it just traverses the AST), but it
 @end
 ```
 
-`CMAttributedStringRenderer` is an example of a custom renderer that is built using this API.
+[`CMAttributedStringRenderer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMAttributedStringRenderer.h) is an example of a custom renderer that is built using this API.
 
 #### Generating Attributed Strings
 
-`CMAttributedStringRenderer` is the high level API that will be useful to most apps. It creates an `NSAttributedString` directly from Markdown, skipping the step of converting it to HTML altogether.
+[`CMAttributedStringRenderer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMAttributedStringRenderer.h) is the high level API that will be useful to most apps. It creates an `NSAttributedString` directly from Markdown, skipping the step of converting it to HTML altogether.
 
 Going from a Markdown document to rendering it on screen is as easy as:
 
@@ -55,7 +55,7 @@ let renderer = CMAttributedStringRenderer(document: document, attributes: CMText
 textView.attributedText = renderer.render()
 ```
 
-All attributes used to style the text are customizable using the `CMTextAttributes` class:
+All attributes used to style the text are customizable using the [`CMTextAttributes`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMTextAttributes.h) class:
 
 ```swift
 let attributes = CMTextAttributes()
@@ -65,13 +65,14 @@ attributes.linkAttributes = [
 attributes.emphasisAttributes = [
     NSBackgroundColorAttributeName: UIColor.yellowColor()
 ]
+let renderer = CMAttributedStringRenderer(document: document, attributes: attributes)
 ```
 
-HTML elements can be supported by implementing `CMHTMLElementTransformer`. The framework includes several transformers for commonly used tags:
+HTML elements can be supported by implementing [`CMHTMLElementTransformer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMHTMLElementTransformer.h). The framework includes several transformers for commonly used tags:
 
-* `CMHTMLStrikethroughTransformer`
-* `CMHTMLSuperscriptTransformer`
-* `CMHTMLSubscriptTransformer`
+* [`CMHTMLStrikethroughTransformer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMHTMLStrikethroughTransformer.h)
+* [`CMHTMLSuperscriptTransformer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMHTMLSuperscriptTransformer.h)
+* [`CMHTMLSubscriptTransformer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMHTMLSubscriptTransformer.h)
 
 Transformers can be registered with the renderer to use them:
 
