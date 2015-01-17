@@ -30,10 +30,10 @@
 		725115E31A6970A300337419 /* CMStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 725115DF1A6970A300337419 /* CMStack.m */; };
 		725115F51A6972AE00337419 /* CMHTMLElementTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115F41A6972AE00337419 /* CMHTMLElementTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		725115F61A6972AE00337419 /* CMHTMLElementTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115F41A6972AE00337419 /* CMHTMLElementTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		725115FC1A69735400337419 /* Ono.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115F91A69735400337419 /* Ono.h */; };
-		725115FD1A69735400337419 /* Ono.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115F91A69735400337419 /* Ono.h */; };
-		725115FE1A69735400337419 /* ONOXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115FA1A69735400337419 /* ONOXMLDocument.h */; };
-		725115FF1A69735400337419 /* ONOXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115FA1A69735400337419 /* ONOXMLDocument.h */; };
+		725115FC1A69735400337419 /* Ono.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115F91A69735400337419 /* Ono.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		725115FD1A69735400337419 /* Ono.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115F91A69735400337419 /* Ono.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		725115FE1A69735400337419 /* ONOXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115FA1A69735400337419 /* ONOXMLDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		725115FF1A69735400337419 /* ONOXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115FA1A69735400337419 /* ONOXMLDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		725116001A69735400337419 /* ONOXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 725115FB1A69735400337419 /* ONOXMLDocument.m */; };
 		725116011A69735400337419 /* ONOXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 725115FB1A69735400337419 /* ONOXMLDocument.m */; };
 		725116031A6973A700337419 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 725116021A6973A700337419 /* libxml2.dylib */; };
