@@ -1,5 +1,5 @@
 //
-//  CMHTMLSuperscriptTransformer.h
+//  CMHTMLSubscriptTransformer.h
 //  CocoaMarkdown
 //
 //  Created by Indragie on 1/16/15.
@@ -16,9 +16,9 @@
 #endif
 
 /**
- *  Transforms HTML superscript elements (<sup>) into attributed strings.
+ *  Transforms HTML subscript elements (<sub>) into attributed strings.
  */
-@interface CMHTMLSuperscriptTransformer : CMHTMLScriptTransformer
+@interface CMHTMLSubscriptTransformer : CMHTMLScriptTransformer
 
 /**
  *  Initializes the receiver with the default font ratio (0.7)
@@ -31,7 +31,7 @@
  *  Initializes the receiver with a custom font size ratio.
  *
  *  @param ratio The factor to multiply the existing font point
- *  size by to calculate the size of the superscript font.
+ *  size by to calculate the size of the subscript font.
  *
  *  @return An initialized instance of the receiver.
  */
