@@ -50,6 +50,10 @@
 		72772BE71A69ABB20059936C /* CMHTMLStrikethroughTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 72772BE41A69ABB20059936C /* CMHTMLStrikethroughTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72772BE81A69ABB20059936C /* CMHTMLStrikethroughTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72772BE51A69ABB20059936C /* CMHTMLStrikethroughTransformer.m */; };
 		72772BE91A69ABB20059936C /* CMHTMLStrikethroughTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72772BE51A69ABB20059936C /* CMHTMLStrikethroughTransformer.m */; };
+		72772BEC1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 72772BEA1A6A22720059936C /* CMHTMLSuperscriptTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72772BED1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 72772BEA1A6A22720059936C /* CMHTMLSuperscriptTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72772BEE1A6A22720059936C /* CMHTMLSuperscriptTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72772BEB1A6A22720059936C /* CMHTMLSuperscriptTransformer.m */; };
+		72772BEF1A6A22720059936C /* CMHTMLSuperscriptTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72772BEB1A6A22720059936C /* CMHTMLSuperscriptTransformer.m */; };
 		729F53E01A68641400CC7448 /* CocoaMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F53DF1A68641400CC7448 /* CocoaMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		729F53E61A68641400CC7448 /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53DA1A68641400CC7448 /* CocoaMarkdown.framework */; };
 		729F54061A68649200CC7448 /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; };
@@ -290,6 +294,8 @@
 		72772BD51A699ACA0059936C /* CMHTMLUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLUtilities.m; sourceTree = "<group>"; };
 		72772BE41A69ABB20059936C /* CMHTMLStrikethroughTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLStrikethroughTransformer.h; sourceTree = "<group>"; };
 		72772BE51A69ABB20059936C /* CMHTMLStrikethroughTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLStrikethroughTransformer.m; sourceTree = "<group>"; };
+		72772BEA1A6A22720059936C /* CMHTMLSuperscriptTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLSuperscriptTransformer.h; sourceTree = "<group>"; };
+		72772BEB1A6A22720059936C /* CMHTMLSuperscriptTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLSuperscriptTransformer.m; sourceTree = "<group>"; };
 		729F53DA1A68641400CC7448 /* CocoaMarkdown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaMarkdown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		729F53DE1A68641400CC7448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		729F53DF1A68641400CC7448 /* CocoaMarkdown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaMarkdown.h; sourceTree = "<group>"; };
@@ -465,6 +471,8 @@
 				72772BD51A699ACA0059936C /* CMHTMLUtilities.m */,
 				72772BE41A69ABB20059936C /* CMHTMLStrikethroughTransformer.h */,
 				72772BE51A69ABB20059936C /* CMHTMLStrikethroughTransformer.m */,
+				72772BEA1A6A22720059936C /* CMHTMLSuperscriptTransformer.h */,
+				72772BEB1A6A22720059936C /* CMHTMLSuperscriptTransformer.m */,
 			);
 			name = HTML;
 			sourceTree = "<group>";
@@ -683,6 +691,7 @@
 				729F54761A68652500CC7448 /* cmark.h in Headers */,
 				725115FC1A69735400337419 /* Ono.h in Headers */,
 				725115FE1A69735400337419 /* ONOXMLDocument.h in Headers */,
+				72772BEC1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
 				729F542A1A6864F400CC7448 /* CMIterator.h in Headers */,
 				729F54261A6864F400CC7448 /* CMDocument.h in Headers */,
 				725115F51A6972AE00337419 /* CMHTMLElementTransformer.h in Headers */,
@@ -716,6 +725,7 @@
 				725115E11A6970A300337419 /* CMStack.h in Headers */,
 				729F54391A6864F400CC7448 /* CMPlatformDefines.h in Headers */,
 				725115FD1A69735400337419 /* Ono.h in Headers */,
+				72772BED1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
 				722E33ED1A68EADA004DE919 /* CMCascadingAttributeStack.h in Headers */,
 				72772BE71A69ABB20059936C /* CMHTMLStrikethroughTransformer.h in Headers */,
 				729F542F1A6864F400CC7448 /* CMNode_Private.h in Headers */,
@@ -1040,6 +1050,7 @@
 				729F54671A68651E00CC7448 /* iterator.c in Sources */,
 				729F54571A68651E00CC7448 /* buffer.c in Sources */,
 				722E33E21A68E7E4004DE919 /* CMAttributeRun.m in Sources */,
+				72772BEE1A6A22720059936C /* CMHTMLSuperscriptTransformer.m in Sources */,
 				729F545F1A68651E00CC7448 /* houdini_html_e.c in Sources */,
 				729F54321A6864F400CC7448 /* CMNode.m in Sources */,
 				729F54731A68651E00CC7448 /* xml.c in Sources */,
@@ -1089,6 +1100,7 @@
 				729F54681A68651E00CC7448 /* iterator.c in Sources */,
 				729F54581A68651E00CC7448 /* buffer.c in Sources */,
 				722E33E31A68E7E4004DE919 /* CMAttributeRun.m in Sources */,
+				72772BEF1A6A22720059936C /* CMHTMLSuperscriptTransformer.m in Sources */,
 				729F54601A68651E00CC7448 /* houdini_html_e.c in Sources */,
 				729F54331A6864F400CC7448 /* CMNode.m in Sources */,
 				729F54741A68651E00CC7448 /* xml.c in Sources */,

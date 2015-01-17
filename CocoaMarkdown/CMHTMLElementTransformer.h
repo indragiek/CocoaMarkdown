@@ -30,3 +30,10 @@
 - (NSAttributedString *)attributedStringForElement:(ONOXMLElement *)element attributes:(NSDictionary *)attributes;
 
 @end
+
+/**
+ *  Use this macro inside an implementation of `-attributedStringForElement:attributes:`
+ *  to assert that the root element's tag matches the transformer's tag.
+ */
+#define CMAssertCorrectTag(element) \
+    NSAssert([element.tag isEqualToString:self.class.tagName], @"Tag does not match");

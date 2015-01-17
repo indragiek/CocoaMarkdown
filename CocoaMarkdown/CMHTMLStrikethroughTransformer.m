@@ -10,7 +10,7 @@
 #import "Ono.h"
 
 @implementation CMHTMLStrikethroughTransformer {
-    NSUnderlineStyle _style;
+    CMUnderlineStyle _style;
     CMColor *_color;
 }
 
@@ -19,8 +19,10 @@
     return [self initWithStrikethroughStyle:NSUnderlineStyleSingle color:CMColor.blackColor];
 }
 
-- (instancetype)initWithStrikethroughStyle:(NSUnderlineStyle)style color:(CMColor *)color
+- (instancetype)initWithStrikethroughStyle:(CMUnderlineStyle)style color:(CMColor *)color
 {
+    NSParameterAssert(color);
+    
     if ((self = [super init])) {
         _style = style;
         _color = color;
@@ -32,14 +34,13 @@
 
 - (NSAttributedString *)attributedStringForElement:(ONOXMLElement *)element attributes:(NSDictionary *)attributes
 {
-    NSAssert([element.tag isEqualToString:self.class.tagName], @"Root element must be a strikethrough element");
+    CMAssertCorrectTag(element);
     
-    NSMutableDictionary *baseAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-        @(_style), NSStrikethroughStyleAttributeName,
-        _color, NSStrikethroughColorAttributeName, nil];
-    [baseAttributes addEntriesFromDictionary:attributes];
+    NSMutableDictionary *allAttributes = [attributes mutableCopy];
+    allAttributes[NSStrikethroughStyleAttributeName] = @(_style);
+    allAttributes[NSStrikethroughColorAttributeName] = _color;
     
-    return [[NSAttributedString alloc] initWithString:element.stringValue attributes:baseAttributes];
+    return [[NSAttributedString alloc] initWithString:element.stringValue attributes:allAttributes];
 }
 
 @end

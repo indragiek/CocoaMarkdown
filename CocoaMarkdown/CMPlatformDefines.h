@@ -14,6 +14,7 @@
 
 #define CMFontSymbolicTraits UIFontDescriptorSymbolicTraits
 #define CMFont UIFont
+#define CMFontDescriptor UIFontDescriptor
 #define CMFontTraitItalic UIFontDescriptorTraitItalic
 #define CMFontTraitBold UIFontDescriptorTraitBold
 
@@ -22,6 +23,7 @@
 
 #define CMFontSymbolicTraits NSFontSymbolicTraits
 #define CMFont NSFont
+#define CMFontDescriptor NSFontDescriptor
 #define CMFontTraitItalic NSFontItalicTrait
 #define CMFontTraitBold NSFontBoldTrait
 

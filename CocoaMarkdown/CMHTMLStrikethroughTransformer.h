@@ -12,9 +12,11 @@
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #define CMColor UIColor
+#define CMUnderlineStyle NSUnderlineStyle
 #else
 #import <Cocoa/Cocoa.h>
 #define CMColor NSColor
+#define CMUnderlineStyle NSInteger
 #endif
 
 /**
@@ -38,6 +40,6 @@
  *
  *  @return An initialized instance of the receiver.
  */
-- (instancetype)initWithStrikethroughStyle:(NSUnderlineStyle)style color:(CMColor *)color;
+- (instancetype)initWithStrikethroughStyle:(CMUnderlineStyle)style color:(CMColor *)color;
 
 @end

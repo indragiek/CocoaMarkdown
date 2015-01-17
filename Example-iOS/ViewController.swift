@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         let document = CMDocument(contentsOfFile: path)
         let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
         renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
+        renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
         textView.attributedText = renderer.render()
     }
 }
