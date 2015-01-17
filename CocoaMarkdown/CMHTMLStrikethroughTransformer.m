@@ -34,7 +34,9 @@
 {
     NSAssert([element.tag isEqualToString:self.class.tagName], @"Root element must be a strikethrough element");
     
-    NSMutableDictionary *baseAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(NSUnderlineStyleSingle), NSStrikethroughStyleAttributeName, nil];
+    NSMutableDictionary *baseAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+        @(_style), NSStrikethroughStyleAttributeName,
+        _color, NSStrikethroughColorAttributeName, nil];
     [baseAttributes addEntriesFromDictionary:attributes];
     
     return [[NSAttributedString alloc] initWithString:element.stringValue attributes:baseAttributes];
