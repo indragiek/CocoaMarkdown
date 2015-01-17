@@ -9,6 +9,7 @@
 #import "CMCascadingAttributeStack.h"
 #import "CMAttributeRun.h"
 #import "CMPlatformDefines.h"
+#import "CMStack.h"
 
 static CMFont * CMFontWithTraits(CMFontSymbolicTraits traits, CMFont *font)
 {
@@ -29,42 +30,40 @@ static CMFont * CMFontWithTraits(CMFontSymbolicTraits traits, CMFont *font)
 }
 
 @implementation CMCascadingAttributeStack {
-    NSMutableArray *_stack;
+    CMStack *_stack;
     NSDictionary *_cascadedAttributes;
 }
 
 - (instancetype)init
 {
     if ((self = [super init])) {
-        _stack = [[NSMutableArray alloc] init];
+        _stack = [[CMStack alloc] init];
     }
     return self;
 }
 
 - (void)push:(CMAttributeRun *)run
 {
-    [_stack addObject:run];
+    [_stack push:run];
     _cascadedAttributes = nil;
 }
 
 - (CMAttributeRun *)pop
 {
-    CMAttributeRun *run = _stack.lastObject;
-    [_stack removeLastObject];
     _cascadedAttributes = nil;
-    return run;
+    return [_stack pop];
 }
 
 - (CMAttributeRun *)peek
 {
-    return _stack.lastObject;
+    return [_stack peek];
 }
 
 - (NSDictionary *)cascadedAttributes
 {
     if (_cascadedAttributes == nil) {
         NSMutableDictionary *allAttributes = [[NSMutableDictionary alloc] init];
-        for (CMAttributeRun *run in _stack) {
+        for (CMAttributeRun *run in _stack.objects) {
             CMFont *baseFont;
             CMFont *adjustedFont;
             if (run.fontTraits != 0 &&

@@ -10,6 +10,7 @@
 
 @class CMDocument;
 @class CMTextAttributes;
+@protocol CMHTMLElementTransformer;
 /**
  *  Renders an attributed string from a Markdown document
  */
@@ -24,6 +25,16 @@
  *  @return An initialized instance of the receiver.
  */
 - (instancetype)initWithDocument:(CMDocument *)document attributes:(CMTextAttributes *)attributes;
+
+/**
+ *  Registers a handler to transform HTML elements.
+ *
+ *  Only a single transformer can be registered for an element. If a transformer
+ *  is already registered for an element, it will be replaced.
+ *
+ *  @param transformer The transformer to register.
+ */
+- (void)registerHTMLElementTransformer:(id<CMHTMLElementTransformer>)transformer;
 
 /**
  *  Renders an attributed string from the Markdown document.

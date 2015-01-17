@@ -7,11 +7,17 @@
 //
 
 #import "CMAttributedStringRenderer.h"
-#import "CMTextAttributes.h"
+#import "CMAttributeRun.h"
 #import "CMCascadingAttributeStack.h"
+#import "CMStack.h"
+#import "CMHTMLElementTransformer.h"
+#import "CMHTMLElement.h"
+#import "CMHTMLUtilities.h"
+#import "CMTextAttributes.h"
 #import "CMNode.h"
 #import "CMParser.h"
-#import "CMAttributeRun.h"
+
+#import "Ono.h"
 
 @interface CMAttributedStringRenderer () <CMParserDelegate>
 @end
@@ -19,7 +25,9 @@
 @implementation CMAttributedStringRenderer {
     CMDocument *_document;
     CMTextAttributes *_attributes;
-    CMCascadingAttributeStack *_stack;
+    CMCascadingAttributeStack *_attributeStack;
+    CMStack *_HTMLStack;
+    NSMutableDictionary *_tagNameToTransformerMapping;
     NSMutableAttributedString *_buffer;
     NSAttributedString *_attributedString;
 }
@@ -29,21 +37,30 @@
     if ((self = [super init])) {
         _document = document;
         _attributes = attributes;
+        _tagNameToTransformerMapping = [[NSMutableDictionary alloc] init];
     }
     return self;
+}
+
+- (void)registerHTMLElementTransformer:(id<CMHTMLElementTransformer>)transformer
+{
+    NSParameterAssert(transformer);
+    _tagNameToTransformerMapping[[transformer.class tagName]] = transformer;
 }
 
 - (NSAttributedString *)render
 {
     if (_attributedString == nil) {
-        _stack = [[CMCascadingAttributeStack alloc] init];
+        _attributeStack = [[CMCascadingAttributeStack alloc] init];
+        _HTMLStack = [[CMStack alloc] init];
         _buffer = [[NSMutableAttributedString alloc] init];
         
         CMParser *parser = [[CMParser alloc] initWithDocument:_document delegate:self];
         [parser parse];
         
         _attributedString = [_buffer copy];
-        _stack = nil;
+        _attributeStack = nil;
+        _HTMLStack = nil;
         _buffer = nil;
     }
     
@@ -54,7 +71,7 @@
 
 - (void)parserDidStartDocument:(CMParser *)parser
 {
-    [_stack push:CMDefaultAttributeRun(_attributes.textAttributes)];
+    [_attributeStack push:CMDefaultAttributeRun(_attributes.textAttributes)];
 }
 
 - (void)parserDidEndDocument:(CMParser *)parser
@@ -64,18 +81,23 @@
 
 - (void)parser:(CMParser *)parser foundText:(NSString *)text
 {
-    [self appendString:text];
+    CMHTMLElement *block = [_HTMLStack peek];
+    if (block != nil) {
+        [block.buffer appendString:text];
+    } else {
+        [self appendString:text];
+    }
 }
 
 - (void)parser:(CMParser *)parser didStartHeaderWithLevel:(NSInteger)level
 {
-    [_stack push:CMDefaultAttributeRun([_attributes attributesForHeaderLevel:level])];
+    [_attributeStack push:CMDefaultAttributeRun([_attributes attributesForHeaderLevel:level])];
 }
 
 - (void)parser:(CMParser *)parser didEndHeaderWithLevel:(NSInteger)level
 {
     [self appendString:@"\n"];
-    [_stack pop];
+    [_attributeStack pop];
 }
 
 - (void)parserDidStartParagraph:(CMParser *)parser
@@ -91,23 +113,23 @@
 - (void)parserDidStartEmphasis:(CMParser *)parser
 {
     BOOL hasExplicitFont = _attributes.emphasisAttributes[NSFontAttributeName] != nil;
-    [_stack push:CMTraitAttributeRun(_attributes.emphasisAttributes, hasExplicitFont ? 0 : CMFontTraitItalic)];
+    [_attributeStack push:CMTraitAttributeRun(_attributes.emphasisAttributes, hasExplicitFont ? 0 : CMFontTraitItalic)];
 }
 
 - (void)parserDidEndEmphasis:(CMParser *)parser
 {
-    [_stack pop];
+    [_attributeStack pop];
 }
 
 - (void)parserDidStartStrong:(CMParser *)parser
 {
     BOOL hasExplicitFont = _attributes.strongAttributes[NSFontAttributeName] != nil;
-    [_stack push:CMTraitAttributeRun(_attributes.strongAttributes, hasExplicitFont ? 0 : CMFontTraitBold)];
+    [_attributeStack push:CMTraitAttributeRun(_attributes.strongAttributes, hasExplicitFont ? 0 : CMFontTraitBold)];
 }
 
 - (void)parserDidEndStrong:(CMParser *)parse
 {
-    [_stack pop];
+    [_attributeStack pop];
 }
 
 - (void)parser:(CMParser *)parser didStartLinkWithURL:(NSURL *)URL title:(NSString *)title
@@ -119,26 +141,63 @@
     }
 #endif
     [baseAttributes addEntriesFromDictionary:_attributes.linkAttributes];
-    [_stack push:CMDefaultAttributeRun(baseAttributes)];
+    [_attributeStack push:CMDefaultAttributeRun(baseAttributes)];
 }
 
 - (void)parser:(CMParser *)parser didEndLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
-    [_stack pop];
+    [_attributeStack pop];
+}
+
+- (void)parser:(CMParser *)parser foundHTML:(NSString *)HTML
+{
+    NSString *tagName = CMTagNameFromHTMLTag(HTML);
+    if (tagName.length != 0) {
+        CMHTMLElement *element = [self newHTMLElementForTagName:tagName HTML:HTML];
+        if (element != nil) {
+            [self appendHTMLElement:element];
+        }
+    }
+}
+
+- (void)parser:(CMParser *)parser foundInlineHTML:(NSString *)HTML
+{
+    NSString *tagName = CMTagNameFromHTMLTag(HTML);
+    if (tagName.length != 0) {
+        CMHTMLElement *element = [_HTMLStack peek];
+        if (element != nil) {
+            [element.buffer appendString:HTML];
+            
+            if ([tagName isEqualToString:element.tagName] && CMIsHTMLClosingTag(HTML)) {
+                [self appendHTMLElement:element];
+                [_HTMLStack pop];
+            }
+        } else if (CMIsHTMLVoidTagName(tagName)) {
+            element = [self newHTMLElementForTagName:tagName HTML:HTML];
+            if (element != nil) {
+                [self appendHTMLElement:element];
+            }
+        } else if (CMIsHTMLOpeningTag(HTML)) {
+            element = [self newHTMLElementForTagName:tagName HTML:HTML];
+            if (element != nil) {
+                [_HTMLStack push:element];
+            }
+        }
+    }
 }
 
 - (void)parser:(CMParser *)parser foundCodeBlock:(NSString *)code info:(NSString *)info
 {
-    [_stack push:CMDefaultAttributeRun(_attributes.codeBlockAttributes)];
+    [_attributeStack push:CMDefaultAttributeRun(_attributes.codeBlockAttributes)];
     [self appendString:[NSString stringWithFormat:@"\n\n%@\n\n", code]];
-    [_stack pop];
+    [_attributeStack pop];
 }
 
 - (void)parser:(CMParser *)parser foundInlineCode:(NSString *)code
 {
-    [_stack push:CMDefaultAttributeRun(_attributes.inlineCodeAttributes)];
+    [_attributeStack push:CMDefaultAttributeRun(_attributes.inlineCodeAttributes)];
     [self appendString:code];
-    [_stack pop];
+    [_attributeStack pop];
 }
 
 - (void)parserFoundSoftBreak:(CMParser *)parser
@@ -153,34 +212,34 @@
 
 - (void)parserDidStartBlockQuote:(CMParser *)parser
 {
-    [_stack push:CMDefaultAttributeRun(_attributes.blockQuoteAttributes)];
+    [_attributeStack push:CMDefaultAttributeRun(_attributes.blockQuoteAttributes)];
 }
 
 - (void)parserDidEndBlockQuote:(CMParser *)parser
 {
-    [_stack pop];
+    [_attributeStack pop];
 }
 
 - (void)parser:(CMParser *)parser didStartUnorderedListWithTightness:(BOOL)tight
 {
-    [_stack push:CMDefaultAttributeRun(_attributes.unorderedListAttributes)];
+    [_attributeStack push:CMDefaultAttributeRun(_attributes.unorderedListAttributes)];
     [self appendString:@"\n"];
 }
 
 - (void)parser:(CMParser *)parser didEndUnorderedListWithTightness:(BOOL)tight
 {
-    [_stack pop];
+    [_attributeStack pop];
 }
 
 - (void)parser:(CMParser *)parser didStartOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
-    [_stack push:CMOrderedListAttributeRun(_attributes.orderedListAttributes, num)];
+    [_attributeStack push:CMOrderedListAttributeRun(_attributes.orderedListAttributes, num)];
     [self appendString:@"\n"];
 }
 
 - (void)parser:(CMParser *)parser didEndOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
-    [_stack pop];
+    [_attributeStack pop];
 }
 
 - (void)parserDidStartListItem:(CMParser *)parser
@@ -192,14 +251,14 @@
             break;
         case CMARK_BULLET_LIST: {
             [self appendString:@"\u2022 "];
-            [_stack push:CMDefaultAttributeRun(_attributes.unorderedListItemAttributes)];
+            [_attributeStack push:CMDefaultAttributeRun(_attributes.unorderedListItemAttributes)];
             break;
         }
         case CMARK_ORDERED_LIST: {
-            CMAttributeRun *parentRun = [_stack peek];
+            CMAttributeRun *parentRun = [_attributeStack peek];
             [self appendString:[NSString stringWithFormat:@"%ld. ", parentRun.orderedListItemNumber]];
             parentRun.orderedListItemNumber++;
-            [_stack push:CMDefaultAttributeRun(_attributes.orderedListItemAttributes)];
+            [_attributeStack push:CMDefaultAttributeRun(_attributes.orderedListItemAttributes)];
             break;
         }
         default:
@@ -210,10 +269,22 @@
 - (void)parserDidEndListItem:(CMParser *)parser
 {
     [self appendString:@"\n"];
-    [_stack pop];
+    [_attributeStack pop];
 }
 
 #pragma mark - Private
+
+- (CMHTMLElement *)newHTMLElementForTagName:(NSString *)tagName HTML:(NSString *)HTML
+{
+    NSParameterAssert(tagName);
+    id<CMHTMLElementTransformer> transformer = _tagNameToTransformerMapping[tagName];
+    if (transformer != nil) {
+        CMHTMLElement *element = [[CMHTMLElement alloc] initWithTransformer:transformer];
+        [element.buffer appendString:HTML];
+        return element;
+    }
+    return nil;
+}
 
 - (void)appendLineBreakIfNotTightForNode:(CMNode *)node
 {
@@ -225,7 +296,22 @@
 
 - (void)appendString:(NSString *)string
 {
-    [_buffer appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:_stack.cascadedAttributes]];
+    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:_attributeStack.cascadedAttributes];
+    [_buffer appendAttributedString:attrString];
+}
+
+- (void)appendHTMLElement:(CMHTMLElement *)element
+{
+    NSError *error = nil;
+    ONOXMLDocument *document = [ONOXMLDocument HTMLDocumentWithString:element.buffer encoding:NSUTF8StringEncoding error:&error];
+    if (document == nil) {
+        NSLog(@"Error creating HTML document for buffer \"%@\": %@", element.buffer, error);
+        return;
+    }
+    NSAttributedString *attrString = [element.transformer attributedStringForElement:document.rootElement[0][0] attributes:_attributeStack.cascadedAttributes];
+    if (attrString != nil) {
+        [_buffer appendAttributedString:attrString];
+    }
 }
 
 @end

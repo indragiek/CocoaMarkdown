@@ -7,3 +7,6 @@
 [submodule "External/Nimble"]
 	path = External/Nimble
 	url = https://github.com/Quick/Nimble.git
+[submodule "External/Ono"]
+	path = External/Ono
+	url = https://github.com/mattt/Ono.git

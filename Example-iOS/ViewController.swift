@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         let path = NSBundle.mainBundle().pathForResource("test", ofType: "md")!
         let document = CMDocument(contentsOfFile: path)
         let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
+        renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
         textView.attributedText = renderer.render()
     }
 }
