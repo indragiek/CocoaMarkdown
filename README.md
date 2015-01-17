@@ -1,5 +1,5 @@
 ## CocoaMarkdown
-### Markdown parsing and rendering for iOS and OS X
+#### Markdown parsing and rendering for iOS and OS X
 
 CocoaMarkdown is a cross-platform framework for parsing and rendering Markdown, built on top of the [C reference implementation](https://github.com/jgm/CommonMark) of [CommonMark](http://commonmark.org).
 
@@ -77,7 +77,8 @@ Transformers can be registered with the renderer to use them:
 
 ```swift
 ...
-renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())       renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
+renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
+renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
 textView.attributedText = renderer.render()
 ```
 
