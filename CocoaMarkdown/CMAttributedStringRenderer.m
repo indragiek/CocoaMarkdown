@@ -255,7 +255,7 @@
         }
         case CMARK_ORDERED_LIST: {
             CMAttributeRun *parentRun = [_attributeStack peek];
-            [self appendString:[NSString stringWithFormat:@"%ld. ", parentRun.orderedListItemNumber]];
+            [self appendString:[NSString stringWithFormat:@"%ld. ", (long)parentRun.orderedListItemNumber]];
             parentRun.orderedListItemNumber++;
             [_attributeStack push:CMDefaultAttributeRun(_attributes.orderedListItemAttributes)];
             break;
