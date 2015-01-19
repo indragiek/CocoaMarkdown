@@ -21,9 +21,6 @@
  *  callbacks.
  *
  *  This is useful for implementing custom renderers.
- *
- *  @warning This class is not thread-safe and can only be accessed from a single
- *  thread at a time.
  */
 @interface CMCommonMarkParser : NSObject
 
