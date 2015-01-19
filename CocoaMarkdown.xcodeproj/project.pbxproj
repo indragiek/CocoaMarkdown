@@ -54,6 +54,8 @@
 		7233B3C41A6D6AB4007FC2A8 /* CMHoedownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7233B3C01A6D6AB4007FC2A8 /* CMHoedownParser.m */; };
 		7233B3C61A6D8E15007FC2A8 /* CMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7233B3C51A6D8E15007FC2A8 /* CMParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7233B3C71A6D8E15007FC2A8 /* CMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7233B3C51A6D8E15007FC2A8 /* CMParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7233B3C91A6D94E8007FC2A8 /* CMParserDelegateFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 7233B3C81A6D94E8007FC2A8 /* CMParserDelegateFlags.h */; };
+		7233B3CA1A6D94E8007FC2A8 /* CMParserDelegateFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 7233B3C81A6D94E8007FC2A8 /* CMParserDelegateFlags.h */; };
 		725115E01A6970A300337419 /* CMStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115DE1A6970A300337419 /* CMStack.h */; };
 		725115E11A6970A300337419 /* CMStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115DE1A6970A300337419 /* CMStack.h */; };
 		725115E21A6970A300337419 /* CMStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 725115DF1A6970A300337419 /* CMStack.m */; };
@@ -335,6 +337,7 @@
 		7233B3BF1A6D6AB4007FC2A8 /* CMHoedownParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHoedownParser.h; sourceTree = "<group>"; };
 		7233B3C01A6D6AB4007FC2A8 /* CMHoedownParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHoedownParser.m; sourceTree = "<group>"; };
 		7233B3C51A6D8E15007FC2A8 /* CMParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMParser.h; sourceTree = "<group>"; };
+		7233B3C81A6D94E8007FC2A8 /* CMParserDelegateFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMParserDelegateFlags.h; sourceTree = "<group>"; };
 		725115DE1A6970A300337419 /* CMStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMStack.h; sourceTree = "<group>"; };
 		725115DF1A6970A300337419 /* CMStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMStack.m; sourceTree = "<group>"; };
 		725115F41A6972AE00337419 /* CMHTMLElementTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLElementTransformer.h; sourceTree = "<group>"; };
@@ -528,6 +531,7 @@
 				722E33E41A68E86B004DE919 /* CMTextAttributes.h */,
 				722E33E51A68E86B004DE919 /* CMTextAttributes.m */,
 				7233B3C51A6D8E15007FC2A8 /* CMParser.h */,
+				7233B3C81A6D94E8007FC2A8 /* CMParserDelegateFlags.h */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -811,6 +815,7 @@
 				725116091A69760A00337419 /* CMHTMLElement.h in Headers */,
 				722E33EC1A68EADA004DE919 /* CMCascadingAttributeStack.h in Headers */,
 				7233B3AE1A6D697E007FC2A8 /* document.h in Headers */,
+				7233B3C91A6D94E8007FC2A8 /* CMParserDelegateFlags.h in Headers */,
 				729F54381A6864F400CC7448 /* CMPlatformDefines.h in Headers */,
 				729F53E01A68641400CC7448 /* CocoaMarkdown.h in Headers */,
 				729F542E1A6864F400CC7448 /* CMCommonMarkNode_Private.h in Headers */,
@@ -832,6 +837,7 @@
 				722E33E71A68E86B004DE919 /* CMTextAttributes.h in Headers */,
 				7233B3AB1A6D697E007FC2A8 /* buffer.h in Headers */,
 				7233B3AF1A6D697E007FC2A8 /* document.h in Headers */,
+				7233B3CA1A6D94E8007FC2A8 /* CMParserDelegateFlags.h in Headers */,
 				72772BFC1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.h in Headers */,
 				729F542B1A6864F400CC7448 /* CMCommonMarkIterator.h in Headers */,
 				729F54771A68652500CC7448 /* cmark.h in Headers */,

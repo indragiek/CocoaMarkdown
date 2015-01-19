@@ -10,6 +10,7 @@
 #import "CMCommonMarkDocument.h"
 #import "CMCommonMarkIterator.h"
 #import "CMCommonMarkNode.h"
+#import "CMParserDelegateFlags.h"
 
 #import <libkern/OSAtomic.h>
 
@@ -19,39 +20,7 @@
 @end
 
 @implementation CMCommonMarkParser {
-    struct {
-        unsigned int didStartDocument:1;
-        unsigned int didEndDocument:1;
-        unsigned int didAbort:1;
-        unsigned int foundText:1;
-        unsigned int foundHRule:1;
-        unsigned int didStartHeader:1;
-        unsigned int didEndHeader:1;
-        unsigned int didStartParagraph:1;
-        unsigned int didEndParagraph:1;
-        unsigned int didStartEmphasis:1;
-        unsigned int didEndEmphasis:1;
-        unsigned int didStartStrong:1;
-        unsigned int didEndStrong:1;
-        unsigned int didStartLink:1;
-        unsigned int didEndLink:1;
-        unsigned int didStartImage:1;
-        unsigned int didEndImage:1;
-        unsigned int foundHTML:1;
-        unsigned int foundInlineHTML:1;
-        unsigned int foundCodeBlock:1;
-        unsigned int foundInlineCode:1;
-        unsigned int foundSoftBreak:1;
-        unsigned int foundLineBreak:1;
-        unsigned int didStartBlockQuote:1;
-        unsigned int didEndBlockQuote:1;
-        unsigned int didStartUnorderedList:1;
-        unsigned int didEndUnorderedList:1;
-        unsigned int didStartOrderedList:1;
-        unsigned int didEndOrderedList:1;
-        unsigned int didStartListItem:1;
-        unsigned int didEndListItem:1;
-    } _delegateFlags;
+    CMParserDelegateFlags _delegateFlags;
     volatile uint32_t _parsing;
 }
 
@@ -64,7 +33,8 @@
     
     if ((self = [super init])) {
         _document = document;
-        self.delegate = delegate;
+        _delegate = delegate;
+        _delegateFlags = CMParserDelegateFlagsForDelegate(_delegate);
     }
     return self;
 }
@@ -246,46 +216,6 @@
             break;
         default:
             break;
-    }
-}
-
-#pragma mark - Accessors
-
-- (void)setDelegate:(id<CMParserDelegate>)delegate
-{
-    if (_delegate != delegate) {
-        _delegate = delegate;
-        _delegateFlags.didStartDocument = [_delegate respondsToSelector:@selector(parserDidStartDocument:)];
-        _delegateFlags.didEndDocument = [_delegate respondsToSelector:@selector(parserDidEndDocument:)];
-        _delegateFlags.didAbort = [_delegate respondsToSelector:@selector(parserDidAbort:)];
-        _delegateFlags.foundText = [_delegate respondsToSelector:@selector(parser:foundText:)];
-        _delegateFlags.foundHRule = [_delegate respondsToSelector:@selector(parserFoundHRule:)];
-        _delegateFlags.didStartHeader = [_delegate respondsToSelector:@selector(parser:didStartHeaderWithLevel:)];
-        _delegateFlags.didEndHeader = [_delegate respondsToSelector:@selector(parser:didEndHeaderWithLevel:)];
-        _delegateFlags.didStartParagraph = [_delegate respondsToSelector:@selector(parserDidStartParagraph:)];
-        _delegateFlags.didEndParagraph = [_delegate respondsToSelector:@selector(parserDidEndParagraph:)];
-        _delegateFlags.didStartEmphasis = [_delegate respondsToSelector:@selector(parserDidStartEmphasis:)];
-        _delegateFlags.didEndEmphasis = [_delegate respondsToSelector:@selector(parserDidEndEmphasis:)];
-        _delegateFlags.didStartStrong = [_delegate respondsToSelector:@selector(parserDidStartStrong:)];
-        _delegateFlags.didEndStrong = [_delegate respondsToSelector:@selector(parserDidEndStrong:)];
-        _delegateFlags.didStartLink = [_delegate respondsToSelector:@selector(parser:didStartLinkWithURL:title:)];
-        _delegateFlags.didEndLink = [_delegate respondsToSelector:@selector(parser:didEndLinkWithURL:title:)];
-        _delegateFlags.didStartImage = [_delegate respondsToSelector:@selector(parser:didStartImageWithURL:title:)];
-        _delegateFlags.didEndImage = [_delegate respondsToSelector:@selector(parser:didEndImageWithURL:title:)];
-        _delegateFlags.foundHTML = [_delegate respondsToSelector:@selector(parser:foundHTML:)];
-        _delegateFlags.foundInlineHTML = [_delegate respondsToSelector:@selector(parser:foundInlineHTML:)];
-        _delegateFlags.foundCodeBlock = [_delegate respondsToSelector:@selector(parser:foundCodeBlock:info:)];
-        _delegateFlags.foundInlineCode = [_delegate respondsToSelector:@selector(parser:foundInlineCode:)];
-        _delegateFlags.foundSoftBreak = [_delegate respondsToSelector:@selector(parserFoundSoftBreak:)];
-        _delegateFlags.foundLineBreak = [_delegate respondsToSelector:@selector(parserFoundLineBreak:)];
-        _delegateFlags.didStartBlockQuote = [_delegate respondsToSelector:@selector(parserDidStartBlockQuote:)];
-        _delegateFlags.didEndBlockQuote = [_delegate respondsToSelector:@selector(parserDidEndBlockQuote:)];
-        _delegateFlags.didStartUnorderedList = [_delegate respondsToSelector:@selector(parser:didStartUnorderedListWithTightness:)];
-        _delegateFlags.didEndUnorderedList = [_delegate respondsToSelector:@selector(parser:didEndUnorderedListWithTightness:)];
-        _delegateFlags.didStartOrderedList = [_delegate respondsToSelector:@selector(parser:didStartOrderedListWithStartingNumber:tight:)];
-        _delegateFlags.didEndOrderedList = [_delegate respondsToSelector:@selector(parser:didEndOrderedListWithStartingNumber:tight:)];
-        _delegateFlags.didStartListItem = [_delegate respondsToSelector:@selector(parserDidStartListItem:)];
-        _delegateFlags.didEndListItem = [_delegate respondsToSelector:@selector(parserDidEndListItem:)];
     }
 }
 
