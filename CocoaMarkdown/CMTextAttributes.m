@@ -9,6 +9,10 @@
 #import "CMTextAttributes.h"
 #import "CMPlatformDefines.h"
 
+#if TARGET_OS_IPHONE
+#import <CoreText/CTStringAttributes.h>
+#endif
+
 static NSDictionary * CMDefaultTextAttributes()
 {
 #if TARGET_OS_IPHONE
@@ -70,6 +74,31 @@ static NSDictionary * CMDefaultH6Attributes()
 #else
     return @{NSFontAttributeName: [NSFont userFontOfSize:8.0]};
 #endif
+}
+
+static NSDictionary * CMDefaultStrikethroughAttributes()
+{
+    return @{NSStrikethroughStyleAttributeName: @(NSUnderlineStyleSingle)};
+}
+
+static NSDictionary * CMDefaultSuperscriptAttributes()
+{
+#if TARGET_OS_IPHONE
+    return @{
+        (__bridge NSString *)kCTSuperscriptAttributeName: @1,
+        NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]
+    };
+#else
+    return @{
+        NSSuperscriptAttributeName: @1,
+        NSFontAttributeName: [NSFont userFontOfSize:8.0]
+    };
+#endif
+}
+
+static NSDictionary * CMDefaultHighlightAttributes()
+{
+    return @{NSBackgroundColorAttributeName: CMColor.yellowColor};
 }
 
 static NSDictionary * CMDefaultLinkAttributes()
@@ -148,6 +177,9 @@ static NSDictionary * CMDefaultUnorderedListAttributes()
         _h4Attributes = CMDefaultH4Attributes();
         _h5Attributes = CMDefaultH5Attributes();
         _h6Attributes = CMDefaultH6Attributes();
+        _strikethroughAttributes = CMDefaultStrikethroughAttributes();
+        _superscriptAttributes = CMDefaultSuperscriptAttributes();
+        _highlightAttributes = CMDefaultHighlightAttributes();
         _linkAttributes = CMDefaultLinkAttributes();
         _codeBlockAttributes = CMDefaultCodeBlockAttributes();
         _inlineCodeAttributes = CMDefaultInlineCodeAttributes();

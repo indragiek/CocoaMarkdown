@@ -17,6 +17,7 @@
 #define CMFontDescriptor UIFontDescriptor
 #define CMFontTraitItalic UIFontDescriptorTraitItalic
 #define CMFontTraitBold UIFontDescriptorTraitBold
+#define CMColor UIColor
 
 #else
 #import <Cocoa/Cocoa.h>
@@ -26,6 +27,7 @@
 #define CMFontDescriptor NSFontDescriptor
 #define CMFontTraitItalic NSFontItalicTrait
 #define CMFontTraitBold NSFontBoldTrait
+#define CMColor NSColor
 
 #endif
 

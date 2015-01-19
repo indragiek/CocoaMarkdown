@@ -101,6 +101,35 @@
 @property (nonatomic) NSDictionary *strongAttributes;
 
 /**
+ *  Attributes used to style strikethrough text.
+ *
+ *  Defaults to applying `NSStrikethroughAttributeName` with a single line style.
+ *
+ *  @note Only supported by the Hoedown parser.
+ */
+@property (nonatomic) NSDictionary *strikethroughAttributes;
+
+/**
+ *  Attributes used to style superscripts.
+ *
+ *  Defaults to applying `NSSuperscriptAttributeName` with a value of `1` and
+ *  a Dynamic Type font with style `UIFontTextStyleSubheadline` on iOS or the
+ *  user font with a size of 8pt on OS X.
+ *
+ *  @note Only supported by the Hoedown parser.
+ */
+@property (nonatomic) NSDictionary *superscriptAttributes;
+
+/**
+ *  Attributes used to style highlighted text.
+ *
+ *  Defaults to a yellow background color.
+ *
+ *  @note Only supported by the Hoedown parser.
+ */
+@property (nonatomic) NSDictionary *highlightAttributes;
+
+/**
  *  Attributes used to style linked text.
  *
  *  Defaults to using a blue foreground color and a single line underline style.
@@ -129,6 +158,15 @@
  *  Defaults to using a paragraph style with a head indent of 30px.
  */
 @property (nonatomic) NSDictionary *blockQuoteAttributes;
+
+/**
+ *  Attributes used to style inline quotes.
+ *
+ *  Defaults to `nil`.
+ *
+ *  @note Only supported by the Hoedown parser.
+ */
+@property (nonatomic) NSDictionary *inlineQuoteAttributes;
 
 /**
  *  Attributes used to style ordered lists.
