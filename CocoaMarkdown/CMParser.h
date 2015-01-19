@@ -53,6 +53,18 @@
 - (void)parserDidStartStrong:(id<CMParser>)parser;
 - (void)parserDidEndStrong:(id<CMParser>)parser;
 
+- (void)parserDidStartStrikethrough:(id<CMParser>)parser;
+- (void)parserDidEndStrikethrough:(id<CMParser>)parser;
+
+- (void)parserDidStartSuperscript:(id<CMParser>)parser;
+- (void)parserDidEndSuperscript:(id<CMParser>)parser;
+
+- (void)parserDidStartUnderline:(id<CMParser>)parser;
+- (void)parserDidEndUnderline:(id<CMParser>)parser;
+
+- (void)parserDidStartHighlight:(id<CMParser>)parser;
+- (void)parserDidEndHighlight:(id<CMParser>)parser;
+
 - (void)parser:(id<CMParser>)parser didStartLinkWithURL:(NSURL *)URL title:(NSString *)title;
 - (void)parser:(id<CMParser>)parser didEndLinkWithURL:(NSURL *)URL title:(NSString *)title;
 
@@ -68,6 +80,7 @@
 - (void)parserFoundSoftBreak:(id<CMParser>)parser;
 - (void)parserFoundLineBreak:(id<CMParser>)parser;
 
+- (void)parser:(id<CMParser>)parser foundInlineQuote:(NSString *)quote;
 - (void)parserDidStartBlockQuote:(id<CMParser>)parser;
 - (void)parserDidEndBlockQuote:(id<CMParser>)parser;
 

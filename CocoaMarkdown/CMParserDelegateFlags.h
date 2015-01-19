@@ -23,6 +23,14 @@ typedef struct {
     unsigned int didEndEmphasis:1;
     unsigned int didStartStrong:1;
     unsigned int didEndStrong:1;
+    unsigned int didStartStrikethrough:1;
+    unsigned int didEndStrikethrough:1;
+    unsigned int didStartSuperscript:1;
+    unsigned int didEndSuperscript:1;
+    unsigned int didStartUnderline:1;
+    unsigned int didEndUnderline:1;
+    unsigned int didStartHighlight:1;
+    unsigned int didEndHighlight:1;
     unsigned int didStartLink:1;
     unsigned int didEndLink:1;
     unsigned int didStartImage:1;
@@ -33,6 +41,7 @@ typedef struct {
     unsigned int foundInlineCode:1;
     unsigned int foundSoftBreak:1;
     unsigned int foundLineBreak:1;
+    unsigned int foundInlineQuote:1;
     unsigned int didStartBlockQuote:1;
     unsigned int didEndBlockQuote:1;
     unsigned int didStartUnorderedList:1;
@@ -58,6 +67,14 @@ NS_INLINE CMParserDelegateFlags CMParserDelegateFlagsForDelegate(id<CMParserDele
         .didEndEmphasis = [delegate respondsToSelector:@selector(parserDidEndEmphasis:)],
         .didStartStrong = [delegate respondsToSelector:@selector(parserDidStartStrong:)],
         .didEndStrong = [delegate respondsToSelector:@selector(parserDidEndStrong:)],
+        .didStartStrikethrough = [delegate respondsToSelector:@selector(parserDidStartStrikethrough:)],
+        .didEndStrikethrough = [delegate respondsToSelector:@selector(parserDidEndStrikethrough:)],
+        .didStartSuperscript = [delegate respondsToSelector:@selector(parserDidStartSuperscript:)],
+        .didEndSuperscript = [delegate respondsToSelector:@selector(parserDidEndSuperscript:)],
+        .didStartUnderline = [delegate respondsToSelector:@selector(parserDidStartUnderline:)],
+        .didEndUnderline = [delegate respondsToSelector:@selector(parserDidEndUnderline:)],
+        .didStartHighlight = [delegate respondsToSelector:@selector(parserDidStartHighlight:)],
+        .didEndHighlight = [delegate respondsToSelector:@selector(parserDidEndHighlight:)],
         .didStartLink = [delegate respondsToSelector:@selector(parser:didStartLinkWithURL:title:)],
         .didEndLink = [delegate respondsToSelector:@selector(parser:didEndLinkWithURL:title:)],
         .didStartImage = [delegate respondsToSelector:@selector(parser:didStartImageWithURL:title:)],
@@ -68,6 +85,7 @@ NS_INLINE CMParserDelegateFlags CMParserDelegateFlagsForDelegate(id<CMParserDele
         .foundInlineCode = [delegate respondsToSelector:@selector(parser:foundInlineCode:)],
         .foundSoftBreak = [delegate respondsToSelector:@selector(parserFoundSoftBreak:)],
         .foundLineBreak = [delegate respondsToSelector:@selector(parserFoundLineBreak:)],
+        .foundInlineQuote = [delegate respondsToSelector:@selector(parser:foundInlineQuote:)],
         .didStartBlockQuote = [delegate respondsToSelector:@selector(parserDidStartBlockQuote:)],
         .didEndBlockQuote = [delegate respondsToSelector:@selector(parserDidEndBlockQuote:)],
         .didStartUnorderedList = [delegate respondsToSelector:@selector(parser:didStartUnorderedListWithTightness:)],
