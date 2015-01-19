@@ -10,3 +10,6 @@
 [submodule "External/Ono"]
 	path = External/Ono
 	url = https://github.com/mattt/Ono.git
+[submodule "External/hoedown"]
+	path = External/hoedown
+	url = https://github.com/hoedown/hoedown.git

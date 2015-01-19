@@ -15,7 +15,7 @@
 
 @interface CMCommonMarkParser ()
 @property (atomic, readwrite) CMCommonMarkNode *currentNode;
-@property (nonatomic, weak, readwrite) id<CMCommonMarkParserDelegate> delegate;
+@property (nonatomic, weak, readwrite) id<CMParserDelegate> delegate;
 @end
 
 @implementation CMCommonMarkParser {
@@ -57,7 +57,7 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithDocument:(CMCommonMarkDocument *)document delegate:(id<CMCommonMarkParserDelegate>)delegate
+- (instancetype)initWithDocument:(CMCommonMarkDocument *)document delegate:(id<CMParserDelegate>)delegate
 {
     NSParameterAssert(document);
     NSParameterAssert(delegate);
@@ -251,7 +251,7 @@
 
 #pragma mark - Accessors
 
-- (void)setDelegate:(id<CMCommonMarkParserDelegate>)delegate
+- (void)setDelegate:(id<CMParserDelegate>)delegate
 {
     if (_delegate != delegate) {
         _delegate = delegate;

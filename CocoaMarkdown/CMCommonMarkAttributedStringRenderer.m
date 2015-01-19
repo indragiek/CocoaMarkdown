@@ -19,7 +19,7 @@
 
 #import "Ono.h"
 
-@interface CMCommonMarkAttributedStringRenderer () <CMCommonMarkParserDelegate>
+@interface CMCommonMarkAttributedStringRenderer () <CMParserDelegate>
 @end
 
 @implementation CMCommonMarkAttributedStringRenderer {
