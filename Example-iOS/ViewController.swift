@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let path = NSBundle.mainBundle().pathForResource("test", ofType: "md")!
-        let document = CMDocument(contentsOfFile: path)
+        let document = CMCommonMarkDocument(contentsOfFile: path)
         let renderer = CMCommonMarkAttributedStringRenderer(document: document, attributes: CMTextAttributes())
         renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
         renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())

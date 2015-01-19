@@ -1,24 +1,24 @@
 //
-//  CMParser.m
+//  CMCommonMarkParser.m
 //  CocoaMarkdown
 //
 //  Created by Indragie on 1/13/15.
 //  Copyright (c) 2015 Indragie Karunaratne. All rights reserved.
 //
 
-#import "CMParser.h"
-#import "CMDocument.h"
-#import "CMIterator.h"
-#import "CMNode.h"
+#import "CMCommonMarkParser.h"
+#import "CMCommonMarkDocument.h"
+#import "CMCommonMarkIterator.h"
+#import "CMCommonMarkNode.h"
 
 #import <libkern/OSAtomic.h>
 
-@interface CMParser ()
-@property (atomic, readwrite) CMNode *currentNode;
-@property (nonatomic, weak, readwrite) id<CMParserDelegate> delegate;
+@interface CMCommonMarkParser ()
+@property (atomic, readwrite) CMCommonMarkNode *currentNode;
+@property (nonatomic, weak, readwrite) id<CMCommonMarkParserDelegate> delegate;
 @end
 
-@implementation CMParser {
+@implementation CMCommonMarkParser {
     struct {
         unsigned int didStartDocument:1;
         unsigned int didEndDocument:1;
@@ -57,7 +57,7 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithDocument:(CMDocument *)document delegate:(id<CMParserDelegate>)delegate
+- (instancetype)initWithDocument:(CMCommonMarkDocument *)document delegate:(id<CMCommonMarkParserDelegate>)delegate
 {
     NSParameterAssert(document);
     NSParameterAssert(delegate);
@@ -76,7 +76,7 @@
     if (_parsing) return;
     OSAtomicOr32Barrier(1, &_parsing);
     
-    [[_document.rootNode iterator] enumerateUsingBlock:^(CMNode *node, cmark_event_type event, BOOL *stop) {
+    [[_document.rootNode iterator] enumerateUsingBlock:^(CMCommonMarkNode *node, cmark_event_type event, BOOL *stop) {
         self.currentNode = node;
         [self handleNode:node event:event];
         if (!_parsing) *stop = YES;
@@ -95,7 +95,7 @@
     }
 }
 
-- (void)handleNode:(CMNode *)node event:(cmark_event_type)event {
+- (void)handleNode:(CMCommonMarkNode *)node event:(cmark_event_type)event {
     NSAssert((event == CMARK_EVENT_ENTER) || (event == CMARK_EVENT_EXIT), @"Event must be either an exit or enter event");
     
     switch (node.type) {
@@ -251,7 +251,7 @@
 
 #pragma mark - Accessors
 
-- (void)setDelegate:(id<CMParserDelegate>)delegate
+- (void)setDelegate:(id<CMCommonMarkParserDelegate>)delegate
 {
     if (_delegate != delegate) {
         _delegate = delegate;

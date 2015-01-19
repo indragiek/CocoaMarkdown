@@ -1,29 +1,29 @@
 #import <Quick/Quick.h>
 #import <Nimble/Nimble.h>
 #import <CocoaMarkdown/CocoaMarkdown.h>
-#import "CMNode_Private.h"
+#import "CMCommonMarkNode_Private.h"
 
-QuickSpecBegin(CMIteratorSpec)
+QuickSpecBegin(CMCommonMarkIteratorSpec)
 
 it(@"should initialize", ^{
-    CMNode *node = [[CMNode alloc] initWithNode:cmark_node_new(CMARK_NODE_PARAGRAPH) freeWhenDone:YES];
-    CMIterator *iter = [[CMIterator alloc] initWithRootNode:node];
+    CMCommonMarkNode *node = [[CMCommonMarkNode alloc] initWithNode:cmark_node_new(CMARK_NODE_PARAGRAPH) freeWhenDone:YES];
+    CMCommonMarkIterator *iter = [[CMCommonMarkIterator alloc] initWithRootNode:node];
     expect(iter).toNot(beNil());
 });
 
 it(@"should traverse a node tree", ^{
-    CMNode *parent = [[CMNode alloc] initWithNode:cmark_node_new(CMARK_NODE_DOCUMENT) freeWhenDone:YES];
+    CMCommonMarkNode *parent = [[CMCommonMarkNode alloc] initWithNode:cmark_node_new(CMARK_NODE_DOCUMENT) freeWhenDone:YES];
     
     cmark_node *paragraph1 = cmark_node_new(CMARK_NODE_PARAGRAPH);
     cmark_node *paragraph2 = cmark_node_new(CMARK_NODE_PARAGRAPH);
     cmark_node_append_child(parent.node, paragraph1);
     cmark_node_append_child(parent.node, paragraph2);
     
-    CMIterator *iter = [[CMIterator alloc] initWithRootNode:parent];
+    CMCommonMarkIterator *iter = [[CMCommonMarkIterator alloc] initWithRootNode:parent];
     
     __block NSInteger nodeCount = 0;
     __block NSInteger eventBalance = 0;
-    [iter enumerateUsingBlock:^(CMNode *node, cmark_event_type event, BOOL *stop) {
+    [iter enumerateUsingBlock:^(CMCommonMarkNode *node, cmark_event_type event, BOOL *stop) {
         switch (event) {
             case CMARK_EVENT_ENTER:
                 eventBalance++;

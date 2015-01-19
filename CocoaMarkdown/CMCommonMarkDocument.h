@@ -1,5 +1,5 @@
 //
-//  CMDocument.h
+//  CMCommonMarkDocument.h
 //  CocoaMarkdown
 //
 //  Created by Indragie on 1/12/15.
@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class CMNode;
+@class CMCommonMarkNode;
 
 /**
  *  A Markdown document conforming to the CommonMark spec.
  */
-@interface CMDocument : NSObject
+@interface CMCommonMarkDocument : NSObject
 
 /**
  *  Root node of the document.
  */
-@property (nonatomic, readonly) CMNode *rootNode;
+@property (nonatomic, readonly) CMCommonMarkNode *rootNode;
 
 /**
  *  Initializes the receiver with data.

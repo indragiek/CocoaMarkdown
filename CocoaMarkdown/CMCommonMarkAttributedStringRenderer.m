@@ -14,16 +14,16 @@
 #import "CMHTMLElement.h"
 #import "CMHTMLUtilities.h"
 #import "CMTextAttributes.h"
-#import "CMNode.h"
-#import "CMParser.h"
+#import "CMCommonMarkNode.h"
+#import "CMCommonMarkParser.h"
 
 #import "Ono.h"
 
-@interface CMCommonMarkAttributedStringRenderer () <CMParserDelegate>
+@interface CMCommonMarkAttributedStringRenderer () <CMCommonMarkParserDelegate>
 @end
 
 @implementation CMCommonMarkAttributedStringRenderer {
-    CMDocument *_document;
+    CMCommonMarkDocument *_document;
     CMTextAttributes *_attributes;
     CMCascadingAttributeStack *_attributeStack;
     CMStack *_HTMLStack;
@@ -32,7 +32,7 @@
     NSAttributedString *_attributedString;
 }
 
-- (instancetype)initWithDocument:(CMDocument *)document attributes:(CMTextAttributes *)attributes
+- (instancetype)initWithDocument:(CMCommonMarkDocument *)document attributes:(CMTextAttributes *)attributes
 {
     if ((self = [super init])) {
         _document = document;
@@ -55,7 +55,7 @@
         _HTMLStack = [[CMStack alloc] init];
         _buffer = [[NSMutableAttributedString alloc] init];
         
-        CMParser *parser = [[CMParser alloc] initWithDocument:_document delegate:self];
+        CMCommonMarkParser *parser = [[CMCommonMarkParser alloc] initWithDocument:_document delegate:self];
         [parser parse];
         
         _attributedString = [_buffer copy];
@@ -67,19 +67,19 @@
     return _attributedString;
 }
 
-#pragma mark - CMParserDelegate
+#pragma mark - CMCommonMarkParserDelegate
 
-- (void)parserDidStartDocument:(CMParser *)parser
+- (void)parserDidStartDocument:(CMCommonMarkParser *)parser
 {
     [_attributeStack push:CMDefaultAttributeRun(_attributes.textAttributes)];
 }
 
-- (void)parserDidEndDocument:(CMParser *)parser
+- (void)parserDidEndDocument:(CMCommonMarkParser *)parser
 {
     CFStringTrimWhitespace((__bridge CFMutableStringRef)_buffer.mutableString);
 }
 
-- (void)parser:(CMParser *)parser foundText:(NSString *)text
+- (void)parser:(CMCommonMarkParser *)parser foundText:(NSString *)text
 {
     CMHTMLElement *element = [_HTMLStack peek];
     if (element != nil) {
@@ -89,50 +89,50 @@
     }
 }
 
-- (void)parser:(CMParser *)parser didStartHeaderWithLevel:(NSInteger)level
+- (void)parser:(CMCommonMarkParser *)parser didStartHeaderWithLevel:(NSInteger)level
 {
     [_attributeStack push:CMDefaultAttributeRun([_attributes attributesForHeaderLevel:level])];
 }
 
-- (void)parser:(CMParser *)parser didEndHeaderWithLevel:(NSInteger)level
+- (void)parser:(CMCommonMarkParser *)parser didEndHeaderWithLevel:(NSInteger)level
 {
     [self appendString:@"\n"];
     [_attributeStack pop];
 }
 
-- (void)parserDidStartParagraph:(CMParser *)parser
+- (void)parserDidStartParagraph:(CMCommonMarkParser *)parser
 {
     [self appendLineBreakIfNotTightForNode:parser.currentNode];
 }
 
-- (void)parserDidEndParagraph:(CMParser *)parser
+- (void)parserDidEndParagraph:(CMCommonMarkParser *)parser
 {
     [self appendLineBreakIfNotTightForNode:parser.currentNode];
 }
 
-- (void)parserDidStartEmphasis:(CMParser *)parser
+- (void)parserDidStartEmphasis:(CMCommonMarkParser *)parser
 {
     BOOL hasExplicitFont = _attributes.emphasisAttributes[NSFontAttributeName] != nil;
     [_attributeStack push:CMTraitAttributeRun(_attributes.emphasisAttributes, hasExplicitFont ? 0 : CMFontTraitItalic)];
 }
 
-- (void)parserDidEndEmphasis:(CMParser *)parser
+- (void)parserDidEndEmphasis:(CMCommonMarkParser *)parser
 {
     [_attributeStack pop];
 }
 
-- (void)parserDidStartStrong:(CMParser *)parser
+- (void)parserDidStartStrong:(CMCommonMarkParser *)parser
 {
     BOOL hasExplicitFont = _attributes.strongAttributes[NSFontAttributeName] != nil;
     [_attributeStack push:CMTraitAttributeRun(_attributes.strongAttributes, hasExplicitFont ? 0 : CMFontTraitBold)];
 }
 
-- (void)parserDidEndStrong:(CMParser *)parse
+- (void)parserDidEndStrong:(CMCommonMarkParser *)parse
 {
     [_attributeStack pop];
 }
 
-- (void)parser:(CMParser *)parser didStartLinkWithURL:(NSURL *)URL title:(NSString *)title
+- (void)parser:(CMCommonMarkParser *)parser didStartLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
     NSMutableDictionary *baseAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:URL, NSLinkAttributeName, nil];
 #if !TARGET_OS_IPHONE
@@ -144,12 +144,12 @@
     [_attributeStack push:CMDefaultAttributeRun(baseAttributes)];
 }
 
-- (void)parser:(CMParser *)parser didEndLinkWithURL:(NSURL *)URL title:(NSString *)title
+- (void)parser:(CMCommonMarkParser *)parser didEndLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
     [_attributeStack pop];
 }
 
-- (void)parser:(CMParser *)parser foundHTML:(NSString *)HTML
+- (void)parser:(CMCommonMarkParser *)parser foundHTML:(NSString *)HTML
 {
     NSString *tagName = CMTagNameFromHTMLTag(HTML);
     if (tagName.length != 0) {
@@ -160,7 +160,7 @@
     }
 }
 
-- (void)parser:(CMParser *)parser foundInlineHTML:(NSString *)HTML
+- (void)parser:(CMCommonMarkParser *)parser foundInlineHTML:(NSString *)HTML
 {
     NSString *tagName = CMTagNameFromHTMLTag(HTML);
     if (tagName.length != 0) {
@@ -185,65 +185,65 @@
     }
 }
 
-- (void)parser:(CMParser *)parser foundCodeBlock:(NSString *)code info:(NSString *)info
+- (void)parser:(CMCommonMarkParser *)parser foundCodeBlock:(NSString *)code info:(NSString *)info
 {
     [_attributeStack push:CMDefaultAttributeRun(_attributes.codeBlockAttributes)];
     [self appendString:[NSString stringWithFormat:@"\n\n%@\n\n", code]];
     [_attributeStack pop];
 }
 
-- (void)parser:(CMParser *)parser foundInlineCode:(NSString *)code
+- (void)parser:(CMCommonMarkParser *)parser foundInlineCode:(NSString *)code
 {
     [_attributeStack push:CMDefaultAttributeRun(_attributes.inlineCodeAttributes)];
     [self appendString:code];
     [_attributeStack pop];
 }
 
-- (void)parserFoundSoftBreak:(CMParser *)parser
+- (void)parserFoundSoftBreak:(CMCommonMarkParser *)parser
 {
     [self appendString:@"\n"];
 }
 
-- (void)parserFoundLineBreak:(CMParser *)parser
+- (void)parserFoundLineBreak:(CMCommonMarkParser *)parser
 {
     [self appendString:@"\n"];
 }
 
-- (void)parserDidStartBlockQuote:(CMParser *)parser
+- (void)parserDidStartBlockQuote:(CMCommonMarkParser *)parser
 {
     [_attributeStack push:CMDefaultAttributeRun(_attributes.blockQuoteAttributes)];
 }
 
-- (void)parserDidEndBlockQuote:(CMParser *)parser
+- (void)parserDidEndBlockQuote:(CMCommonMarkParser *)parser
 {
     [_attributeStack pop];
 }
 
-- (void)parser:(CMParser *)parser didStartUnorderedListWithTightness:(BOOL)tight
+- (void)parser:(CMCommonMarkParser *)parser didStartUnorderedListWithTightness:(BOOL)tight
 {
     [_attributeStack push:CMDefaultAttributeRun(_attributes.unorderedListAttributes)];
     [self appendString:@"\n"];
 }
 
-- (void)parser:(CMParser *)parser didEndUnorderedListWithTightness:(BOOL)tight
+- (void)parser:(CMCommonMarkParser *)parser didEndUnorderedListWithTightness:(BOOL)tight
 {
     [_attributeStack pop];
 }
 
-- (void)parser:(CMParser *)parser didStartOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
+- (void)parser:(CMCommonMarkParser *)parser didStartOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
     [_attributeStack push:CMOrderedListAttributeRun(_attributes.orderedListAttributes, num)];
     [self appendString:@"\n"];
 }
 
-- (void)parser:(CMParser *)parser didEndOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
+- (void)parser:(CMCommonMarkParser *)parser didEndOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
     [_attributeStack pop];
 }
 
-- (void)parserDidStartListItem:(CMParser *)parser
+- (void)parserDidStartListItem:(CMCommonMarkParser *)parser
 {
-    CMNode *node = parser.currentNode.parent;
+    CMCommonMarkNode *node = parser.currentNode.parent;
     switch (node.listType) {
         case CMARK_NO_LIST:
             NSAssert(NO, @"Parent node of list item must be a list");
@@ -265,7 +265,7 @@
     }
 }
 
-- (void)parserDidEndListItem:(CMParser *)parser
+- (void)parserDidEndListItem:(CMCommonMarkParser *)parser
 {
     [self appendString:@"\n"];
     [_attributeStack pop];
@@ -285,9 +285,9 @@
     return nil;
 }
 
-- (void)appendLineBreakIfNotTightForNode:(CMNode *)node
+- (void)appendLineBreakIfNotTightForNode:(CMCommonMarkNode *)node
 {
-    CMNode *grandparent = node.parent.parent;
+    CMCommonMarkNode *grandparent = node.parent.parent;
     if (!grandparent.listTight) {
         [self appendString:@"\n"];
     }

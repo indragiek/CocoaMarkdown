@@ -1,21 +1,21 @@
 //
-//  CMIterator.m
+//  CMCommonMarkIterator.m
 //  CocoaMarkdown
 //
 //  Created by Indragie on 1/13/15.
 //  Copyright (c) 2015 Indragie Karunaratne. All rights reserved.
 //
 
-#import "CMIterator.h"
-#import "CMNode_Private.h"
+#import "CMCommonMarkIterator.h"
+#import "CMCommonMarkNode_Private.h"
 
-@implementation CMIterator {
+@implementation CMCommonMarkIterator {
     cmark_iter *_iter;
 }
 
 #pragma mark - Initialization
 
-- (instancetype)initWithRootNode:(CMNode *)rootNode
+- (instancetype)initWithRootNode:(CMCommonMarkNode *)rootNode
 {
     NSParameterAssert(rootNode);
     
@@ -33,9 +33,9 @@
 
 #pragma mark - Accessors
 
-- (CMNode *)currentNode
+- (CMCommonMarkNode *)currentNode
 {
-    return [[CMNode alloc] initWithNode:cmark_iter_get_node(_iter) freeWhenDone:NO];
+    return [[CMCommonMarkNode alloc] initWithNode:cmark_iter_get_node(_iter) freeWhenDone:NO];
 }
 
 - (cmark_event_type)currentEvent
@@ -45,7 +45,7 @@
 
 #pragma mark - Iteration
 
-- (void)enumerateUsingBlock:(void (^)(CMNode *node, cmark_event_type event, BOOL *stop))block
+- (void)enumerateUsingBlock:(void (^)(CMCommonMarkNode *node, cmark_event_type event, BOOL *stop))block
 {
     NSParameterAssert(block);
     
@@ -53,13 +53,13 @@
     BOOL stop = NO;
     
     while ((event = cmark_iter_next(_iter)) != CMARK_EVENT_DONE) {
-        CMNode *currentNode = [[CMNode alloc] initWithNode:cmark_iter_get_node(_iter) freeWhenDone:NO];
+        CMCommonMarkNode *currentNode = [[CMCommonMarkNode alloc] initWithNode:cmark_iter_get_node(_iter) freeWhenDone:NO];
         block(currentNode, event, &stop);
         if (stop) break;
     }
 }
 
-- (void)resetToNode:(CMNode *)node withEventType:(cmark_event_type)eventType
+- (void)resetToNode:(CMCommonMarkNode *)node withEventType:(cmark_event_type)eventType
 {
     cmark_iter_reset(_iter, node.node, eventType);
 }

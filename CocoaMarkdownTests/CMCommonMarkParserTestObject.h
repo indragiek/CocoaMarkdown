@@ -1,5 +1,5 @@
 //
-//  CMParserTestObject.h
+//  CMCommonMarkParserTestObject.h
 //  CocoaMarkdown
 //
 //  Created by Indragie on 1/14/15.
@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class CMDocument;
+@class CMCommonMarkDocument;
 
-@interface CMParserTestObject : NSObject
+@interface CMCommonMarkParserTestObject : NSObject
 @property (nonatomic, readonly) NSInteger didStartDocument;
 @property (nonatomic, readonly) NSInteger didEndDocument;
 @property (nonatomic, readonly) NSInteger didAbort;
@@ -45,6 +45,6 @@
 
 @property (nonatomic) BOOL abortOnStart;
 
-- (instancetype)initWithDocument:(CMDocument *)document;
+- (instancetype)initWithDocument:(CMCommonMarkDocument *)document;
 - (void)parse;
 @end

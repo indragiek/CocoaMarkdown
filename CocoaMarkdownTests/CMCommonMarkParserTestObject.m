@@ -1,19 +1,19 @@
 //
-//  CMParserTestObject.m
+//  CMCommonMarkParserTestObject.m
 //  CocoaMarkdown
 //
 //  Created by Indragie on 1/14/15.
 //  Copyright (c) 2015 Indragie Karunaratne. All rights reserved.
 //
 
-#import "CMParserTestObject.h"
+#import "CMCommonMarkParserTestObject.h"
 #import <CocoaMarkdown/CocoaMarkdown.h>
 
-@interface CMParserTestObject () <CMParserDelegate>
+@interface CMCommonMarkParserTestObject () <CMCommonMarkParserDelegate>
 @end
 
-@implementation CMParserTestObject {
-    CMParser *_parser;
+@implementation CMCommonMarkParserTestObject {
+    CMCommonMarkParser *_parser;
     NSMutableArray *_foundText;
     NSMutableArray *_didStartHeader;
     NSMutableArray *_didEndHeader;
@@ -31,11 +31,11 @@
     NSMutableArray *_didEndOrderedList;
 }
 
-- (instancetype)initWithDocument:(CMDocument *)document
+- (instancetype)initWithDocument:(CMCommonMarkDocument *)document
 {
     NSParameterAssert(document);
     if ((self = [super init])) {
-        _parser = [[CMParser alloc] initWithDocument:document delegate:self];
+        _parser = [[CMCommonMarkParser alloc] initWithDocument:document delegate:self];
         
         _foundText = [[NSMutableArray alloc] init];
         _didStartHeader = [[NSMutableArray alloc] init];
@@ -61,9 +61,9 @@
     [_parser parse];
 }
 
-#pragma mark - CMParserDelegate
+#pragma mark - CMCommonMarkParserDelegate
 
-- (void)parserDidStartDocument:(CMParser *)parser
+- (void)parserDidStartDocument:(CMCommonMarkParser *)parser
 {
     _didStartDocument++;
     if (_abortOnStart) {
@@ -71,159 +71,159 @@
     }
 }
 
-- (void)parserDidEndDocument:(CMParser *)parser
+- (void)parserDidEndDocument:(CMCommonMarkParser *)parser
 {
     _didEndDocument++;
 }
 
-- (void)parserDidAbort:(CMParser *)parser
+- (void)parserDidAbort:(CMCommonMarkParser *)parser
 {
     _didAbort++;
 }
 
-- (void)parser:(CMParser *)parser foundText:(NSString *)text
+- (void)parser:(CMCommonMarkParser *)parser foundText:(NSString *)text
 {
     [_foundText addObject:text];
 }
 
-- (void)parserFoundHRule:(CMParser *)parser
+- (void)parserFoundHRule:(CMCommonMarkParser *)parser
 {
     _foundHRule++;
 }
 
-- (void)parser:(CMParser *)parser didStartHeaderWithLevel:(NSInteger)level
+- (void)parser:(CMCommonMarkParser *)parser didStartHeaderWithLevel:(NSInteger)level
 {
     [_didStartHeader addObject:@(level)];
 }
 
-- (void)parser:(CMParser *)parser didEndHeaderWithLevel:(NSInteger)level
+- (void)parser:(CMCommonMarkParser *)parser didEndHeaderWithLevel:(NSInteger)level
 {
     [_didEndHeader addObject:@(level)];
 }
 
-- (void)parserDidStartParagraph:(CMParser *)parser
+- (void)parserDidStartParagraph:(CMCommonMarkParser *)parser
 {
     _didStartParagraph++;
 }
 
-- (void)parserDidEndParagraph:(CMParser *)parser
+- (void)parserDidEndParagraph:(CMCommonMarkParser *)parser
 {
     _didEndParagraph++;
 }
 
-- (void)parserDidStartEmphasis:(CMParser *)parser
+- (void)parserDidStartEmphasis:(CMCommonMarkParser *)parser
 {
     _didStartEmphasis++;
 }
 
-- (void)parserDidEndEmphasis:(CMParser *)parser
+- (void)parserDidEndEmphasis:(CMCommonMarkParser *)parser
 {
     _didEndEmphasis++;
 }
 
-- (void)parserDidStartStrong:(CMParser *)parser
+- (void)parserDidStartStrong:(CMCommonMarkParser *)parser
 {
     _didStartStrong++;
 }
 
-- (void)parserDidEndStrong:(CMParser *)parser
+- (void)parserDidEndStrong:(CMCommonMarkParser *)parser
 {
     _didEndStrong++;
 }
 
-- (void)parser:(CMParser *)parser didStartLinkWithURL:(NSURL *)URL title:(NSString *)title
+- (void)parser:(CMCommonMarkParser *)parser didStartLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
     NSParameterAssert(URL);
     [_didStartLink addObject:@[URL, title ?: NSNull.null]];
 }
 
-- (void)parser:(CMParser *)parser didEndLinkWithURL:(NSURL *)URL title:(NSString *)title
+- (void)parser:(CMCommonMarkParser *)parser didEndLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
     NSParameterAssert(URL);
     [_didEndLink addObject:@[URL, title ?: NSNull.null]];
 }
 
-- (void)parser:(CMParser *)parser didStartImageWithURL:(NSURL *)URL title:(NSString *)title
+- (void)parser:(CMCommonMarkParser *)parser didStartImageWithURL:(NSURL *)URL title:(NSString *)title
 {
     NSParameterAssert(URL);
     [_didStartImage addObject:@[URL, title ?: NSNull.null]];
 }
 
-- (void)parser:(CMParser *)parser didEndImageWithURL:(NSURL *)URL title:(NSString *)title
+- (void)parser:(CMCommonMarkParser *)parser didEndImageWithURL:(NSURL *)URL title:(NSString *)title
 {
     NSParameterAssert(URL);
     [_didEndImage addObject:@[URL, title ?: NSNull.null]];
 }
 
-- (void)parser:(CMParser *)parser foundHTML:(NSString *)HTML
+- (void)parser:(CMCommonMarkParser *)parser foundHTML:(NSString *)HTML
 {
     NSParameterAssert(HTML);
     [_foundHTML addObject:HTML];
 }
 
-- (void)parser:(CMParser *)parser foundInlineHTML:(NSString *)HTML
+- (void)parser:(CMCommonMarkParser *)parser foundInlineHTML:(NSString *)HTML
 {
     NSParameterAssert(HTML);
     [_foundInlineHTML addObject:HTML];
 }
 
-- (void)parser:(CMParser *)parser foundCodeBlock:(NSString *)code info:(NSString *)info
+- (void)parser:(CMCommonMarkParser *)parser foundCodeBlock:(NSString *)code info:(NSString *)info
 {
     NSParameterAssert(code);
     [_foundCodeBlock addObject:@[code, info ?: NSNull.null]];
 }
 
-- (void)parser:(CMParser *)parser foundInlineCode:(NSString *)code
+- (void)parser:(CMCommonMarkParser *)parser foundInlineCode:(NSString *)code
 {
     [_foundInlineCode addObject:code];
 }
 
-- (void)parserFoundSoftBreak:(CMParser *)parser
+- (void)parserFoundSoftBreak:(CMCommonMarkParser *)parser
 {
     _foundSoftBreak++;
 }
 
-- (void)parserFoundLineBreak:(CMParser *)parser
+- (void)parserFoundLineBreak:(CMCommonMarkParser *)parser
 {
     _foundLineBreak++;
 }
 
-- (void)parserDidStartBlockQuote:(CMParser *)parser
+- (void)parserDidStartBlockQuote:(CMCommonMarkParser *)parser
 {
     _didStartBlockQuote++;
 }
 
-- (void)parserDidEndBlockQuote:(CMParser *)parser
+- (void)parserDidEndBlockQuote:(CMCommonMarkParser *)parser
 {
     _didEndBlockQuote++;
 }
 
-- (void)parser:(CMParser *)parser didStartUnorderedListWithTightness:(BOOL)tight
+- (void)parser:(CMCommonMarkParser *)parser didStartUnorderedListWithTightness:(BOOL)tight
 {
     [_didStartUnorderedList addObject:@(tight)];
 }
 
-- (void)parser:(CMParser *)parser didEndUnorderedListWithTightness:(BOOL)tight
+- (void)parser:(CMCommonMarkParser *)parser didEndUnorderedListWithTightness:(BOOL)tight
 {
     [_didEndUnorderedList addObject:@(tight)];
 }
 
-- (void)parser:(CMParser *)parser didStartOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
+- (void)parser:(CMCommonMarkParser *)parser didStartOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
     [_didStartOrderedList addObject:@[@(num), @(tight)]];
 }
 
-- (void)parser:(CMParser *)parser didEndOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
+- (void)parser:(CMCommonMarkParser *)parser didEndOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
     [_didEndOrderedList addObject:@[@(num), @(tight)]];
 }
 
-- (void)parserDidStartListItem:(CMParser *)parser
+- (void)parserDidStartListItem:(CMCommonMarkParser *)parser
 {
     _didStartListItem++;
 }
 
-- (void)parserDidEndListItem:(CMParser *)parser
+- (void)parserDidEndListItem:(CMCommonMarkParser *)parser
 {
     _didEndListItem++;
 }

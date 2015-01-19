@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class CMDocument;
+@class CMCommonMarkDocument;
 @class CMTextAttributes;
 @protocol CMHTMLElementTransformer;
 /**
@@ -24,7 +24,7 @@
  *
  *  @return An initialized instance of the receiver.
  */
-- (instancetype)initWithDocument:(CMDocument *)document attributes:(CMTextAttributes *)attributes;
+- (instancetype)initWithDocument:(CMCommonMarkDocument *)document attributes:(CMTextAttributes *)attributes;
 
 /**
  *  Registers a handler to transform HTML elements.

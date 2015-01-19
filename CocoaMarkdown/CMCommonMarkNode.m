@@ -1,19 +1,19 @@
 //
-//  CMNode.m
+//  CMCommonMarkNode.m
 //  CocoaMarkdown
 //
 //  Created by Indragie on 1/12/15.
 //  Copyright (c) 2015 Indragie Karunaratne. All rights reserved.
 //
 
-#import "CMNode.h"
-#import "CMNode_Private.h"
-#import "CMIterator.h"
+#import "CMCommonMarkNode.h"
+#import "CMCommonMarkNode_Private.h"
+#import "CMCommonMarkIterator.h"
 
-static CMNode * wrap(cmark_node *node) {
+static CMCommonMarkNode * wrap(cmark_node *node) {
     if (node == NULL) return nil;
     
-    return [[CMNode alloc] initWithNode:node freeWhenDone:NO];
+    return [[CMCommonMarkNode alloc] initWithNode:node freeWhenDone:NO];
 }
 
 static NSString * str(const char *buf) {
@@ -22,7 +22,7 @@ static NSString * str(const char *buf) {
     return [NSString stringWithUTF8String:buf];
 }
 
-@implementation CMNode {
+@implementation CMCommonMarkNode {
     BOOL _freeWhenDone;
 }
 
@@ -30,7 +30,7 @@ static NSString * str(const char *buf) {
 
 - (instancetype)init
 {
-    NSAssert(NO, @"CMNode instance can not be created.");
+    NSAssert(NO, @"CMCommonMarkNode instance can not be created.");
     return nil;
 }
 
@@ -54,7 +54,7 @@ static NSString * str(const char *buf) {
 
 #pragma mark - NSObject
 
-- (BOOL)isEqual:(CMNode *)node
+- (BOOL)isEqual:(CMCommonMarkNode *)node
 {
     if (self == node) return YES;
     if (![node isMemberOfClass:self.class]) return NO;
@@ -69,34 +69,34 @@ static NSString * str(const char *buf) {
 
 #pragma mark - Iteration
 
-- (CMIterator *)iterator
+- (CMCommonMarkIterator *)iterator
 {
-    return [[CMIterator alloc] initWithRootNode:self];
+    return [[CMCommonMarkIterator alloc] initWithRootNode:self];
 }
 
 #pragma mark - Tree Traversal
 
-- (CMNode *)next
+- (CMCommonMarkNode *)next
 {
     return wrap(cmark_node_next(_node));
 }
 
-- (CMNode *)previous
+- (CMCommonMarkNode *)previous
 {
     return wrap(cmark_node_previous(_node));
 }
 
-- (CMNode *)parent
+- (CMCommonMarkNode *)parent
 {
     return wrap(cmark_node_parent(_node));
 }
 
-- (CMNode *)firstChild
+- (CMCommonMarkNode *)firstChild
 {
     return wrap(cmark_node_first_child(_node));
 }
 
-- (CMNode *)lastChild
+- (CMCommonMarkNode *)lastChild
 {
     return wrap(cmark_node_last_child(_node));
 }

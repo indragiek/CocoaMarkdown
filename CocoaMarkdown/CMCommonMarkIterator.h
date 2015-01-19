@@ -1,5 +1,5 @@
 //
-//  CMIterator.h
+//  CMCommonMarkIterator.h
 //  CocoaMarkdown
 //
 //  Created by Indragie on 1/13/15.
@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "cmark.h"
 
-@class CMNode;
+@class CMCommonMarkNode;
 
 /**
  *  Walks through a tree of nodes.
  */
-@interface CMIterator : NSObject
+@interface CMCommonMarkIterator : NSObject
 
 /**
  *  Initializes the receiver with a root node.
@@ -23,12 +23,12 @@
  *
  *  @return An initialized instance of the receiver.
  */
-- (instancetype)initWithRootNode:(CMNode *)rootNode;
+- (instancetype)initWithRootNode:(CMCommonMarkNode *)rootNode;
 
 /**
  *  Returns the current node.
  */
-@property (readonly) CMNode *currentNode;
+@property (readonly) CMCommonMarkNode *currentNode;
 
 /**
  *  Returns the current event type.
@@ -43,7 +43,7 @@
  *  @param block Block to call upon entering or exiting a node during traversal.
  *  Set `stop` to `YES` to stop iteration.
  */
-- (void)enumerateUsingBlock:(void (^)(CMNode *node, cmark_event_type event, BOOL *stop))block;
+- (void)enumerateUsingBlock:(void (^)(CMCommonMarkNode *node, cmark_event_type event, BOOL *stop))block;
 
 /**
  *  Resets the iterator to the specified node and event. The node must be either
@@ -52,6 +52,6 @@
  *  @param node      The node to reset to.
  *  @param eventType The event to reset to.
  */
-- (void)resetToNode:(CMNode *)node withEventType:(cmark_event_type)eventType;
+- (void)resetToNode:(CMCommonMarkNode *)node withEventType:(cmark_event_type)eventType;
 
 @end

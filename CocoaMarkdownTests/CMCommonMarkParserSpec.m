@@ -1,20 +1,20 @@
 #import <Quick/Quick.h>
 #import <Nimble/Nimble.h>
 #import <CocoaMarkdown/CocoaMarkdown.h>
-#import "CMParserTestObject.h"
+#import "CMCommonMarkParserTestObject.h"
 
-QuickSpecBegin(CMParserSpec)
+QuickSpecBegin(CMCommonMarkParserSpec)
 
-__block CMParserTestObject *results = nil;
-__block CMDocument *document = nil;
+__block CMCommonMarkParserTestObject *results = nil;
+__block CMCommonMarkDocument *document = nil;
 
 beforeSuite(^{
     NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:@"test" ofType:@"md"];
-    document = [[CMDocument alloc] initWithContentsOfFile:path];
+    document = [[CMCommonMarkDocument alloc] initWithContentsOfFile:path];
 });
 
 beforeEach(^{
-    results = [[CMParserTestObject alloc] initWithDocument:document];
+    results = [[CMCommonMarkParserTestObject alloc] initWithDocument:document];
 });
 
 it(@"should parse a document", ^{

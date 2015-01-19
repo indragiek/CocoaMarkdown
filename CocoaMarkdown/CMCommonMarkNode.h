@@ -1,5 +1,5 @@
 //
-//  CMNode.h
+//  CMCommonMarkNode.h
 //  CocoaMarkdown
 //
 //  Created by Indragie on 1/12/15.
@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "cmark.h"
 
-@class CMIterator;
+@class CMCommonMarkIterator;
 
 /**
  *  Immutable interface to a CommonMark node.
  */
-@interface CMNode : NSObject
+@interface CMCommonMarkNode : NSObject
 
 /**
  *  Creates an iterator for the node tree that has the
@@ -22,32 +22,32 @@
  *
  *  @return A new iterator.
  */
-- (CMIterator *)iterator;
+- (CMCommonMarkIterator *)iterator;
 
 /**
  *  The next node in the sequence, or `nil` if there is none.
  */
-@property (readonly) CMNode *next;
+@property (readonly) CMCommonMarkNode *next;
 
 /**
  *  The previous node in the sequence, or `nil` if there is none.
  */
-@property (readonly) CMNode *previous;
+@property (readonly) CMCommonMarkNode *previous;
 
 /**
  *  The receiver's parent node, or `nil` if there is none.
  */
-@property (readonly) CMNode *parent;
+@property (readonly) CMCommonMarkNode *parent;
 
 /**
  *  The first child node of the receiver, or `nil` if there is none.
  */
-@property (readonly) CMNode *firstChild;
+@property (readonly) CMCommonMarkNode *firstChild;
 
 /**
  *  The last child node of the receiver, or `nil` if there is none.
  */
-@property (readonly) CMNode *lastChild;
+@property (readonly) CMCommonMarkNode *lastChild;
 
 /**
  *  The type of the node, or `CMARK_NODE_NONE` on error.

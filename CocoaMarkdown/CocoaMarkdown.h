@@ -15,12 +15,12 @@ FOUNDATION_EXPORT double CocoaMarkdownVersionNumber;
 FOUNDATION_EXPORT const unsigned char CocoaMarkdownVersionString[];
 
 #import <CocoaMarkdown/CMCommonMarkAttributedStringRenderer.h>
-#import <CocoaMarkdown/CMDocument.h>
+#import <CocoaMarkdown/CMCommonMarkDocument.h>
 #import <CocoaMarkdown/CMHTMLStrikethroughTransformer.h>
 #import <CocoaMarkdown/CMHTMLSuperscriptTransformer.h>
-#import <CocoaMarkdown/CMIterator.h>
-#import <CocoaMarkdown/CMNode.h>
-#import <CocoaMarkdown/CMParser.h>
+#import <CocoaMarkdown/CMCommonMarkIterator.h>
+#import <CocoaMarkdown/CMCommonMarkNode.h>
+#import <CocoaMarkdown/CMCommonMarkParser.h>
 #import <CocoaMarkdown/CMTextAttributes.h>
 
 #import <CocoaMarkdown/Ono.h>
