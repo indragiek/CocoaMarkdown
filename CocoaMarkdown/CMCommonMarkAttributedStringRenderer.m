@@ -1,12 +1,12 @@
 //
-//  CMAttributedStringRenderer.m
+//  CMCommonMarkAttributedStringRenderer.m
 //  CocoaMarkdown
 //
 //  Created by Indragie on 1/14/15.
 //  Copyright (c) 2015 Indragie Karunaratne. All rights reserved.
 //
 
-#import "CMAttributedStringRenderer.h"
+#import "CMCommonMarkAttributedStringRenderer.h"
 #import "CMAttributeRun.h"
 #import "CMCascadingAttributeStack.h"
 #import "CMStack.h"
@@ -19,10 +19,10 @@
 
 #import "Ono.h"
 
-@interface CMAttributedStringRenderer () <CMParserDelegate>
+@interface CMCommonMarkAttributedStringRenderer () <CMParserDelegate>
 @end
 
-@implementation CMAttributedStringRenderer {
+@implementation CMCommonMarkAttributedStringRenderer {
     CMDocument *_document;
     CMTextAttributes *_attributes;
     CMCascadingAttributeStack *_attributeStack;

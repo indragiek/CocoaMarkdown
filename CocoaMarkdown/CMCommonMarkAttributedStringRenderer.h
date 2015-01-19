@@ -1,5 +1,5 @@
 //
-//  CMAttributedStringRenderer.h
+//  CMCommonMarkAttributedStringRenderer.h
 //  CocoaMarkdown
 //
 //  Created by Indragie on 1/14/15.
@@ -14,7 +14,7 @@
 /**
  *  Renders an attributed string from a Markdown document
  */
-@interface CMAttributedStringRenderer : NSObject
+@interface CMCommonMarkAttributedStringRenderer : NSObject
 
 /**
  *  Designated initializer.
