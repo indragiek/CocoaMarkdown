@@ -139,6 +139,10 @@
 		729F54C41A68673800CC7448 /* CMParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F54BA1A68673800CC7448 /* CMParserSpec.m */; };
 		729F54C51A68673800CC7448 /* CMParserTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F54BC1A68673800CC7448 /* CMParserTestObject.m */; };
 		729F54C61A68673800CC7448 /* CMParserTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F54BC1A68673800CC7448 /* CMParserTestObject.m */; };
+		72C17A811A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72C17A821A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72C17A831A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */; };
+		72C17A841A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */; };
 		72FE7E951A6867F900F23F46 /* cmark_export.h in Headers */ = {isa = PBXBuildFile; fileRef = 72FE7E941A6867F900F23F46 /* cmark_export.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72FE7E961A6867F900F23F46 /* cmark_export.h in Headers */ = {isa = PBXBuildFile; fileRef = 72FE7E941A6867F900F23F46 /* cmark_export.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72FE7E9B1A68684000F23F46 /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7E981A68683300F23F46 /* test.md */; };
@@ -357,6 +361,8 @@
 		729F54BA1A68673800CC7448 /* CMParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMParserSpec.m; sourceTree = "<group>"; };
 		729F54BB1A68673800CC7448 /* CMParserTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMParserTestObject.h; sourceTree = "<group>"; };
 		729F54BC1A68673800CC7448 /* CMParserTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMParserTestObject.m; sourceTree = "<group>"; };
+		72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMDocument+AttributedStringAdditions.h"; sourceTree = "<group>"; };
+		72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMDocument+AttributedStringAdditions.m"; sourceTree = "<group>"; };
 		72FE7E941A6867F900F23F46 /* cmark_export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cmark_export.h; path = CocoaMarkdown/Configuration/cmark_export.h; sourceTree = "<group>"; };
 		72FE7E981A68683300F23F46 /* test.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = test.md; sourceTree = "<group>"; };
 		72FE7EC91A68692400F23F46 /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -472,6 +478,8 @@
 				725115DF1A6970A300337419 /* CMStack.m */,
 				722E33E41A68E86B004DE919 /* CMTextAttributes.h */,
 				722E33E51A68E86B004DE919 /* CMTextAttributes.m */,
+				72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */,
+				72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */,
 			);
 			name = "Attributed Strings";
 			sourceTree = "<group>";
@@ -725,6 +733,7 @@
 				729F54381A6864F400CC7448 /* CMPlatformDefines.h in Headers */,
 				729F53E01A68641400CC7448 /* CocoaMarkdown.h in Headers */,
 				729F542E1A6864F400CC7448 /* CMNode_Private.h in Headers */,
+				72C17A811A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,6 +761,7 @@
 				72772BF31A6A28A70059936C /* CMHTMLScriptTransformer.h in Headers */,
 				725115FD1A69735400337419 /* Ono.h in Headers */,
 				72772BED1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
+				72C17A821A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */,
 				722E33ED1A68EADA004DE919 /* CMCascadingAttributeStack.h in Headers */,
 				72772BE71A69ABB20059936C /* CMHTMLStrikethroughTransformer.h in Headers */,
 				729F542F1A6864F400CC7448 /* CMNode_Private.h in Headers */,
@@ -1071,6 +1081,7 @@
 				729F54551A68651E00CC7448 /* blocks.c in Sources */,
 				729F542C1A6864F400CC7448 /* CMIterator.m in Sources */,
 				729F54361A6864F400CC7448 /* CMParser.m in Sources */,
+				72C17A831A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */,
 				729F546D1A68651E00CC7448 /* references.c in Sources */,
 				729F546B1A68651E00CC7448 /* node.c in Sources */,
 				729F54671A68651E00CC7448 /* iterator.c in Sources */,
@@ -1123,6 +1134,7 @@
 				729F54561A68651E00CC7448 /* blocks.c in Sources */,
 				729F542D1A6864F400CC7448 /* CMIterator.m in Sources */,
 				729F54371A6864F400CC7448 /* CMParser.m in Sources */,
+				72C17A841A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */,
 				729F546E1A68651E00CC7448 /* references.c in Sources */,
 				729F546C1A68651E00CC7448 /* node.c in Sources */,
 				729F54681A68651E00CC7448 /* iterator.c in Sources */,
