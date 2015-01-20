@@ -533,18 +533,10 @@
 		729F53DC1A68641400CC7448 /* CocoaMarkdown */ = {
 			isa = PBXGroup;
 			children = (
-				7251160D1A69761700337419 /* Attributed Strings */,
 				729F53DF1A68641400CC7448 /* CocoaMarkdown.h */,
-				729F54161A6864F400CC7448 /* CMDocument.h */,
-				729F54171A6864F400CC7448 /* CMDocument.m */,
-				729F54181A6864F400CC7448 /* CMIterator.h */,
-				729F54191A6864F400CC7448 /* CMIterator.m */,
-				729F541A1A6864F400CC7448 /* CMNode_Private.h */,
-				729F541B1A6864F400CC7448 /* CMNode.h */,
-				729F541C1A6864F400CC7448 /* CMNode.m */,
-				729F541D1A6864F400CC7448 /* CMParser.h */,
-				729F541E1A6864F400CC7448 /* CMParser.m */,
 				729F541F1A6864F400CC7448 /* CMPlatformDefines.h */,
+				72C17A8F1A6EB9AB00212F17 /* CommonMark */,
+				7251160D1A69761700337419 /* Attributed Strings */,
 				729F53DD1A68641400CC7448 /* Supporting Files */,
 				725116061A6973B200337419 /* Frameworks */,
 			);
@@ -641,6 +633,22 @@
 				729F54AC1A68663400CC7448 /* QuickFocused-iOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		72C17A8F1A6EB9AB00212F17 /* CommonMark */ = {
+			isa = PBXGroup;
+			children = (
+				729F54161A6864F400CC7448 /* CMDocument.h */,
+				729F54171A6864F400CC7448 /* CMDocument.m */,
+				729F54181A6864F400CC7448 /* CMIterator.h */,
+				729F54191A6864F400CC7448 /* CMIterator.m */,
+				729F541A1A6864F400CC7448 /* CMNode_Private.h */,
+				729F541B1A6864F400CC7448 /* CMNode.h */,
+				729F541C1A6864F400CC7448 /* CMNode.m */,
+				729F541D1A6864F400CC7448 /* CMParser.h */,
+				729F541E1A6864F400CC7448 /* CMParser.m */,
+			);
+			name = CommonMark;
 			sourceTree = "<group>";
 		};
 		72FE7E971A68683300F23F46 /* Resources */ = {
