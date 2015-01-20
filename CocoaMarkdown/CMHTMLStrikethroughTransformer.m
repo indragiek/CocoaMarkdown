@@ -16,7 +16,7 @@
 
 - (instancetype)init
 {
-    return [self initWithStrikethroughStyle:NSUnderlineStyleSingle color:CMColor.blackColor];
+    return [self initWithStrikethroughStyle:NSUnderlineStyleSingle color:nil];
 }
 
 - (instancetype)initWithStrikethroughStyle:(CMUnderlineStyle)style color:(CMColor *)color
@@ -40,7 +40,11 @@
     
     NSMutableDictionary *allAttributes = [attributes mutableCopy];
     allAttributes[NSStrikethroughStyleAttributeName] = @(_style);
-    allAttributes[NSStrikethroughColorAttributeName] = _color;
+    
+    CMColor *color = _color ?: allAttributes[NSForegroundColorAttributeName];
+    if (color != nil) {
+        allAttributes[NSStrikethroughColorAttributeName] = color;
+    }
     
     return [[NSAttributedString alloc] initWithString:element.stringValue attributes:allAttributes];
 }

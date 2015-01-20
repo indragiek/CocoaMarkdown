@@ -25,8 +25,8 @@
 @interface CMHTMLStrikethroughTransformer : NSObject <CMHTMLElementTransformer>
 
 /**
- *  Initializes the receiver with the default attributes
- *  (single line style and black color).
+ *  Initializes the receiver with the default attributes -- a single line
+ *  style and a color that matches the color of the text.
  *
  *  @return An initialized instance of the receiver.
  */
@@ -36,7 +36,8 @@
  *  Initializes the receiver with a custom style and color.
  *
  *  @param style Strikethrough style.
- *  @param color Strikethrough color.
+ *  @param color Strikethrough color. If `nil`, the transformer uses
+ *  the color of the text if it has been specified.
  *
  *  @return An initialized instance of the receiver.
  */
