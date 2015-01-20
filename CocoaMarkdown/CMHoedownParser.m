@@ -12,12 +12,12 @@
 
 #import <libkern/OSAtomic.h>
 
-inline NSString * str(const hoedown_buffer *buf) {
+static inline NSString * str(const hoedown_buffer *buf) {
     if (buf == NULL || buf->size == 0) return nil;
     return [[NSString alloc] initWithBytes:buf->data length:buf->size encoding:NSUTF8StringEncoding];
 }
 
-inline bool emptybuf(const hoedown_buffer *buf) {
+static inline bool emptybuf(const hoedown_buffer *buf) {
     return buf == NULL || buf->size == 0;
 }
 
