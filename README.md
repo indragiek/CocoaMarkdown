@@ -43,11 +43,19 @@ The [`CMParser`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMar
 
 [`CMAttributedStringRenderer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMAttributedStringRenderer.h) is an example of a custom renderer that is built using this API.
 
-#### Generating Attributed Strings
+#### Rendering Attributed Strings
 
 [`CMAttributedStringRenderer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMAttributedStringRenderer.h) is the high level API that will be useful to most apps. It creates an `NSAttributedString` directly from Markdown, skipping the step of converting it to HTML altogether.
 
 Going from a Markdown document to rendering it on screen is as easy as:
+
+```swift
+let document = CMDocument(contentsOfFile: path)
+let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
+textView.attributedText = renderer.render()
+```
+
+Or, using the convenience method on `CMDocument`:
 
 ```swift
 let document = CMDocument(contentsOfFile: path)
