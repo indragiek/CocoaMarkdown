@@ -13,7 +13,6 @@ typedef struct {
     unsigned int didStartDocument:1;
     unsigned int didEndDocument:1;
     unsigned int didAbort:1;
-    unsigned int foundText:1;
     unsigned int foundHRule:1;
     unsigned int didStartHeader:1;
     unsigned int didEndHeader:1;
@@ -57,7 +56,6 @@ NS_INLINE CMParserDelegateFlags CMParserDelegateFlagsForDelegate(id<CMParserDele
         .didStartDocument = [delegate respondsToSelector:@selector(parserDidStartDocument:)],
         .didEndDocument = [delegate respondsToSelector:@selector(parserDidEndDocument:)],
         .didAbort = [delegate respondsToSelector:@selector(parserDidAbort:)],
-        .foundText = [delegate respondsToSelector:@selector(parser:foundText:)],
         .foundHRule = [delegate respondsToSelector:@selector(parserFoundHRule:)],
         .didStartHeader = [delegate respondsToSelector:@selector(parser:didStartHeaderWithLevel:)],
         .didEndHeader = [delegate respondsToSelector:@selector(parser:didEndHeaderWithLevel:)],

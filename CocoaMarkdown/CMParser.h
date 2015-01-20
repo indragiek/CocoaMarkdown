@@ -33,12 +33,12 @@
 @end
 
 @protocol CMParserDelegate <NSObject>
+- (void)parser:(id<CMParser>)parser foundText:(NSString *)text;
 @optional
 - (void)parserDidStartDocument:(id<CMParser>)parser;
 - (void)parserDidEndDocument:(id<CMParser>)parser;
 - (void)parserDidAbort:(id<CMParser>)parser;
 
-- (void)parser:(id<CMParser>)parser foundText:(NSString *)text;
 - (void)parserFoundHRule:(id<CMParser>)parser;
 
 - (void)parser:(id<CMParser>)parser didStartHeaderWithLevel:(NSInteger)level;

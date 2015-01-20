@@ -79,9 +79,7 @@
             }
             break;
         case CMARK_NODE_TEXT:
-            if (_delegateFlags.foundText) {
-                [_delegate parser:self foundText:node.stringValue];
-            }
+            [_delegate parser:self foundText:node.stringValue];
             break;
         case CMARK_NODE_HRULE:
             if (_delegateFlags.foundHRule) {
