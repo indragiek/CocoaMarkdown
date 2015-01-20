@@ -51,8 +51,7 @@ Going from a Markdown document to rendering it on screen is as easy as:
 
 ```swift
 let document = CMDocument(contentsOfFile: path)
-let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
-textView.attributedText = renderer.render()
+textView.attributedText = document.attributedStringWithAttributes(CMTextAttributes())
 ```
 
 All attributes used to style the text are customizable using the [`CMTextAttributes`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMTextAttributes.h) class:
@@ -65,7 +64,6 @@ attributes.linkAttributes = [
 attributes.emphasisAttributes = [
     NSBackgroundColorAttributeName: UIColor.yellowColor()
 ]
-let renderer = CMAttributedStringRenderer(document: document, attributes: attributes)
 ```
 
 HTML elements can be supported by implementing [`CMHTMLElementTransformer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMHTMLElementTransformer.h). The framework includes several transformers for commonly used tags:
@@ -77,7 +75,8 @@ HTML elements can be supported by implementing [`CMHTMLElementTransformer`](http
 Transformers can be registered with the renderer to use them:
 
 ```swift
-...
+let document = CMDocument(contentsOfFile: path)
+let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
 renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
 renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
 textView.attributedText = renderer.render()
