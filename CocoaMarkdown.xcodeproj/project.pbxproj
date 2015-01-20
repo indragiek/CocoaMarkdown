@@ -143,6 +143,16 @@
 		72C17A821A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72C17A831A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */; };
 		72C17A841A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */; };
+		72C17A931A6EBA3300212F17 /* CMHTMLRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C17A911A6EBA3300212F17 /* CMHTMLRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72C17A941A6EBA3300212F17 /* CMHTMLRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C17A911A6EBA3300212F17 /* CMHTMLRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72C17A951A6EBA3300212F17 /* CMHTMLRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A921A6EBA3300212F17 /* CMHTMLRenderer.m */; };
+		72C17A961A6EBA3300212F17 /* CMHTMLRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A921A6EBA3300212F17 /* CMHTMLRenderer.m */; };
+		72C17A991A6EBD7800212F17 /* CMDocument+HTMLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C17A971A6EBD7800212F17 /* CMDocument+HTMLAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72C17A9A1A6EBD7800212F17 /* CMDocument+HTMLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C17A971A6EBD7800212F17 /* CMDocument+HTMLAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72C17A9B1A6EBD7800212F17 /* CMDocument+HTMLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A981A6EBD7800212F17 /* CMDocument+HTMLAdditions.m */; };
+		72C17A9C1A6EBD7800212F17 /* CMDocument+HTMLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A981A6EBD7800212F17 /* CMDocument+HTMLAdditions.m */; };
+		72C17A9E1A6EBE5600212F17 /* CMHTMLRendererSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A9D1A6EBE5600212F17 /* CMHTMLRendererSpec.m */; };
+		72C17A9F1A6EBE5600212F17 /* CMHTMLRendererSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A9D1A6EBE5600212F17 /* CMHTMLRendererSpec.m */; };
 		72FE7E951A6867F900F23F46 /* cmark_export.h in Headers */ = {isa = PBXBuildFile; fileRef = 72FE7E941A6867F900F23F46 /* cmark_export.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72FE7E961A6867F900F23F46 /* cmark_export.h in Headers */ = {isa = PBXBuildFile; fileRef = 72FE7E941A6867F900F23F46 /* cmark_export.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72FE7E9B1A68684000F23F46 /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7E981A68683300F23F46 /* test.md */; };
@@ -363,6 +373,11 @@
 		729F54BC1A68673800CC7448 /* CMParserTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMParserTestObject.m; sourceTree = "<group>"; };
 		72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMDocument+AttributedStringAdditions.h"; sourceTree = "<group>"; };
 		72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMDocument+AttributedStringAdditions.m"; sourceTree = "<group>"; };
+		72C17A911A6EBA3300212F17 /* CMHTMLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLRenderer.h; sourceTree = "<group>"; };
+		72C17A921A6EBA3300212F17 /* CMHTMLRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLRenderer.m; sourceTree = "<group>"; };
+		72C17A971A6EBD7800212F17 /* CMDocument+HTMLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMDocument+HTMLAdditions.h"; sourceTree = "<group>"; };
+		72C17A981A6EBD7800212F17 /* CMDocument+HTMLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMDocument+HTMLAdditions.m"; sourceTree = "<group>"; };
+		72C17A9D1A6EBE5600212F17 /* CMHTMLRendererSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLRendererSpec.m; sourceTree = "<group>"; };
 		72FE7E941A6867F900F23F46 /* cmark_export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cmark_export.h; path = CocoaMarkdown/Configuration/cmark_export.h; sourceTree = "<group>"; };
 		72FE7E981A68683300F23F46 /* test.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = test.md; sourceTree = "<group>"; };
 		72FE7EC91A68692400F23F46 /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -537,6 +552,7 @@
 				729F541F1A6864F400CC7448 /* CMPlatformDefines.h */,
 				72C17A8F1A6EB9AB00212F17 /* CommonMark */,
 				7251160D1A69761700337419 /* Attributed Strings */,
+				72C17A901A6EBA1B00212F17 /* HTML */,
 				729F53DD1A68641400CC7448 /* Supporting Files */,
 				725116061A6973B200337419 /* Frameworks */,
 			);
@@ -560,6 +576,7 @@
 				729F54BA1A68673800CC7448 /* CMParserSpec.m */,
 				729F54BB1A68673800CC7448 /* CMParserTestObject.h */,
 				729F54BC1A68673800CC7448 /* CMParserTestObject.m */,
+				72C17A9D1A6EBE5600212F17 /* CMHTMLRendererSpec.m */,
 				72FE7E971A68683300F23F46 /* Resources */,
 				729F54781A6865D300CC7448 /* Frameworks */,
 				729F53EA1A68641400CC7448 /* Supporting Files */,
@@ -651,6 +668,17 @@
 			name = CommonMark;
 			sourceTree = "<group>";
 		};
+		72C17A901A6EBA1B00212F17 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				72C17A911A6EBA3300212F17 /* CMHTMLRenderer.h */,
+				72C17A921A6EBA3300212F17 /* CMHTMLRenderer.m */,
+				72C17A971A6EBD7800212F17 /* CMDocument+HTMLAdditions.h */,
+				72C17A981A6EBD7800212F17 /* CMDocument+HTMLAdditions.m */,
+			);
+			name = HTML;
+			sourceTree = "<group>";
+		};
 		72FE7E971A68683300F23F46 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -718,6 +746,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				722E33E61A68E86B004DE919 /* CMTextAttributes.h in Headers */,
+				72C17A991A6EBD7800212F17 /* CMDocument+HTMLAdditions.h in Headers */,
 				729F54301A6864F400CC7448 /* CMNode.h in Headers */,
 				72772BE61A69ABB20059936C /* CMHTMLStrikethroughTransformer.h in Headers */,
 				72FE7E951A6867F900F23F46 /* cmark_export.h in Headers */,
@@ -737,6 +766,7 @@
 				729F54221A6864F400CC7448 /* CMAttributedStringRenderer.h in Headers */,
 				72772BD61A699ACB0059936C /* CMHTMLUtilities.h in Headers */,
 				725116091A69760A00337419 /* CMHTMLElement.h in Headers */,
+				72C17A931A6EBA3300212F17 /* CMHTMLRenderer.h in Headers */,
 				722E33EC1A68EADA004DE919 /* CMCascadingAttributeStack.h in Headers */,
 				729F54381A6864F400CC7448 /* CMPlatformDefines.h in Headers */,
 				729F53E01A68641400CC7448 /* CocoaMarkdown.h in Headers */,
@@ -763,11 +793,13 @@
 				729F54311A6864F400CC7448 /* CMNode.h in Headers */,
 				7251160A1A69760A00337419 /* CMHTMLElement.h in Headers */,
 				72772BFC1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.h in Headers */,
+				72C17A941A6EBA3300212F17 /* CMHTMLRenderer.h in Headers */,
 				72772BD71A699ACB0059936C /* CMHTMLUtilities.h in Headers */,
 				725115E11A6970A300337419 /* CMStack.h in Headers */,
 				729F54391A6864F400CC7448 /* CMPlatformDefines.h in Headers */,
 				72772BF31A6A28A70059936C /* CMHTMLScriptTransformer.h in Headers */,
 				725115FD1A69735400337419 /* Ono.h in Headers */,
+				72C17A9A1A6EBD7800212F17 /* CMDocument+HTMLAdditions.h in Headers */,
 				72772BED1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
 				72C17A821A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */,
 				722E33ED1A68EADA004DE919 /* CMCascadingAttributeStack.h in Headers */,
@@ -1106,9 +1138,11 @@
 				725116001A69735400337419 /* ONOXMLDocument.m in Sources */,
 				72772BD81A699ACB0059936C /* CMHTMLUtilities.m in Sources */,
 				725115E21A6970A300337419 /* CMStack.m in Sources */,
+				72C17A951A6EBA3300212F17 /* CMHTMLRenderer.m in Sources */,
 				729F546F1A68651E00CC7448 /* scanners.c in Sources */,
 				729F54241A6864F400CC7448 /* CMAttributedStringRenderer.m in Sources */,
 				722E33E81A68E86B004DE919 /* CMTextAttributes.m in Sources */,
+				72C17A9B1A6EBD7800212F17 /* CMDocument+HTMLAdditions.m in Sources */,
 				729F545B1A68651E00CC7448 /* cmark.c in Sources */,
 				729F54651A68651E00CC7448 /* inlines.c in Sources */,
 				729F54611A68651E00CC7448 /* houdini_html_u.c in Sources */,
@@ -1125,6 +1159,7 @@
 			files = (
 				729F54C11A68673800CC7448 /* CMNodeSpec.m in Sources */,
 				729F54C51A68673800CC7448 /* CMParserTestObject.m in Sources */,
+				72C17A9E1A6EBE5600212F17 /* CMHTMLRendererSpec.m in Sources */,
 				729F54BF1A68673800CC7448 /* CMIteratorSpec.m in Sources */,
 				729F54C31A68673800CC7448 /* CMParserSpec.m in Sources */,
 				729F54B21A6866C200CC7448 /* DummySpec.swift in Sources */,
@@ -1159,9 +1194,11 @@
 				725116011A69735400337419 /* ONOXMLDocument.m in Sources */,
 				72772BD91A699ACB0059936C /* CMHTMLUtilities.m in Sources */,
 				725115E31A6970A300337419 /* CMStack.m in Sources */,
+				72C17A961A6EBA3300212F17 /* CMHTMLRenderer.m in Sources */,
 				729F54701A68651E00CC7448 /* scanners.c in Sources */,
 				729F54251A6864F400CC7448 /* CMAttributedStringRenderer.m in Sources */,
 				722E33E91A68E86B004DE919 /* CMTextAttributes.m in Sources */,
+				72C17A9C1A6EBD7800212F17 /* CMDocument+HTMLAdditions.m in Sources */,
 				729F545C1A68651E00CC7448 /* cmark.c in Sources */,
 				729F54661A68651E00CC7448 /* inlines.c in Sources */,
 				729F54621A68651E00CC7448 /* houdini_html_u.c in Sources */,
@@ -1178,6 +1215,7 @@
 			files = (
 				729F54C21A68673800CC7448 /* CMNodeSpec.m in Sources */,
 				729F54C61A68673800CC7448 /* CMParserTestObject.m in Sources */,
+				72C17A9F1A6EBE5600212F17 /* CMHTMLRendererSpec.m in Sources */,
 				729F54C01A68673800CC7448 /* CMIteratorSpec.m in Sources */,
 				729F54C41A68673800CC7448 /* CMParserSpec.m in Sources */,
 				729F54B31A6866C200CC7448 /* DummySpec.swift in Sources */,

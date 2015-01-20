@@ -58,8 +58,7 @@ textView.attributedText = renderer.render()
 Or, using the convenience method on `CMDocument`:
 
 ```swift
-let document = CMDocument(contentsOfFile: path)
-textView.attributedText = document.attributedStringWithAttributes(CMTextAttributes())
+textView.attributedText = CMDocument(contentsOfFile: path).attributedStringWithAttributes(CMTextAttributes())
 ```
 
 All attributes used to style the text are customizable using the [`CMTextAttributes`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMTextAttributes.h) class:
@@ -88,6 +87,22 @@ let renderer = CMAttributedStringRenderer(document: document, attributes: CMText
 renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
 renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
 textView.attributedText = renderer.render()
+```
+
+### Rendering HTML
+
+[`CMHTMLRenderer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMHTMLRenderer.h) provides the ability to render HTML from Markdown:
+
+```swift
+let document = CMDocument(contentsOfFile: path)
+let renderer = CMHTMLRenderer(document: document, options: nil)
+let HTML = renderer.render()
+```
+
+Or, using the convenience method on `CMDocument`:
+
+```swift
+let HTML = CMDocument(contentsOfFile: path).HTMLStringWithOptions(nil)
 ```
 
 ### Example Apps

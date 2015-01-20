@@ -17,6 +17,8 @@ FOUNDATION_EXPORT const unsigned char CocoaMarkdownVersionString[];
 #import <CocoaMarkdown/CMAttributedStringRenderer.h>
 #import <CocoaMarkdown/CMDocument.h>
 #import <CocoaMarkdown/CMDocument+AttributedStringAdditions.h>
+#import <CocoaMarkdown/CMDocument+HTMLAdditions.h>
+#import <CocoaMarkdown/CMHTMLRenderer.h>
 #import <CocoaMarkdown/CMHTMLStrikethroughTransformer.h>
 #import <CocoaMarkdown/CMHTMLSuperscriptTransformer.h>
 #import <CocoaMarkdown/CMHTMLSubscriptTransformer.h>
