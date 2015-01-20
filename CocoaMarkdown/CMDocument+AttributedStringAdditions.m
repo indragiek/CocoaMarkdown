@@ -7,6 +7,7 @@
 //
 
 #import "CMDocument+AttributedStringAdditions.h"
+#import "CMAttributedStringRenderer.h"
 
 @implementation CMDocument (AttributedStringAdditions)
 
