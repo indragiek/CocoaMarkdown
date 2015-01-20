@@ -16,13 +16,13 @@
 
 @interface CMCommonMarkParser ()
 @property (atomic, readwrite) CMCommonMarkNode *currentNode;
-@property (nonatomic, weak, readwrite) id<CMParserDelegate> delegate;
 @end
 
 @implementation CMCommonMarkParser {
     CMParserDelegateFlags _delegateFlags;
     volatile uint32_t _parsing;
 }
+@synthesize delegate = _delegate;
 
 #pragma mark - Initialization
 
