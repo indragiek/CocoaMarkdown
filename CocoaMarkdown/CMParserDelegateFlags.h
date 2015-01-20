@@ -51,7 +51,7 @@ typedef struct {
     unsigned int didEndListItem:1;
 } CMParserDelegateFlags;
 
-NS_INLINE CMParserDelegateFlags CMParserDelegateFlagsForDelegate(id<CMParserDelegate> delegate) {
+static inline CMParserDelegateFlags CMParserDelegateFlagsForDelegate(id<CMParserDelegate> delegate) {
     return (CMParserDelegateFlags){
         .didStartDocument = [delegate respondsToSelector:@selector(parserDidStartDocument:)],
         .didEndDocument = [delegate respondsToSelector:@selector(parserDidEndDocument:)],

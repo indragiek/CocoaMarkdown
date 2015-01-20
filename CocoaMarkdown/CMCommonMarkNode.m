@@ -10,13 +10,13 @@
 #import "CMCommonMarkNode_Private.h"
 #import "CMCommonMarkIterator.h"
 
-inline CMCommonMarkNode * wrap(cmark_node *node) {
+static inline CMCommonMarkNode * wrap(cmark_node *node) {
     if (node == NULL) return nil;
     
     return [[CMCommonMarkNode alloc] initWithNode:node freeWhenDone:NO];
 }
 
-inline NSString * str(const char *buf) {
+static inline NSString * str(const char *buf) {
     if (buf == NULL) return nil;
     
     return [NSString stringWithUTF8String:buf];
