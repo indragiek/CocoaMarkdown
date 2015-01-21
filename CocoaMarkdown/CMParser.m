@@ -52,7 +52,7 @@
         unsigned int didStartListItem:1;
         unsigned int didEndListItem:1;
     } _delegateFlags;
-    volatile uint32_t _parsing;
+    volatile int32_t _parsing;
 }
 
 #pragma mark - Initialization
@@ -73,22 +73,20 @@
 
 - (void)parse
 {
-    if (_parsing) return;
-    OSAtomicOr32Barrier(1, &_parsing);
+    if (!OSAtomicCompareAndSwap32Barrier(0, 1, &_parsing)) return;
     
     [[_document.rootNode iterator] enumerateUsingBlock:^(CMNode *node, cmark_event_type event, BOOL *stop) {
         self.currentNode = node;
         [self handleNode:node event:event];
-        if (!_parsing) *stop = YES;
+        if (_parsing == 0) *stop = YES;
     }];
     
-    OSAtomicAnd32Barrier(0, &_parsing);
+    _parsing = 0;
 }
 
 - (void)abortParsing
 {
-    if (!_parsing) return;
-    OSAtomicAnd32Barrier(0, &_parsing);
+    if (!OSAtomicCompareAndSwap32Barrier(1, 0, &_parsing)) return;
     
     if (_delegateFlags.didAbort) {
         [_delegate parserDidAbort:self];
