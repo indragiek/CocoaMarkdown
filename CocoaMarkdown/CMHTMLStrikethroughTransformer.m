@@ -21,8 +21,6 @@
 
 - (instancetype)initWithStrikethroughStyle:(CMUnderlineStyle)style color:(CMColor *)color
 {
-    NSParameterAssert(color);
-    
     if ((self = [super init])) {
         _style = style;
         _color = color;
