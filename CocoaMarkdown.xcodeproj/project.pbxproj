@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06D9F8771A70465700C00B67 /* CMHTMLUnderlineTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D9F8751A70465700C00B67 /* CMHTMLUnderlineTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06D9F8781A70465700C00B67 /* CMHTMLUnderlineTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D9F8751A70465700C00B67 /* CMHTMLUnderlineTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06D9F8791A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D9F8761A70465700C00B67 /* CMHTMLUnderlineTransformer.m */; };
+		06D9F87A1A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D9F8761A70465700C00B67 /* CMHTMLUnderlineTransformer.m */; };
 		720DA5811A68A00900DD05AF /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; };
 		720DA5821A68A01600DD05AF /* CocoaMarkdown.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		722694BC1A687B4100E1D3DC /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7F171A686AC300F23F46 /* test.md */; };
@@ -297,6 +301,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06D9F8751A70465700C00B67 /* CMHTMLUnderlineTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLUnderlineTransformer.h; sourceTree = "<group>"; };
+		06D9F8761A70465700C00B67 /* CMHTMLUnderlineTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLUnderlineTransformer.m; sourceTree = "<group>"; };
 		722E33D31A68A0A5004DE919 /* Example-Mac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Mac-Bridging-Header.h"; sourceTree = "<group>"; };
 		722E33DE1A68E7E4004DE919 /* CMAttributeRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMAttributeRun.h; sourceTree = "<group>"; };
 		722E33DF1A68E7E4004DE919 /* CMAttributeRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMAttributeRun.m; sourceTree = "<group>"; };
@@ -516,6 +522,8 @@
 				72772BF01A6A28A70059936C /* CMHTMLScriptTransformer.h */,
 				72772BF11A6A28A70059936C /* CMHTMLScriptTransformer.m */,
 				72772BF61A6A29810059936C /* CMHTMLScriptTransformer_Private.h */,
+				06D9F8751A70465700C00B67 /* CMHTMLUnderlineTransformer.h */,
+				06D9F8761A70465700C00B67 /* CMHTMLUnderlineTransformer.m */,
 			);
 			name = HTML;
 			sourceTree = "<group>";
@@ -745,6 +753,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06D9F8771A70465700C00B67 /* CMHTMLUnderlineTransformer.h in Headers */,
 				722E33E61A68E86B004DE919 /* CMTextAttributes.h in Headers */,
 				72C17A991A6EBD7800212F17 /* CMDocument+HTMLAdditions.h in Headers */,
 				729F54301A6864F400CC7448 /* CMNode.h in Headers */,
@@ -787,6 +796,7 @@
 				729F54351A6864F400CC7448 /* CMParser.h in Headers */,
 				722E33E11A68E7E4004DE919 /* CMAttributeRun.h in Headers */,
 				722E33E71A68E86B004DE919 /* CMTextAttributes.h in Headers */,
+				06D9F8781A70465700C00B67 /* CMHTMLUnderlineTransformer.h in Headers */,
 				729F542B1A6864F400CC7448 /* CMIterator.h in Headers */,
 				729F54771A68652500CC7448 /* cmark.h in Headers */,
 				72FE7E961A6867F900F23F46 /* cmark_export.h in Headers */,
@@ -1136,6 +1146,7 @@
 				729F54281A6864F400CC7448 /* CMDocument.m in Sources */,
 				729F54711A68651E00CC7448 /* utf8.c in Sources */,
 				725116001A69735400337419 /* ONOXMLDocument.m in Sources */,
+				06D9F8791A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */,
 				72772BD81A699ACB0059936C /* CMHTMLUtilities.m in Sources */,
 				725115E21A6970A300337419 /* CMStack.m in Sources */,
 				72C17A951A6EBA3300212F17 /* CMHTMLRenderer.m in Sources */,
@@ -1192,6 +1203,7 @@
 				729F54291A6864F400CC7448 /* CMDocument.m in Sources */,
 				729F54721A68651E00CC7448 /* utf8.c in Sources */,
 				725116011A69735400337419 /* ONOXMLDocument.m in Sources */,
+				06D9F87A1A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */,
 				72772BD91A699ACB0059936C /* CMHTMLUtilities.m in Sources */,
 				725115E31A6970A300337419 /* CMStack.m in Sources */,
 				72C17A961A6EBA3300212F17 /* CMHTMLRenderer.m in Sources */,

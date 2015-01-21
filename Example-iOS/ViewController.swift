@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
         renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
         renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
+        renderer.registerHTMLElementTransformer(CMHTMLUnderlineTransformer())
         textView.attributedText = renderer.render()
     }
 }
