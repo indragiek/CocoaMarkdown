@@ -8,16 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CMHTMLElementTransformer.h"
-
-#if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#define CMColor UIColor
-#define CMUnderlineStyle NSUnderlineStyle
-#else
-#import <Cocoa/Cocoa.h>
-#define CMColor NSColor
-#define CMUnderlineStyle NSInteger
-#endif
+#import "CMPlatformDefines.h"
 
 /**
  Transforms HTML strikethrough elements (<s>) into attributed strings.

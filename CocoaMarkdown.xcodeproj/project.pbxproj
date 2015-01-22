@@ -93,8 +93,8 @@
 		729F54351A6864F400CC7448 /* CMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F541D1A6864F400CC7448 /* CMParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		729F54361A6864F400CC7448 /* CMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F541E1A6864F400CC7448 /* CMParser.m */; };
 		729F54371A6864F400CC7448 /* CMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F541E1A6864F400CC7448 /* CMParser.m */; };
-		729F54381A6864F400CC7448 /* CMPlatformDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F541F1A6864F400CC7448 /* CMPlatformDefines.h */; };
-		729F54391A6864F400CC7448 /* CMPlatformDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F541F1A6864F400CC7448 /* CMPlatformDefines.h */; };
+		729F54381A6864F400CC7448 /* CMPlatformDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F541F1A6864F400CC7448 /* CMPlatformDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		729F54391A6864F400CC7448 /* CMPlatformDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F541F1A6864F400CC7448 /* CMPlatformDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		729F54551A68651E00CC7448 /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = 729F54451A68651E00CC7448 /* blocks.c */; };
 		729F54561A68651E00CC7448 /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = 729F54451A68651E00CC7448 /* blocks.c */; };
 		729F54571A68651E00CC7448 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 729F54461A68651E00CC7448 /* buffer.c */; };
