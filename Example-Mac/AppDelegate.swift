@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
         renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
         renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
+        renderer.registerHTMLElementTransformer(CMHTMLUnderlineTransformer())
         textView.textStorage?.appendAttributedString(renderer.render())
     }
 }
