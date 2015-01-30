@@ -46,6 +46,7 @@
 		7251160A1A69760A00337419 /* CMHTMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 725116071A69760A00337419 /* CMHTMLElement.h */; };
 		7251160B1A69760A00337419 /* CMHTMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 725116081A69760A00337419 /* CMHTMLElement.m */; };
 		7251160C1A69760A00337419 /* CMHTMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 725116081A69760A00337419 /* CMHTMLElement.m */; };
+		72736B671A7B467E0046B957 /* CocoaMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F53DF1A68641400CC7448 /* CocoaMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72772BD61A699ACB0059936C /* CMHTMLUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 72772BD41A699ACA0059936C /* CMHTMLUtilities.h */; };
 		72772BD71A699ACB0059936C /* CMHTMLUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 72772BD41A699ACA0059936C /* CMHTMLUtilities.h */; };
 		72772BD81A699ACB0059936C /* CMHTMLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 72772BD51A699ACA0059936C /* CMHTMLUtilities.m */; };
@@ -303,7 +304,6 @@
 /* Begin PBXFileReference section */
 		06D9F8751A70465700C00B67 /* CMHTMLUnderlineTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLUnderlineTransformer.h; sourceTree = "<group>"; };
 		06D9F8761A70465700C00B67 /* CMHTMLUnderlineTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLUnderlineTransformer.m; sourceTree = "<group>"; };
-		722E33D31A68A0A5004DE919 /* Example-Mac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Mac-Bridging-Header.h"; sourceTree = "<group>"; };
 		722E33DE1A68E7E4004DE919 /* CMAttributeRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMAttributeRun.h; sourceTree = "<group>"; };
 		722E33DF1A68E7E4004DE919 /* CMAttributeRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMAttributeRun.m; sourceTree = "<group>"; };
 		722E33E41A68E86B004DE919 /* CMTextAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTextAttributes.h; sourceTree = "<group>"; };
@@ -724,7 +724,6 @@
 				72FE7EFA1A68695100F23F46 /* Images.xcassets */,
 				72FE7EFC1A68695100F23F46 /* MainMenu.xib */,
 				72FE7EF61A68695100F23F46 /* Supporting Files */,
-				722E33D31A68A0A5004DE919 /* Example-Mac-Bridging-Header.h */,
 			);
 			path = "Example-Mac";
 			sourceTree = "<group>";
@@ -809,6 +808,7 @@
 				729F54391A6864F400CC7448 /* CMPlatformDefines.h in Headers */,
 				72772BF31A6A28A70059936C /* CMHTMLScriptTransformer.h in Headers */,
 				725115FD1A69735400337419 /* Ono.h in Headers */,
+				72736B671A7B467E0046B957 /* CocoaMarkdown.h in Headers */,
 				72C17A9A1A6EBD7800212F17 /* CMDocument+HTMLAdditions.h in Headers */,
 				72772BED1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
 				72C17A821A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */,
@@ -1607,7 +1607,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Example-Mac/Example-Mac-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -1623,7 +1623,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Example-Mac/Example-Mac-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
