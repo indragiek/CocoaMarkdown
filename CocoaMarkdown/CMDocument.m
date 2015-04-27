@@ -9,7 +9,12 @@
 #import "CMDocument_Private.h"
 #import "CMNode_Private.h"
 
+@interface CMDocument ()
+@property (nonatomic, readonly) NSArray *lines;
+@end
+
 @implementation CMDocument
+@synthesize lines = _lines;
 
 - (instancetype)initWithData:(NSData *)data options:(CMDocumentOptions)options
 {
@@ -49,6 +54,37 @@
         _options = options;
     }
     return self;
+}
+
+- (NSArray *)lines
+{
+    if (_lines == nil) {
+        _lines = [_text componentsSeparatedByString:@"\n"];
+    }
+    return _lines;
+}
+
+- (NSUInteger)indexForLine:(NSUInteger)line column:(NSUInteger)column
+{
+    NSUInteger index = 0;
+    for (NSInteger i = 1; i < line; i++) {
+        index += [(NSString *)self.lines[i - 1] length] + 1; // Add 1 for newline
+    }
+    index += column - 1;
+    return index;
+}
+
+- (NSString *)substringForNode:(CMNode *)node
+{
+    if (node.startLine == 0 || node.startColumn == 0 || node.endLine == 0 || node.endColumn == 0) {
+        return nil;
+    }
+    
+    const NSUInteger startIndex = [self indexForLine:node.startLine column:node.startColumn];
+    const NSUInteger endIndex = [self indexForLine:node.endLine column:node.endColumn];
+    NSRange range = NSMakeRange(startIndex, endIndex - startIndex);
+    range = [_text rangeOfComposedCharacterSequencesForRange:range];
+    return [_text substringWithRange:range];
 }
 
 @end

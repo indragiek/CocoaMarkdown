@@ -66,4 +66,14 @@ typedef NS_OPTIONS(NSInteger, CMDocumentOptions) {
  */
 @property (nonatomic, readonly) NSString *text;
 
+/**
+ *  Finds the substring in the text representation of the document
+ *  corresponding to a node from the AST.
+ *
+ *  @param node The Markdown document node.
+ *
+ *  @return The document text corresponding to the node.
+ */
+- (NSString *)substringForNode:(CMNode *)node;
+
 @end
