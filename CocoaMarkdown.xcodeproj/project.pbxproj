@@ -101,6 +101,8 @@
 		72772BFC1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 72772BF91A6A2B5C0059936C /* CMHTMLSubscriptTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72772BFD1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72772BFA1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.m */; };
 		72772BFE1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72772BFA1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.m */; };
+		728FA12F1AEED87900C7A368 /* CMDocument_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 728FA12E1AEED87900C7A368 /* CMDocument_Private.h */; };
+		728FA1301AEED87900C7A368 /* CMDocument_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 728FA12E1AEED87900C7A368 /* CMDocument_Private.h */; };
 		729F53E01A68641400CC7448 /* CocoaMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F53DF1A68641400CC7448 /* CocoaMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		729F53E61A68641400CC7448 /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53DA1A68641400CC7448 /* CocoaMarkdown.framework */; };
 		729F54061A68649200CC7448 /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; };
@@ -343,6 +345,7 @@
 		72772BF61A6A29810059936C /* CMHTMLScriptTransformer_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLScriptTransformer_Private.h; sourceTree = "<group>"; };
 		72772BF91A6A2B5C0059936C /* CMHTMLSubscriptTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLSubscriptTransformer.h; sourceTree = "<group>"; };
 		72772BFA1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLSubscriptTransformer.m; sourceTree = "<group>"; };
+		728FA12E1AEED87900C7A368 /* CMDocument_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMDocument_Private.h; sourceTree = "<group>"; };
 		729F53DA1A68641400CC7448 /* CocoaMarkdown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaMarkdown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		729F53DE1A68641400CC7448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		729F53DF1A68641400CC7448 /* CocoaMarkdown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaMarkdown.h; sourceTree = "<group>"; };
@@ -657,6 +660,7 @@
 			children = (
 				729F54161A6864F400CC7448 /* CMDocument.h */,
 				729F54171A6864F400CC7448 /* CMDocument.m */,
+				728FA12E1AEED87900C7A368 /* CMDocument_Private.h */,
 				729F54181A6864F400CC7448 /* CMIterator.h */,
 				729F54191A6864F400CC7448 /* CMIterator.m */,
 				729F541A1A6864F400CC7448 /* CMNode_Private.h */,
@@ -759,6 +763,7 @@
 				72772BEC1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
 				729F542A1A6864F400CC7448 /* CMIterator.h in Headers */,
 				729F54261A6864F400CC7448 /* CMDocument.h in Headers */,
+				728FA12F1AEED87900C7A368 /* CMDocument_Private.h in Headers */,
 				725115F51A6972AE00337419 /* CMHTMLElementTransformer.h in Headers */,
 				72772BF21A6A28A70059936C /* CMHTMLScriptTransformer.h in Headers */,
 				729F54221A6864F400CC7448 /* CMAttributedStringRenderer.h in Headers */,
@@ -792,6 +797,7 @@
 				72772BFC1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.h in Headers */,
 				72C17A941A6EBA3300212F17 /* CMHTMLRenderer.h in Headers */,
 				72772BD71A699ACB0059936C /* CMHTMLUtilities.h in Headers */,
+				728FA1301AEED87900C7A368 /* CMDocument_Private.h in Headers */,
 				725115E11A6970A300337419 /* CMStack.h in Headers */,
 				729F54391A6864F400CC7448 /* CMPlatformDefines.h in Headers */,
 				72772BF31A6A28A70059936C /* CMHTMLScriptTransformer.h in Headers */,
