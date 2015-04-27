@@ -223,7 +223,7 @@ static NSString * NSStringFromCMNodeType(CMNodeType type) {
 
 - (NSInteger)endLine
 {
-    return cmark_node_get_start_column(_node);
+    return cmark_node_get_end_line(_node);
 }
 
 - (NSInteger)endColumn
