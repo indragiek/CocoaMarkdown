@@ -54,16 +54,10 @@ typedef NS_OPTIONS(NSInteger, CMDocumentOptions) {
  *
  *  @param path The file path to read from.
  *  @param options Document options.
- *  @param errorPtr Pointer to an error to be set upon failure.
  *
  *  @return An initialized instance of the receiver, or `nil` if the file
  *  could not be opened.
  */
-- (instancetype)initWithContentsOfFile:(NSString *)path options:(CMDocumentOptions)options error:(NSError *__autoreleasing *)errorPtr;
-
-/**
- *  The text representation of the document.
- */
-@property (nonatomic, readonly) NSString *text;
+- (instancetype)initWithContentsOfFile:(NSString *)path options:(CMDocumentOptions)options;
 
 @end

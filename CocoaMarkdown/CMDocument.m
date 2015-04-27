@@ -20,13 +20,12 @@
         if (node == NULL) return nil;
         
         _rootNode = [[CMNode alloc] initWithNode:node freeWhenDone:YES];
-        _text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         _options = options;
     }
     return self;
 }
 
-- (instancetype)initWithContentsOfFile:(NSString *)path options:(CMDocumentOptions)options error:(NSError *__autoreleasing *)errorPtr
+- (instancetype)initWithContentsOfFile:(NSString *)path options:(CMDocumentOptions)options
 {
     if ((self = [super init])) {
         FILE *fp = fopen(path.UTF8String, "r");
@@ -37,15 +36,6 @@
         if (node == NULL) return nil;
         
         _rootNode = [[CMNode alloc] initWithNode:node freeWhenDone:YES];
-        
-        NSError *error = nil;
-        _text = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
-        if (_text == nil) {
-            if (errorPtr != NULL) {
-                *errorPtr = error;
-            }
-            return nil;
-        }
         _options = options;
     }
     return self;
