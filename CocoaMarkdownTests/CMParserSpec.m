@@ -10,7 +10,7 @@ __block CMDocument *document = nil;
 
 beforeSuite(^{
     NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:@"test" ofType:@"md"];
-    document = [[CMDocument alloc] initWithContentsOfFile:path];
+    document = [[CMDocument alloc] initWithContentsOfFile:path options:0];
 });
 
 beforeEach(^{
