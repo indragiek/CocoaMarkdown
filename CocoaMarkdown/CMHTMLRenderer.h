@@ -8,17 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_OPTIONS(long, CMHTMLOptions) {
-    /** 
-     * Include a `data-sourcepos` attribute on all block elements.
-     */
-    CMHTMLOptionsSourcePosition = (1 << 0),
-    /**
-     * Render `softbreak` elements as hard line breaks.
-     */
-    CMHTMLOptionsHardLineBreaks = (1 << 1)
-};
-
 @class CMDocument;
 
 /**
@@ -34,7 +23,7 @@ typedef NS_OPTIONS(long, CMHTMLOptions) {
  *
  *  @return An initialized instance of the receiver.
  */
-- (instancetype)initWithDocument:(CMDocument *)document options:(CMHTMLOptions)options;
+- (instancetype)initWithDocument:(CMDocument *)document;
 
 /**
  *  Renders HTML from the Markdown document.

@@ -10,9 +10,9 @@
 
 @implementation CMDocument (HTMLAdditions)
 
-- (NSString *)HTMLStringWithOptions:(CMHTMLOptions)options
+- (NSString *)HTMLString
 {
-    CMHTMLRenderer *renderer = [[CMHTMLRenderer alloc] initWithDocument:self options:options];
+    CMHTMLRenderer *renderer = [[CMHTMLRenderer alloc] initWithDocument:self];
     return [renderer render];
 }
 

@@ -7,26 +7,24 @@
 //
 
 #import "CMHTMLRenderer.h"
-#import "CMDocument.h"
+#import "CMDocument_Private.h"
 #import "CMNode_Private.h"
 
 @implementation CMHTMLRenderer {
     CMDocument *_document;
-    CMHTMLOptions _options;
 }
 
-- (instancetype)initWithDocument:(CMDocument *)document options:(CMHTMLOptions)options
+- (instancetype)initWithDocument:(CMDocument *)document
 {
     if ((self = [super init])) {
         _document = document;
-        _options = options;
     }
     return self;
 }
 
 - (NSString *)render
 {
-    char *html = cmark_render_html(_document.rootNode.node, _options);
+    char *html = cmark_render_html(_document.rootNode.node, _document.options);
     return [NSString stringWithUTF8String:html];
 }
 

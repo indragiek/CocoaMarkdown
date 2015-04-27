@@ -14,10 +14,8 @@
 /**
  *  Creates an HTML representation of the receiver.
  *
- *  @options Rendering options.
- *
  *  @return String containing the HTML representation of the receiver.
  */
-- (NSString *)HTMLStringWithOptions:(CMHTMLOptions)options;
+- (NSString *)HTMLString;
 
 @end
