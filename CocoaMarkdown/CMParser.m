@@ -75,7 +75,7 @@
 {
     if (!OSAtomicCompareAndSwap32Barrier(0, 1, &_parsing)) return;
     
-    [[_document.rootNode iterator] enumerateUsingBlock:^(CMNode *node, cmark_event_type event, BOOL *stop) {
+    [[_document.rootNode iterator] enumerateUsingBlock:^(CMNode *node, CMEventType event, BOOL *stop) {
         self.currentNode = node;
         [self handleNode:node event:event];
         if (_parsing == 0) *stop = YES;
@@ -93,12 +93,12 @@
     }
 }
 
-- (void)handleNode:(CMNode *)node event:(cmark_event_type)event {
-    NSAssert((event == CMARK_EVENT_ENTER) || (event == CMARK_EVENT_EXIT), @"Event must be either an exit or enter event");
+- (void)handleNode:(CMNode *)node event:(CMEventType)event {
+    NSAssert((event == CMEventTypeEnter) || (event == CMEventTypeExit), @"Event must be either an exit or enter event");
     
     switch (node.type) {
-        case CMARK_NODE_DOCUMENT:
-            if (event == CMARK_EVENT_ENTER) {
+        case CMNodeTypeDocument:
+            if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartDocument) {
                     [_delegate parserDidStartDocument:self];
                 }
@@ -106,18 +106,18 @@
                 [_delegate parserDidEndDocument:self];
             }
             break;
-        case CMARK_NODE_TEXT:
+        case CMNodeTypeText:
             if (_delegateFlags.foundText) {
                 [_delegate parser:self foundText:node.stringValue];
             }
             break;
-        case CMARK_NODE_HRULE:
+        case CMNodeTypeHRule:
             if (_delegateFlags.foundHRule) {
                 [_delegate parserFoundHRule:self];
             }
             break;
-        case CMARK_NODE_HEADER:
-            if (event == CMARK_EVENT_ENTER) {
+        case CMNodeTypeHeader:
+            if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartHeader) {
                     [_delegate parser:self didStartHeaderWithLevel:node.headerLevel];
                 }
@@ -125,8 +125,8 @@
                 [_delegate parser:self didEndHeaderWithLevel:node.headerLevel];
             }
             break;
-        case CMARK_NODE_PARAGRAPH:
-            if (event == CMARK_EVENT_ENTER) {
+        case CMNodeTypeParagraph:
+            if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartParagraph) {
                     [_delegate parserDidStartParagraph:self];
                 }
@@ -134,8 +134,8 @@
                 [_delegate parserDidEndParagraph:self];
             }
             break;
-        case CMARK_NODE_EMPH:
-            if (event == CMARK_EVENT_ENTER) {
+        case CMNodeTypeEmphasis:
+            if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartEmphasis) {
                     [_delegate parserDidStartEmphasis:self];
                 }
@@ -143,8 +143,8 @@
                 [_delegate parserDidEndEmphasis:self];
             }
             break;
-        case CMARK_NODE_STRONG:
-            if (event == CMARK_EVENT_ENTER) {
+        case CMNodeTypeStrong:
+            if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartStrong) {
                     [_delegate parserDidStartStrong:self];
                 }
@@ -152,8 +152,8 @@
                 [_delegate parserDidEndStrong:self];
             }
             break;
-        case CMARK_NODE_LINK:
-            if (event == CMARK_EVENT_ENTER) {
+        case CMNodeTypeLink:
+            if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartLink) {
                     [_delegate parser:self didStartLinkWithURL:node.URL title:node.title];
                 }
@@ -161,8 +161,8 @@
                 [_delegate parser:self didEndLinkWithURL:node.URL title:node.title];
             }
             break;
-        case CMARK_NODE_IMAGE:
-            if (event == CMARK_EVENT_ENTER) {
+        case CMNodeTypeImage:
+            if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartImage) {
                     [_delegate parser:self didStartImageWithURL:node.URL title:node.title];
                 }
@@ -170,38 +170,38 @@
                 [_delegate parser:self didEndImageWithURL:node.URL title:node.title];
             }
             break;
-        case CMARK_NODE_HTML:
+        case CMNodeTypeHTML:
             if (_delegateFlags.foundHTML) {
                 [_delegate parser:self foundHTML:node.stringValue];
             }
             break;
-        case CMARK_NODE_INLINE_HTML:
+        case CMNodeTypeInlineHTML:
             if (_delegateFlags.foundInlineHTML) {
                 [_delegate parser:self foundInlineHTML:node.stringValue];
             }
             break;
-        case CMARK_NODE_CODE_BLOCK:
+        case CMNodeTypeCodeBlock:
             if (_delegateFlags.foundCodeBlock) {
                 [_delegate parser:self foundCodeBlock:node.stringValue info:node.fencedCodeInfo];
             }
             break;
-        case CMARK_NODE_CODE:
+        case CMNodeTypeCode:
             if (_delegateFlags.foundInlineCode) {
                 [_delegate parser:self foundInlineCode:node.stringValue];
             }
             break;
-        case CMARK_NODE_SOFTBREAK:
+        case CMNodeTypeSoftbreak:
             if (_delegateFlags.foundSoftBreak) {
                 [_delegate parserFoundSoftBreak:self];
             }
             break;
-        case CMARK_NODE_LINEBREAK:
+        case CMNodeTypeLinebreak:
             if (_delegateFlags.foundLineBreak) {
                 [_delegate parserFoundLineBreak:self];
             }
             break;
-        case CMARK_NODE_BLOCK_QUOTE:
-            if (event == CMARK_EVENT_ENTER) {
+        case CMNodeTypeBlockQuote:
+            if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartBlockQuote) {
                     [_delegate parserDidStartBlockQuote:self];
                 }
@@ -209,10 +209,10 @@
                 [_delegate parserDidEndBlockQuote:self];
             }
             break;
-        case CMARK_NODE_LIST:
+        case CMNodeTypeList:
             switch (node.listType) {
-                case CMARK_ORDERED_LIST:
-                    if (event == CMARK_EVENT_ENTER) {
+                case CMListTypeOrdered:
+                    if (event == CMEventTypeEnter) {
                         if (_delegateFlags.didStartOrderedList) {
                             [_delegate parser:self didStartOrderedListWithStartingNumber:node.listStartingNumber tight:node.listTight];
                         }
@@ -220,8 +220,8 @@
                         [_delegate parser:self didEndOrderedListWithStartingNumber:node.listStartingNumber tight:node.listTight];
                     }
                     break;
-                case CMARK_BULLET_LIST:
-                    if (event == CMARK_EVENT_ENTER) {
+                case CMListTypeUnordered:
+                    if (event == CMEventTypeEnter) {
                         if (_delegateFlags.didStartUnorderedList) {
                             [_delegate parser:self didStartUnorderedListWithTightness:node.listTight];
                         }
@@ -233,8 +233,8 @@
                     break;
             }
             break;
-        case CMARK_NODE_ITEM:
-            if (event == CMARK_EVENT_ENTER) {
+        case CMNodeTypeItem:
+            if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartListItem) {
                     [_delegate parserDidStartListItem:self];
                 }

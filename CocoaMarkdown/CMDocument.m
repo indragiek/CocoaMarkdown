@@ -16,7 +16,7 @@
     NSParameterAssert(data);
     
     if ((self = [super init])) {
-        cmark_node *node = cmark_parse_document((const char *)data.bytes, data.length);
+        cmark_node *node = cmark_parse_document((const char *)data.bytes, data.length, CMARK_OPT_DEFAULT);
         if (node == NULL) return nil;
         
         _rootNode = [[CMNode alloc] initWithNode:node freeWhenDone:YES];
@@ -30,7 +30,7 @@
         FILE *fp = fopen(path.UTF8String, "r");
         if (fp == NULL) return nil;
         
-        cmark_node *node = cmark_parse_file(fp);
+        cmark_node *node = cmark_parse_file(fp, CMARK_OPT_DEFAULT);
         fclose(fp);
         if (node == NULL) return nil;
         

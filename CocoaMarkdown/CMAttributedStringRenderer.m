@@ -245,15 +245,15 @@
 {
     CMNode *node = parser.currentNode.parent;
     switch (node.listType) {
-        case CMARK_NO_LIST:
+        case CMListTypeNone:
             NSAssert(NO, @"Parent node of list item must be a list");
             break;
-        case CMARK_BULLET_LIST: {
+        case CMListTypeUnordered: {
             [self appendString:@"\u2022 "];
             [_attributeStack push:CMDefaultAttributeRun(_attributes.unorderedListItemAttributes)];
             break;
         }
-        case CMARK_ORDERED_LIST: {
+        case CMListTypeOrdered: {
             CMAttributeRun *parentRun = [_attributeStack peek];
             [self appendString:[NSString stringWithFormat:@"%ld. ", (long)parentRun.orderedListItemNumber]];
             parentRun.orderedListItemNumber++;

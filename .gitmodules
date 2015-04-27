@@ -1,6 +1,3 @@
-[submodule "External/CommonMark"]
-	path = External/CommonMark
-	url = git@github.com:jgm/CommonMark.git
 [submodule "External/Quick"]
 	path = External/Quick
 	url = https://github.com/Quick/Quick
@@ -10,3 +7,6 @@
 [submodule "External/Ono"]
 	path = External/Ono
 	url = https://github.com/mattt/Ono.git
+[submodule "External/cmark"]
+	path = External/cmark
+	url = https://github.com/jgm/cmark.git

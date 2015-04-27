@@ -103,9 +103,9 @@ static NSString * str(const char *buf) {
 
 #pragma mark - Attributes
 
-- (cmark_node_type)type
+- (CMNodeType)type
 {
-    return cmark_node_get_type(_node);
+    return (CMNodeType)cmark_node_get_type(_node);
 }
 
 - (NSString *)humanReadableType
@@ -128,14 +128,14 @@ static NSString * str(const char *buf) {
     return str(cmark_node_get_fence_info(_node));
 }
 
-- (cmark_list_type)listType
+- (CMListType)listType
 {
-    return cmark_node_get_list_type(_node);
+    return (CMListType)cmark_node_get_list_type(_node);
 }
 
-- (cmark_delim_type)listDelimeterType
+- (CMDelimeterType)listDelimeterType
 {
-    return cmark_node_get_list_delim(_node);
+    return (CMDelimeterType)cmark_node_get_list_delim(_node);
 }
 
 - (NSInteger)listStartingNumber

@@ -7,6 +7,7 @@
 //
 
 #import "CMNode.h"
+#import "cmark.h"
 
 @interface CMNode ()
 /**

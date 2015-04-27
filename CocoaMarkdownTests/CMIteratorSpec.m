@@ -23,7 +23,7 @@ it(@"should traverse a node tree", ^{
     
     __block NSInteger nodeCount = 0;
     __block NSInteger eventBalance = 0;
-    [iter enumerateUsingBlock:^(CMNode *node, cmark_event_type event, BOOL *stop) {
+    [iter enumerateUsingBlock:^(CMNode *node, CMEventType event, BOOL *stop) {
         switch (event) {
             case CMARK_EVENT_ENTER:
                 eventBalance++;
@@ -40,7 +40,7 @@ it(@"should traverse a node tree", ^{
     expect(@(nodeCount)).to(equal(@2));
     expect(@(eventBalance)).to(equal(@1));
     
-    [iter resetToNode:parent withEventType:CMARK_EVENT_ENTER];
+    [iter resetToNode:parent withEventType:CMEventTypeEnter];
     expect(iter.currentNode).to(equal(parent));
     expect(@(iter.currentEvent)).to(equal(@(CMARK_EVENT_ENTER)));
 });

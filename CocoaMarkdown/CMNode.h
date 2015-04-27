@@ -7,9 +7,53 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "cmark.h"
 
 @class CMIterator;
+
+typedef NS_ENUM(NSInteger, CMNodeType) {
+    /* Error status */
+    CMNodeTypeNone,
+    
+    /* Block */
+    CMNodeTypeDocument,
+    CMNodeTypeBlockQuote,
+    CMNodeTypeList,
+    CMNodeTypeItem,
+    CMNodeTypeCodeBlock,
+    CMNodeTypeHTML,
+    CMNodeTypeParagraph,
+    CMNodeTypeHeader,
+    CMNodeTypeHRule,
+    
+    CMNodeTypeFirstBlock = CMNodeTypeDocument,
+    CMNodeTypeLastBlock = CMNodeTypeHRule,
+    
+    /* Inline */
+    CMNodeTypeText,
+    CMNodeTypeSoftbreak,
+    CMNodeTypeLinebreak,
+    CMNodeTypeCode,
+    CMNodeTypeInlineHTML,
+    CMNodeTypeEmphasis,
+    CMNodeTypeStrong,
+    CMNodeTypeLink,
+    CMNodeTypeImage,
+    
+    CMNodeTypeFirstInline = CMNodeTypeText,
+    CMNodeTypeLastInline = CMNodeTypeImage
+};
+
+typedef NS_ENUM(NSInteger, CMListType) {
+    CMListTypeNone,
+    CMListTypeUnordered,
+    CMListTypeOrdered
+};
+
+typedef NS_ENUM(NSInteger, CMDelimeterType) {
+    CMDelimeterTypeNone,
+    CMDelimeterTypePeriod,
+    CMDelimeterTypeParen
+};
 
 /**
  *  Immutable interface to a CommonMark node.
@@ -50,9 +94,9 @@
 @property (readonly) CMNode *lastChild;
 
 /**
- *  The type of the node, or `CMARK_NODE_NONE` on error.
+ *  The type of the node, or `CMNodeTypeNone` on error.
  */
-@property (readonly) cmark_node_type type;
+@property (readonly) CMNodeType type;
 
 /**
  *  String representation of `type`.
@@ -75,16 +119,16 @@
 @property (readonly) NSString *fencedCodeInfo;
 
 /**
- *  The receiver's list type, or `CMARK_NO_LIST` if the receiver
+ *  The receiver's list type, or `CMListTypeNone` if the receiver
  *  is not a list.
  */
-@property (readonly) cmark_list_type listType;
+@property (readonly) CMListType listType;
 
 /**
- *  The receiver's list delimeter type, or `CMARK_NO_DELIM` if the
+ *  The receiver's list delimeter type, or `CMDelimeterTypeNone` if the
  *  receiver is not a list.
  */
-@property (readonly) cmark_delim_type listDelimeterType;
+@property (readonly) CMDelimeterType listDelimeterType;
 
 /**
  *  Starting number of the list, or `0` if the receiver is not

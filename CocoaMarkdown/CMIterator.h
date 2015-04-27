@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "cmark.h"
+
+typedef NS_ENUM(NSInteger, CMEventType) {
+    CMEventTypeNone,
+    CMEventTypeDone,
+    CMEventTypeEnter,
+    CMEventTypeExit
+};
 
 @class CMNode;
 
@@ -33,7 +39,7 @@
 /**
  *  Returns the current event type.
  */
-@property (readonly) cmark_event_type currentEvent;
+@property (readonly) CMEventType currentEvent;
 
 /**
  *  Walks through a tree of nodes, starting from the root node.
@@ -43,7 +49,7 @@
  *  @param block Block to call upon entering or exiting a node during traversal.
  *  Set `stop` to `YES` to stop iteration.
  */
-- (void)enumerateUsingBlock:(void (^)(CMNode *node, cmark_event_type event, BOOL *stop))block;
+- (void)enumerateUsingBlock:(void (^)(CMNode *node, CMEventType event, BOOL *stop))block;
 
 /**
  *  Resets the iterator to the specified node and event. The node must be either
@@ -52,6 +58,6 @@
  *  @param node      The node to reset to.
  *  @param eventType The event to reset to.
  */
-- (void)resetToNode:(CMNode *)node withEventType:(cmark_event_type)eventType;
+- (void)resetToNode:(CMNode *)node withEventType:(CMEventType)eventType;
 
 @end
