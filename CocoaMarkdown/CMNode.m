@@ -22,6 +22,50 @@ static NSString * str(const char *buf) {
     return [NSString stringWithUTF8String:buf];
 }
 
+static NSString * NSStringFromCMNodeType(CMNodeType type) {
+    switch (type) {
+        case CMNodeTypeBlockQuote:
+            return @"Block Quote";
+        case CMNodeTypeCode:
+            return @"Code";
+        case CMNodeTypeCodeBlock:
+            return @"Code Block";
+        case CMNodeTypeDocument:
+            return @"Document";
+        case CMNodeTypeEmphasis:
+            return @"Emphasis";
+        case CMNodeTypeHeader:
+            return @"Header";
+        case CMNodeTypeHRule:
+            return @"Horizontal Rule";
+        case CMNodeTypeHTML:
+            return @"HTML";
+        case CMNodeTypeImage:
+            return @"Image";
+        case CMNodeTypeInlineHTML:
+            return @"Inline HTML";
+        case CMNodeTypeItem:
+            return @"List Item";
+        case CMNodeTypeLinebreak:
+            return @"Linebreak";
+        case CMNodeTypeLink:
+            return @"Link";
+        case CMNodeTypeList:
+            return @"List";
+        case CMNodeTypeNone:
+            return @"None";
+        case CMNodeTypeParagraph:
+            return @"Paragraph";
+        case CMNodeTypeSoftbreak:
+            return @"Softbreak";
+        case CMNodeTypeStrong:
+            return @"Strong";
+        case CMNodeTypeText:
+            return @"Text";
+        default: return nil;
+    }
+}
+
 @implementation CMNode {
     BOOL _freeWhenDone;
 }
@@ -65,6 +109,11 @@ static NSString * str(const char *buf) {
 - (NSUInteger)hash
 {
     return (NSUInteger)_node;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@:%p type:%@ stringValue:%@>", self.class, self, NSStringFromCMNodeType(self.type), self.stringValue];
 }
 
 #pragma mark - Iteration
