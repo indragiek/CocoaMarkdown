@@ -18,7 +18,7 @@
 
 - (instancetype)initWithFontSizeRatio:(CGFloat)ratio
 {
-    return [super initWithStyle:CMHTMLScriptStyleSuperscript fontSizeRatio:ratio];
+    return [super initWithStyle:CMHTMLScriptStyleSubscript fontSizeRatio:ratio];
 }
 
 #pragma mark - CMHTMLElementTransformer
