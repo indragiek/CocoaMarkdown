@@ -19,13 +19,15 @@
 @implementation CMHTMLScriptTransformer {
     CMHTMLScriptStyle _style;
     CGFloat _fontSizeRatio;
+    CGFloat _baselineOffset;
 }
 
-- (instancetype)initWithStyle:(CMHTMLScriptStyle)style fontSizeRatio:(CGFloat)ratio
+- (instancetype)initWithStyle:(CMHTMLScriptStyle)style fontSizeRatio:(CGFloat)ratio baselineOffset:(CGFloat)offset
 {
     if ((self = [super init])) {
         _style = style;
         _fontSizeRatio = ratio;
+        _baselineOffset = offset;
     }
     return self;
 }
@@ -55,7 +57,10 @@
         font = [CMFont fontWithDescriptor:font.fontDescriptor size:font.pointSize * _fontSizeRatio];
         allAttributes[NSFontAttributeName] = font;
     }
-    
+    if (_baselineOffset != 0.0) {
+        allAttributes[NSBaselineOffsetAttributeName] = @(_baselineOffset);
+    }
+
     return [[NSAttributedString alloc] initWithString:element.stringValue attributes:allAttributes];
 }
 

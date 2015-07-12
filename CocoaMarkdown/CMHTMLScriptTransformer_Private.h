@@ -20,5 +20,5 @@ typedef NS_ENUM(NSInteger, CMHTMLScriptStyle) {
 };
 
 @interface CMHTMLScriptTransformer ()
-- (instancetype)initWithStyle:(CMHTMLScriptStyle)style fontSizeRatio:(CGFloat)ratio;
+- (instancetype)initWithStyle:(CMHTMLScriptStyle)style fontSizeRatio:(CGFloat)ratio baselineOffset:(CGFloat)offset;
 @end
