@@ -11,6 +11,8 @@
 		06D9F8781A70465700C00B67 /* CMHTMLUnderlineTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D9F8751A70465700C00B67 /* CMHTMLUnderlineTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06D9F8791A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D9F8761A70465700C00B67 /* CMHTMLUnderlineTransformer.m */; };
 		06D9F87A1A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D9F8761A70465700C00B67 /* CMHTMLUnderlineTransformer.m */; };
+		30A07BCC1B5545A50097CEF1 /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = 30A07BCB1B5545A50097CEF1 /* render.c */; };
+		30A07BCD1B5545A50097CEF1 /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = 30A07BCB1B5545A50097CEF1 /* render.c */; };
 		720DA5811A68A00900DD05AF /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; };
 		720DA5821A68A01600DD05AF /* CocoaMarkdown.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		722694BC1A687B4100E1D3DC /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7F171A686AC300F23F46 /* test.md */; };
@@ -302,6 +304,7 @@
 /* Begin PBXFileReference section */
 		06D9F8751A70465700C00B67 /* CMHTMLUnderlineTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLUnderlineTransformer.h; sourceTree = "<group>"; };
 		06D9F8761A70465700C00B67 /* CMHTMLUnderlineTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLUnderlineTransformer.m; sourceTree = "<group>"; };
+		30A07BCB1B5545A50097CEF1 /* render.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = render.c; path = External/cmark/src/render.c; sourceTree = "<group>"; };
 		722E33DE1A68E7E4004DE919 /* CMAttributeRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMAttributeRun.h; sourceTree = "<group>"; };
 		722E33DF1A68E7E4004DE919 /* CMAttributeRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMAttributeRun.m; sourceTree = "<group>"; };
 		722E33E41A68E86B004DE919 /* CMTextAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTextAttributes.h; sourceTree = "<group>"; };
@@ -615,6 +618,7 @@
 				725A5FE51AEC5F9F00D6342C /* man.c */,
 				725A5FE61AEC5F9F00D6342C /* node.c */,
 				725A5FE71AEC5F9F00D6342C /* references.c */,
+				30A07BCB1B5545A50097CEF1 /* render.c */,
 				725A5FE81AEC5F9F00D6342C /* scanners.c */,
 				725A5FE91AEC5F9F00D6342C /* utf8.c */,
 				725A5FEA1AEC5F9F00D6342C /* xml.c */,
@@ -1137,6 +1141,7 @@
 				725A5FF51AEC5F9F00D6342C /* houdini_href_e.c in Sources */,
 				729F54281A6864F400CC7448 /* CMDocument.m in Sources */,
 				725116001A69735400337419 /* ONOXMLDocument.m in Sources */,
+				30A07BCC1B5545A50097CEF1 /* render.c in Sources */,
 				06D9F8791A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */,
 				725A5FFD1AEC5F9F00D6342C /* inlines.c in Sources */,
 				72772BD81A699ACB0059936C /* CMHTMLUtilities.m in Sources */,
@@ -1194,6 +1199,7 @@
 				725A5FF61AEC5F9F00D6342C /* houdini_href_e.c in Sources */,
 				729F54291A6864F400CC7448 /* CMDocument.m in Sources */,
 				725116011A69735400337419 /* ONOXMLDocument.m in Sources */,
+				30A07BCD1B5545A50097CEF1 /* render.c in Sources */,
 				06D9F87A1A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */,
 				725A5FFE1AEC5F9F00D6342C /* inlines.c in Sources */,
 				72772BD91A699ACB0059936C /* CMHTMLUtilities.m in Sources */,
@@ -1325,6 +1331,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
+					HAVE_C99_SNPRINTF,
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -1368,6 +1375,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = HAVE_C99_SNPRINTF;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
