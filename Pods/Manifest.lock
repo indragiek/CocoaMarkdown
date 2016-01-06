@@ -1,0 +1,19 @@
+PODS:
+  - cmark (0.21.0)
+  - Nimble (3.0.0)
+  - Ono (1.2.2)
+  - Quick (0.8.0)
+
+DEPENDENCIES:
+  - cmark
+  - Nimble
+  - Ono
+  - Quick
+
+SPEC CHECKSUMS:
+  cmark: 0868ab0d93af82a0f3f4b69a313b5d2089af51c3
+  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
+  Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
+  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
+
+COCOAPODS: 0.39.0

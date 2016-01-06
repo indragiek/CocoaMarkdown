@@ -1,0 +1,51 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AE7FD09FEC8B285AB86A7422A06B8D893FA72957",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "95438028B10BBB846574013D29F154A00556A9D1" : 0,
+    "AE7FD09FEC8B285AB86A7422A06B8D893FA72957" : 0,
+    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64" : 0,
+    "960DCF543335492D3B9E5F6D4B8E1AF53AF06834" : 0,
+    "9A76F17C6068412484158A754CBD274391008322" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3AC5DAEF-CDD9-4DE7-91A7-22B64C925FAD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "95438028B10BBB846574013D29F154A00556A9D1" : "CocoaMarkdown\/External\/Nimble\/",
+    "AE7FD09FEC8B285AB86A7422A06B8D893FA72957" : "CocoaMarkdown\/",
+    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64" : "CocoaMarkdown\/External\/Quick\/",
+    "960DCF543335492D3B9E5F6D4B8E1AF53AF06834" : "CocoaMarkdown\/External\/cmark\/",
+    "9A76F17C6068412484158A754CBD274391008322" : "CocoaMarkdown\/External\/Ono\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CocoaMarkdown",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CocoaMarkdown.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Nimble.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "95438028B10BBB846574013D29F154A00556A9D1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jgm\/cmark.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "960DCF543335492D3B9E5F6D4B8E1AF53AF06834"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mattt\/Ono.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9A76F17C6068412484158A754CBD274391008322"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/X8\/CocoaMarkdown.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AE7FD09FEC8B285AB86A7422A06B8D893FA72957"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Quick",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64"
+    }
+  ]
+}
