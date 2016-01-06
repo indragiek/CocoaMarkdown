@@ -11,13 +11,10 @@
 		06D9F8781A70465700C00B67 /* CMHTMLUnderlineTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D9F8751A70465700C00B67 /* CMHTMLUnderlineTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06D9F8791A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D9F8761A70465700C00B67 /* CMHTMLUnderlineTransformer.m */; };
 		06D9F87A1A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D9F8761A70465700C00B67 /* CMHTMLUnderlineTransformer.m */; };
-		30A07BCC1B5545A50097CEF1 /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = 30A07BCB1B5545A50097CEF1 /* render.c */; };
-		30A07BCD1B5545A50097CEF1 /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = 30A07BCB1B5545A50097CEF1 /* render.c */; };
+		114C4DA90D67EB5397CE92DC /* Pods_CocoaMarkdownTests_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F939D9AC7C0F64F0528968 /* Pods_CocoaMarkdownTests_Mac.framework */; };
 		720DA5811A68A00900DD05AF /* CocoaMarkdown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; };
 		720DA5821A68A01600DD05AF /* CocoaMarkdown.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 729F53FB1A68649200CC7448 /* CocoaMarkdown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		722694BC1A687B4100E1D3DC /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7F171A686AC300F23F46 /* test.md */; };
-		722694BD1A687BD400E1D3DC /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F54981A68663400CC7448 /* Nimble.framework */; };
-		722694BE1A687BD800E1D3DC /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F54A21A68663400CC7448 /* Quick.framework */; };
 		722E33E01A68E7E4004DE919 /* CMAttributeRun.h in Headers */ = {isa = PBXBuildFile; fileRef = 722E33DE1A68E7E4004DE919 /* CMAttributeRun.h */; };
 		722E33E11A68E7E4004DE919 /* CMAttributeRun.h in Headers */ = {isa = PBXBuildFile; fileRef = 722E33DE1A68E7E4004DE919 /* CMAttributeRun.h */; };
 		722E33E21A68E7E4004DE919 /* CMAttributeRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 722E33DF1A68E7E4004DE919 /* CMAttributeRun.m */; };
@@ -36,50 +33,12 @@
 		725115E31A6970A300337419 /* CMStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 725115DF1A6970A300337419 /* CMStack.m */; };
 		725115F51A6972AE00337419 /* CMHTMLElementTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115F41A6972AE00337419 /* CMHTMLElementTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		725115F61A6972AE00337419 /* CMHTMLElementTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115F41A6972AE00337419 /* CMHTMLElementTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		725115FC1A69735400337419 /* Ono.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115F91A69735400337419 /* Ono.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		725115FD1A69735400337419 /* Ono.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115F91A69735400337419 /* Ono.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		725115FE1A69735400337419 /* ONOXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115FA1A69735400337419 /* ONOXMLDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		725115FF1A69735400337419 /* ONOXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 725115FA1A69735400337419 /* ONOXMLDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		725116001A69735400337419 /* ONOXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 725115FB1A69735400337419 /* ONOXMLDocument.m */; };
-		725116011A69735400337419 /* ONOXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 725115FB1A69735400337419 /* ONOXMLDocument.m */; };
 		725116031A6973A700337419 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 725116021A6973A700337419 /* libxml2.dylib */; };
 		725116051A6973AC00337419 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 725116041A6973AC00337419 /* libxml2.dylib */; };
 		725116091A69760A00337419 /* CMHTMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 725116071A69760A00337419 /* CMHTMLElement.h */; };
 		7251160A1A69760A00337419 /* CMHTMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 725116071A69760A00337419 /* CMHTMLElement.h */; };
 		7251160B1A69760A00337419 /* CMHTMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 725116081A69760A00337419 /* CMHTMLElement.m */; };
 		7251160C1A69760A00337419 /* CMHTMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 725116081A69760A00337419 /* CMHTMLElement.m */; };
-		725A5FEB1AEC5F9F00D6342C /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FDA1AEC5F9F00D6342C /* blocks.c */; };
-		725A5FEC1AEC5F9F00D6342C /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FDA1AEC5F9F00D6342C /* blocks.c */; };
-		725A5FED1AEC5F9F00D6342C /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FDB1AEC5F9F00D6342C /* buffer.c */; };
-		725A5FEE1AEC5F9F00D6342C /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FDB1AEC5F9F00D6342C /* buffer.c */; };
-		725A5FEF1AEC5F9F00D6342C /* cmark_ctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FDC1AEC5F9F00D6342C /* cmark_ctype.c */; };
-		725A5FF01AEC5F9F00D6342C /* cmark_ctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FDC1AEC5F9F00D6342C /* cmark_ctype.c */; };
-		725A5FF11AEC5F9F00D6342C /* cmark.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FDD1AEC5F9F00D6342C /* cmark.c */; };
-		725A5FF21AEC5F9F00D6342C /* cmark.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FDD1AEC5F9F00D6342C /* cmark.c */; };
-		725A5FF51AEC5F9F00D6342C /* houdini_href_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FDF1AEC5F9F00D6342C /* houdini_href_e.c */; };
-		725A5FF61AEC5F9F00D6342C /* houdini_href_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FDF1AEC5F9F00D6342C /* houdini_href_e.c */; };
-		725A5FF71AEC5F9F00D6342C /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE01AEC5F9F00D6342C /* houdini_html_e.c */; };
-		725A5FF81AEC5F9F00D6342C /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE01AEC5F9F00D6342C /* houdini_html_e.c */; };
-		725A5FF91AEC5F9F00D6342C /* houdini_html_u.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE11AEC5F9F00D6342C /* houdini_html_u.c */; };
-		725A5FFA1AEC5F9F00D6342C /* houdini_html_u.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE11AEC5F9F00D6342C /* houdini_html_u.c */; };
-		725A5FFB1AEC5F9F00D6342C /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE21AEC5F9F00D6342C /* html.c */; };
-		725A5FFC1AEC5F9F00D6342C /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE21AEC5F9F00D6342C /* html.c */; };
-		725A5FFD1AEC5F9F00D6342C /* inlines.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE31AEC5F9F00D6342C /* inlines.c */; };
-		725A5FFE1AEC5F9F00D6342C /* inlines.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE31AEC5F9F00D6342C /* inlines.c */; };
-		725A5FFF1AEC5F9F00D6342C /* iterator.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE41AEC5F9F00D6342C /* iterator.c */; };
-		725A60001AEC5F9F00D6342C /* iterator.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE41AEC5F9F00D6342C /* iterator.c */; };
-		725A60011AEC5F9F00D6342C /* man.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE51AEC5F9F00D6342C /* man.c */; };
-		725A60021AEC5F9F00D6342C /* man.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE51AEC5F9F00D6342C /* man.c */; };
-		725A60031AEC5F9F00D6342C /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE61AEC5F9F00D6342C /* node.c */; };
-		725A60041AEC5F9F00D6342C /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE61AEC5F9F00D6342C /* node.c */; };
-		725A60051AEC5F9F00D6342C /* references.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE71AEC5F9F00D6342C /* references.c */; };
-		725A60061AEC5F9F00D6342C /* references.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE71AEC5F9F00D6342C /* references.c */; };
-		725A60071AEC5F9F00D6342C /* scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE81AEC5F9F00D6342C /* scanners.c */; };
-		725A60081AEC5F9F00D6342C /* scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE81AEC5F9F00D6342C /* scanners.c */; };
-		725A60091AEC5F9F00D6342C /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE91AEC5F9F00D6342C /* utf8.c */; };
-		725A600A1AEC5F9F00D6342C /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FE91AEC5F9F00D6342C /* utf8.c */; };
-		725A600B1AEC5F9F00D6342C /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FEA1AEC5F9F00D6342C /* xml.c */; };
-		725A600C1AEC5F9F00D6342C /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = 725A5FEA1AEC5F9F00D6342C /* xml.c */; };
 		72736B671A7B467E0046B957 /* CocoaMarkdown.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F53DF1A68641400CC7448 /* CocoaMarkdown.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72772BD61A699ACB0059936C /* CMHTMLUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 72772BD41A699ACA0059936C /* CMHTMLUtilities.h */; };
 		72772BD71A699ACB0059936C /* CMHTMLUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 72772BD41A699ACA0059936C /* CMHTMLUtilities.h */; };
@@ -132,8 +91,6 @@
 		729F54371A6864F400CC7448 /* CMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F541E1A6864F400CC7448 /* CMParser.m */; };
 		729F54381A6864F400CC7448 /* CMPlatformDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F541F1A6864F400CC7448 /* CMPlatformDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		729F54391A6864F400CC7448 /* CMPlatformDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F541F1A6864F400CC7448 /* CMPlatformDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		729F54AD1A68664E00CC7448 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F54A21A68663400CC7448 /* Quick.framework */; };
-		729F54AE1A68665200CC7448 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F54941A68663400CC7448 /* Nimble.framework */; };
 		729F54B21A6866C200CC7448 /* DummySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729F54B11A6866C200CC7448 /* DummySpec.swift */; };
 		729F54B31A6866C200CC7448 /* DummySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729F54B11A6866C200CC7448 /* DummySpec.swift */; };
 		729F54BD1A68673800CC7448 /* CMDocumentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F54B71A68673800CC7448 /* CMDocumentSpec.m */; };
@@ -173,6 +130,9 @@
 		72FE7EFB1A68695100F23F46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7EFA1A68695100F23F46 /* Images.xcassets */; };
 		72FE7EFE1A68695100F23F46 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7EFC1A68695100F23F46 /* MainMenu.xib */; };
 		72FE7F191A686ACD00F23F46 /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7F171A686AC300F23F46 /* test.md */; };
+		9855C48B3699D026448A85ED /* Pods_CocoaMarkdownTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F88399945A02E7C1817680 /* Pods_CocoaMarkdownTests_iOS.framework */; };
+		A127D46B91C15678FCA1EA4C /* Pods_CocoaMarkdown_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC3AB4E22B4CEA3199040DC /* Pods_CocoaMarkdown_iOS.framework */; };
+		FE0B086DD687EA4684E64A09 /* Pods_CocoaMarkdown_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CA835A27B3D095C033C99B /* Pods_CocoaMarkdown_Mac.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,76 +156,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 729F53FA1A68649200CC7448;
 			remoteInfo = CocoaMarkdown;
-		};
-		729F54931A68663400CC7448 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 729F54891A68663300CC7448 /* Nimble.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1F1A74291940169200FFFC47;
-			remoteInfo = "Nimble-iOS";
-		};
-		729F54951A68663400CC7448 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 729F54891A68663300CC7448 /* Nimble.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1F1A74341940169200FFFC47;
-			remoteInfo = "Nimble-iOSTests";
-		};
-		729F54971A68663400CC7448 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 729F54891A68663300CC7448 /* Nimble.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1F925EAD195C0D6300ED456B;
-			remoteInfo = "Nimble-OSX";
-		};
-		729F54991A68663400CC7448 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 729F54891A68663300CC7448 /* Nimble.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1F925EB7195C0D6300ED456B;
-			remoteInfo = "Nimble-OSXTests";
-		};
-		729F54A11A68663400CC7448 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 729F548C1A68663400CC7448 /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DAEB6B8E1943873100289F44;
-			remoteInfo = "Quick-OSX";
-		};
-		729F54A31A68663400CC7448 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 729F548C1A68663400CC7448 /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DAEB6B991943873100289F44;
-			remoteInfo = "Quick-OSXTests";
-		};
-		729F54A51A68663400CC7448 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 729F548C1A68663400CC7448 /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA5663E81A4C8D8500193C88;
-			remoteInfo = "QuickFocused-OSXTests";
-		};
-		729F54A71A68663400CC7448 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 729F548C1A68663400CC7448 /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5A5D117C19473F2100F6D13D;
-			remoteInfo = "Quick-iOS";
-		};
-		729F54A91A68663400CC7448 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 729F548C1A68663400CC7448 /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5A5D118619473F2100F6D13D;
-			remoteInfo = "Quick-iOSTests";
-		};
-		729F54AB1A68663400CC7448 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 729F548C1A68663400CC7448 /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA9876B21A4C70EB0004AA17;
-			remoteInfo = "QuickFocused-iOSTests";
 		};
 		72FE7EEB1A68693200F23F46 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -304,7 +194,14 @@
 /* Begin PBXFileReference section */
 		06D9F8751A70465700C00B67 /* CMHTMLUnderlineTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLUnderlineTransformer.h; sourceTree = "<group>"; };
 		06D9F8761A70465700C00B67 /* CMHTMLUnderlineTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLUnderlineTransformer.m; sourceTree = "<group>"; };
-		30A07BCB1B5545A50097CEF1 /* render.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = render.c; path = External/cmark/src/render.c; sourceTree = "<group>"; };
+		0B849808A5B2FAF25F3D1749 /* Pods-CocoaMarkdownTests-Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaMarkdownTests-Mac.release.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaMarkdownTests-Mac/Pods-CocoaMarkdownTests-Mac.release.xcconfig"; sourceTree = "<group>"; };
+		12AAB7BBEAE89A3E7B0A8C88 /* Pods-CocoaMarkdown-Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaMarkdown-Mac.release.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaMarkdown-Mac/Pods-CocoaMarkdown-Mac.release.xcconfig"; sourceTree = "<group>"; };
+		31F88399945A02E7C1817680 /* Pods_CocoaMarkdownTests_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaMarkdownTests_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33C6F07527E8F01C5B9FE4A1 /* Pods-CocoaMarkdown-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaMarkdown-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaMarkdown-iOS/Pods-CocoaMarkdown-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		4035C248A9AE9CFE073E16DF /* Pods-CocoaMarkdownTests-Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaMarkdownTests-Mac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaMarkdownTests-Mac/Pods-CocoaMarkdownTests-Mac.debug.xcconfig"; sourceTree = "<group>"; };
+		504CEAD80AA635F3D4F1059E /* Pods-CocoaMarkdown-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaMarkdown-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaMarkdown-iOS/Pods-CocoaMarkdown-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		52CA835A27B3D095C033C99B /* Pods_CocoaMarkdown_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaMarkdown_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		702EDE2C02B4748CA50FE2DA /* Pods-CocoaMarkdownTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaMarkdownTests-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaMarkdownTests-iOS/Pods-CocoaMarkdownTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		722E33DE1A68E7E4004DE919 /* CMAttributeRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMAttributeRun.h; sourceTree = "<group>"; };
 		722E33DF1A68E7E4004DE919 /* CMAttributeRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMAttributeRun.m; sourceTree = "<group>"; };
 		722E33E41A68E86B004DE919 /* CMTextAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTextAttributes.h; sourceTree = "<group>"; };
@@ -314,29 +211,10 @@
 		725115DE1A6970A300337419 /* CMStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMStack.h; sourceTree = "<group>"; };
 		725115DF1A6970A300337419 /* CMStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMStack.m; sourceTree = "<group>"; };
 		725115F41A6972AE00337419 /* CMHTMLElementTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLElementTransformer.h; sourceTree = "<group>"; };
-		725115F91A69735400337419 /* Ono.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ono.h; path = External/Ono/Ono/Ono.h; sourceTree = "<group>"; };
-		725115FA1A69735400337419 /* ONOXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ONOXMLDocument.h; path = External/Ono/Ono/ONOXMLDocument.h; sourceTree = "<group>"; };
-		725115FB1A69735400337419 /* ONOXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ONOXMLDocument.m; path = External/Ono/Ono/ONOXMLDocument.m; sourceTree = "<group>"; };
 		725116021A6973A700337419 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		725116041A6973AC00337419 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
 		725116071A69760A00337419 /* CMHTMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLElement.h; sourceTree = "<group>"; };
 		725116081A69760A00337419 /* CMHTMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLElement.m; sourceTree = "<group>"; };
-		725A5FDA1AEC5F9F00D6342C /* blocks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = blocks.c; path = External/cmark/src/blocks.c; sourceTree = "<group>"; };
-		725A5FDB1AEC5F9F00D6342C /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = buffer.c; path = External/cmark/src/buffer.c; sourceTree = "<group>"; };
-		725A5FDC1AEC5F9F00D6342C /* cmark_ctype.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cmark_ctype.c; path = External/cmark/src/cmark_ctype.c; sourceTree = "<group>"; };
-		725A5FDD1AEC5F9F00D6342C /* cmark.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cmark.c; path = External/cmark/src/cmark.c; sourceTree = "<group>"; };
-		725A5FDF1AEC5F9F00D6342C /* houdini_href_e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = houdini_href_e.c; path = External/cmark/src/houdini_href_e.c; sourceTree = "<group>"; };
-		725A5FE01AEC5F9F00D6342C /* houdini_html_e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = houdini_html_e.c; path = External/cmark/src/houdini_html_e.c; sourceTree = "<group>"; };
-		725A5FE11AEC5F9F00D6342C /* houdini_html_u.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = houdini_html_u.c; path = External/cmark/src/houdini_html_u.c; sourceTree = "<group>"; };
-		725A5FE21AEC5F9F00D6342C /* html.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = html.c; path = External/cmark/src/html.c; sourceTree = "<group>"; };
-		725A5FE31AEC5F9F00D6342C /* inlines.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = inlines.c; path = External/cmark/src/inlines.c; sourceTree = "<group>"; };
-		725A5FE41AEC5F9F00D6342C /* iterator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = iterator.c; path = External/cmark/src/iterator.c; sourceTree = "<group>"; };
-		725A5FE51AEC5F9F00D6342C /* man.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = man.c; path = External/cmark/src/man.c; sourceTree = "<group>"; };
-		725A5FE61AEC5F9F00D6342C /* node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = node.c; path = External/cmark/src/node.c; sourceTree = "<group>"; };
-		725A5FE71AEC5F9F00D6342C /* references.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = references.c; path = External/cmark/src/references.c; sourceTree = "<group>"; };
-		725A5FE81AEC5F9F00D6342C /* scanners.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = scanners.c; path = External/cmark/src/scanners.c; sourceTree = "<group>"; };
-		725A5FE91AEC5F9F00D6342C /* utf8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = utf8.c; path = External/cmark/src/utf8.c; sourceTree = "<group>"; };
-		725A5FEA1AEC5F9F00D6342C /* xml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xml.c; path = External/cmark/src/xml.c; sourceTree = "<group>"; };
 		72772BD41A699ACA0059936C /* CMHTMLUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLUtilities.h; sourceTree = "<group>"; };
 		72772BD51A699ACA0059936C /* CMHTMLUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLUtilities.m; sourceTree = "<group>"; };
 		72772BE41A69ABB20059936C /* CMHTMLStrikethroughTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLStrikethroughTransformer.h; sourceTree = "<group>"; };
@@ -368,8 +246,6 @@
 		729F541D1A6864F400CC7448 /* CMParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMParser.h; sourceTree = "<group>"; };
 		729F541E1A6864F400CC7448 /* CMParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMParser.m; sourceTree = "<group>"; };
 		729F541F1A6864F400CC7448 /* CMPlatformDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPlatformDefines.h; sourceTree = "<group>"; };
-		729F54891A68663300CC7448 /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = External/Nimble/Nimble.xcodeproj; sourceTree = SOURCE_ROOT; };
-		729F548C1A68663400CC7448 /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = External/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
 		729F54B11A6866C200CC7448 /* DummySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummySpec.swift; sourceTree = "<group>"; };
 		729F54B41A6866E200CC7448 /* CocoaMarkdownTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CocoaMarkdownTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		729F54B71A68673800CC7448 /* CMDocumentSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMDocumentSpec.m; sourceTree = "<group>"; };
@@ -399,6 +275,10 @@
 		72FE7EFA1A68695100F23F46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		72FE7EFD1A68695100F23F46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		72FE7F171A686AC300F23F46 /* test.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = test.md; sourceTree = "<group>"; };
+		9BC3AB4E22B4CEA3199040DC /* Pods_CocoaMarkdown_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaMarkdown_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8BD9F439C2253769359D9FB /* Pods-CocoaMarkdown-Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaMarkdown-Mac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaMarkdown-Mac/Pods-CocoaMarkdown-Mac.debug.xcconfig"; sourceTree = "<group>"; };
+		E1F939D9AC7C0F64F0528968 /* Pods_CocoaMarkdownTests_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaMarkdownTests_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E604E4B8A6692CCACB89B0D6 /* Pods-CocoaMarkdownTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaMarkdownTests-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaMarkdownTests-iOS/Pods-CocoaMarkdownTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				725116031A6973A700337419 /* libxml2.dylib in Frameworks */,
+				A127D46B91C15678FCA1EA4C /* Pods_CocoaMarkdown_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,9 +295,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				729F54AE1A68665200CC7448 /* Nimble.framework in Frameworks */,
-				729F54AD1A68664E00CC7448 /* Quick.framework in Frameworks */,
 				729F53E61A68641400CC7448 /* CocoaMarkdown.framework in Frameworks */,
+				9855C48B3699D026448A85ED /* Pods_CocoaMarkdownTests_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				725116051A6973AC00337419 /* libxml2.dylib in Frameworks */,
+				FE0B086DD687EA4684E64A09 /* Pods_CocoaMarkdown_Mac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,9 +313,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				722694BE1A687BD800E1D3DC /* Quick.framework in Frameworks */,
-				722694BD1A687BD400E1D3DC /* Nimble.framework in Frameworks */,
 				729F54061A68649200CC7448 /* CocoaMarkdown.framework in Frameworks */,
+				114C4DA90D67EB5397CE92DC /* Pods_CocoaMarkdownTests_Mac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,23 +337,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		725115F71A69733400337419 /* External */ = {
+		560AEDFEFA69759295D9354F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				729F543E1A68650000CC7448 /* CommonMark */,
-				725115F81A69734100337419 /* Ono */,
+				52CA835A27B3D095C033C99B /* Pods_CocoaMarkdown_Mac.framework */,
+				9BC3AB4E22B4CEA3199040DC /* Pods_CocoaMarkdown_iOS.framework */,
+				E1F939D9AC7C0F64F0528968 /* Pods_CocoaMarkdownTests_Mac.framework */,
+				31F88399945A02E7C1817680 /* Pods_CocoaMarkdownTests_iOS.framework */,
 			);
-			name = External;
-			sourceTree = "<group>";
-		};
-		725115F81A69734100337419 /* Ono */ = {
-			isa = PBXGroup;
-			children = (
-				725115F91A69735400337419 /* Ono.h */,
-				725115FA1A69735400337419 /* ONOXMLDocument.h */,
-				725115FB1A69735400337419 /* ONOXMLDocument.m */,
-			);
-			name = Ono;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		725116061A6973B200337419 /* Frameworks */ = {
@@ -531,12 +403,13 @@
 		729F53D01A68641300CC7448 = {
 			isa = PBXGroup;
 			children = (
-				725115F71A69733400337419 /* External */,
 				729F53DC1A68641400CC7448 /* CocoaMarkdown */,
 				729F53E91A68641400CC7448 /* CocoaMarkdownTests */,
 				72FE7ECA1A68692400F23F46 /* Example-iOS */,
 				72FE7EF51A68695100F23F46 /* Example-Mac */,
 				729F53DB1A68641400CC7448 /* Products */,
+				CCA96F30AFD7DAAE53E05BE1 /* Pods */,
+				560AEDFEFA69759295D9354F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -586,7 +459,6 @@
 				729F54BC1A68673800CC7448 /* CMParserTestObject.m */,
 				72C17A9D1A6EBE5600212F17 /* CMHTMLRendererSpec.m */,
 				72FE7E971A68683300F23F46 /* Resources */,
-				729F54781A6865D300CC7448 /* Frameworks */,
 				729F53EA1A68641400CC7448 /* Supporting Files */,
 			);
 			path = CocoaMarkdownTests;
@@ -600,63 +472,6 @@
 				729F53EB1A68641400CC7448 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		729F543E1A68650000CC7448 /* CommonMark */ = {
-			isa = PBXGroup;
-			children = (
-				725A5FDA1AEC5F9F00D6342C /* blocks.c */,
-				725A5FDB1AEC5F9F00D6342C /* buffer.c */,
-				725A5FDC1AEC5F9F00D6342C /* cmark_ctype.c */,
-				725A5FDD1AEC5F9F00D6342C /* cmark.c */,
-				725A5FDF1AEC5F9F00D6342C /* houdini_href_e.c */,
-				725A5FE01AEC5F9F00D6342C /* houdini_html_e.c */,
-				725A5FE11AEC5F9F00D6342C /* houdini_html_u.c */,
-				725A5FE21AEC5F9F00D6342C /* html.c */,
-				725A5FE31AEC5F9F00D6342C /* inlines.c */,
-				725A5FE41AEC5F9F00D6342C /* iterator.c */,
-				725A5FE51AEC5F9F00D6342C /* man.c */,
-				725A5FE61AEC5F9F00D6342C /* node.c */,
-				725A5FE71AEC5F9F00D6342C /* references.c */,
-				30A07BCB1B5545A50097CEF1 /* render.c */,
-				725A5FE81AEC5F9F00D6342C /* scanners.c */,
-				725A5FE91AEC5F9F00D6342C /* utf8.c */,
-				725A5FEA1AEC5F9F00D6342C /* xml.c */,
-			);
-			name = CommonMark;
-			sourceTree = "<group>";
-		};
-		729F54781A6865D300CC7448 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				729F54891A68663300CC7448 /* Nimble.xcodeproj */,
-				729F548C1A68663400CC7448 /* Quick.xcodeproj */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		729F548A1A68663300CC7448 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				729F54941A68663400CC7448 /* Nimble.framework */,
-				729F54961A68663400CC7448 /* NimbleTests.xctest */,
-				729F54981A68663400CC7448 /* Nimble.framework */,
-				729F549A1A68663400CC7448 /* NimbleTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		729F548D1A68663400CC7448 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				729F54A21A68663400CC7448 /* Quick.framework */,
-				729F54A41A68663400CC7448 /* Quick-OSXTests.xctest */,
-				729F54A61A68663400CC7448 /* QuickFocused-OSXTests.xctest */,
-				729F54A81A68663400CC7448 /* Quick.framework */,
-				729F54AA1A68663400CC7448 /* Quick-iOSTests.xctest */,
-				729F54AC1A68663400CC7448 /* QuickFocused-iOSTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		72C17A8F1A6EB9AB00212F17 /* CommonMark */ = {
@@ -745,6 +560,21 @@
 			path = CocoaMarkdownTests/Resources;
 			sourceTree = SOURCE_ROOT;
 		};
+		CCA96F30AFD7DAAE53E05BE1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A8BD9F439C2253769359D9FB /* Pods-CocoaMarkdown-Mac.debug.xcconfig */,
+				12AAB7BBEAE89A3E7B0A8C88 /* Pods-CocoaMarkdown-Mac.release.xcconfig */,
+				504CEAD80AA635F3D4F1059E /* Pods-CocoaMarkdown-iOS.debug.xcconfig */,
+				33C6F07527E8F01C5B9FE4A1 /* Pods-CocoaMarkdown-iOS.release.xcconfig */,
+				4035C248A9AE9CFE073E16DF /* Pods-CocoaMarkdownTests-Mac.debug.xcconfig */,
+				0B849808A5B2FAF25F3D1749 /* Pods-CocoaMarkdownTests-Mac.release.xcconfig */,
+				E604E4B8A6692CCACB89B0D6 /* Pods-CocoaMarkdownTests-iOS.debug.xcconfig */,
+				702EDE2C02B4748CA50FE2DA /* Pods-CocoaMarkdownTests-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -762,8 +592,6 @@
 				729F54341A6864F400CC7448 /* CMParser.h in Headers */,
 				72772BF71A6A29810059936C /* CMHTMLScriptTransformer_Private.h in Headers */,
 				72772BFB1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.h in Headers */,
-				725115FC1A69735400337419 /* Ono.h in Headers */,
-				725115FE1A69735400337419 /* ONOXMLDocument.h in Headers */,
 				72772BEC1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
 				729F542A1A6864F400CC7448 /* CMIterator.h in Headers */,
 				729F54261A6864F400CC7448 /* CMDocument.h in Headers */,
@@ -788,7 +616,6 @@
 			files = (
 				725115F61A6972AE00337419 /* CMHTMLElementTransformer.h in Headers */,
 				729F54231A6864F400CC7448 /* CMAttributedStringRenderer.h in Headers */,
-				725115FF1A69735400337419 /* ONOXMLDocument.h in Headers */,
 				729F54271A6864F400CC7448 /* CMDocument.h in Headers */,
 				72772BF81A6A29810059936C /* CMHTMLScriptTransformer_Private.h in Headers */,
 				729F54351A6864F400CC7448 /* CMParser.h in Headers */,
@@ -805,7 +632,6 @@
 				725115E11A6970A300337419 /* CMStack.h in Headers */,
 				729F54391A6864F400CC7448 /* CMPlatformDefines.h in Headers */,
 				72772BF31A6A28A70059936C /* CMHTMLScriptTransformer.h in Headers */,
-				725115FD1A69735400337419 /* Ono.h in Headers */,
 				72736B671A7B467E0046B957 /* CocoaMarkdown.h in Headers */,
 				72C17A9A1A6EBD7800212F17 /* CMDocument+HTMLAdditions.h in Headers */,
 				72772BED1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
@@ -823,10 +649,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 729F53F01A68641400CC7448 /* Build configuration list for PBXNativeTarget "CocoaMarkdown-iOS" */;
 			buildPhases = (
+				B8D540ED003FEF953BE90537 /* Check Pods Manifest.lock */,
 				729F53D51A68641400CC7448 /* Sources */,
 				729F53D61A68641400CC7448 /* Frameworks */,
 				729F53D71A68641400CC7448 /* Headers */,
 				729F53D81A68641400CC7448 /* Resources */,
+				4F3FEE201982FFFF00818F74 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -841,9 +669,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 729F53F31A68641400CC7448 /* Build configuration list for PBXNativeTarget "CocoaMarkdownTests-iOS" */;
 			buildPhases = (
+				8D554E5900D5B96EA67CC7E8 /* Check Pods Manifest.lock */,
 				729F53E11A68641400CC7448 /* Sources */,
 				729F53E21A68641400CC7448 /* Frameworks */,
 				729F53E31A68641400CC7448 /* Resources */,
+				234BBDA6D48BBFA1EDB050E8 /* Embed Pods Frameworks */,
+				7D8791B20047F7669ED7E22E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -859,10 +690,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 729F540E1A68649200CC7448 /* Build configuration list for PBXNativeTarget "CocoaMarkdown-Mac" */;
 			buildPhases = (
+				9138EEB53F8E24554BA21A43 /* Check Pods Manifest.lock */,
 				729F53F61A68649200CC7448 /* Sources */,
 				729F53F71A68649200CC7448 /* Frameworks */,
 				729F53F81A68649200CC7448 /* Headers */,
 				729F53F91A68649200CC7448 /* Resources */,
+				E3FA604CE676EEAE249C361A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -877,9 +710,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 729F54111A68649200CC7448 /* Build configuration list for PBXNativeTarget "CocoaMarkdownTests-Mac" */;
 			buildPhases = (
+				C683838C0C361CBB91574B69 /* Check Pods Manifest.lock */,
 				729F54011A68649200CC7448 /* Sources */,
 				729F54021A68649200CC7448 /* Frameworks */,
 				729F54031A68649200CC7448 /* Resources */,
+				53DC6FBCFDE403596CDC2A33 /* Embed Pods Frameworks */,
+				1D56ABCD8D560EE2E55D45F4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -935,6 +771,7 @@
 		729F53D11A68641300CC7448 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Indragie Karunaratne";
 				TargetAttributes = {
@@ -969,16 +806,6 @@
 			mainGroup = 729F53D01A68641300CC7448;
 			productRefGroup = 729F53DB1A68641400CC7448 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 729F548A1A68663300CC7448 /* Products */;
-					ProjectRef = 729F54891A68663300CC7448 /* Nimble.xcodeproj */;
-				},
-				{
-					ProductGroup = 729F548D1A68663400CC7448 /* Products */;
-					ProjectRef = 729F548C1A68663400CC7448 /* Quick.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				729F53D91A68641400CC7448 /* CocoaMarkdown-iOS */,
@@ -990,79 +817,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		729F54941A68663400CC7448 /* Nimble.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Nimble.framework;
-			remoteRef = 729F54931A68663400CC7448 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		729F54961A68663400CC7448 /* NimbleTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = NimbleTests.xctest;
-			remoteRef = 729F54951A68663400CC7448 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		729F54981A68663400CC7448 /* Nimble.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Nimble.framework;
-			remoteRef = 729F54971A68663400CC7448 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		729F549A1A68663400CC7448 /* NimbleTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = NimbleTests.xctest;
-			remoteRef = 729F54991A68663400CC7448 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		729F54A21A68663400CC7448 /* Quick.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Quick.framework;
-			remoteRef = 729F54A11A68663400CC7448 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		729F54A41A68663400CC7448 /* Quick-OSXTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Quick-OSXTests.xctest";
-			remoteRef = 729F54A31A68663400CC7448 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		729F54A61A68663400CC7448 /* QuickFocused-OSXTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "QuickFocused-OSXTests.xctest";
-			remoteRef = 729F54A51A68663400CC7448 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		729F54A81A68663400CC7448 /* Quick.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Quick.framework;
-			remoteRef = 729F54A71A68663400CC7448 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		729F54AA1A68663400CC7448 /* Quick-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Quick-iOSTests.xctest";
-			remoteRef = 729F54A91A68663400CC7448 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		729F54AC1A68663400CC7448 /* QuickFocused-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "QuickFocused-iOSTests.xctest";
-			remoteRef = 729F54AB1A68663400CC7448 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		729F53D81A68641400CC7448 /* Resources */ = {
@@ -1118,47 +872,182 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1D56ABCD8D560EE2E55D45F4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CocoaMarkdownTests-Mac/Pods-CocoaMarkdownTests-Mac-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		234BBDA6D48BBFA1EDB050E8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CocoaMarkdownTests-iOS/Pods-CocoaMarkdownTests-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4F3FEE201982FFFF00818F74 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CocoaMarkdown-iOS/Pods-CocoaMarkdown-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		53DC6FBCFDE403596CDC2A33 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CocoaMarkdownTests-Mac/Pods-CocoaMarkdownTests-Mac-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D8791B20047F7669ED7E22E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CocoaMarkdownTests-iOS/Pods-CocoaMarkdownTests-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D554E5900D5B96EA67CC7E8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9138EEB53F8E24554BA21A43 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B8D540ED003FEF953BE90537 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C683838C0C361CBB91574B69 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E3FA604CE676EEAE249C361A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CocoaMarkdown-Mac/Pods-CocoaMarkdown-Mac-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		729F53D51A68641400CC7448 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				725A60091AEC5F9F00D6342C /* utf8.c in Sources */,
 				7251160B1A69760A00337419 /* CMHTMLElement.m in Sources */,
 				729F542C1A6864F400CC7448 /* CMIterator.m in Sources */,
 				729F54361A6864F400CC7448 /* CMParser.m in Sources */,
 				72C17A831A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */,
-				725A5FF91AEC5F9F00D6342C /* houdini_html_u.c in Sources */,
 				722E33E21A68E7E4004DE919 /* CMAttributeRun.m in Sources */,
 				72772BEE1A6A22720059936C /* CMHTMLSuperscriptTransformer.m in Sources */,
 				729F54321A6864F400CC7448 /* CMNode.m in Sources */,
-				725A5FEF1AEC5F9F00D6342C /* cmark_ctype.c in Sources */,
 				72772BFD1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.m in Sources */,
-				725A5FEB1AEC5F9F00D6342C /* blocks.c in Sources */,
-				725A60011AEC5F9F00D6342C /* man.c in Sources */,
 				72772BF41A6A28A70059936C /* CMHTMLScriptTransformer.m in Sources */,
-				725A60051AEC5F9F00D6342C /* references.c in Sources */,
-				725A5FF51AEC5F9F00D6342C /* houdini_href_e.c in Sources */,
 				729F54281A6864F400CC7448 /* CMDocument.m in Sources */,
-				725116001A69735400337419 /* ONOXMLDocument.m in Sources */,
-				30A07BCC1B5545A50097CEF1 /* render.c in Sources */,
 				06D9F8791A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */,
-				725A5FFD1AEC5F9F00D6342C /* inlines.c in Sources */,
 				72772BD81A699ACB0059936C /* CMHTMLUtilities.m in Sources */,
-				725A60031AEC5F9F00D6342C /* node.c in Sources */,
 				725115E21A6970A300337419 /* CMStack.m in Sources */,
-				725A5FED1AEC5F9F00D6342C /* buffer.c in Sources */,
 				72C17A951A6EBA3300212F17 /* CMHTMLRenderer.m in Sources */,
-				725A5FF71AEC5F9F00D6342C /* houdini_html_e.c in Sources */,
 				729F54241A6864F400CC7448 /* CMAttributedStringRenderer.m in Sources */,
 				722E33E81A68E86B004DE919 /* CMTextAttributes.m in Sources */,
-				725A600B1AEC5F9F00D6342C /* xml.c in Sources */,
 				72C17A9B1A6EBD7800212F17 /* CMDocument+HTMLAdditions.m in Sources */,
-				725A5FFF1AEC5F9F00D6342C /* iterator.c in Sources */,
-				725A60071AEC5F9F00D6342C /* scanners.c in Sources */,
-				725A5FFB1AEC5F9F00D6342C /* html.c in Sources */,
 				72772BE81A69ABB20059936C /* CMHTMLStrikethroughTransformer.m in Sources */,
-				725A5FF11AEC5F9F00D6342C /* cmark.c in Sources */,
 				722E33EE1A68EADA004DE919 /* CMCascadingAttributeStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1181,42 +1070,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				725A600A1AEC5F9F00D6342C /* utf8.c in Sources */,
 				7251160C1A69760A00337419 /* CMHTMLElement.m in Sources */,
 				729F542D1A6864F400CC7448 /* CMIterator.m in Sources */,
 				729F54371A6864F400CC7448 /* CMParser.m in Sources */,
 				72C17A841A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */,
-				725A5FFA1AEC5F9F00D6342C /* houdini_html_u.c in Sources */,
 				722E33E31A68E7E4004DE919 /* CMAttributeRun.m in Sources */,
 				72772BEF1A6A22720059936C /* CMHTMLSuperscriptTransformer.m in Sources */,
 				729F54331A6864F400CC7448 /* CMNode.m in Sources */,
-				725A5FF01AEC5F9F00D6342C /* cmark_ctype.c in Sources */,
 				72772BFE1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.m in Sources */,
-				725A5FEC1AEC5F9F00D6342C /* blocks.c in Sources */,
-				725A60021AEC5F9F00D6342C /* man.c in Sources */,
 				72772BF51A6A28A70059936C /* CMHTMLScriptTransformer.m in Sources */,
-				725A60061AEC5F9F00D6342C /* references.c in Sources */,
-				725A5FF61AEC5F9F00D6342C /* houdini_href_e.c in Sources */,
 				729F54291A6864F400CC7448 /* CMDocument.m in Sources */,
-				725116011A69735400337419 /* ONOXMLDocument.m in Sources */,
-				30A07BCD1B5545A50097CEF1 /* render.c in Sources */,
 				06D9F87A1A70465700C00B67 /* CMHTMLUnderlineTransformer.m in Sources */,
-				725A5FFE1AEC5F9F00D6342C /* inlines.c in Sources */,
 				72772BD91A699ACB0059936C /* CMHTMLUtilities.m in Sources */,
-				725A60041AEC5F9F00D6342C /* node.c in Sources */,
 				725115E31A6970A300337419 /* CMStack.m in Sources */,
-				725A5FEE1AEC5F9F00D6342C /* buffer.c in Sources */,
 				72C17A961A6EBA3300212F17 /* CMHTMLRenderer.m in Sources */,
-				725A5FF81AEC5F9F00D6342C /* houdini_html_e.c in Sources */,
 				729F54251A6864F400CC7448 /* CMAttributedStringRenderer.m in Sources */,
 				722E33E91A68E86B004DE919 /* CMTextAttributes.m in Sources */,
-				725A600C1AEC5F9F00D6342C /* xml.c in Sources */,
 				72C17A9C1A6EBD7800212F17 /* CMDocument+HTMLAdditions.m in Sources */,
-				725A60001AEC5F9F00D6342C /* iterator.c in Sources */,
-				725A60081AEC5F9F00D6342C /* scanners.c in Sources */,
-				725A5FFC1AEC5F9F00D6342C /* html.c in Sources */,
 				72772BE91A69ABB20059936C /* CMHTMLStrikethroughTransformer.m in Sources */,
-				725A5FF21AEC5F9F00D6342C /* cmark.c in Sources */,
 				722E33EF1A68EADA004DE919 /* CMCascadingAttributeStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1394,6 +1265,7 @@
 		};
 		729F53F11A68641400CC7448 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 504CEAD80AA635F3D4F1059E /* Pods-CocoaMarkdown-iOS.debug.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1417,6 +1289,7 @@
 		};
 		729F53F21A68641400CC7448 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33C6F07527E8F01C5B9FE4A1 /* Pods-CocoaMarkdown-iOS.release.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1440,6 +1313,7 @@
 		};
 		729F53F41A68641400CC7448 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E604E4B8A6692CCACB89B0D6 /* Pods-CocoaMarkdownTests-iOS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1466,6 +1340,7 @@
 		};
 		729F53F51A68641400CC7448 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 702EDE2C02B4748CA50FE2DA /* Pods-CocoaMarkdownTests-iOS.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1487,6 +1362,7 @@
 		};
 		729F540F1A68649200CC7448 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8BD9F439C2253769359D9FB /* Pods-CocoaMarkdown-Mac.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -1518,6 +1394,7 @@
 		};
 		729F54101A68649200CC7448 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12AAB7BBEAE89A3E7B0A8C88 /* Pods-CocoaMarkdown-Mac.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1546,6 +1423,7 @@
 		};
 		729F54121A68649200CC7448 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4035C248A9AE9CFE073E16DF /* Pods-CocoaMarkdownTests-Mac.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1575,6 +1453,7 @@
 		};
 		729F54131A68649200CC7448 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B849808A5B2FAF25F3D1749 /* Pods-CocoaMarkdownTests-Mac.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;

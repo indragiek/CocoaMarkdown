@@ -1,0 +1,6 @@
+framework module cmark {
+  umbrella header "cmark-umbrella.h"
+
+  export *
+  module * { export * }
+}

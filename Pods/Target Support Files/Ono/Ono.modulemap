@@ -1,0 +1,6 @@
+framework module Ono {
+  umbrella header "Ono-umbrella.h"
+
+  export *
+  module * { export * }
+}

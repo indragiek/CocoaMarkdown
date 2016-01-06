@@ -1,7 +1,7 @@
 #import <Quick/Quick.h>
-#import <Nimble/Nimble.h>
 #import <CocoaMarkdown/CocoaMarkdown.h>
 #import "CMParserTestObject.h"
+@import Nimble;
 
 QuickSpecBegin(CMParserSpec)
 
