@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CocoaMarkdown"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "Markdown parsing and rendering for iOS and OS X"
 
   s.description  = "CocoaMarkdown aims to solve two primary problems better than existing libraries:
@@ -14,7 +14,7 @@ Efficient NSAttributedString creation for easy rendering on iOS and OS X. Most e
   s.author       = "Indragie Karunaratne"
   s.platform     = :ios
 
-  s.source       = { :git => "https://github.com/X8/CocoaMarkdown.git", :tag => "0.1.0" }
+  s.source       = { :git => "https://github.com/X8/CocoaMarkdown.git", :tag => "0.1.1" }
   s.source_files  = "CocoaMarkdown"
 
   s.framework  = "UIKit"
