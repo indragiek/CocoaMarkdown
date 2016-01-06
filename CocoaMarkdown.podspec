@@ -14,14 +14,14 @@ Efficient NSAttributedString creation for easy rendering on iOS and OS X. Most e
   s.author       = "Indragie Karunaratne"
   s.platform     = :ios
 
-  s.source       = { :git => "https://github.com/X8/CocoaMarkdown.git", :tag => "0.1.1" }
+  s.source       = { :git => "https://github.com/indragiek/CocoaMarkdown", :tag => "0.1.1" }
   s.source_files  = "CocoaMarkdown"
 
   s.framework  = "UIKit"
-  
+
   s.dependency 'cmark'
   s.dependency 'Ono'
-    
+
 
 
 end
