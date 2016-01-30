@@ -13,7 +13,7 @@ Efficient NSAttributedString creation for easy rendering on iOS and OS X. Most e
   s.author        = "Indragie Karunaratne"
   s.platform      = :ios, '8.0'
 
-  s.source        = { :git => 'https://github.com/pronebird/CocoaMarkdown.git' }
+  s.source        = { :git => 'https://github.com/indragiek/CocoaMarkdown.git' }
   s.source_files  = 'CocoaMarkdown'
   s.framework     = 'UIKit'
   s.requires_arc  = true
