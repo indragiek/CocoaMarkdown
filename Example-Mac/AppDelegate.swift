@@ -17,7 +17,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         let path = NSBundle.mainBundle().pathForResource("test", ofType: "md")!
-        let document = CMDocument(contentsOfFile: path, options: nil)
+//        let document = CMDocument(contentsOfFile: path, options: nil)
+//        let text = ["## Hello","","```c","void main(){","}","```"].joinWithSeparator("\n")
+//        let document = CMDocument(data: text.dataUsingEncoding(NSUTF8StringEncoding), options: CMDocumentOptions.Smart)
+        let document = CMDocument(contentsOfFile: path, options: CMDocumentOptions.Smart)
         let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
         renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
         renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
