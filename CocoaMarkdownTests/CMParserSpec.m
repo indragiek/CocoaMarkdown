@@ -1,5 +1,6 @@
-#import <Quick/Quick.h>
-#import <Nimble/Nimble.h>
+@import Quick;
+@import Nimble;
+
 #import <CocoaMarkdown/CocoaMarkdown.h>
 #import "CMParserTestObject.h"
 
@@ -49,7 +50,7 @@ it(@"should parse a document", ^{
     
     expect(@(results.foundHTML.count)).to(equal(@1));
     expect(@([results.foundHTML[0] hasPrefix:@"<table>"])).to(beTruthy());
-    expect(@([results.foundHTML[0] hasSuffix:@"</table>\n"])).to(beTruthy());
+    expect(@([results.foundHTML[0] hasSuffix:@"</table>"])).to(beTruthy());
     expect(results.foundInlineHTML).to(equal(@[@"<s>", @"</s>", @"<sup>", @"</sup>", @"<u>", @"</u>"]));
     
     expect(@(results.foundCodeBlock.count)).to(equal(@1));
