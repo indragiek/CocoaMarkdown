@@ -1,5 +1,6 @@
-#import <Quick/Quick.h>
-#import <Nimble/Nimble.h>
+@import Quick;
+@import Nimble;
+
 #import <CocoaMarkdown/CocoaMarkdown.h>
 
 QuickSpecBegin(CMHTMLRendererSpec)
