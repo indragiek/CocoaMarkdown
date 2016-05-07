@@ -136,6 +136,16 @@ static NSDictionary * CMDefaultUnorderedListAttributes()
     return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
 }
 
+static NSDictionary * CMDefaultOrderedSublistAttributes()
+{
+    return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
+}
+
+static NSDictionary * CMDefaultUnorderedSublistAttributes()
+{
+    return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
+}
+
 @implementation CMTextAttributes
 
 - (instancetype)init
@@ -154,6 +164,8 @@ static NSDictionary * CMDefaultUnorderedListAttributes()
         _blockQuoteAttributes = CMDefaultBlockQuoteAttributes();
         _orderedListAttributes = CMDefaultOrderedListAttributes();
         _unorderedListAttributes = CMDefaultUnorderedListAttributes();
+        _orderedSublistAttributes = CMDefaultOrderedSublistAttributes();
+        _unorderedSublistAttributes = CMDefaultUnorderedSublistAttributes();
     }
     return self;
 }

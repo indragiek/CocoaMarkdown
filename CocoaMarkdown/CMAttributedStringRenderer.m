@@ -279,18 +279,25 @@
         return nil;
     }
     
-    NSMutableDictionary *listAttributes;
-    if (node.listType == CMListTypeOrdered) {
-        listAttributes = [_attributes.orderedListAttributes mutableCopy];
-    } else {
-        listAttributes = [_attributes.unorderedListAttributes mutableCopy];
+    NSUInteger sublistLevel = [self sublistLevel:node.parent];
+    if (sublistLevel == 0) {
+        return node.listType == CMListTypeOrdered ? _attributes.orderedListAttributes : _attributes.unorderedListAttributes;
     }
     
-    NSMutableParagraphStyle *paragraphStyle = [((NSParagraphStyle *)listAttributes[NSParagraphStyleAttributeName]) mutableCopy];
-    if (paragraphStyle != nil) {
-        NSUInteger sublistLevel = [self sublistLevel:node];
-        paragraphStyle.headIndent = paragraphStyle.headIndent * sublistLevel;
-        paragraphStyle.firstLineHeadIndent = paragraphStyle.firstLineHeadIndent * sublistLevel;
+    NSParagraphStyle *rootListParagraphStyle = [NSParagraphStyle defaultParagraphStyle];
+    NSMutableDictionary *listAttributes;
+    if (node.listType == CMListTypeOrdered) {
+        listAttributes = [_attributes.orderedSublistAttributes mutableCopy];
+        rootListParagraphStyle = _attributes.orderedListAttributes[NSParagraphStyleAttributeName];
+    } else {
+        listAttributes = [_attributes.unorderedSublistAttributes mutableCopy];
+        rootListParagraphStyle = _attributes.unorderedListAttributes[NSParagraphStyleAttributeName];
+    }
+    
+    if (listAttributes[NSParagraphStyleAttributeName] != nil) {
+        NSMutableParagraphStyle *paragraphStyle = [((NSParagraphStyle *)listAttributes[NSParagraphStyleAttributeName]) mutableCopy];
+        paragraphStyle.headIndent = rootListParagraphStyle.headIndent + paragraphStyle.headIndent * sublistLevel;
+        paragraphStyle.firstLineHeadIndent = rootListParagraphStyle.firstLineHeadIndent + paragraphStyle.firstLineHeadIndent * sublistLevel;
         listAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
     

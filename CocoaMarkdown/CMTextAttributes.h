@@ -151,6 +151,26 @@
 @property (nonatomic) NSDictionary *unorderedListAttributes;
 
 /**
+ *  Attributes used to style ordered sublists.
+ *
+ *  These attributes will apply to the entire list (unless overriden by attributes
+ *  for the list items), including the numbers.
+ *
+ *  Defaults to using a paragraph style with a head indent of 30px.
+ */
+@property (nonatomic) NSDictionary *orderedSublistAttributes;
+
+/**
+ *  Attributes used to style unordered sublists.
+ *
+ *  These attributes will apply to the entire list (unless overriden by attributes
+ *  for the list items), including the bullets.
+ *
+ *  Defaults to using a paragraph style with a head indent of 30px.
+ */
+@property (nonatomic) NSDictionary *unorderedSublistAttributes;
+
+/**
  *  Attributes used to style ordered list items.
  *
  *  These attribtues do _not_ apply to the numbers.
