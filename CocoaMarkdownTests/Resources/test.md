@@ -16,10 +16,11 @@ Duis mollis, <s>est non commodo</s> luctus, nisi erat porttitor ligula, eget lac
 Here is another list:
 
 * Unordered
+    - sublist
 * list
     - With
-    - a
-    - sublist
+    - two
+    - sublists
 
 ![Image](https://raw.githubusercontent.com/sonoramac/Sonora/master/screenshot.png "screenshot")
 
