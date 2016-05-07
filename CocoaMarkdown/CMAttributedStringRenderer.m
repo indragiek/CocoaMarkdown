@@ -267,7 +267,9 @@
 
 - (void)parserDidEndListItem:(CMParser *)parser
 {
-    [self appendString:@"\n"];
+    if (parser.currentNode.next != nil || [self sublistLevel:parser.currentNode] == 1) {
+        [self appendString:@"\n"];
+    }
     [_attributeStack pop];
 }
 
