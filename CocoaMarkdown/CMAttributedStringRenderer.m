@@ -221,7 +221,7 @@
 
 - (void)parser:(CMParser *)parser didStartUnorderedListWithTightness:(BOOL)tight
 {
-    [_attributeStack push:CMDefaultAttributeRun(_attributes.unorderedListAttributes)];
+    [_attributeStack push:CMDefaultAttributeRun([self listAttributesForNode:parser.currentNode])];
     [self appendString:@"\n"];
 }
 
@@ -232,7 +232,7 @@
 
 - (void)parser:(CMParser *)parser didStartOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
-    [_attributeStack push:CMOrderedListAttributeRun(_attributes.orderedListAttributes, num)];
+    [_attributeStack push:CMOrderedListAttributeRun([self listAttributesForNode:parser.currentNode], num)];
     [self appendString:@"\n"];
 }
 
@@ -267,11 +267,53 @@
 
 - (void)parserDidEndListItem:(CMParser *)parser
 {
-    [self appendString:@"\n"];
+    if (parser.currentNode.next != nil || [self sublistLevel:parser.currentNode] == 1) {
+        [self appendString:@"\n"];
+    }
     [_attributeStack pop];
 }
 
 #pragma mark - Private
+
+- (NSDictionary *)listAttributesForNode:(CMNode *)node
+{
+    if (node.listType == CMListTypeNone) {
+        return nil;
+    }
+    
+    NSUInteger sublistLevel = [self sublistLevel:node.parent];
+    if (sublistLevel == 0) {
+        return node.listType == CMListTypeOrdered ? _attributes.orderedListAttributes : _attributes.unorderedListAttributes;
+    }
+    
+    NSParagraphStyle *rootListParagraphStyle = [NSParagraphStyle defaultParagraphStyle];
+    NSMutableDictionary *listAttributes;
+    if (node.listType == CMListTypeOrdered) {
+        listAttributes = [_attributes.orderedSublistAttributes mutableCopy];
+        rootListParagraphStyle = _attributes.orderedListAttributes[NSParagraphStyleAttributeName];
+    } else {
+        listAttributes = [_attributes.unorderedSublistAttributes mutableCopy];
+        rootListParagraphStyle = _attributes.unorderedListAttributes[NSParagraphStyleAttributeName];
+    }
+    
+    if (listAttributes[NSParagraphStyleAttributeName] != nil) {
+        NSMutableParagraphStyle *paragraphStyle = [((NSParagraphStyle *)listAttributes[NSParagraphStyleAttributeName]) mutableCopy];
+        paragraphStyle.headIndent = rootListParagraphStyle.headIndent + paragraphStyle.headIndent * sublistLevel;
+        paragraphStyle.firstLineHeadIndent = rootListParagraphStyle.firstLineHeadIndent + paragraphStyle.firstLineHeadIndent * sublistLevel;
+        listAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
+    }
+    
+    return [listAttributes copy];
+}
+
+- (NSUInteger)sublistLevel:(CMNode *)node
+{
+    if (node.parent == nil) {
+        return 0;
+    } else {
+        return (node.listType == CMListTypeNone ? 0 : 1) + [self sublistLevel:node.parent];
+    }
+}
 
 - (CMHTMLElement *)newHTMLElementForTagName:(NSString *)tagName HTML:(NSString *)HTML
 {
