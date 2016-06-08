@@ -201,7 +201,7 @@
 
 - (void)parserFoundSoftBreak:(CMParser *)parser
 {
-    [self appendString:@"\n"];
+    [self appendString:@" "];
 }
 
 - (void)parserFoundLineBreak:(CMParser *)parser
