@@ -102,12 +102,20 @@
 
 - (void)parserDidStartParagraph:(CMParser *)parser
 {
-    [self appendLineBreakIfNotTightForNode:parser.currentNode];
+    if (![self nodeIsInTightMode:parser.currentNode]) {
+        NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.paragraphSpacingBefore = 12;
+        
+        [_attributeStack push:CMDefaultAttributeRun(@{NSParagraphStyleAttributeName: paragraphStyle})];
+    }
 }
 
 - (void)parserDidEndParagraph:(CMParser *)parser
 {
-    [self appendLineBreakIfNotTightForNode:parser.currentNode];
+    if (![self nodeIsInTightMode:parser.currentNode]) {
+        [_attributeStack pop];
+        [self appendString:@"\n"];
+    }
 }
 
 - (void)parserDidStartEmphasis:(CMParser *)parser
@@ -201,7 +209,7 @@
 
 - (void)parserFoundSoftBreak:(CMParser *)parser
 {
-    [self appendString:@"\n"];
+    [self appendString:@" "];
 }
 
 - (void)parserFoundLineBreak:(CMParser *)parser
@@ -327,12 +335,10 @@
     return nil;
 }
 
-- (void)appendLineBreakIfNotTightForNode:(CMNode *)node
+- (BOOL)nodeIsInTightMode:(CMNode *)node
 {
     CMNode *grandparent = node.parent.parent;
-    if (!grandparent.listTight) {
-        [self appendString:@"\n"];
-    }
+    return grandparent.listTight;
 }
 
 - (void)appendString:(NSString *)string
