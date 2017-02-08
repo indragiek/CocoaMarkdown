@@ -14,7 +14,7 @@ Efficient NSAttributedString creation for easy rendering on iOS and OS X. Most e
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
 
-  s.source        = { :git => 'https://github.com/indragiek/CocoaMarkdown.git' }
+  s.source        = { :git => 'https://github.com/flowdock/CocoaMarkdown.git' }
   s.source_files  = 'CocoaMarkdown'
   s.private_header_files = 'CocoaMarkdown/*_Private.h'
   s.ios.framework = 'UIKit'
