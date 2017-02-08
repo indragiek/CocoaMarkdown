@@ -7,10 +7,10 @@ Pod::Spec.new do |s|
 More flexibility. CocoaMarkdown allows you to define custom parsing hooks or even traverse the Markdown AST using the low-level API.
 Efficient NSAttributedString creation for easy rendering on iOS and OS X. Most existing libraries just generate HTML from the Markdown, which is not a convenient representation to work with in native apps."
 
-  s.homepage      = 'https://github.com/indragiek/CocoaMarkdown'
+  s.homepage      = 'https://github.com/flowdock/CocoaMarkdown'
   s.license       = 'MIT'
 
-  s.author        = "Indragie Karunaratne"
+  s.author        = "Indragie Karunaratne and Flowdock"
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
 
