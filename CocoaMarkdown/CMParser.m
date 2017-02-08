@@ -236,10 +236,10 @@
         case CMNodeTypeItem:
             if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartListItem) {
-                    [_delegate parserDidStartListItem:self];
+                    [_delegate parserDidStartListItem:self indent:node.startColumn/2];
                 }
             } else if (_delegateFlags.didEndListItem) {
-                [_delegate parserDidEndListItem:self];
+                [_delegate parserDidEndListItem:self isSubItem:node.startColumn > 1];
             }
             break;
         default:
@@ -282,8 +282,8 @@
         _delegateFlags.didEndUnorderedList = [_delegate respondsToSelector:@selector(parser:didEndUnorderedListWithTightness:)];
         _delegateFlags.didStartOrderedList = [_delegate respondsToSelector:@selector(parser:didStartOrderedListWithStartingNumber:tight:)];
         _delegateFlags.didEndOrderedList = [_delegate respondsToSelector:@selector(parser:didEndOrderedListWithStartingNumber:tight:)];
-        _delegateFlags.didStartListItem = [_delegate respondsToSelector:@selector(parserDidStartListItem:)];
-        _delegateFlags.didEndListItem = [_delegate respondsToSelector:@selector(parserDidEndListItem:)];
+        _delegateFlags.didStartListItem = [_delegate respondsToSelector:@selector(parserDidStartListItem:indent:)];
+        _delegateFlags.didEndListItem = [_delegate respondsToSelector:@selector(parserDidEndListItem:isSubItem:)];
     }
 }
 

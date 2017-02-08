@@ -109,8 +109,7 @@
 - (void)parser:(CMParser *)parser didStartOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight;
 - (void)parser:(CMParser *)parser didEndOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight;
 
-- (void)parserDidStartListItem:(CMParser *)parser;
-- (void)parserDidEndListItem:(CMParser *)parser;
+- (void)parserDidStartListItem:(CMParser *)parser indent:(NSUInteger)indentAmount;
+- (void)parserDidEndListItem:(CMParser *)parser isSubItem:(BOOL)isSubItem;
 
 @end
-
