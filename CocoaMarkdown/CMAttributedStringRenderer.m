@@ -30,6 +30,7 @@
     NSMutableDictionary *_tagNameToTransformerMapping;
     NSMutableAttributedString *_buffer;
     NSAttributedString *_attributedString;
+    BOOL isFirstListItem;
 }
 
 - (instancetype)initWithDocument:(CMDocument *)document attributes:(CMTextAttributes *)attributes
@@ -249,24 +250,29 @@
 {
     CMNode *node = parser.currentNode.parent;
     switch (node.listType) {
-        case CMListTypeNone:
+            case CMListTypeNone:
             NSAssert(NO, @"Parent node of list item must be a list");
             break;
-        case CMListTypeUnordered: {
-            for(int i=0; i < indentAmount; ++i){
-                [self appendString:@"\u2002\u2002"];
+            case CMListTypeUnordered: {
+                if(!isFirstListItem){
+                    isFirstListItem = YES;
+                    [self appendString:@"\n"];
+                }
+                
+                for(int i=0; i < indentAmount; ++i){
+                    [self appendString:@"\u2002\u2002"];
+                }
+                [self appendString:@"\u2022 "];
+                [_attributeStack push:CMDefaultAttributeRun(_attributes.unorderedListItemAttributes)];
+                break;
             }
-            [self appendString:@"\u2022 "];
-            [_attributeStack push:CMDefaultAttributeRun(_attributes.unorderedListItemAttributes)];
-            break;
-        }
-        case CMListTypeOrdered: {
-            CMAttributeRun *parentRun = [_attributeStack peek];
-            [self appendString:[NSString stringWithFormat:@"%ld. ", (long)parentRun.orderedListItemNumber]];
-            parentRun.orderedListItemNumber++;
-            [_attributeStack push:CMDefaultAttributeRun(_attributes.orderedListItemAttributes)];
-            break;
-        }
+            case CMListTypeOrdered: {
+                CMAttributeRun *parentRun = [_attributeStack peek];
+                [self appendString:[NSString stringWithFormat:@"%ld. ", (long)parentRun.orderedListItemNumber]];
+                parentRun.orderedListItemNumber++;
+                [_attributeStack push:CMDefaultAttributeRun(_attributes.orderedListItemAttributes)];
+                break;
+            }
         default:
             break;
     }
@@ -276,6 +282,8 @@
 {
     if(!isSubItem)
         [self appendString:@"\n"];
+    
+    isFirstListItem = NO;
     [_attributeStack pop];
 }
 
