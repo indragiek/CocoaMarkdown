@@ -157,6 +157,9 @@
         CMHTMLElement *element = [self newHTMLElementForTagName:tagName HTML:HTML];
         if (element != nil) {
             [self appendHTMLElement:element];
+        } else {
+            // if user enters non html string(for Example "<test>") this string is treated as html and not able to genearte attributed string for this reason considering the above string as normal text and generating attributed String
+            [self appendString:HTML];
         }
     }
 }
