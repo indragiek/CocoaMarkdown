@@ -14,16 +14,18 @@ FOUNDATION_EXPORT double CocoaMarkdownVersionNumber;
 //! Project version string for CocoaMarkdown.
 FOUNDATION_EXPORT const unsigned char CocoaMarkdownVersionString[];
 
-#import <CocoaMarkdown/CMAttributedStringRenderer.h>
-#import <CocoaMarkdown/CMDocument.h>
-#import <CocoaMarkdown/CMDocument+AttributedStringAdditions.h>
-#import <CocoaMarkdown/CMDocument+HTMLAdditions.h>
-#import <CocoaMarkdown/CMHTMLRenderer.h>
-#import <CocoaMarkdown/CMHTMLStrikethroughTransformer.h>
-#import <CocoaMarkdown/CMHTMLUnderlineTransformer.h>
-#import <CocoaMarkdown/CMHTMLSuperscriptTransformer.h>
-#import <CocoaMarkdown/CMHTMLSubscriptTransformer.h>
-#import <CocoaMarkdown/CMIterator.h>
-#import <CocoaMarkdown/CMNode.h>
-#import <CocoaMarkdown/CMParser.h>
-#import <CocoaMarkdown/CMTextAttributes.h>
+#import "CMAttributedStringRenderer.h"
+#import "CMDocument.h"
+#import "CMDocument+AttributedStringAdditions.h"
+#import "CMDocument+HTMLAdditions.h"
+#import "CMHTMLRenderer.h"
+#import "CMHTMLStrikethroughTransformer.h"
+#import "CMHTMLUnderlineTransformer.h"
+#import "CMHTMLSuperscriptTransformer.h"
+#import "CMHTMLSubscriptTransformer.h"
+#import "CMIterator.h"
+#import "CMNode.h"
+#import "CMParser.h"
+#import "CMTextAttributes.h"
+
+#import "Ono.h"

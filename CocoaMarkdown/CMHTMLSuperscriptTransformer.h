@@ -28,7 +28,7 @@
 - (instancetype)init;
 
 /**
- *  Initializes the receiver with a custom font size ratio and a default baseline offset.
+ *  Initializes the receiver with a custom font size ratio.
  *
  *  @param ratio The factor to multiply the existing font point
  *  size by to calculate the size of the superscript font.
@@ -36,16 +36,5 @@
  *  @return An initialized instance of the receiver.
  */
 - (instancetype)initWithFontSizeRatio:(CGFloat)ratio;
-
-/**
- *  Initializes the receiver with a custom font size ratio and a custom baseline offset.
- *
- *  @param ratio The factor to multiply the existing font point
- *  size by to calculate the size of the superscript font.
- *  @param offset The offset for the baseline of the superscript.
- *
- *  @return An initialized instance of the receiver.
- */
-- (instancetype)initWithFontSizeRatio:(CGFloat)ratio baselineOffset:(CGFloat)offset;
 
 @end

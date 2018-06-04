@@ -51,12 +51,13 @@
     
     cmark_event_type event;
     BOOL stop = NO;
-    
+    //NSLog(@"parse begin");
     while ((event = cmark_iter_next(_iter)) != CMARK_EVENT_DONE) {
         CMNode *currentNode = [[CMNode alloc] initWithNode:cmark_iter_get_node(_iter) freeWhenDone:NO];
         block(currentNode, (CMEventType)event, &stop);
         if (stop) break;
     }
+    //NSLog(@"parse ended");
 }
 
 - (void)resetToNode:(CMNode *)node withEventType:(CMEventType)eventType

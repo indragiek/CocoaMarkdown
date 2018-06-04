@@ -30,6 +30,7 @@
     NSMutableDictionary *_tagNameToTransformerMapping;
     NSMutableAttributedString *_buffer;
     NSAttributedString *_attributedString;
+    BOOL isFirstListItem;
 }
 
 - (instancetype)initWithDocument:(CMDocument *)document attributes:(CMTextAttributes *)attributes
@@ -102,20 +103,12 @@
 
 - (void)parserDidStartParagraph:(CMParser *)parser
 {
-    if (![self nodeIsInTightMode:parser.currentNode]) {
-        NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
-        paragraphStyle.paragraphSpacingBefore = 12;
-        
-        [_attributeStack push:CMDefaultAttributeRun(@{NSParagraphStyleAttributeName: paragraphStyle})];
-    }
+    [self appendLineBreakIfNotTightForNode:parser.currentNode];
 }
 
 - (void)parserDidEndParagraph:(CMParser *)parser
 {
-    if (![self nodeIsInTightMode:parser.currentNode]) {
-        [_attributeStack pop];
-        [self appendString:@"\n"];
-    }
+    [self appendLineBreakIfNotTightForNode:parser.currentNode];
 }
 
 - (void)parserDidStartEmphasis:(CMParser *)parser
@@ -164,12 +157,18 @@
         CMHTMLElement *element = [self newHTMLElementForTagName:tagName HTML:HTML];
         if (element != nil) {
             [self appendHTMLElement:element];
+        } else {
+            // if user enters non html string(for Example "<test>") this string is treated as html and not able to genearte attributed string for this reason considering the above string as normal text and generating attributed String
+            [self appendString:HTML];
         }
     }
 }
 
 - (void)parser:(CMParser *)parser foundInlineHTML:(NSString *)HTML
 {
+#if 1
+    [self appendString:HTML];
+#else
     NSString *tagName = CMTagNameFromHTMLTag(HTML);
     if (tagName.length != 0) {
         CMHTMLElement *element = nil;
@@ -191,12 +190,13 @@
             }
         }
     }
+#endif
 }
 
 - (void)parser:(CMParser *)parser foundCodeBlock:(NSString *)code info:(NSString *)info
 {
     [_attributeStack push:CMDefaultAttributeRun(_attributes.codeBlockAttributes)];
-    [self appendString:[NSString stringWithFormat:@"\n\n%@\n\n", code]];
+    [self appendString:[NSString stringWithFormat:@"%@", code]];
     [_attributeStack pop];
 }
 
@@ -209,7 +209,7 @@
 
 - (void)parserFoundSoftBreak:(CMParser *)parser
 {
-    [self appendString:@" "];
+    [self appendString:@"\n"];
 }
 
 - (void)parserFoundLineBreak:(CMParser *)parser
@@ -229,7 +229,7 @@
 
 - (void)parser:(CMParser *)parser didStartUnorderedListWithTightness:(BOOL)tight
 {
-    [_attributeStack push:CMDefaultAttributeRun([self listAttributesForNode:parser.currentNode])];
+    [_attributeStack push:CMDefaultAttributeRun(_attributes.unorderedListAttributes)];
     [self appendString:@"\n"];
 }
 
@@ -240,7 +240,7 @@
 
 - (void)parser:(CMParser *)parser didStartOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
-    [_attributeStack push:CMOrderedListAttributeRun([self listAttributesForNode:parser.currentNode], num)];
+    [_attributeStack push:CMOrderedListAttributeRun(_attributes.orderedListAttributes, num)];
     [self appendString:@"\n"];
 }
 
@@ -249,79 +249,48 @@
     [_attributeStack pop];
 }
 
-- (void)parserDidStartListItem:(CMParser *)parser
+- (void)parserDidStartListItem:(CMParser *)parser indent:(NSUInteger)indentAmount
 {
     CMNode *node = parser.currentNode.parent;
     switch (node.listType) {
-        case CMListTypeNone:
+            case CMListTypeNone:
             NSAssert(NO, @"Parent node of list item must be a list");
             break;
-        case CMListTypeUnordered: {
-            [self appendString:@"\u2022 "];
-            [_attributeStack push:CMDefaultAttributeRun(_attributes.unorderedListItemAttributes)];
-            break;
-        }
-        case CMListTypeOrdered: {
-            CMAttributeRun *parentRun = [_attributeStack peek];
-            [self appendString:[NSString stringWithFormat:@"%ld. ", (long)parentRun.orderedListItemNumber]];
-            parentRun.orderedListItemNumber++;
-            [_attributeStack push:CMDefaultAttributeRun(_attributes.orderedListItemAttributes)];
-            break;
-        }
+            case CMListTypeUnordered: {
+                if(!isFirstListItem){
+                    isFirstListItem = YES;
+                    [self appendString:@"\n"];
+                }
+                
+                for(int i=0; i < indentAmount; ++i){
+                    [self appendString:@"\u2002\u2002"];
+                }
+                [self appendString:@"\u2022 "];
+                [_attributeStack push:CMDefaultAttributeRun(_attributes.unorderedListItemAttributes)];
+                break;
+            }
+            case CMListTypeOrdered: {
+                CMAttributeRun *parentRun = [_attributeStack peek];
+                [self appendString:[NSString stringWithFormat:@"%ld. ", (long)parentRun.orderedListItemNumber]];
+                parentRun.orderedListItemNumber++;
+                [_attributeStack push:CMDefaultAttributeRun(_attributes.orderedListItemAttributes)];
+                break;
+            }
         default:
             break;
     }
 }
 
-- (void)parserDidEndListItem:(CMParser *)parser
+- (void)parserDidEndListItem:(CMParser *)parser isSubItem:(BOOL)isSubItem;
 {
-    if (parser.currentNode.next != nil || [self sublistLevel:parser.currentNode] == 1) {
+    if(!isSubItem)
         [self appendString:@"\n"];
-    }
+    
+    isFirstListItem = NO;
     [_attributeStack pop];
 }
 
 #pragma mark - Private
-
-- (NSDictionary *)listAttributesForNode:(CMNode *)node
-{
-    if (node.listType == CMListTypeNone) {
-        return nil;
-    }
-    
-    NSUInteger sublistLevel = [self sublistLevel:node.parent];
-    if (sublistLevel == 0) {
-        return node.listType == CMListTypeOrdered ? _attributes.orderedListAttributes : _attributes.unorderedListAttributes;
-    }
-    
-    NSParagraphStyle *rootListParagraphStyle = [NSParagraphStyle defaultParagraphStyle];
-    NSMutableDictionary *listAttributes;
-    if (node.listType == CMListTypeOrdered) {
-        listAttributes = [_attributes.orderedSublistAttributes mutableCopy];
-        rootListParagraphStyle = _attributes.orderedListAttributes[NSParagraphStyleAttributeName];
-    } else {
-        listAttributes = [_attributes.unorderedSublistAttributes mutableCopy];
-        rootListParagraphStyle = _attributes.unorderedListAttributes[NSParagraphStyleAttributeName];
-    }
-    
-    if (listAttributes[NSParagraphStyleAttributeName] != nil) {
-        NSMutableParagraphStyle *paragraphStyle = [((NSParagraphStyle *)listAttributes[NSParagraphStyleAttributeName]) mutableCopy];
-        paragraphStyle.headIndent = rootListParagraphStyle.headIndent + paragraphStyle.headIndent * sublistLevel;
-        paragraphStyle.firstLineHeadIndent = rootListParagraphStyle.firstLineHeadIndent + paragraphStyle.firstLineHeadIndent * sublistLevel;
-        listAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
-    }
-    
-    return [listAttributes copy];
-}
-
-- (NSUInteger)sublistLevel:(CMNode *)node
-{
-    if (node.parent == nil) {
-        return 0;
-    } else {
-        return (node.listType == CMListTypeNone ? 0 : 1) + [self sublistLevel:node.parent];
-    }
-}
 
 - (CMHTMLElement *)newHTMLElementForTagName:(NSString *)tagName HTML:(NSString *)HTML
 {
@@ -335,10 +304,12 @@
     return nil;
 }
 
-- (BOOL)nodeIsInTightMode:(CMNode *)node
+- (void)appendLineBreakIfNotTightForNode:(CMNode *)node
 {
     CMNode *grandparent = node.parent.parent;
-    return grandparent.listTight;
+    if (!grandparent.listTight) {
+        [self appendString:@"\n"];
+    }
 }
 
 - (void)appendString:(NSString *)string
