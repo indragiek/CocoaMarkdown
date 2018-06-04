@@ -11,7 +11,7 @@ Efficient NSAttributedString creation for easy rendering on iOS and OS X. Most e
   s.license       = 'MIT'
 
   s.author        = "Indragie Karunaratne and Flowdock"
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
   s.osx.deployment_target = '10.10'
 
   s.source        = { :git => 'https://github.com/flowdock/CocoaMarkdown.git' }
