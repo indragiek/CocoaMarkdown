@@ -214,7 +214,7 @@
 
 - (void)parserFoundLineBreak:(CMParser *)parser
 {
-    [self appendString:@"\n"];
+    [self appendString:@"\u2028"];
 }
 
 - (void)parserDidStartBlockQuote:(CMParser *)parser
