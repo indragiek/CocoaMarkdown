@@ -12,6 +12,10 @@ CocoaMarkdown aims to solve two primary problems better than existing libraries:
 1. **More flexibility**. CocoaMarkdown allows you to define custom parsing hooks or even traverse the Markdown AST using the low-level API.
 2. **Efficient `NSAttributedString` creation for easy rendering on iOS and OS X**. Most existing libraries just generate HTML from the Markdown, which is not a convenient representation to work with in native apps.
 
+![Example app macOS](images/example-app-mac.png)
+
+![Example app iOS](images/example-app-iOS.png)
+
 ### Installation
 
 First you will want to add this project as a submodule to your project:
