@@ -197,6 +197,11 @@ static NSString * NSStringFromCMNodeType(CMNodeType type) {
     return (cmark_node_get_list_tight(_node) == 0) ? NO : YES;
 }
 
+- (NSString *)URLString
+{
+    return str(cmark_node_get_url(_node));
+}
+
 - (NSURL *)URL
 {
     NSString *URLString = str(cmark_node_get_url(_node));

@@ -37,8 +37,21 @@
         
         _rootNode = [[CMNode alloc] initWithNode:node freeWhenDone:YES];
         _options = options;
+        
+        _linksBaseURL = [NSURL fileURLWithPath:path.stringByDeletingLastPathComponent];
     }
     return self;
+}
+
+- (NSURL*) targetURLForNode:(CMNode *)node
+{
+    NSURL* nodeTargetUrl = node.URL;
+    if ((nodeTargetUrl.scheme == nil) && (_linksBaseURL != nil))
+    {
+        // If the node URL doesn't have a scheme, consider it relative to the base URL
+        nodeTargetUrl = [NSURL URLWithString:node.URLString relativeToURL:_linksBaseURL].absoluteURL;
+    }
+    return nodeTargetUrl;
 }
 
 @end

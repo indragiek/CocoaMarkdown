@@ -14,6 +14,7 @@
 #import "CMHTMLElement.h"
 #import "CMHTMLUtilities.h"
 #import "CMTextAttributes.h"
+#import "CMImageTextAttachment.h"
 #import "CMNode.h"
 #import "CMParser.h"
 
@@ -81,11 +82,13 @@
 
 - (void)parser:(CMParser *)parser foundText:(NSString *)text
 {
-    CMHTMLElement *element = [_HTMLStack peek];
-    if (element != nil) {
-        [element.buffer appendString:text];
-    } else {
-        [self appendString:text];
+    if (! [self isImageDescriptionNode:parser.currentNode]) { // An image description text shall not be append to the current buffer
+        CMHTMLElement *element = [_HTMLStack peek];
+        if (element != nil) {
+            [element.buffer appendString:text];
+        } else {
+            [self appendString:text];
+        }
     }
 }
 
@@ -103,10 +106,7 @@
 - (void)parserDidStartParagraph:(CMParser *)parser
 {
     if (![self nodeIsInTightMode:parser.currentNode]) {
-        NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
-        paragraphStyle.paragraphSpacingBefore = 12;
-        
-        [_attributeStack push:CMDefaultAttributeRun(@{NSParagraphStyleAttributeName: paragraphStyle})];
+        [_attributeStack push:CMDefaultAttributeRun(_attributes.paragraphAttributes)];
     }
 }
 
@@ -155,6 +155,39 @@
 - (void)parser:(CMParser *)parser didEndLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
     [_attributeStack pop];
+}
+
+- (void)parser:(CMParser *)parser didStartImageWithURL:(NSURL *)URL title:(NSString *)title
+{
+    NSTextAttachment* textAttachment = [[CMImageTextAttachment alloc] initWithImageURL:URL];
+    if (textAttachment != nil) {
+        // Detect if an image has its own paragraph, in which cas we can apply specific attributes.
+        // (Note: This test also detect the case: image in link in paragraph)
+        CMNode* imageNode = parser.currentNode;
+        BOOL isInImageParagraph = ((imageNode.next == nil) && (imageNode.previous == nil) 
+                                   && ((imageNode.parent.type == CMNodeTypeParagraph) 
+                                       || ((imageNode.parent.next == nil) && (imageNode.parent.previous == nil) && (imageNode.parent.parent.type == CMNodeTypeParagraph))));
+        
+        CMHTMLElement *element = [_HTMLStack peek];
+        if (element != nil) {
+            // TODO: how should we handle a markdown image inside HTML;? Is this possible????
+        } else {
+            NSMutableDictionary* imageAttachmentAttributes = [NSMutableDictionary new];
+            imageAttachmentAttributes[NSAttachmentAttributeName] = textAttachment;
+            if (isInImageParagraph) {
+                [imageAttachmentAttributes addEntriesFromDictionary:_attributes.imageParagraphAttributes];
+            }
+#if !TARGET_OS_IPHONE
+            CMNode *imageDescriptionNode = imageNode.firstChild;
+            if ((imageDescriptionNode.type == CMNodeTypeText) && (imageDescriptionNode.stringValue.length > 0)) {
+                imageAttachmentAttributes[NSToolTipAttributeName] = imageDescriptionNode.stringValue;
+            }
+#endif     
+            const unichar attachmentChar = NSAttachmentCharacter;
+            NSAttributedString *attachmentString = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&attachmentChar length:1] attributes:imageAttachmentAttributes];
+            [_buffer appendAttributedString:attachmentString];
+        }
+    }
 }
 
 - (void)parser:(CMParser *)parser foundHTML:(NSString *)HTML
@@ -333,6 +366,11 @@
         return element;
     }
     return nil;
+}
+
+- (BOOL)isImageDescriptionNode:(CMNode *)node
+{
+    return node.parent.type == CMNodeTypeImage;
 }
 
 - (BOOL)nodeIsInTightMode:(CMNode *)node

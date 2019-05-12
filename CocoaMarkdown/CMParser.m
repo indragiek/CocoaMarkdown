@@ -152,24 +152,26 @@
                 [_delegate parserDidEndStrong:self];
             }
             break;
-        case CMNodeTypeLink:
+        case CMNodeTypeLink: {
+            NSURL *nodeURL = [_document targetURLForNode:node];
             if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartLink) {
-                    [_delegate parser:self didStartLinkWithURL:node.URL title:node.title];
+                    [_delegate parser:self didStartLinkWithURL:nodeURL title:node.title];
                 }
             } else if (_delegateFlags.didEndLink) {
-                [_delegate parser:self didEndLinkWithURL:node.URL title:node.title];
+                [_delegate parser:self didEndLinkWithURL:nodeURL title:node.title];
             }
-            break;
-        case CMNodeTypeImage:
+        }   break;
+        case CMNodeTypeImage: {
+            NSURL *nodeURL = [_document targetURLForNode:node];
             if (event == CMEventTypeEnter) {
                 if (_delegateFlags.didStartImage) {
-                    [_delegate parser:self didStartImageWithURL:node.URL title:node.title];
+                    [_delegate parser:self didStartImageWithURL:nodeURL title:node.title];
                 }
             } else if (_delegateFlags.didEndImage) {
-                [_delegate parser:self didEndImageWithURL:node.URL title:node.title];
+                [_delegate parser:self didEndImageWithURL:nodeURL title:node.title];
             }
-            break;
+        }   break;
         case CMNodeTypeHTML:
             if (_delegateFlags.foundHTML) {
                 [_delegate parser:self foundHTML:node.stringValue];

@@ -85,6 +85,13 @@
 @property (nonatomic) NSDictionary *h6Attributes;
 
 /**
+ *  Attributes used to style paragraphs.
+ *
+ *  Defaults to using a 12pt paragraph spacing
+ */
+@property (nonatomic) NSDictionary *paragraphAttributes;
+
+/**
  *  Attributes used to style emphasized text.
  *
  *  If not set, the renderer will attempt to infer the emphasized font from the
@@ -106,6 +113,14 @@
  *  Defaults to using a blue foreground color and a single line underline style.
  */
 @property (nonatomic) NSDictionary *linkAttributes;
+
+
+/**
+ *  Attributes used to style images paragraphs.
+ *
+ *  Defaults to centering the image.
+ */
+@property (nonatomic) NSDictionary *imageParagraphAttributes;
 
 /**
  *  Attributes used to style code blocks.

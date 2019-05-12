@@ -18,58 +18,97 @@ static NSDictionary * CMDefaultTextAttributes()
 #endif
 }
 
+static NSMutableParagraphStyle* defaultHeaderParagraphStyle()
+{
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.paragraphSpacingBefore = 16;
+    paragraphStyle.paragraphSpacing = 8;
+    return paragraphStyle;
+}
+
 static NSDictionary * CMDefaultH1Attributes()
 {
+    NSMutableParagraphStyle* h1ParagraphStyle = defaultHeaderParagraphStyle();
+    h1ParagraphStyle.paragraphSpacingBefore = 28;
+    h1ParagraphStyle.paragraphSpacing = 14;
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]};
+    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
+             NSParagraphStyleAttributeName: h1ParagraphStyle };
 #else
-    return @{NSFontAttributeName: [NSFont userFontOfSize:24.0]};
+    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:28.0],
+             NSParagraphStyleAttributeName: h1ParagraphStyle };
 #endif
 }
 
 static NSDictionary * CMDefaultH2Attributes()
 {
+    NSMutableParagraphStyle* h2ParagraphStyle = defaultHeaderParagraphStyle();
+    h2ParagraphStyle.paragraphSpacingBefore = 20;
+    h2ParagraphStyle.paragraphSpacing = 10;
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]};
+    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
+             NSParagraphStyleAttributeName: h2ParagraphStyle};
 #else
-    return @{NSFontAttributeName: [NSFont userFontOfSize:18.0]};
+    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:22.0],
+             NSParagraphStyleAttributeName: h2ParagraphStyle,
+             };
 #endif
 }
 
 static NSDictionary * CMDefaultH3Attributes()
 {
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]};
+    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
+             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle() };
 #else
-    return @{NSFontAttributeName: [NSFont userFontOfSize:14.0]};
+    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:16.0],
+             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle(),
+             };
 #endif
 }
 
 static NSDictionary * CMDefaultH4Attributes()
 {
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]};
+    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline],
+             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle() };
 #else
-    return @{NSFontAttributeName: [NSFont userFontOfSize:12.0]};
+    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:14.0],
+             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle(),
+             };
 #endif
 }
 
 static NSDictionary * CMDefaultH5Attributes()
 {
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]};
+    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline],
+             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle() };
 #else
-    return @{NSFontAttributeName: [NSFont userFontOfSize:10.0]};
+    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:12.0],
+             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle(),
+             };
 #endif
 }
 
 static NSDictionary * CMDefaultH6Attributes()
 {
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]};
+    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline],
+             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle() };
 #else
-    return @{NSFontAttributeName: [NSFont userFontOfSize:8.0]};
+    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:10.0],
+             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle(),
+             };
 #endif
+}
+
+static NSDictionary * CMDefaultParagraphAttributes()
+{
+    NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.paragraphSpacingBefore = 12;
+    
+    return @{NSParagraphStyleAttributeName: paragraphStyle};
 }
 
 static NSDictionary * CMDefaultLinkAttributes()
@@ -82,6 +121,15 @@ static NSDictionary * CMDefaultLinkAttributes()
 #endif
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)
     };
+}
+
+static NSDictionary * CMDefaultImageParagraphAttributes()
+{
+    NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.paragraphSpacingBefore = 12;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    return @{NSParagraphStyleAttributeName: paragraphStyle};
 }
 
 #if TARGET_OS_IPHONE
@@ -158,7 +206,9 @@ static NSDictionary * CMDefaultUnorderedSublistAttributes()
         _h4Attributes = CMDefaultH4Attributes();
         _h5Attributes = CMDefaultH5Attributes();
         _h6Attributes = CMDefaultH6Attributes();
+        _paragraphAttributes = CMDefaultParagraphAttributes();
         _linkAttributes = CMDefaultLinkAttributes();
+        _imageParagraphAttributes = CMDefaultImageParagraphAttributes();
         _codeBlockAttributes = CMDefaultCodeBlockAttributes();
         _inlineCodeAttributes = CMDefaultInlineCodeAttributes();
         _blockQuoteAttributes = CMDefaultBlockQuoteAttributes();

@@ -132,7 +132,6 @@
 		729F54371A6864F400CC7448 /* CMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F541E1A6864F400CC7448 /* CMParser.m */; };
 		729F54381A6864F400CC7448 /* CMPlatformDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F541F1A6864F400CC7448 /* CMPlatformDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		729F54391A6864F400CC7448 /* CMPlatformDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 729F541F1A6864F400CC7448 /* CMPlatformDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		729F54AD1A68664E00CC7448 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F54A21A68663400CC7448 /* Quick.framework */; };
 		729F54AE1A68665200CC7448 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F54941A68663400CC7448 /* Nimble.framework */; };
 		729F54B21A6866C200CC7448 /* DummySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729F54B11A6866C200CC7448 /* DummySpec.swift */; };
 		729F54B31A6866C200CC7448 /* DummySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729F54B11A6866C200CC7448 /* DummySpec.swift */; };
@@ -146,10 +145,6 @@
 		729F54C41A68673800CC7448 /* CMParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F54BA1A68673800CC7448 /* CMParserSpec.m */; };
 		729F54C51A68673800CC7448 /* CMParserTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F54BC1A68673800CC7448 /* CMParserTestObject.m */; };
 		729F54C61A68673800CC7448 /* CMParserTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 729F54BC1A68673800CC7448 /* CMParserTestObject.m */; };
-		72C17A811A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		72C17A821A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		72C17A831A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */; };
-		72C17A841A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */; };
 		72C17A931A6EBA3300212F17 /* CMHTMLRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C17A911A6EBA3300212F17 /* CMHTMLRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72C17A941A6EBA3300212F17 /* CMHTMLRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C17A911A6EBA3300212F17 /* CMHTMLRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		72C17A951A6EBA3300212F17 /* CMHTMLRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C17A921A6EBA3300212F17 /* CMHTMLRenderer.m */; };
@@ -173,6 +168,15 @@
 		72FE7EFB1A68695100F23F46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7EFA1A68695100F23F46 /* Images.xcassets */; };
 		72FE7EFE1A68695100F23F46 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7EFC1A68695100F23F46 /* MainMenu.xib */; };
 		72FE7F191A686ACD00F23F46 /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7F171A686AC300F23F46 /* test.md */; };
+		FD33B8AE2285EBC100BECE98 /* CMImageTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = FD33B8AC2285EBC100BECE98 /* CMImageTextAttachment.h */; };
+		FD33B8AF2285EBC100BECE98 /* CMImageTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = FD33B8AC2285EBC100BECE98 /* CMImageTextAttachment.h */; };
+		FD33B8B02285EBC100BECE98 /* CMImageTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = FD33B8AD2285EBC100BECE98 /* CMImageTextAttachment.m */; };
+		FD33B8B12285EBC100BECE98 /* CMImageTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = FD33B8AD2285EBC100BECE98 /* CMImageTextAttachment.m */; };
+		FD33B8CD2288387D00BECE98 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729F54A81A68663400CC7448 /* Quick.framework */; };
+		FD6168A72284BD4700517B13 /* CMDocument+AttributedStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6168A42284BD4700517B13 /* CMDocument+AttributedStringAdditions.m */; };
+		FD6168A82284BD4700517B13 /* CMDocument+AttributedStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6168A42284BD4700517B13 /* CMDocument+AttributedStringAdditions.m */; };
+		FD6168A92284BDC800517B13 /* CMDocument+AttributedStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = FD6168942284BD4700517B13 /* CMDocument+AttributedStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FD6168AA2284BDD500517B13 /* CMDocument+AttributedStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = FD6168942284BD4700517B13 /* CMDocument+AttributedStringAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,21 +313,21 @@
 			remoteGlobalIDString = 1F118CF01BDCA4BB005013A2;
 			remoteInfo = "QuickFocused-tvOSTests";
 		};
-		900C08601F1E194C0046FB99 /* PBXContainerItemProxy */ = {
+		FD33B8C6228831CD00BECE98 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 729F548C1A68663400CC7448 /* Quick.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 64076CF51D6D7C2000E2B499;
 			remoteInfo = "QuickAfterSuite - macOSTests";
 		};
-		900C08621F1E194C0046FB99 /* PBXContainerItemProxy */ = {
+		FD33B8C8228831CD00BECE98 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 729F548C1A68663400CC7448 /* Quick.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 64076D081D6D7CD600E2B499;
 			remoteInfo = "QuickAfterSuite - iOSTests";
 		};
-		900C08641F1E194C0046FB99 /* PBXContainerItemProxy */ = {
+		FD33B8CA228831CD00BECE98 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 729F548C1A68663400CC7448 /* Quick.xcodeproj */;
 			proxyType = 2;
@@ -434,8 +438,6 @@
 		729F54BA1A68673800CC7448 /* CMParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMParserSpec.m; sourceTree = "<group>"; };
 		729F54BB1A68673800CC7448 /* CMParserTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMParserTestObject.h; sourceTree = "<group>"; };
 		729F54BC1A68673800CC7448 /* CMParserTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMParserTestObject.m; sourceTree = "<group>"; };
-		72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMDocument+AttributedStringAdditions.h"; sourceTree = "<group>"; };
-		72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMDocument+AttributedStringAdditions.m"; sourceTree = "<group>"; };
 		72C17A911A6EBA3300212F17 /* CMHTMLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMHTMLRenderer.h; sourceTree = "<group>"; };
 		72C17A921A6EBA3300212F17 /* CMHTMLRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMHTMLRenderer.m; sourceTree = "<group>"; };
 		72C17A971A6EBD7800212F17 /* CMDocument+HTMLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMDocument+HTMLAdditions.h"; sourceTree = "<group>"; };
@@ -455,6 +457,11 @@
 		72FE7EFA1A68695100F23F46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		72FE7EFD1A68695100F23F46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		72FE7F171A686AC300F23F46 /* test.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = test.md; sourceTree = "<group>"; };
+		FD33B8AC2285EBC100BECE98 /* CMImageTextAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMImageTextAttachment.h; sourceTree = "<group>"; };
+		FD33B8AD2285EBC100BECE98 /* CMImageTextAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CMImageTextAttachment.m; sourceTree = "<group>"; };
+		FD6168942284BD4700517B13 /* CMDocument+AttributedStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMDocument+AttributedStringAdditions.h"; sourceTree = "<group>"; };
+		FD6168A42284BD4700517B13 /* CMDocument+AttributedStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMDocument+AttributedStringAdditions.m"; sourceTree = "<group>"; };
+		FD71377D228486D50039DDD0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -471,8 +478,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				729F54AE1A68665200CC7448 /* Nimble.framework in Frameworks */,
-				729F54AD1A68664E00CC7448 /* Quick.framework in Frameworks */,
 				729F53E61A68641400CC7448 /* CocoaMarkdown.framework in Frameworks */,
+				FD33B8CD2288387D00BECE98 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,8 +562,10 @@
 				725115DF1A6970A300337419 /* CMStack.m */,
 				722E33E41A68E86B004DE919 /* CMTextAttributes.h */,
 				722E33E51A68E86B004DE919 /* CMTextAttributes.m */,
-				72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */,
-				72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */,
+				FD6168942284BD4700517B13 /* CMDocument+AttributedStringAdditions.h */,
+				FD6168A42284BD4700517B13 /* CMDocument+AttributedStringAdditions.m */,
+				FD33B8AC2285EBC100BECE98 /* CMImageTextAttachment.h */,
+				FD33B8AD2285EBC100BECE98 /* CMImageTextAttachment.m */,
 			);
 			name = "Attributed Strings";
 			sourceTree = "<group>";
@@ -592,7 +601,9 @@
 				729F53E91A68641400CC7448 /* CocoaMarkdownTests */,
 				72FE7ECA1A68692400F23F46 /* Example-iOS */,
 				72FE7EF51A68695100F23F46 /* Example-Mac */,
+				FD71377D228486D50039DDD0 /* README.md */,
 				729F53DB1A68641400CC7448 /* Products */,
+				FD33B8CC2288387D00BECE98 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -710,15 +721,15 @@
 				729F54A21A68663400CC7448 /* Quick.framework */,
 				729F54A41A68663400CC7448 /* Quick-OSXTests.xctest */,
 				729F54A61A68663400CC7448 /* QuickFocused-OSXTests.xctest */,
-				900C08611F1E194C0046FB99 /* QuickAfterSuite - macOSTests.xctest */,
+				FD33B8C7228831CD00BECE98 /* QuickAfterSuite - macOSTests.xctest */,
 				729F54A81A68663400CC7448 /* Quick.framework */,
 				729F54AA1A68663400CC7448 /* Quick-iOSTests.xctest */,
 				729F54AC1A68663400CC7448 /* QuickFocused-iOSTests.xctest */,
-				900C08631F1E194C0046FB99 /* QuickAfterSuite - iOSTests.xctest */,
+				FD33B8C9228831CD00BECE98 /* QuickAfterSuite - iOSTests.xctest */,
 				900C08561F1E18CC0046FB99 /* Quick.framework */,
 				900C08581F1E18CC0046FB99 /* Quick-tvOSTests.xctest */,
 				900C085A1F1E18CC0046FB99 /* QuickFocused-tvOSTests.xctest */,
-				900C08651F1E194C0046FB99 /* QuickAfterSuite - tvOSTests.xctest */,
+				FD33B8CB228831CD00BECE98 /* QuickAfterSuite - tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -809,6 +820,13 @@
 			path = CocoaMarkdownTests/Resources;
 			sourceTree = SOURCE_ROOT;
 		};
+		FD33B8CC2288387D00BECE98 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -818,6 +836,7 @@
 			files = (
 				06D9F8771A70465700C00B67 /* CMHTMLUnderlineTransformer.h in Headers */,
 				722E33E61A68E86B004DE919 /* CMTextAttributes.h in Headers */,
+				FD33B8AE2285EBC100BECE98 /* CMImageTextAttachment.h in Headers */,
 				72C17A991A6EBD7800212F17 /* CMDocument+HTMLAdditions.h in Headers */,
 				729F54301A6864F400CC7448 /* CMNode.h in Headers */,
 				72772BE61A69ABB20059936C /* CMHTMLStrikethroughTransformer.h in Headers */,
@@ -830,6 +849,7 @@
 				725115FE1A69735400337419 /* ONOXMLDocument.h in Headers */,
 				72772BEC1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
 				729F542A1A6864F400CC7448 /* CMIterator.h in Headers */,
+				FD6168AA2284BDD500517B13 /* CMDocument+AttributedStringAdditions.h in Headers */,
 				729F54261A6864F400CC7448 /* CMDocument.h in Headers */,
 				728FA12F1AEED87900C7A368 /* CMDocument_Private.h in Headers */,
 				725115F51A6972AE00337419 /* CMHTMLElementTransformer.h in Headers */,
@@ -842,7 +862,6 @@
 				729F54381A6864F400CC7448 /* CMPlatformDefines.h in Headers */,
 				729F53E01A68641400CC7448 /* CocoaMarkdown.h in Headers */,
 				729F542E1A6864F400CC7448 /* CMNode_Private.h in Headers */,
-				72C17A811A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,6 +871,7 @@
 			files = (
 				725115F61A6972AE00337419 /* CMHTMLElementTransformer.h in Headers */,
 				729F54231A6864F400CC7448 /* CMAttributedStringRenderer.h in Headers */,
+				FD33B8AF2285EBC100BECE98 /* CMImageTextAttachment.h in Headers */,
 				725115FF1A69735400337419 /* ONOXMLDocument.h in Headers */,
 				729F54271A6864F400CC7448 /* CMDocument.h in Headers */,
 				72772BF81A6A29810059936C /* CMHTMLScriptTransformer_Private.h in Headers */,
@@ -868,12 +888,12 @@
 				728FA1301AEED87900C7A368 /* CMDocument_Private.h in Headers */,
 				725115E11A6970A300337419 /* CMStack.h in Headers */,
 				729F54391A6864F400CC7448 /* CMPlatformDefines.h in Headers */,
+				FD6168A92284BDC800517B13 /* CMDocument+AttributedStringAdditions.h in Headers */,
 				72772BF31A6A28A70059936C /* CMHTMLScriptTransformer.h in Headers */,
 				725115FD1A69735400337419 /* Ono.h in Headers */,
 				72736B671A7B467E0046B957 /* CocoaMarkdown.h in Headers */,
 				72C17A9A1A6EBD7800212F17 /* CMDocument+HTMLAdditions.h in Headers */,
 				72772BED1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
-				72C17A821A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */,
 				722E33ED1A68EADA004DE919 /* CMCascadingAttributeStack.h in Headers */,
 				72772BE71A69ABB20059936C /* CMHTMLStrikethroughTransformer.h in Headers */,
 				729F542F1A6864F400CC7448 /* CMNode_Private.h in Headers */,
@@ -1000,7 +1020,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Indragie Karunaratne";
 				TargetAttributes = {
 					729F53D91A68641400CC7448 = {
@@ -1019,6 +1039,7 @@
 					};
 					72FE7EC81A68692400F23F46 = {
 						CreatedOnToolsVersion = 6.1.1;
+						ProvisioningStyle = Manual;
 					};
 					72FE7EF31A68695100F23F46 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -1164,25 +1185,25 @@
 			remoteRef = 900C08591F1E18CC0046FB99 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		900C08611F1E194C0046FB99 /* QuickAfterSuite - macOSTests.xctest */ = {
+		FD33B8C7228831CD00BECE98 /* QuickAfterSuite - macOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "QuickAfterSuite - macOSTests.xctest";
-			remoteRef = 900C08601F1E194C0046FB99 /* PBXContainerItemProxy */;
+			remoteRef = FD33B8C6228831CD00BECE98 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		900C08631F1E194C0046FB99 /* QuickAfterSuite - iOSTests.xctest */ = {
+		FD33B8C9228831CD00BECE98 /* QuickAfterSuite - iOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "QuickAfterSuite - iOSTests.xctest";
-			remoteRef = 900C08621F1E194C0046FB99 /* PBXContainerItemProxy */;
+			remoteRef = FD33B8C8228831CD00BECE98 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		900C08651F1E194C0046FB99 /* QuickAfterSuite - tvOSTests.xctest */ = {
+		FD33B8CB228831CD00BECE98 /* QuickAfterSuite - tvOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "QuickAfterSuite - tvOSTests.xctest";
-			remoteRef = 900C08641F1E194C0046FB99 /* PBXContainerItemProxy */;
+			remoteRef = FD33B8CA228831CD00BECE98 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1250,7 +1271,6 @@
 				7251160B1A69760A00337419 /* CMHTMLElement.m in Sources */,
 				729F542C1A6864F400CC7448 /* CMIterator.m in Sources */,
 				729F54361A6864F400CC7448 /* CMParser.m in Sources */,
-				72C17A831A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */,
 				725A5FF91AEC5F9F00D6342C /* houdini_html_u.c in Sources */,
 				722E33E21A68E7E4004DE919 /* CMAttributeRun.m in Sources */,
 				72772BEE1A6A22720059936C /* CMHTMLSuperscriptTransformer.m in Sources */,
@@ -1262,6 +1282,8 @@
 				72772BF41A6A28A70059936C /* CMHTMLScriptTransformer.m in Sources */,
 				725A60051AEC5F9F00D6342C /* references.c in Sources */,
 				725A5FF51AEC5F9F00D6342C /* houdini_href_e.c in Sources */,
+				FD33B8B02285EBC100BECE98 /* CMImageTextAttachment.m in Sources */,
+				FD6168A72284BD4700517B13 /* CMDocument+AttributedStringAdditions.m in Sources */,
 				729F54281A6864F400CC7448 /* CMDocument.m in Sources */,
 				725116001A69735400337419 /* ONOXMLDocument.m in Sources */,
 				30A07BCC1B5545A50097CEF1 /* render.c in Sources */,
@@ -1308,7 +1330,6 @@
 				7251160C1A69760A00337419 /* CMHTMLElement.m in Sources */,
 				729F542D1A6864F400CC7448 /* CMIterator.m in Sources */,
 				729F54371A6864F400CC7448 /* CMParser.m in Sources */,
-				72C17A841A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */,
 				725A5FFA1AEC5F9F00D6342C /* houdini_html_u.c in Sources */,
 				722E33E31A68E7E4004DE919 /* CMAttributeRun.m in Sources */,
 				72772BEF1A6A22720059936C /* CMHTMLSuperscriptTransformer.m in Sources */,
@@ -1320,6 +1341,8 @@
 				72772BF51A6A28A70059936C /* CMHTMLScriptTransformer.m in Sources */,
 				725A60061AEC5F9F00D6342C /* references.c in Sources */,
 				725A5FF61AEC5F9F00D6342C /* houdini_href_e.c in Sources */,
+				FD33B8B12285EBC100BECE98 /* CMImageTextAttachment.m in Sources */,
+				FD6168A82284BD4700517B13 /* CMDocument+AttributedStringAdditions.m in Sources */,
 				729F54291A6864F400CC7448 /* CMDocument.m in Sources */,
 				725116011A69735400337419 /* ONOXMLDocument.m in Sources */,
 				30A07BCD1B5545A50097CEF1 /* render.c in Sources */,
@@ -1469,9 +1492,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1513,8 +1534,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1540,9 +1559,12 @@
 				);
 				INFOPLIST_FILE = CocoaMarkdown/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "-DCMARK_INLINE=inline";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.indragie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CocoaMarkdown;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/External/cmark/src";
@@ -1566,9 +1588,12 @@
 				);
 				INFOPLIST_FILE = CocoaMarkdown/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "-DCMARK_INLINE=inline";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.indragie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CocoaMarkdown;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/External/cmark/src";
@@ -1580,7 +1605,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1593,12 +1618,14 @@
 					"$(SRCROOT)/CocoaMarkdown/Configuration",
 				);
 				INFOPLIST_FILE = CocoaMarkdownTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.indragie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "CocoaMarkdownTests/CocoaMarkdownTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/External/cmark/src";
 			};
 			name = Debug;
@@ -1608,7 +1635,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = (
@@ -1617,11 +1644,13 @@
 					"$(SRCROOT)/CocoaMarkdown/Configuration",
 				);
 				INFOPLIST_FILE = CocoaMarkdownTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.indragie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "CocoaMarkdownTests/CocoaMarkdownTests-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/External/cmark/src";
 			};
 			name = Release;
@@ -1649,7 +1678,8 @@
 				INFOPLIST_FILE = CocoaMarkdown/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_CFLAGS = "-DCMARK_INLINE=inline";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.indragie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CocoaMarkdown;
 				SDKROOT = macosx;
@@ -1678,7 +1708,8 @@
 				INFOPLIST_FILE = CocoaMarkdown/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_CFLAGS = "-DCMARK_INLINE=inline";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.indragie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CocoaMarkdown;
 				SDKROOT = macosx;
@@ -1713,6 +1744,7 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "CocoaMarkdownTests/CocoaMarkdownTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/External/cmark/src";
 			};
 			name = Debug;
@@ -1739,6 +1771,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "CocoaMarkdownTests/CocoaMarkdownTests-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/External/cmark/src";
 			};
 			name = Release;
@@ -1747,14 +1780,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Example-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.indragie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1762,10 +1801,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Example-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.indragie.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1786,6 +1831,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1803,6 +1849,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
