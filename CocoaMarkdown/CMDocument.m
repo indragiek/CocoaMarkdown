@@ -11,6 +11,23 @@
 
 @implementation CMDocument
 
+- (instancetype)initWithString:(NSString *)string options:(CMDocumentOptions)options
+{
+    if (string != nil) {
+        if ((self = [super init])) {
+            const char* utf8String = string.UTF8String;
+            cmark_node *node = cmark_parse_document(utf8String, strlen(utf8String), options);
+            if (node == NULL) return nil;
+            
+            _rootNode = [[CMNode alloc] initWithNode:node freeWhenDone:YES];
+            _options = options;
+        }
+    } else {
+        self = nil;
+    }
+    return self;
+}
+
 - (instancetype)initWithData:(NSData *)data options:(CMDocumentOptions)options
 {
     NSParameterAssert(data);
