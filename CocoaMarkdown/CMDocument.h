@@ -60,4 +60,23 @@ typedef NS_OPTIONS(NSInteger, CMDocumentOptions) {
  */
 - (instancetype)initWithContentsOfFile:(NSString *)path options:(CMDocumentOptions)options;
 
+
+/**
+ *  Base URL for links and images in the document.
+ *
+ *  Used as a base when a link destination is a scheme-less path (relative or absolute).
+ *
+ *  If the document has been created using `-[initWithContentsOfFile:options]`, linkBaseURL defaults to the document file's parent directory.
+ */
+@property (nonatomic) NSURL *linksBaseURL;
+
+/**
+ *  Get the absolute URL for a link or image node based on the documents's link base URL if needed
+ *
+ *  @param node Markdown document data.
+ *
+ *  @return the actual target URL of the node taking into account the documents's link base URL
+ */
+- (NSURL*) targetURLForNode:(CMNode *)node;
+
 @end

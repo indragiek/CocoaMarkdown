@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, CMNodeType) {
     CMNodeTypeItem,
     CMNodeTypeCodeBlock,
     CMNodeTypeHTML,
+    CMNodeTypeCustomBlock,
     CMNodeTypeParagraph,
     CMNodeTypeHeader,
     CMNodeTypeHRule,
@@ -34,6 +35,7 @@ typedef NS_ENUM(NSInteger, CMNodeType) {
     CMNodeTypeLinebreak,
     CMNodeTypeCode,
     CMNodeTypeInlineHTML,
+    CMNodeTypeCustomInline,
     CMNodeTypeEmphasis,
     CMNodeTypeStrong,
     CMNodeTypeLink,
@@ -140,6 +142,11 @@ typedef NS_ENUM(NSInteger, CMDelimeterType) {
  *  `YES` if the receiver is a tight list, `NO` otherwise.
  */
 @property (readonly) BOOL listTight;
+
+/**
+ *  Link or image URL string (as set in the document), or `nil` if there is none.
+ */
+@property (readonly) NSString *URLString;
 
 /**
  *  Link or image URL, or `nil` if there is none.

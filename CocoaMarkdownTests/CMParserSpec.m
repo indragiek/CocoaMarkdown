@@ -25,14 +25,14 @@ it(@"should parse a document", ^{
     expect(@(results.didStartDocument)).to(equal(@1));
     expect(@(results.didAbort)).to(equal(@0));
     
-    expect(@(results.foundText.count)).to(equal(@23));
+    expect(@(results.foundText.count)).to(equal(@27));
     expect(@(results.foundHRule)).to(equal(@1));
     
     expect(results.didStartHeader).to(equal(@[@1, @3]));
     expect(results.didEndHeader).to(equal(@[@1, @3]));
     
-    expect(@(results.didStartParagraph)).to(equal(@11));
-    expect(@(results.didEndParagraph)).to(equal(@11));
+    expect(@(results.didStartParagraph)).to(equal(@15));
+    expect(@(results.didEndParagraph)).to(equal(@15));
     
     expect(@(results.didStartEmphasis)).to(equal(@2));
     expect(@(results.didEndEmphasis)).to(equal(@2));
@@ -50,7 +50,7 @@ it(@"should parse a document", ^{
     
     expect(@(results.foundHTML.count)).to(equal(@1));
     expect(@([results.foundHTML[0] hasPrefix:@"<table>"])).to(beTruthy());
-    expect(@([results.foundHTML[0] hasSuffix:@"</table>"])).to(beTruthy());
+    expect(@([results.foundHTML[0] hasSuffix:@"</table>\n"])).to(beTruthy());
     expect(results.foundInlineHTML).to(equal(@[@"<s>", @"</s>", @"<sup>", @"</sup>", @"<u>", @"</u>"]));
     
     expect(@(results.foundCodeBlock.count)).to(equal(@1));
@@ -64,14 +64,14 @@ it(@"should parse a document", ^{
     expect(@(results.didStartBlockQuote)).to(equal(@1));
     expect(@(results.didEndBlockQuote)).to(equal(@1));
     
-    expect(results.didStartUnorderedList).to(equal(@[@YES]));
-    expect(results.didEndUnorderedList).to(equal(@[@YES]));
+    expect(results.didStartUnorderedList).to(equal(@[@YES, @YES, @YES]));
+    expect(results.didEndUnorderedList).to(equal(@[@YES, @YES, @YES]));
     
     expect(results.didStartOrderedList).to(equal(@[@[@2, @YES]]));
     expect(results.didEndOrderedList).to(equal(@[@[@2, @YES]]));
     
-    expect(@(results.didStartListItem)).to(equal(@5));
-    expect(@(results.didEndListItem)).to(equal(@5));
+    expect(@(results.didStartListItem)).to(equal(@9));
+    expect(@(results.didEndListItem)).to(equal(@9));
 });
 
 it(@"should abort parsing", ^{

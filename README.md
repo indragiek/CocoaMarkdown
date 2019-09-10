@@ -1,5 +1,5 @@
 ## CocoaMarkdown
-#### Markdown parsing and rendering for iOS and OS X
+#### Markdown parsing and rendering for iOS and macOS
 
 CocoaMarkdown is a cross-platform framework for parsing and rendering Markdown, built on top of the [C reference implementation](https://github.com/jgm/CommonMark) of [CommonMark](http://commonmark.org).
 
@@ -10,7 +10,11 @@ CocoaMarkdown is a cross-platform framework for parsing and rendering Markdown, 
 CocoaMarkdown aims to solve two primary problems better than existing libraries:
 
 1. **More flexibility**. CocoaMarkdown allows you to define custom parsing hooks or even traverse the Markdown AST using the low-level API.
-2. **Efficient `NSAttributedString` creation for easy rendering on iOS and OS X**. Most existing libraries just generate HTML from the Markdown, which is not a convenient representation to work with in native apps.
+2. **Efficient `NSAttributedString` creation for easy rendering on iOS and macOS**. Most existing libraries just generate HTML from the Markdown, which is not a convenient representation to work with in native apps.
+
+![Example app macOS](images/example-app-mac.png)
+
+![Example app iOS](images/example-app-iOS.png)
 
 ### Installation
 
@@ -33,7 +37,7 @@ Next, drag the `.xcodeproj` file from within `CocoaMarkdown` into your project. 
 
 #### Traversing the Markdown AST
 
-[`CMNode`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMNode.h) and [`CMIterator`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMIterator.h) wrap CommonMark's C types with an object-oriented interface for traversal of the Markdown AST.
+[`CMNode`](CocoaMarkdown/CMNode.h) and [`CMIterator`](CocoaMarkdown/CMIterator.h) wrap CommonMark's C types with an object-oriented interface for traversal of the Markdown AST.
 
 ```swift
 let document = CMDocument(contentsOfFile: path, options: nil)
@@ -44,7 +48,7 @@ document.rootNode.iterator().enumerateUsingBlock { (node, _, _) in
 
 #### Building Custom Renderers
 
-The [`CMParser`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMParser.h) class isn't _really_ a parser (it just traverses the AST), but it defines an `NSXMLParser`-style delegate API that provides handy callbacks for building your own renderers:
+The [`CMParser`](CocoaMarkdown/CMParser.h) class isn't _really_ a parser (it just traverses the AST), but it defines an `NSXMLParser`-style delegate API that provides handy callbacks for building your own renderers:
 
 ```objective-c
 @protocol CMParserDelegate <NSObject>
@@ -58,11 +62,11 @@ The [`CMParser`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMar
 @end
 ```
 
-[`CMAttributedStringRenderer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMAttributedStringRenderer.h) is an example of a custom renderer that is built using this API.
+[`CMAttributedStringRenderer`](CocoaMarkdown/CMAttributedStringRenderer.h) is an example of a custom renderer that is built using this API.
 
 #### Rendering Attributed Strings
 
-[`CMAttributedStringRenderer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMAttributedStringRenderer.h) is the high level API that will be useful to most apps. It creates an `NSAttributedString` directly from Markdown, skipping the step of converting it to HTML altogether.
+[`CMAttributedStringRenderer`](CocoaMarkdown/CMAttributedStringRenderer.h) is the high level API that will be useful to most apps. It creates an `NSAttributedString` directly from Markdown, skipping the step of converting it to HTML altogether.
 
 Going from a Markdown document to rendering it on screen is as easy as:
 
@@ -78,7 +82,7 @@ Or, using the convenience method on `CMDocument`:
 textView.attributedText = CMDocument(contentsOfFile: path, options: nil).attributedStringWithAttributes(CMTextAttributes())
 ```
 
-All attributes used to style the text are customizable using the [`CMTextAttributes`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMTextAttributes.h) class:
+All attributes used to style the text are customizable using the [`CMTextAttributes`](CocoaMarkdown/CMTextAttributes.h) class:
 
 ```swift
 let attributes = CMTextAttributes()
@@ -90,11 +94,11 @@ attributes.emphasisAttributes = [
 ]
 ```
 
-HTML elements can be supported by implementing [`CMHTMLElementTransformer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMHTMLElementTransformer.h). The framework includes several transformers for commonly used tags:
+HTML elements can be supported by implementing [`CMHTMLElementTransformer`](CocoaMarkdown/CMHTMLElementTransformer.h). The framework includes several transformers for commonly used tags:
 
-* [`CMHTMLStrikethroughTransformer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMHTMLStrikethroughTransformer.h)
-* [`CMHTMLSuperscriptTransformer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMHTMLSuperscriptTransformer.h)
-* [`CMHTMLSubscriptTransformer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMHTMLSubscriptTransformer.h)
+* [`CMHTMLStrikethroughTransformer`](CocoaMarkdown/CMHTMLStrikethroughTransformer.h)
+* [`CMHTMLSuperscriptTransformer`](CocoaMarkdown/CMHTMLSuperscriptTransformer.h)
+* [`CMHTMLSubscriptTransformer`](CocoaMarkdown/CMHTMLSubscriptTransformer.h)
 
 Transformers can be registered with the renderer to use them:
 
@@ -108,7 +112,7 @@ textView.attributedText = renderer.render()
 
 ### Rendering HTML
 
-[`CMHTMLRenderer`](https://github.com/indragiek/CocoaMarkdown/blob/master/CocoaMarkdown/CMHTMLRenderer.h) provides the ability to render HTML from Markdown:
+[`CMHTMLRenderer`](CocoaMarkdown/CMHTMLRenderer.h) provides the ability to render HTML from Markdown:
 
 ```swift
 let document = CMDocument(contentsOfFile: path, options: nil)
@@ -124,7 +128,7 @@ let HTML = CMDocument(contentsOfFile: path).HTMLString()
 
 ### Example Apps
 
-The project includes example apps for iOS and OS X to demonstrate rendering attributed strings.
+The project includes example apps for iOS and macOS to demonstrate rendering attributed strings.
 
 ### Contact
 
