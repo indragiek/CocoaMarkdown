@@ -40,6 +40,16 @@ typedef NS_OPTIONS(NSInteger, CMDocumentOptions) {
 @property (nonatomic, readonly) CMNode *rootNode;
 
 /**
+ *  Initializes the receiver with a string.
+ *
+ *  @param string Markdown document string.
+ *  @param options Document options.
+ *
+ *  @return An initialized instance of the receiver.
+ */
+- (instancetype)initWithString:(NSString *)string options:(CMDocumentOptions)options;
+
+/**
  *  Initializes the receiver with data.
  *
  *  @param data Markdown document data.
