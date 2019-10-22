@@ -133,10 +133,18 @@ static NSDictionary * CMDefaultImageParagraphAttributes()
 }
 
 #if TARGET_OS_IPHONE
-static UIFont * MonospaceFont()
+static UIFont * defaultMonospaceFont()
 {
-    CGFloat size = [[UIFont preferredFontForTextStyle:UIFontTextStyleBody] pointSize];
-    return [UIFont fontWithName:@"Menlo" size:size] ?: [UIFont fontWithName:@"Courier" size:size];
+    if (@available(iOS 11.0, *)) {
+        CGFloat baseFontSize = [UIFont preferredFontForTextStyle:UIFontTextStyleBody 
+                                   compatibleWithTraitCollection:[UITraitCollection traitCollectionWithPreferredContentSizeCategory:UIContentSizeCategoryMedium]].pointSize;
+        UIFont* baseMonospaceFont = [UIFont fontWithName:@"Menlo" size:baseFontSize] ?: [UIFont fontWithName:@"Courier" size:baseFontSize];
+        return [[UIFontMetrics metricsForTextStyle:UIFontTextStyleBody] scaledFontForFont:baseMonospaceFont];
+    } else {
+        // Fallback on earlier versions
+        CGFloat size = [[UIFont preferredFontForTextStyle:UIFontTextStyleBody] pointSize];
+        return [UIFont fontWithName:@"Menlo" size:size] ?: [UIFont fontWithName:@"Courier" size:size];
+    }
 }
 #endif
 
@@ -152,7 +160,7 @@ static NSDictionary * CMDefaultCodeBlockAttributes()
 {
     return @{
 #if TARGET_OS_IPHONE
-        NSFontAttributeName: MonospaceFont(),
+        NSFontAttributeName: defaultMonospaceFont(),
 #else
         NSFontAttributeName: [NSFont userFixedPitchFontOfSize:12.0],
 #endif
@@ -163,7 +171,7 @@ static NSDictionary * CMDefaultCodeBlockAttributes()
 static NSDictionary * CMDefaultInlineCodeAttributes()
 {
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: MonospaceFont()};
+    return @{NSFontAttributeName: defaultMonospaceFont()};
 #else
     return @{NSFontAttributeName: [NSFont userFixedPitchFontOfSize:12.0]};
 #endif
