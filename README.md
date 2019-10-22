@@ -38,7 +38,7 @@ Next, drag the `.xcodeproj` file from within `CocoaMarkdown` into your project. 
 [`CMNode`](CocoaMarkdown/CMNode.h) and [`CMIterator`](CocoaMarkdown/CMIterator.h) wrap CommonMark's C types with an object-oriented interface for traversal of the Markdown AST.
 
 ```swift
-let document = CMDocument(contentsOfFile: path, options: nil)
+let document = CMDocument(contentsOfFile: path, options: [])
 document.rootNode.iterator().enumerateUsingBlock { (node, _, _) in
     print("String value: \(node.stringValue)")
 }
@@ -69,7 +69,7 @@ The [`CMParser`](CocoaMarkdown/CMParser.h) class isn't _really_ a parser (it jus
 Going from a Markdown document to rendering it on screen is as easy as:
 
 ```swift
-let document = CMDocument(contentsOfFile: path, options: nil)
+let document = CMDocument(contentsOfFile: path, options: [])
 let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
 textView.attributedText = renderer.render()
 ```
@@ -77,7 +77,7 @@ textView.attributedText = renderer.render()
 Or, using the convenience method on `CMDocument`:
 
 ```swift
-textView.attributedText = CMDocument(contentsOfFile: path, options: nil).attributedStringWithAttributes(CMTextAttributes())
+textView.attributedText = CMDocument(contentsOfFile: path, options: []).attributedStringWithAttributes(CMTextAttributes())
 ```
 
 All attributes used to style the text are customizable using the [`CMTextAttributes`](CocoaMarkdown/CMTextAttributes.h) class:
@@ -101,7 +101,7 @@ HTML elements can be supported by implementing [`CMHTMLElementTransformer`](Coco
 Transformers can be registered with the renderer to use them:
 
 ```swift
-let document = CMDocument(contentsOfFile: path, options: nil)
+let document = CMDocument(contentsOfFile: path, options: [])
 let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
 renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
 renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
@@ -113,7 +113,7 @@ textView.attributedText = renderer.render()
 [`CMHTMLRenderer`](CocoaMarkdown/CMHTMLRenderer.h) provides the ability to render HTML from Markdown:
 
 ```swift
-let document = CMDocument(contentsOfFile: path, options: nil)
+let document = CMDocument(contentsOfFile: path, options: [])
 let renderer = CMHTMLRenderer(document: document)
 let HTML = renderer.render()
 ```
