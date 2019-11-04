@@ -10,6 +10,8 @@
 
 #import "CMPlatformDefines.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_OPTIONS(NSUInteger, CMElementKind) {
     CMElementKindText = 1 << 0,
     
@@ -287,3 +289,5 @@ extern CMParagraphStyleAttributeName const CMParagraphStyleAttributeMaximumLineH
 extern CMParagraphStyleAttributeName const CMParagraphStyleAttributeLineHeightMultiple;
 extern CMParagraphStyleAttributeName const CMParagraphStyleAttributeParagraphSpacingBefore;
 extern CMParagraphStyleAttributeName const CMParagraphStyleAttributeHyphenationFactor;
+
+NS_ASSUME_NONNULL_END

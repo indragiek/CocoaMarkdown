@@ -55,7 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             document?.linksBaseURL = linksBaseUrl
         }
         
-        let textAttributes = CMTextAttributes()!;
+        let textAttributes = CMTextAttributes()
         
         // Customize the color and font of header elements
         textAttributes.addStringAttributes([ .foregroundColor: NSColor(red: 0.0, green: 0.446, blue: 0.657, alpha: 1.0)], forElementWithKinds: .anyHeader)
