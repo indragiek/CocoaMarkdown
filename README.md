@@ -82,18 +82,6 @@ Or, using the convenience method on `CMDocument`:
 textView.attributedText = CMDocument(contentsOfFile: path, options: nil).attributedStringWithAttributes(CMTextAttributes())
 ```
 
-All attributes used to style the text are customizable using the [`CMTextAttributes`](CocoaMarkdown/CMTextAttributes.h) class:
-
-```swift
-let attributes = CMTextAttributes()
-attributes.linkAttributes = [
-    NSForegroundColorAttributeName: UIColor.redColor()
-]
-attributes.emphasisAttributes = [
-    NSBackgroundColorAttributeName: UIColor.yellowColor()
-]
-```
-
 HTML elements can be supported by implementing [`CMHTMLElementTransformer`](CocoaMarkdown/CMHTMLElementTransformer.h). The framework includes several transformers for commonly used tags:
 
 * [`CMHTMLStrikethroughTransformer`](CocoaMarkdown/CMHTMLStrikethroughTransformer.h)
@@ -109,6 +97,54 @@ renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
 renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
 textView.attributedText = renderer.render()
 ```
+
+#### Customizing Attributed strings rendering
+
+All attributes used to style the text are customizable using the [`CMTextAttributes`](CocoaMarkdown/CMTextAttributes.h) class. 
+
+Every Markdown element type can be customized using the corresponding `CMStyleAttributes` property in `CMTextAttributes`, defining 3 different kinds of attributes:
+
+- String attributes, i.e. regular NSAttributedString attributes
+- Font attributes, for easy font setting 
+- Paragraph attributes, relevant only for block elements
+
+Attributes for any Markdown element kind can be directly set:
+
+```swift
+let textAttributes = CMTextAttributes()!
+textAttributes.linkAttributes.stringAttributes[NSAttributedString.Key.backgroundColor] = UIColor.yellow
+```
+
+A probably better alternative for style customization is to use grouped attributes setting methods available in `CMTextAttributes`:
+
+```swift
+let textAttributes = CMTextAttributes()!
+
+// Set the text color for all headers
+textAttributes.addStringAttributes([ .foregroundColor: UIColor(red: 0.0, green: 0.446, blue: 0.657, alpha: 1.0)], 
+                                   forElementWithKinds: .anyHeader)
+
+// Set a specific font + font-traits for all headers
+let boldItalicTrait: UIFontDescriptor.SymbolicTraits = [.traitBold, .traitItalic];
+textAttributes.addFontAttributes([ .family: "Avenir Next" ,
+                                   .traits: [ UIFontDescriptor.TraitKey.symbolic: boldItalicTrait.rawValue]], 
+                                 forElementWithKinds: .anyHeader)
+// Set specific font traits for header1 and header2
+textAttributes.setFontTraits([.weight: UIFont.Weight.heavy], 
+                             forElementWithKinds: [.header1, .header2])
+
+// Center block-quote paragraphs        
+textAttributes.addParagraphStyleAttributes([ .alignment: NSTextAlignment.center.rawValue], 
+                                           forElementWithKinds: .blockQuote)
+
+// Set a background color for code elements        
+textAttributes.addStringAttributes([ .backgroundColor: UIColor(white: 0.9, alpha: 0.5)], 
+                                   forElementWithKinds: [.inlineCode, .codeBlock])
+```
+
+Font and paragraph attributes are incremental, meaning that they allow to modify only specific aspects of the default rendering styles.
+
+Additionally on iOS, Markdown elements styled using the font attributes API get automatic Dynamic-Type compliance in the generated attributed string, just like default rendering styles.
 
 ### Rendering HTML
 

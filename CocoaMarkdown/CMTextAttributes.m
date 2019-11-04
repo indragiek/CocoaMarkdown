@@ -9,127 +9,121 @@
 #import "CMTextAttributes.h"
 #import "CMPlatformDefines.h"
 
-static NSDictionary * CMDefaultTextAttributes()
+@interface CMStyleAttributes ()
+
+- (instancetype) initWithStringAttributes:(NSDictionary<NSAttributedStringKey, id>*) textAttributes;
+- (instancetype) initWithStringAttributes:(NSDictionary<NSAttributedStringKey, id>*) textAttributes paragraphStyleAttributes:(NSDictionary<CMParagraphStyleAttributeName, id>*)paragraphStyleAttributes;
+- (instancetype) initWithParagraphStyleAttributes:(NSDictionary<CMParagraphStyleAttributeName, id>*)paragraphStyleAttributes;
+- (instancetype) initWithFontSymbolicTraits:(CMFontSymbolicTraits)fontSymbolicTraits;
+
+@end
+
+static CMStyleAttributes * CMDefaultBaseTextAttributes()
 {
+    NSDictionary* stringAttributes;
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]};
+    stringAttributes = @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]};
 #else
-    return @{NSFontAttributeName: [NSFont userFontOfSize:12.0]};
+    stringAttributes = @{NSFontAttributeName: [NSFont userFontOfSize:12.0]};
 #endif
+    return [[CMStyleAttributes alloc] initWithStringAttributes:stringAttributes];
 }
 
-static NSMutableParagraphStyle* defaultHeaderParagraphStyle()
+static NSDictionary<CMParagraphStyleAttributeName, id> * defaultHeaderParagraphStyleAttributes()
 {
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.paragraphSpacingBefore = 16;
-    paragraphStyle.paragraphSpacing = 8;
-    return paragraphStyle;
+    return @{ CMParagraphStyleAttributeParagraphSpacingBefore: @16,
+              CMParagraphStyleAttributeParagraphSpacing: @8 };
 }
 
-static NSDictionary * CMDefaultH1Attributes()
+static CMStyleAttributes * CMDefaultH1Attributes()
 {
-    NSMutableParagraphStyle* h1ParagraphStyle = defaultHeaderParagraphStyle();
-    h1ParagraphStyle.paragraphSpacingBefore = 28;
-    h1ParagraphStyle.paragraphSpacing = 14;
+    NSDictionary* stringAttributes;
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
-             NSParagraphStyleAttributeName: h1ParagraphStyle };
+    stringAttributes = @{ NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle1] };
 #else
-    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:28.0],
-             NSParagraphStyleAttributeName: h1ParagraphStyle };
+    stringAttributes = @{ NSFontAttributeName: [NSFont boldSystemFontOfSize:28.0] };
 #endif
+    return [[CMStyleAttributes alloc] initWithStringAttributes:stringAttributes 
+                                      paragraphStyleAttributes:@{ CMParagraphStyleAttributeParagraphSpacingBefore: @28,
+                                                                  CMParagraphStyleAttributeParagraphSpacing: @14 }];
 }
 
-static NSDictionary * CMDefaultH2Attributes()
+static CMStyleAttributes * CMDefaultH2Attributes()
 {
-    NSMutableParagraphStyle* h2ParagraphStyle = defaultHeaderParagraphStyle();
-    h2ParagraphStyle.paragraphSpacingBefore = 20;
-    h2ParagraphStyle.paragraphSpacing = 10;
+    NSDictionary* stringAttributes;
+    #if TARGET_OS_IPHONE
+        stringAttributes = @{ NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle2] };
+    #else
+        stringAttributes = @{ NSFontAttributeName: [NSFont boldSystemFontOfSize:22.0] };
+    #endif
+    return [[CMStyleAttributes alloc] initWithStringAttributes:stringAttributes 
+                                      paragraphStyleAttributes:@{ CMParagraphStyleAttributeParagraphSpacingBefore: @20,
+                                                                  CMParagraphStyleAttributeParagraphSpacing: @10 }];
+}
+
+static CMStyleAttributes * CMDefaultH3Attributes()
+{
+    NSDictionary* stringAttributes;
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
-             NSParagraphStyleAttributeName: h2ParagraphStyle};
+    stringAttributes = @{ NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleTitle3] };
 #else
-    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:22.0],
-             NSParagraphStyleAttributeName: h2ParagraphStyle,
-             };
+    stringAttributes = @{ NSFontAttributeName: [NSFont boldSystemFontOfSize:16.0] };
 #endif
+    return [[CMStyleAttributes alloc] initWithStringAttributes:stringAttributes 
+                                      paragraphStyleAttributes:defaultHeaderParagraphStyleAttributes()];
 }
 
-static NSDictionary * CMDefaultH3Attributes()
+static CMStyleAttributes * CMDefaultH4Attributes()
 {
+    NSDictionary* stringAttributes;
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
-             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle() };
+    stringAttributes = @{ NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline] };
 #else
-    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:16.0],
-             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle(),
-             };
+    stringAttributes = @{ NSFontAttributeName: [NSFont boldSystemFontOfSize:14.0] };
 #endif
+    return [[CMStyleAttributes alloc] initWithStringAttributes:stringAttributes 
+                                      paragraphStyleAttributes:defaultHeaderParagraphStyleAttributes()];
 }
 
-static NSDictionary * CMDefaultH4Attributes()
+static CMStyleAttributes * CMDefaultH5Attributes()
 {
+    NSDictionary* stringAttributes;
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline],
-             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle() };
+    stringAttributes = @{ NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline] };
 #else
-    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:14.0],
-             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle(),
-             };
+    stringAttributes = @{ NSFontAttributeName: [NSFont boldSystemFontOfSize:12.0] };
 #endif
+    return [[CMStyleAttributes alloc] initWithStringAttributes:stringAttributes 
+                                      paragraphStyleAttributes:defaultHeaderParagraphStyleAttributes()];
 }
 
-static NSDictionary * CMDefaultH5Attributes()
+static CMStyleAttributes * CMDefaultH6Attributes()
 {
+    NSDictionary* stringAttributes;
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline],
-             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle() };
+    stringAttributes = @{ NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline] };
 #else
-    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:12.0],
-             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle(),
-             };
+    stringAttributes = @{ NSFontAttributeName: [NSFont boldSystemFontOfSize:10.0] };
 #endif
+    return [[CMStyleAttributes alloc] initWithStringAttributes:stringAttributes 
+                                      paragraphStyleAttributes:defaultHeaderParagraphStyleAttributes()];
 }
 
-static NSDictionary * CMDefaultH6Attributes()
+static CMStyleAttributes * CMDefaultParagraphAttributes()
 {
-#if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline],
-             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle() };
-#else
-    return @{NSFontAttributeName: [NSFont boldSystemFontOfSize:10.0],
-             NSParagraphStyleAttributeName: defaultHeaderParagraphStyle(),
-             };
-#endif
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:@{ CMParagraphStyleAttributeParagraphSpacingBefore: @12 }];
 }
 
-static NSDictionary * CMDefaultParagraphAttributes()
+static CMStyleAttributes * CMDefaultLinkAttributes()
 {
-    NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
-    paragraphStyle.paragraphSpacingBefore = 12;
-    
-    return @{NSParagraphStyleAttributeName: paragraphStyle};
+    return [[CMStyleAttributes alloc] initWithStringAttributes:@{ NSForegroundColorAttributeName: CMColor.blueColor,
+                                                                  NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle) }];
 }
 
-static NSDictionary * CMDefaultLinkAttributes()
+static CMStyleAttributes * CMDefaultImageParagraphAttributes()
 {
-    return @{
-#if TARGET_OS_IPHONE
-        NSForegroundColorAttributeName: UIColor.blueColor,
-#else
-        NSForegroundColorAttributeName: NSColor.blueColor,
-#endif
-        NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)
-    };
-}
-
-static NSDictionary * CMDefaultImageParagraphAttributes()
-{
-    NSMutableParagraphStyle* paragraphStyle = [NSMutableParagraphStyle new];
-    paragraphStyle.paragraphSpacingBefore = 12;
-    paragraphStyle.alignment = NSTextAlignmentCenter;
-    
-    return @{NSParagraphStyleAttributeName: paragraphStyle};
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:@{ CMParagraphStyleAttributeParagraphSpacingBefore: @12,
+                                                                          CMParagraphStyleAttributeAlignment: @(NSTextAlignmentCenter) }];
 }
 
 #if TARGET_OS_IPHONE
@@ -148,58 +142,63 @@ static UIFont * defaultMonospaceFont()
 }
 #endif
 
-static NSParagraphStyle * DefaultIndentedParagraphStyle()
+static NSDictionary<CMParagraphStyleAttributeName, id> * DefaultIndentedParagraphStyleAttributes()
 {
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-    style.firstLineHeadIndent = 30;
-    style.headIndent = 30;
-    return style;
+    return @{ CMParagraphStyleAttributeFirstLineHeadExtraIndent: @30,
+              CMParagraphStyleAttributeHeadExtraIndent: @30 };
 }
 
-static NSDictionary * CMDefaultCodeBlockAttributes()
+static CMStyleAttributes * CMDefaultCodeBlockAttributes()
 {
-    return @{
+    NSDictionary* stringAttributes;
 #if TARGET_OS_IPHONE
-        NSFontAttributeName: defaultMonospaceFont(),
+    stringAttributes = @{ NSFontAttributeName: defaultMonospaceFont(), };
 #else
-        NSFontAttributeName: [NSFont userFixedPitchFontOfSize:12.0],
+    stringAttributes = @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize:12.0] };
 #endif
-        NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()
-    };
+
+    NSMutableDictionary* paragraphStyleAttributes = [NSMutableDictionary new];
+    [paragraphStyleAttributes addEntriesFromDictionary:DefaultIndentedParagraphStyleAttributes()];
+    paragraphStyleAttributes[CMParagraphStyleAttributeParagraphSpacingBefore] = @12;
+    
+    return [[CMStyleAttributes alloc] initWithStringAttributes:stringAttributes 
+                                      paragraphStyleAttributes:paragraphStyleAttributes];
 }
 
-static NSDictionary * CMDefaultInlineCodeAttributes()
+static CMStyleAttributes * CMDefaultInlineCodeAttributes()
 {
+    NSDictionary* stringAttributes;
 #if TARGET_OS_IPHONE
-    return @{NSFontAttributeName: defaultMonospaceFont()};
+    stringAttributes = @{ NSFontAttributeName: defaultMonospaceFont(), };
 #else
-    return @{NSFontAttributeName: [NSFont userFixedPitchFontOfSize:12.0]};
+    stringAttributes = @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize:12.0] };
 #endif
+    return [[CMStyleAttributes alloc] initWithStringAttributes:stringAttributes];
 }
 
-static NSDictionary * CMDefaultBlockQuoteAttributes()
+static  CMStyleAttributes *  CMDefaultBlockQuoteAttributes()
 {
-    return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultIndentedParagraphStyleAttributes()];
 }
 
-static NSDictionary * CMDefaultOrderedListAttributes()
+static  CMStyleAttributes *  CMDefaultOrderedListAttributes()
 {
-    return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultIndentedParagraphStyleAttributes()];
 }
 
-static NSDictionary * CMDefaultUnorderedListAttributes()
+static  CMStyleAttributes *  CMDefaultUnorderedListAttributes()
 {
-    return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultIndentedParagraphStyleAttributes()];
 }
 
-static NSDictionary * CMDefaultOrderedSublistAttributes()
+static  CMStyleAttributes *  CMDefaultOrderedSublistAttributes()
 {
-    return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultIndentedParagraphStyleAttributes()];
 }
 
-static NSDictionary * CMDefaultUnorderedSublistAttributes()
+static  CMStyleAttributes *  CMDefaultUnorderedSublistAttributes()
 {
-    return @{NSParagraphStyleAttributeName: DefaultIndentedParagraphStyle()};
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultIndentedParagraphStyleAttributes()];
 }
 
 @implementation CMTextAttributes
@@ -207,7 +206,7 @@ static NSDictionary * CMDefaultUnorderedSublistAttributes()
 - (instancetype)init
 {
     if ((self = [super init])) {
-        _textAttributes = CMDefaultTextAttributes();
+        _baseTextAttributes = CMDefaultBaseTextAttributes();
         _h1Attributes = CMDefaultH1Attributes();
         _h2Attributes = CMDefaultH2Attributes();
         _h3Attributes = CMDefaultH3Attributes();
@@ -215,6 +214,10 @@ static NSDictionary * CMDefaultUnorderedSublistAttributes()
         _h5Attributes = CMDefaultH5Attributes();
         _h6Attributes = CMDefaultH6Attributes();
         _paragraphAttributes = CMDefaultParagraphAttributes();
+        
+        _emphasisAttributes = [[CMStyleAttributes alloc] initWithFontSymbolicTraits:CMFontTraitItalic];
+        _strongAttributes = [[CMStyleAttributes alloc] initWithFontSymbolicTraits:CMFontTraitBold];
+        
         _linkAttributes = CMDefaultLinkAttributes();
         _imageParagraphAttributes = CMDefaultImageParagraphAttributes();
         _codeBlockAttributes = CMDefaultCodeBlockAttributes();
@@ -228,7 +231,96 @@ static NSDictionary * CMDefaultUnorderedSublistAttributes()
     return self;
 }
 
-- (NSDictionary *)attributesForHeaderLevel:(NSInteger)level
+- (void) updateAttributesForElementKinds:(CMElementKind)elementKinds usingBlock:(void(^)(CMStyleAttributes * styleAttributes))block
+{
+    if ((elementKinds & CMElementKindText) != 0) {
+        block(_baseTextAttributes);
+    }
+    if ((elementKinds & CMElementKindHeader1) != 0) {
+        block(_h1Attributes);
+    }
+    if ((elementKinds & CMElementKindHeader2) != 0) {
+        block(_h2Attributes);
+    }
+    if ((elementKinds & CMElementKindHeader3) != 0) {
+        block(_h3Attributes);
+    }
+    if ((elementKinds & CMElementKindHeader4) != 0) {
+        block(_h4Attributes);
+    }
+    if ((elementKinds & CMElementKindHeader5) != 0) {
+        block(_h5Attributes);
+    }
+    if ((elementKinds & CMElementKindHeader6) != 0) {
+        block(_h6Attributes);
+    }
+    if ((elementKinds & CMElementKindParagraph) != 0) {
+        block(_paragraphAttributes);
+    }
+    if ((elementKinds & CMElementKindLink) != 0) {
+        block(_linkAttributes);
+    }
+    if ((elementKinds & CMElementKindImageParagraph) != 0) {
+        block(_imageParagraphAttributes);
+    }
+    if ((elementKinds & CMElementKindCodeBlock) != 0) {
+        block(_codeBlockAttributes);
+    }
+    if ((elementKinds & CMElementKindInlineCode) != 0) {
+        block(_inlineCodeAttributes);
+    }
+    if ((elementKinds & CMElementKindBlockQuote) != 0) {
+        block(_blockQuoteAttributes);
+    }
+    if ((elementKinds & CMElementKindOrderedList) != 0) {
+        block(_orderedListAttributes);
+    }
+    if ((elementKinds & CMElementKindOrderedSublist) != 0) {
+        block(_orderedSublistAttributes);
+    }
+    if ((elementKinds & CMElementKindOrderedListItem) != 0) {
+        block(_orderedListItemAttributes);
+    }
+    if ((elementKinds & CMElementKindUnorderedList) != 0) {
+        block(_unorderedListAttributes);
+    }
+    if ((elementKinds & CMElementKindUnorderedSublist) != 0) {
+        block(_unorderedSublistAttributes);
+    }
+    if ((elementKinds & CMElementKindUnorderedListItem) != 0) {
+        block(_unorderedListItemAttributes);
+    }
+}
+
+- (void) addStringAttributes:(NSDictionary<NSAttributedStringKey, id>*)attributes forElementWithKinds:(CMElementKind)elementKinds
+{
+    [self updateAttributesForElementKinds:elementKinds usingBlock:^(CMStyleAttributes *styleAttributes) {
+        [styleAttributes.stringAttributes addEntriesFromDictionary:attributes];
+    }];
+}
+
+- (void) addFontAttributes:(NSDictionary<CMFontDescriptorAttributeName, id>*)fontAttributes forElementWithKinds:(CMElementKind)elementKinds
+{
+    [self updateAttributesForElementKinds:elementKinds usingBlock:^(CMStyleAttributes *styleAttributes) {
+        [styleAttributes.fontAttributes addEntriesFromDictionary:fontAttributes];
+    }];
+}
+
+- (void) setFontTraits:(NSDictionary<CMFontDescriptorTraitKey, id>*)fontTraits forElementWithKinds:(CMElementKind)elementKinds
+{
+    [self updateAttributesForElementKinds:elementKinds usingBlock:^(CMStyleAttributes *styleAttributes) {
+        styleAttributes.fontAttributes[CMFontTraitsAttribute] = fontTraits;
+    }];
+}
+
+- (void) addParagraphStyleAttributes:(NSDictionary<CMParagraphStyleAttributeName, id>*)attributes forElementWithKinds:(CMElementKind)elementKinds
+{
+    [self updateAttributesForElementKinds:elementKinds usingBlock:^(CMStyleAttributes *styleAttributes) {
+        [styleAttributes.paragraphStyleAttributes addEntriesFromDictionary:attributes];
+    }];
+}
+
+- (CMStyleAttributes *)attributesForHeaderLevel:(NSInteger)level
 {
     switch (level) {
         case 1: return _h1Attributes;
@@ -241,3 +333,104 @@ static NSDictionary * CMDefaultUnorderedSublistAttributes()
 }
 
 @end
+
+
+@implementation CMStyleAttributes
+
+- (instancetype) init
+{
+    self = [super init];
+    if (self != nil) {
+        _stringAttributes = [NSMutableDictionary new];
+        _fontAttributes = [NSMutableDictionary new];
+        _paragraphStyleAttributes =[NSMutableDictionary new];
+    }
+    return self;
+}
+
+- (instancetype) initWithStringAttributes:(NSDictionary<NSAttributedStringKey,id> *)stringAttributes
+{
+    self = [self init];
+    if (self != nil) {
+        [_stringAttributes addEntriesFromDictionary:stringAttributes];
+    }
+    return self;
+}
+
+- (instancetype) initWithParagraphStyleAttributes:(NSDictionary<CMParagraphStyleAttributeName, id>*)paragraphStyleAttributes
+{
+    self = [self init];
+    if (self != nil) {
+        [_paragraphStyleAttributes addEntriesFromDictionary:paragraphStyleAttributes];
+    }
+    return self;
+}
+
+- (instancetype) initWithStringAttributes:(NSDictionary<NSAttributedStringKey, id>*)stringAttributes
+                 paragraphStyleAttributes:(NSDictionary<CMParagraphStyleAttributeName, id>*)paragraphStyleAttributes
+{
+    self = [self init];
+    if (self != nil) {
+        [_stringAttributes addEntriesFromDictionary:stringAttributes];
+        [_paragraphStyleAttributes addEntriesFromDictionary:paragraphStyleAttributes];
+    }
+    return self;    
+}
+
+- (instancetype) initWithFontSymbolicTraits:(CMFontSymbolicTraits)fontSymbolicTraits
+{
+    self = [self init];
+    if (self != nil) {
+        [self setFontSymbolicTraits:fontSymbolicTraits];
+    }
+    return self;
+}
+
+- (id)copyWithZone:(nullable NSZone *)zone
+{
+    CMStyleAttributes * copiedAttributes = [CMStyleAttributes new];
+    [copiedAttributes.stringAttributes addEntriesFromDictionary:_stringAttributes];
+    [copiedAttributes.fontAttributes addEntriesFromDictionary:_fontAttributes];
+    [copiedAttributes.paragraphStyleAttributes addEntriesFromDictionary:_paragraphStyleAttributes];
+    return copiedAttributes;
+}
+
+- (void) setFontSymbolicTraits:(CMFontSymbolicTraits)fontSymbolicTraits
+{
+#if TARGET_OS_IPHONE
+    NSDictionary<UIFontDescriptorTraitKey, id> * currentFontTraits = _fontAttributes[UIFontDescriptorTraitsAttribute];
+    if (currentFontTraits == nil) {
+        _fontAttributes[UIFontDescriptorTraitsAttribute] = @{ UIFontSymbolicTrait: @(fontSymbolicTraits) };
+    }
+    else {
+        NSMutableDictionary* newFontTraits = currentFontTraits.mutableCopy;
+        newFontTraits[UIFontSymbolicTrait] = @(fontSymbolicTraits);
+        _fontAttributes[UIFontDescriptorTraitsAttribute] = newFontTraits;
+    }
+#else
+    NSDictionary<NSFontDescriptorTraitKey, id> * currentFontTraits = _fontAttributes[NSFontTraitsAttribute];
+    if (currentFontTraits == nil) {
+        _fontAttributes[NSFontTraitsAttribute] = @{ NSFontSymbolicTrait: @(fontSymbolicTraits) };
+    }
+    else {
+        NSMutableDictionary* newFontTraits = currentFontTraits.mutableCopy;
+        newFontTraits[NSFontSymbolicTrait] = @(fontSymbolicTraits);
+        _fontAttributes[NSFontTraitsAttribute] = newFontTraits;
+    }
+#endif
+}
+
+@end
+
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeLineSpacing = @"lineSpacing";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeParagraphSpacing = @"paragraphSpacing";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeAlignment = @"alignment";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeFirstLineHeadExtraIndent = @"firstLineHeadIndent";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeHeadExtraIndent = @"headIndent";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeTailExtraIndent = @"tailIndent";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeLineBreakMode = @"lineBreakMode";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeMinimumLineHeight = @"minimumLineHeight";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeMaximumLineHeight = @"maximumLineHeight";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeLineHeightMultiple = @"lineHeightMultiple";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeParagraphSpacingBefore = @"paragraphSpacingBefore";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeHyphenationFactor = @"hyphenationFactor";

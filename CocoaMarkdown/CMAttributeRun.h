@@ -9,18 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "CMPlatformDefines.h"
 
+@class CMStyleAttributes;
+
 @interface CMAttributeRun : NSObject
-@property (nonatomic, readonly) NSDictionary *attributes;
-@property (nonatomic, readonly) CMFontSymbolicTraits fontTraits;
+@property (nonatomic, readonly) CMStyleAttributes *attributes;
 @property (nonatomic) NSInteger orderedListItemNumber;
 @property (nonatomic, readonly) BOOL listTight;
 
-- (instancetype)initWithAttributes:(NSDictionary *)attributes
-                        fontTraits:(CMFontSymbolicTraits)fontTraits
+- (instancetype)initWithAttributes:(CMStyleAttributes *)attributes
                  orderedListNumber:(NSInteger)orderedListNumber;
 
 @end
 
-CMAttributeRun * CMDefaultAttributeRun(NSDictionary *attributes);
-CMAttributeRun * CMTraitAttributeRun(NSDictionary *attributes, CMFontSymbolicTraits traits);
-CMAttributeRun * CMOrderedListAttributeRun(NSDictionary *attributes, NSInteger startingNumber);
+CMAttributeRun * CMDefaultAttributeRun(CMStyleAttributes *attributes);
+CMAttributeRun * CMOrderedListAttributeRun(CMStyleAttributes *attributes, NSInteger startingNumber);

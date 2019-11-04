@@ -8,30 +8,23 @@
 
 #import "CMAttributeRun.h"
 
-CMAttributeRun * CMDefaultAttributeRun(NSDictionary *attributes)
+CMAttributeRun * CMDefaultAttributeRun(CMStyleAttributes *attributes)
 {
-    return [[CMAttributeRun alloc] initWithAttributes:attributes fontTraits:0 orderedListNumber:0];
+    return [[CMAttributeRun alloc] initWithAttributes:attributes orderedListNumber:0];
 }
 
-CMAttributeRun * CMTraitAttributeRun(NSDictionary *attributes, CMFontSymbolicTraits traits)
+CMAttributeRun * CMOrderedListAttributeRun(CMStyleAttributes *attributes, NSInteger startingNumber)
 {
-    return [[CMAttributeRun alloc] initWithAttributes:attributes fontTraits:traits orderedListNumber:0];
-}
-
-CMAttributeRun * CMOrderedListAttributeRun(NSDictionary *attributes, NSInteger startingNumber)
-{
-    return [[CMAttributeRun alloc] initWithAttributes:attributes fontTraits:0 orderedListNumber:startingNumber];
+    return [[CMAttributeRun alloc] initWithAttributes:attributes orderedListNumber:startingNumber];
 }
 
 @implementation CMAttributeRun
 
-- (instancetype)initWithAttributes:(NSDictionary *)attributes
-                        fontTraits:(CMFontSymbolicTraits)fontTraits
+- (instancetype)initWithAttributes:(CMStyleAttributes *)attributes
                  orderedListNumber:(NSInteger)orderedListNumber
 {
     if ((self = [super init])) {
         _attributes = attributes;
-        _fontTraits = fontTraits;
         _orderedListItemNumber = orderedListNumber;
     }
     return self;
