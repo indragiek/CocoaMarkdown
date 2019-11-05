@@ -55,7 +55,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             document?.linksBaseURL = linksBaseUrl
         }
         
-        let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())!
+        let textAttributes = CMTextAttributes()
+        
+        // Customize the color and font of header elements
+        textAttributes.addStringAttributes([ .foregroundColor: NSColor(red: 0.0, green: 0.446, blue: 0.657, alpha: 1.0)], forElementWithKinds: .anyHeader)
+        if #available(OSX 10.11, *) {
+            textAttributes.addFontAttributes([ .family: "Avenir Next" ,
+                                                .traits: [ NSFontDescriptor.TraitKey.symbolic: NSFontDescriptor.SymbolicTraits.italic.rawValue,
+                                                           NSFontDescriptor.TraitKey.weight: NSFont.Weight.semibold]], 
+                                              forElementWithKinds: .anyHeader)
+            // Set specific font traits for header1 and header2
+            textAttributes.setFontTraits([.weight: NSFont.Weight.heavy], forElementWithKinds: [.header1, .header2])
+        } 
+        textAttributes.addFontAttributes([ .size: 48 ], forElementWithKinds: .header1)
+        
+        // Customize the font and paragraph alignment of block-quotes
+        textAttributes.addFontAttributes([.family: "Snell Roundhand", .size: 19], forElementWithKinds: .blockQuote)
+        textAttributes.addParagraphStyleAttributes([ .alignment: NSTextAlignment.center.rawValue], forElementWithKinds: .blockQuote)
+        
+        // Customize the background color of code elements
+        textAttributes.addStringAttributes([ .backgroundColor: NSColor(white: 0.9, alpha: 0.5)], forElementWithKinds: [.inlineCode, .codeBlock])
+        
+        let renderer = CMAttributedStringRenderer(document: document, attributes: textAttributes)!
         renderer.register(CMHTMLStrikethroughTransformer())
         renderer.register(CMHTMLSuperscriptTransformer())
         renderer.register(CMHTMLUnderlineTransformer())

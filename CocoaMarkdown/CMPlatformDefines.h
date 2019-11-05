@@ -16,9 +16,13 @@
 #define CMFontSymbolicTraits UIFontDescriptorSymbolicTraits
 #define CMFont UIFont
 #define CMFontDescriptor UIFontDescriptor
+#define CMFontTraitsAttribute UIFontDescriptorTraitsAttribute
 #define CMFontTraitItalic UIFontDescriptorTraitItalic
 #define CMFontTraitBold UIFontDescriptorTraitBold
 #define CMUnderlineStyle NSUnderlineStyle
+
+typedef UIFontDescriptorAttributeName CMFontDescriptorAttributeName;
+typedef UIFontDescriptorTraitKey CMFontDescriptorTraitKey;
 
 #else
 #import <Cocoa/Cocoa.h>
@@ -27,9 +31,13 @@
 #define CMFontSymbolicTraits NSFontSymbolicTraits
 #define CMFont NSFont
 #define CMFontDescriptor NSFontDescriptor
+#define CMFontTraitsAttribute NSFontTraitsAttribute
 #define CMFontTraitItalic NSFontItalicTrait
 #define CMFontTraitBold NSFontBoldTrait
 #define CMUnderlineStyle NSInteger
+
+typedef NSFontDescriptorAttributeName CMFontDescriptorAttributeName;
+typedef NSFontDescriptorTraitKey CMFontDescriptorTraitKey;
 
 #endif
 

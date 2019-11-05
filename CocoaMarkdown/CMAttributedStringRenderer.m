@@ -72,7 +72,7 @@
 
 - (void)parserDidStartDocument:(CMParser *)parser
 {
-    [_attributeStack push:CMDefaultAttributeRun(_attributes.textAttributes)];
+    [_attributeStack pushAttributes:_attributes.baseTextAttributes];
 }
 
 - (void)parserDidEndDocument:(CMParser *)parser
@@ -94,7 +94,7 @@
 
 - (void)parser:(CMParser *)parser didStartHeaderWithLevel:(NSInteger)level
 {
-    [_attributeStack push:CMDefaultAttributeRun([_attributes attributesForHeaderLevel:level])];
+    [_attributeStack pushAttributes:[_attributes attributesForHeaderLevel:level]];
 }
 
 - (void)parser:(CMParser *)parser didEndHeaderWithLevel:(NSInteger)level
@@ -106,7 +106,7 @@
 - (void)parserDidStartParagraph:(CMParser *)parser
 {
     if (![self nodeIsInTightMode:parser.currentNode]) {
-        [_attributeStack push:CMDefaultAttributeRun(_attributes.paragraphAttributes)];
+        [_attributeStack pushAttributes:_attributes.paragraphAttributes];
     }
 }
 
@@ -120,8 +120,7 @@
 
 - (void)parserDidStartEmphasis:(CMParser *)parser
 {
-    BOOL hasExplicitFont = _attributes.emphasisAttributes[NSFontAttributeName] != nil;
-    [_attributeStack push:CMTraitAttributeRun(_attributes.emphasisAttributes, hasExplicitFont ? 0 : CMFontTraitItalic)];
+    [_attributeStack pushAttributes:_attributes.emphasisAttributes];
 }
 
 - (void)parserDidEndEmphasis:(CMParser *)parser
@@ -131,8 +130,7 @@
 
 - (void)parserDidStartStrong:(CMParser *)parser
 {
-    BOOL hasExplicitFont = _attributes.strongAttributes[NSFontAttributeName] != nil;
-    [_attributeStack push:CMTraitAttributeRun(_attributes.strongAttributes, hasExplicitFont ? 0 : CMFontTraitBold)];
+   [_attributeStack pushAttributes:_attributes.strongAttributes];
 }
 
 - (void)parserDidEndStrong:(CMParser *)parse
@@ -142,14 +140,14 @@
 
 - (void)parser:(CMParser *)parser didStartLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
-    NSMutableDictionary *baseAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:URL, NSLinkAttributeName, nil];
+    CMStyleAttributes * linkStyleAttributes = _attributes.linkAttributes.copy;
+    linkStyleAttributes.stringAttributes [NSLinkAttributeName] = URL;
 #if !TARGET_OS_IPHONE
     if (title != nil) {
-        baseAttributes[NSToolTipAttributeName] = title;
+        linkStyleAttributes.stringAttributes [NSToolTipAttributeName] = title;
     }
 #endif
-    [baseAttributes addEntriesFromDictionary:_attributes.linkAttributes];
-    [_attributeStack push:CMDefaultAttributeRun(baseAttributes)];
+    [_attributeStack pushAttributes:linkStyleAttributes];
 }
 
 - (void)parser:(CMParser *)parser didEndLinkWithURL:(NSURL *)URL title:(NSString *)title
@@ -172,22 +170,31 @@
         if (element != nil) {
             // TODO: how should we handle a markdown image inside HTML;? Is this possible????
         } else {
-            NSMutableDictionary* imageAttachmentAttributes = [NSMutableDictionary new];
-            imageAttachmentAttributes[NSAttachmentAttributeName] = textAttachment;
+            CMStyleAttributes * imageAttachmentAttributes;
             if (isInImageParagraph) {
-                [imageAttachmentAttributes addEntriesFromDictionary:_attributes.imageParagraphAttributes];
+                imageAttachmentAttributes = _attributes.imageParagraphAttributes.copy;
             }
+            else {
+                imageAttachmentAttributes = [CMStyleAttributes new];
+            }
+            imageAttachmentAttributes.stringAttributes[NSAttachmentAttributeName] = textAttachment;
 #if !TARGET_OS_IPHONE
             CMNode *imageDescriptionNode = imageNode.firstChild;
             if ((imageDescriptionNode.type == CMNodeTypeText) && (imageDescriptionNode.stringValue.length > 0)) {
-                imageAttachmentAttributes[NSToolTipAttributeName] = imageDescriptionNode.stringValue;
+                imageAttachmentAttributes.stringAttributes [NSToolTipAttributeName] = imageDescriptionNode.stringValue;
             }
 #endif     
+            [_attributeStack pushAttributes:imageAttachmentAttributes];
+            
             const unichar attachmentChar = NSAttachmentCharacter;
-            NSAttributedString *attachmentString = [[NSAttributedString alloc] initWithString:[NSString stringWithCharacters:&attachmentChar length:1] attributes:imageAttachmentAttributes];
-            [_buffer appendAttributedString:attachmentString];
+            [self appendString:[NSString stringWithCharacters:&attachmentChar length:1]];
         }
     }
+}
+
+- (void)parser:(CMParser *)parser didEndImageWithURL:(NSURL *)URL title:(NSString *)title
+{
+    [_attributeStack pop];
 }
 
 - (void)parser:(CMParser *)parser foundHTML:(NSString *)HTML
@@ -228,14 +235,19 @@
 
 - (void)parser:(CMParser *)parser foundCodeBlock:(NSString *)code info:(NSString *)info
 {
-    [_attributeStack push:CMDefaultAttributeRun(_attributes.codeBlockAttributes)];
-    [self appendString:[NSString stringWithFormat:@"\n\n%@\n\n", code]];
+    [_attributeStack pushAttributes:_attributes.codeBlockAttributes];
+    if ([code hasSuffix:@"\n"]) {
+        code = [code substringToIndex:code.length - 1]; // Remove final "\n"
+    }
+    NSString* const lineSeparatorCharacterString = @"\u2028";
+    [self appendString:[[code stringByReplacingOccurrencesOfString:@"\n" withString:lineSeparatorCharacterString] 
+                        stringByAppendingString:@"\n"]];
     [_attributeStack pop];
 }
 
 - (void)parser:(CMParser *)parser foundInlineCode:(NSString *)code
 {
-    [_attributeStack push:CMDefaultAttributeRun(_attributes.inlineCodeAttributes)];
+    [_attributeStack pushAttributes:_attributes.inlineCodeAttributes];
     [self appendString:code];
     [_attributeStack pop];
 }
@@ -252,7 +264,7 @@
 
 - (void)parserDidStartBlockQuote:(CMParser *)parser
 {
-    [_attributeStack push:CMDefaultAttributeRun(_attributes.blockQuoteAttributes)];
+    [_attributeStack pushAttributes:_attributes.blockQuoteAttributes];
 }
 
 - (void)parserDidEndBlockQuote:(CMParser *)parser
@@ -262,7 +274,12 @@
 
 - (void)parser:(CMParser *)parser didStartUnorderedListWithTightness:(BOOL)tight
 {
-    [_attributeStack push:CMDefaultAttributeRun([self listAttributesForNode:parser.currentNode])];
+    if ([self sublistLevel:parser.currentNode.parent] == 0) {
+       [_attributeStack pushAttributes:_attributes.unorderedListAttributes];
+    }
+    else {
+        [_attributeStack pushAttributes:_attributes.unorderedSublistAttributes];
+    }
     [self appendString:@"\n"];
 }
 
@@ -273,7 +290,12 @@
 
 - (void)parser:(CMParser *)parser didStartOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
 {
-    [_attributeStack push:CMOrderedListAttributeRun([self listAttributesForNode:parser.currentNode], num)];
+    if ([self sublistLevel:parser.currentNode.parent] == 0) {
+        [_attributeStack pushOrderedListAttributes:_attributes.orderedListAttributes withStartingNumber:num];
+    }
+    else {
+        [_attributeStack pushOrderedListAttributes:_attributes.orderedSublistAttributes withStartingNumber:num];
+    }
     [self appendString:@"\n"];
 }
 
@@ -291,14 +313,14 @@
             break;
         case CMListTypeUnordered: {
             [self appendString:@"\u2022 "];
-            [_attributeStack push:CMDefaultAttributeRun(_attributes.unorderedListItemAttributes)];
+            [_attributeStack pushAttributes:_attributes.unorderedListItemAttributes];
             break;
         }
         case CMListTypeOrdered: {
             CMAttributeRun *parentRun = [_attributeStack peek];
             [self appendString:[NSString stringWithFormat:@"%ld. ", (long)parentRun.orderedListItemNumber]];
             parentRun.orderedListItemNumber++;
-            [_attributeStack push:CMDefaultAttributeRun(_attributes.orderedListItemAttributes)];
+            [_attributeStack pushAttributes:_attributes.orderedListItemAttributes];
             break;
         }
         default:
@@ -315,37 +337,6 @@
 }
 
 #pragma mark - Private
-
-- (NSDictionary *)listAttributesForNode:(CMNode *)node
-{
-    if (node.listType == CMListTypeNone) {
-        return nil;
-    }
-    
-    NSUInteger sublistLevel = [self sublistLevel:node.parent];
-    if (sublistLevel == 0) {
-        return node.listType == CMListTypeOrdered ? _attributes.orderedListAttributes : _attributes.unorderedListAttributes;
-    }
-    
-    NSParagraphStyle *rootListParagraphStyle = [NSParagraphStyle defaultParagraphStyle];
-    NSMutableDictionary *listAttributes;
-    if (node.listType == CMListTypeOrdered) {
-        listAttributes = [_attributes.orderedSublistAttributes mutableCopy];
-        rootListParagraphStyle = _attributes.orderedListAttributes[NSParagraphStyleAttributeName];
-    } else {
-        listAttributes = [_attributes.unorderedSublistAttributes mutableCopy];
-        rootListParagraphStyle = _attributes.unorderedListAttributes[NSParagraphStyleAttributeName];
-    }
-    
-    if (listAttributes[NSParagraphStyleAttributeName] != nil) {
-        NSMutableParagraphStyle *paragraphStyle = [((NSParagraphStyle *)listAttributes[NSParagraphStyleAttributeName]) mutableCopy];
-        paragraphStyle.headIndent = rootListParagraphStyle.headIndent + paragraphStyle.headIndent * sublistLevel;
-        paragraphStyle.firstLineHeadIndent = rootListParagraphStyle.firstLineHeadIndent + paragraphStyle.firstLineHeadIndent * sublistLevel;
-        listAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
-    }
-    
-    return [listAttributes copy];
-}
 
 - (NSUInteger)sublistLevel:(CMNode *)node
 {

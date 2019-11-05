@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class CMStyleAttributes;
 @class CMAttributeRun;
 
 @interface CMCascadingAttributeStack : NSObject
 @property (nonatomic, readonly) NSDictionary *cascadedAttributes;
 
-- (void)push:(CMAttributeRun *)run;
-- (CMAttributeRun *)pop;
+- (void) pushAttributes:(CMStyleAttributes*)attributes;
+- (void) pushOrderedListAttributes:(CMStyleAttributes*)attributes withStartingNumber:(NSInteger)startingNumber;
+- (void)pop;
 - (CMAttributeRun *)peek;
 
 @end
