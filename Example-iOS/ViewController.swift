@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         
         // Customize the color and font of header elements
         textAttributes.addStringAttributes([ .foregroundColor: UIColor(red: 0.0, green: 0.446, blue: 0.657, alpha: 1.0)], forElementWithKinds: .anyHeader)
-        let boldItalicTrait: UIFontDescriptor.SymbolicTraits = [.traitBold, .traitItalic];
+        let boldItalicTrait: UIFontDescriptor.SymbolicTraits = [.traitBold, .traitItalic]
         textAttributes.addFontAttributes([ .family: "Avenir Next" ,
                                            .traits: [ UIFontDescriptor.TraitKey.symbolic: boldItalicTrait.rawValue]], 
                                          forElementWithKinds: .anyHeader)

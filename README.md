@@ -111,21 +111,21 @@ Every Markdown element type can be customized using the corresponding `CMStyleAt
 Attributes for any Markdown element kind can be directly set:
 
 ```swift
-let textAttributes = CMTextAttributes()!
+let textAttributes = CMTextAttributes()
 textAttributes.linkAttributes.stringAttributes[NSAttributedString.Key.backgroundColor] = UIColor.yellow
 ```
 
 A probably better alternative for style customization is to use grouped attributes setting methods available in `CMTextAttributes`:
 
 ```swift
-let textAttributes = CMTextAttributes()!
+let textAttributes = CMTextAttributes()
 
 // Set the text color for all headers
 textAttributes.addStringAttributes([ .foregroundColor: UIColor(red: 0.0, green: 0.446, blue: 0.657, alpha: 1.0)], 
                                    forElementWithKinds: .anyHeader)
 
 // Set a specific font + font-traits for all headers
-let boldItalicTrait: UIFontDescriptor.SymbolicTraits = [.traitBold, .traitItalic];
+let boldItalicTrait: UIFontDescriptor.SymbolicTraits = [.traitBold, .traitItalic]
 textAttributes.addFontAttributes([ .family: "Avenir Next" ,
                                    .traits: [ UIFontDescriptor.TraitKey.symbolic: boldItalicTrait.rawValue]], 
                                  forElementWithKinds: .anyHeader)
