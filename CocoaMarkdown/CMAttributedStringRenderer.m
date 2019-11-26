@@ -99,7 +99,7 @@
 
 - (void)parser:(CMParser *)parser didEndHeaderWithLevel:(NSInteger)level
 {
-    [self appendString:@"\n"];
+    [self closeBlockIfNeeded];
     [_attributeStack pop];
 }
 
@@ -112,9 +112,9 @@
 
 - (void)parserDidEndParagraph:(CMParser *)parser
 {
+    [self closeBlockIfNeeded];
     if (![self nodeIsInTightMode:parser.currentNode]) {
         [_attributeStack pop];
-        [self appendString:@"\n"];
     }
 }
 
@@ -188,6 +188,10 @@
             
             const unichar attachmentChar = NSAttachmentCharacter;
             [self appendString:[NSString stringWithCharacters:&attachmentChar length:1]];
+            
+            if (isInImageParagraph) {
+                [self closeBlockIfNeeded];
+            }
         }
     }
 }
@@ -240,8 +244,8 @@
         code = [code substringToIndex:code.length - 1]; // Remove final "\n"
     }
     NSString* const lineSeparatorCharacterString = @"\u2028";
-    [self appendString:[[code stringByReplacingOccurrencesOfString:@"\n" withString:lineSeparatorCharacterString] 
-                        stringByAppendingString:@"\n"]];
+    [self appendString:[code stringByReplacingOccurrencesOfString:@"\n" withString:lineSeparatorCharacterString]];
+    [self closeBlockIfNeeded];
     [_attributeStack pop];
 }
 
@@ -278,9 +282,9 @@
        [_attributeStack pushAttributes:_attributes.unorderedListAttributes];
     }
     else {
+        [self closeBlockIfNeeded]; // When starting a sublist, the parent item must have its block closed first
         [_attributeStack pushAttributes:_attributes.unorderedSublistAttributes];
     }
-    [self appendString:@"\n"];
 }
 
 - (void)parser:(CMParser *)parser didEndUnorderedListWithTightness:(BOOL)tight
@@ -294,9 +298,9 @@
         [_attributeStack pushOrderedListAttributes:_attributes.orderedListAttributes withStartingNumber:num];
     }
     else {
+        [self closeBlockIfNeeded]; // When starting a sublist, the parent item must have its block closed first
         [_attributeStack pushOrderedListAttributes:_attributes.orderedSublistAttributes withStartingNumber:num];
     }
-    [self appendString:@"\n"];
 }
 
 - (void)parser:(CMParser *)parser didEndOrderedListWithStartingNumber:(NSInteger)num tight:(BOOL)tight
@@ -330,9 +334,7 @@
 
 - (void)parserDidEndListItem:(CMParser *)parser
 {
-    if (parser.currentNode.next != nil || [self sublistLevel:parser.currentNode] == 1) {
-        [self appendString:@"\n"];
-    }
+    [self closeBlockIfNeeded];
     [_attributeStack pop];
 }
 
@@ -372,8 +374,28 @@
 
 - (void)appendString:(NSString *)string
 {
+    NSRange bufferLastParagraphRange = [_buffer.string paragraphRangeForRange:NSMakeRange(_buffer.string.length, 0)];
+    BOOL isAppendingParagraphContinuation = (bufferLastParagraphRange.length > 0) && ![string isEqualToString:@"\n"];
+    
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:_attributeStack.cascadedAttributes];
     [_buffer appendAttributedString:attrString];
+    
+    if (isAppendingParagraphContinuation) {
+        // Extend the current paragraph style 
+        NSParagraphStyle* bufferLastParagraphStyle = [_buffer attribute:NSParagraphStyleAttributeName atIndex:bufferLastParagraphRange.location effectiveRange:NULL];
+        NSParagraphStyle* appendedParagraphStyle = _attributeStack.cascadedAttributes[NSParagraphStyleAttributeName];
+        if ((appendedParagraphStyle != nil) && ![appendedParagraphStyle isEqual:bufferLastParagraphStyle]) {
+            [_buffer addAttribute:NSParagraphStyleAttributeName value:appendedParagraphStyle range:bufferLastParagraphRange];
+        }
+    }
+}
+
+- (void)closeBlockIfNeeded
+{
+    // Add a paragraph boundary to the attributted string if needed
+    if (![_buffer.string hasSuffix:@"\n"]) {
+        [self appendString:@"\n"];
+    }
 }
 
 - (void)appendHTMLElement:(CMHTMLElement *)element
