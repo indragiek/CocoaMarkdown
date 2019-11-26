@@ -142,11 +142,7 @@ static UIFont * defaultMonospaceFont()
 }
 #endif
 
-static NSDictionary<CMParagraphStyleAttributeName, id> * DefaultIndentedParagraphStyleAttributes()
-{
-    return @{ CMParagraphStyleAttributeFirstLineHeadExtraIndent: @30,
-              CMParagraphStyleAttributeHeadExtraIndent: @30 };
-}
+static CGFloat defaultIndentationStep = 30.0;
 
 static CMStyleAttributes * CMDefaultCodeBlockAttributes()
 {
@@ -157,9 +153,9 @@ static CMStyleAttributes * CMDefaultCodeBlockAttributes()
     stringAttributes = @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize:12.0] };
 #endif
 
-    NSMutableDictionary* paragraphStyleAttributes = [NSMutableDictionary new];
-    [paragraphStyleAttributes addEntriesFromDictionary:DefaultIndentedParagraphStyleAttributes()];
-    paragraphStyleAttributes[CMParagraphStyleAttributeParagraphSpacingBefore] = @12;
+    NSDictionary* paragraphStyleAttributes = @{ CMParagraphStyleAttributeParagraphSpacingBefore: @12.0,
+                                                CMParagraphStyleAttributeFirstLineHeadExtraIndent: @(defaultIndentationStep),
+                                                CMParagraphStyleAttributeHeadExtraIndent: @(defaultIndentationStep) };
     
     return [[CMStyleAttributes alloc] initWithStringAttributes:stringAttributes 
                                       paragraphStyleAttributes:paragraphStyleAttributes];
@@ -178,27 +174,50 @@ static CMStyleAttributes * CMDefaultInlineCodeAttributes()
 
 static  CMStyleAttributes *  CMDefaultBlockQuoteAttributes()
 {
-    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultIndentedParagraphStyleAttributes()];
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:@{ CMParagraphStyleAttributeFirstLineHeadExtraIndent: @(defaultIndentationStep),
+                                                                          CMParagraphStyleAttributeHeadExtraIndent: @(defaultIndentationStep) }];
+}
+
+static CGFloat itemLabelIndent = 20.0;
+
+static NSDictionary<CMParagraphStyleAttributeName, id> * DefaultListParagraphStyleAttributes()
+{
+    return @{ CMParagraphStyleAttributeFirstLineHeadExtraIndent: @(defaultIndentationStep + itemLabelIndent),
+              CMParagraphStyleAttributeHeadExtraIndent: @(defaultIndentationStep + itemLabelIndent),
+              CMParagraphStyleAttributeListItemLabelIndent: @(itemLabelIndent),
+              CMParagraphStyleAttributeListItemBulletString: @"●",
+              CMParagraphStyleAttributeListItemNumberFormat: @"%ld.",
+    };
 }
 
 static  CMStyleAttributes *  CMDefaultOrderedListAttributes()
 {
-    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultIndentedParagraphStyleAttributes()];
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultListParagraphStyleAttributes()];
 }
 
 static  CMStyleAttributes *  CMDefaultUnorderedListAttributes()
 {
-    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultIndentedParagraphStyleAttributes()];
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultListParagraphStyleAttributes()];
+}
+
+static NSDictionary<CMParagraphStyleAttributeName, id> * DefaultSublistParagraphStyleAttributes()
+{
+    return @{ CMParagraphStyleAttributeFirstLineHeadExtraIndent: @(itemLabelIndent), // Align label with parent list content
+              CMParagraphStyleAttributeHeadExtraIndent: @(itemLabelIndent),
+              CMParagraphStyleAttributeListItemLabelIndent: @(itemLabelIndent),
+              CMParagraphStyleAttributeListItemBulletString: @"○",
+              CMParagraphStyleAttributeListItemNumberFormat: @"%ld.",
+    };
 }
 
 static  CMStyleAttributes *  CMDefaultOrderedSublistAttributes()
 {
-    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultIndentedParagraphStyleAttributes()];
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultSublistParagraphStyleAttributes()];
 }
 
 static  CMStyleAttributes *  CMDefaultUnorderedSublistAttributes()
 {
-    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultIndentedParagraphStyleAttributes()];
+    return [[CMStyleAttributes alloc] initWithParagraphStyleAttributes:DefaultSublistParagraphStyleAttributes()];
 }
 
 @implementation CMTextAttributes
@@ -434,3 +453,6 @@ CMParagraphStyleAttributeName const CMParagraphStyleAttributeMaximumLineHeight =
 CMParagraphStyleAttributeName const CMParagraphStyleAttributeLineHeightMultiple = @"lineHeightMultiple";
 CMParagraphStyleAttributeName const CMParagraphStyleAttributeParagraphSpacingBefore = @"paragraphSpacingBefore";
 CMParagraphStyleAttributeName const CMParagraphStyleAttributeHyphenationFactor = @"hyphenationFactor";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeListItemLabelIndent = @"listItemLabelIndent";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeListItemBulletString = @"listItemBulletString";
+CMParagraphStyleAttributeName const CMParagraphStyleAttributeListItemNumberFormat = @"listItemNumberFormat";

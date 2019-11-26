@@ -99,23 +99,20 @@
 
 - (void)parser:(CMParser *)parser didEndHeaderWithLevel:(NSInteger)level
 {
-    [self closeBlockIfNeeded];
+    [self closeBlockForNode:parser.currentNode];
     [_attributeStack pop];
 }
 
 - (void)parserDidStartParagraph:(CMParser *)parser
 {
-    if (![self nodeIsInTightMode:parser.currentNode]) {
-        [_attributeStack pushAttributes:_attributes.paragraphAttributes];
-    }
+    BOOL isInTightList = [self nodeIsInTightMode:parser.currentNode];
+    [_attributeStack pushAttributes:!isInTightList ? _attributes.paragraphAttributes : nil];
 }
 
 - (void)parserDidEndParagraph:(CMParser *)parser
 {
-    [self closeBlockIfNeeded];
-    if (![self nodeIsInTightMode:parser.currentNode]) {
-        [_attributeStack pop];
-    }
+    [self closeBlockForNode:parser.currentNode];
+    [_attributeStack pop];
 }
 
 - (void)parserDidStartEmphasis:(CMParser *)parser
@@ -190,7 +187,7 @@
             [self appendString:[NSString stringWithCharacters:&attachmentChar length:1]];
             
             if (isInImageParagraph) {
-                [self closeBlockIfNeeded];
+                [self closeBlockForNode:imageNode];
             }
         }
     }
@@ -245,7 +242,7 @@
     }
     NSString* const lineSeparatorCharacterString = @"\u2028";
     [self appendString:[code stringByReplacingOccurrencesOfString:@"\n" withString:lineSeparatorCharacterString]];
-    [self closeBlockIfNeeded];
+    [self closeBlockForNode:parser.currentNode];
     [_attributeStack pop];
 }
 
@@ -273,6 +270,7 @@
 
 - (void)parserDidEndBlockQuote:(CMParser *)parser
 {
+    [self closeBlockForNode:parser.currentNode];
     [_attributeStack pop];
 }
 
@@ -282,7 +280,7 @@
        [_attributeStack pushAttributes:_attributes.unorderedListAttributes];
     }
     else {
-        [self closeBlockIfNeeded]; // When starting a sublist, the parent item must have its block closed first
+        [self closeBlockForNode:parser.currentNode]; // When starting a sublist, the parent item must have its block closed first
         [_attributeStack pushAttributes:_attributes.unorderedSublistAttributes];
     }
 }
@@ -298,7 +296,7 @@
         [_attributeStack pushOrderedListAttributes:_attributes.orderedListAttributes withStartingNumber:num];
     }
     else {
-        [self closeBlockIfNeeded]; // When starting a sublist, the parent item must have its block closed first
+        [self closeBlockForNode:parser.currentNode]; // When starting a sublist, the parent item must have its block closed first
         [_attributeStack pushOrderedListAttributes:_attributes.orderedSublistAttributes withStartingNumber:num];
     }
 }
@@ -310,19 +308,23 @@
 
 - (void)parserDidStartListItem:(CMParser *)parser
 {
+    CMAttributeRun *parentRun = [_attributeStack peek];
+    CMStyleAttributes * parentAttributes = parentRun.attributes;
+    
     CMNode *node = parser.currentNode.parent;
     switch (node.listType) {
         case CMListTypeNone:
             NSAssert(NO, @"Parent node of list item must be a list");
             break;
         case CMListTypeUnordered: {
-            [self appendString:@"\u2022 "];
+            [self appendString:[NSString stringWithFormat:@"%@\t", parentAttributes.paragraphStyleAttributes [CMParagraphStyleAttributeListItemBulletString]]];
             [_attributeStack pushAttributes:_attributes.unorderedListItemAttributes];
             break;
         }
         case CMListTypeOrdered: {
-            CMAttributeRun *parentRun = [_attributeStack peek];
-            [self appendString:[NSString stringWithFormat:@"%ld. ", (long)parentRun.orderedListItemNumber]];
+            [self appendString:[[NSString stringWithFormat:parentAttributes.paragraphStyleAttributes[CMParagraphStyleAttributeListItemNumberFormat], 
+                                 (long)parentRun.orderedListItemNumber] 
+                                stringByAppendingString:@"\t"]];
             parentRun.orderedListItemNumber++;
             [_attributeStack pushAttributes:_attributes.orderedListItemAttributes];
             break;
@@ -334,7 +336,7 @@
 
 - (void)parserDidEndListItem:(CMParser *)parser
 {
-    [self closeBlockIfNeeded];
+    [self closeBlockForNode:parser.currentNode];
     [_attributeStack pop];
 }
 
@@ -374,29 +376,70 @@
 
 - (void)appendString:(NSString *)string
 {
-    NSRange bufferLastParagraphRange = [_buffer.string paragraphRangeForRange:NSMakeRange(_buffer.string.length, 0)];
-    BOOL isAppendingParagraphContinuation = (bufferLastParagraphRange.length > 0) && ![string isEqualToString:@"\n"];
-    
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:_attributeStack.cascadedAttributes];
     [_buffer appendAttributedString:attrString];
-    
-    if (isAppendingParagraphContinuation) {
-        // Extend the current paragraph style 
-        NSParagraphStyle* bufferLastParagraphStyle = [_buffer attribute:NSParagraphStyleAttributeName atIndex:bufferLastParagraphRange.location effectiveRange:NULL];
-        NSParagraphStyle* appendedParagraphStyle = _attributeStack.cascadedAttributes[NSParagraphStyleAttributeName];
-        if ((appendedParagraphStyle != nil) && ![appendedParagraphStyle isEqual:bufferLastParagraphStyle]) {
-            [_buffer addAttribute:NSParagraphStyleAttributeName value:appendedParagraphStyle range:bufferLastParagraphRange];
+}
+
+- (void)closeBlockForNode:(CMNode *)currentNode
+{
+    // Add a paragraph boundary to the attributted string if needed
+    if (![_buffer.string hasSuffix:@"\n"]) {
+        
+        NSRange bufferLastParagraphRange = [_buffer.string paragraphRangeForRange:NSMakeRange(_buffer.string.length, 0)];
+        
+        [self appendString:@"\n"];
+        
+        if (bufferLastParagraphRange.length > 0) {
+            // Extend the current paragraph style to enclode the whole paragraph if needed
+            NSParagraphStyle* bufferLastParagraphStyle = [_buffer attribute:NSParagraphStyleAttributeName atIndex:bufferLastParagraphRange.location effectiveRange:NULL];
+            NSParagraphStyle* appendedParagraphStyle = _attributeStack.cascadedAttributes[NSParagraphStyleAttributeName];
+            if ((appendedParagraphStyle != nil) && ![appendedParagraphStyle isEqual:bufferLastParagraphStyle]) {
+                [_buffer addAttribute:NSParagraphStyleAttributeName value:appendedParagraphStyle range:bufferLastParagraphRange];
+            }
+            
+            if ([self sublistLevel:currentNode] != 0) {
+                // In a list: adjust the indentation and tabs of list item's first paragraphs
+                [self adjustListItemIndentForNode:currentNode paragraphStyle:appendedParagraphStyle inRange:bufferLastParagraphRange];
+            }
         }
     }
 }
 
-- (void)closeBlockIfNeeded
+- (void) adjustListItemIndentForNode:(CMNode*)currentNode paragraphStyle:(NSParagraphStyle*)currentParagraphStyle inRange:(NSRange)currentParagraphRange
 {
-    // Add a paragraph boundary to the attributted string if needed
-    if (![_buffer.string hasSuffix:@"\n"]) {
-        [self appendString:@"\n"];
+    NSUInteger listAttributesStackDepth = 0;
+    CGFloat itemContentIndent = 0;
+    
+    while ((currentNode != nil) && (currentNode.type != CMNodeTypeItem)) {
+        if ([currentNode isEqual:currentNode.parent.firstChild]) {
+            // indentation change is only needed for list-items' first child
+            
+            CMStyleAttributes* currentStyleAttributes = [_attributeStack attributesWithDepth:listAttributesStackDepth];
+            NSNumber* currentFirstLineExtraIndent = currentStyleAttributes.paragraphStyleAttributes[CMParagraphStyleAttributeFirstLineHeadExtraIndent];
+            itemContentIndent += currentFirstLineExtraIndent.doubleValue;
+            
+            currentNode = currentNode.parent;
+            listAttributesStackDepth += 1;
+        }
+        else {
+            currentNode = nil;
+        }
     }
-}
+    
+    if (currentNode.parent.type == CMNodeTypeList) {
+        CMStyleAttributes* listStyleAttributes = [_attributeStack attributesWithDepth:listAttributesStackDepth + 1];
+        
+        NSNumber* listItemMarkerIndent = listStyleAttributes.paragraphStyleAttributes [CMParagraphStyleAttributeListItemLabelIndent];
+        if ([listItemMarkerIndent isKindOfClass:[NSNumber class]]) {
+            NSMutableParagraphStyle* itemParagrahStyle = [currentParagraphStyle mutableCopy];
+            // Set a unique tab at the original first line head indent
+            itemParagrahStyle.tabStops = @[ [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:itemParagrahStyle.firstLineHeadIndent options:@{}] ];
+            itemParagrahStyle.firstLineHeadIndent -= listItemMarkerIndent.doubleValue + itemContentIndent;
+            // And update the pargraph style attributes
+            [_buffer addAttribute:NSParagraphStyleAttributeName value:itemParagrahStyle range:currentParagraphRange];
+        }
+    }
+}    
 
 - (void)appendHTMLElement:(CMHTMLElement *)element
 {

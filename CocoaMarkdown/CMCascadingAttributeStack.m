@@ -46,6 +46,11 @@
     [self push:CMOrderedListAttributeRun(attributes, startingNumber)];
 }
 
+- (CMStyleAttributes*) attributesWithDepth:(NSUInteger)depth
+{
+    return (depth < _stack.objects.count) ? _stack.objects[_stack.objects.count - 1 - depth].attributes : nil;
+}
+
 - (void)push:(CMAttributeRun *)run
 {
     [_stack push:run];
@@ -298,6 +303,10 @@
            CMParagraphStyleAttributeHeadExtraIndent: ^(NSMutableParagraphStyle* paragraphStyle, id attribute){ paragraphStyle.headIndent += [attribute doubleValue]; },
            CMParagraphStyleAttributeTailExtraIndent: ^(NSMutableParagraphStyle* paragraphStyle, id attribute){ paragraphStyle.tailIndent += [attribute doubleValue]; },
            
+           // List-specific attributes (ignored)
+           CMParagraphStyleAttributeListItemLabelIndent: ^(NSMutableParagraphStyle* paragraphStyle, id attribute){},
+           CMParagraphStyleAttributeListItemBulletString: ^(NSMutableParagraphStyle* paragraphStyle, id attribute){},
+           CMParagraphStyleAttributeListItemNumberFormat: ^(NSMutableParagraphStyle* paragraphStyle, id attribute){},
         };
     });
     
