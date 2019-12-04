@@ -405,6 +405,11 @@
     }
 }
 
+static NSTextTab * textTabWithPosition(CGFloat tabPosition)
+{
+    return [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:tabPosition options:@{}];
+}
+
 - (void) adjustListItemIndentForNode:(CMNode*)currentNode paragraphStyle:(NSParagraphStyle*)currentParagraphStyle inRange:(NSRange)currentParagraphRange
 {
     NSUInteger listAttributesStackDepth = 0;
@@ -432,8 +437,11 @@
         NSNumber* listItemMarkerIndent = listStyleAttributes.paragraphStyleAttributes [CMParagraphStyleAttributeListItemLabelIndent];
         if ([listItemMarkerIndent isKindOfClass:[NSNumber class]]) {
             NSMutableParagraphStyle* itemParagrahStyle = [currentParagraphStyle mutableCopy];
-            // Set a unique tab at the original first line head indent
-            itemParagrahStyle.tabStops = @[ [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:itemParagrahStyle.firstLineHeadIndent options:@{}] ];
+            // Set a tab at the original first line head indent, plus a few extra tabs in case the list item marker extends beyond the first tab
+            // (typically with dynamic type, in case of bigger text size, extra tabs will help a list item to stay on a single line)
+            itemParagrahStyle.tabStops = @[ textTabWithPosition(itemParagrahStyle.firstLineHeadIndent),
+                                            textTabWithPosition(itemParagrahStyle.firstLineHeadIndent + listItemMarkerIndent.doubleValue),
+                                            textTabWithPosition(itemParagrahStyle.firstLineHeadIndent + listItemMarkerIndent.doubleValue * 2)];
             itemParagrahStyle.firstLineHeadIndent -= listItemMarkerIndent.doubleValue + itemContentIndent;
             // And update the pargraph style attributes
             [_buffer addAttribute:NSParagraphStyleAttributeName value:itemParagrahStyle range:currentParagraphRange];
