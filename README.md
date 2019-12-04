@@ -3,8 +3,6 @@
 
 CocoaMarkdown is a cross-platform framework for parsing and rendering Markdown, built on top of the [C reference implementation](https://github.com/jgm/CommonMark) of [CommonMark](http://commonmark.org).
 
-**This is currently beta-quality code.**
-
 ### Why?
 
 CocoaMarkdown aims to solve two primary problems better than existing libraries:
@@ -40,7 +38,7 @@ Next, drag the `.xcodeproj` file from within `CocoaMarkdown` into your project. 
 [`CMNode`](CocoaMarkdown/CMNode.h) and [`CMIterator`](CocoaMarkdown/CMIterator.h) wrap CommonMark's C types with an object-oriented interface for traversal of the Markdown AST.
 
 ```swift
-let document = CMDocument(contentsOfFile: path, options: nil)
+let document = CMDocument(contentsOfFile: path, options: [])
 document.rootNode.iterator().enumerateUsingBlock { (node, _, _) in
     print("String value: \(node.stringValue)")
 }
@@ -71,7 +69,7 @@ The [`CMParser`](CocoaMarkdown/CMParser.h) class isn't _really_ a parser (it jus
 Going from a Markdown document to rendering it on screen is as easy as:
 
 ```swift
-let document = CMDocument(contentsOfFile: path, options: nil)
+let document = CMDocument(contentsOfFile: path, options: [])
 let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
 textView.attributedText = renderer.render()
 ```
@@ -79,7 +77,7 @@ textView.attributedText = renderer.render()
 Or, using the convenience method on `CMDocument`:
 
 ```swift
-textView.attributedText = CMDocument(contentsOfFile: path, options: nil).attributedStringWithAttributes(CMTextAttributes())
+textView.attributedText = CMDocument(contentsOfFile: path, options: []).attributedStringWithAttributes(CMTextAttributes())
 ```
 
 HTML elements can be supported by implementing [`CMHTMLElementTransformer`](CocoaMarkdown/CMHTMLElementTransformer.h). The framework includes several transformers for commonly used tags:
@@ -91,7 +89,7 @@ HTML elements can be supported by implementing [`CMHTMLElementTransformer`](Coco
 Transformers can be registered with the renderer to use them:
 
 ```swift
-let document = CMDocument(contentsOfFile: path, options: nil)
+let document = CMDocument(contentsOfFile: path, options: [])
 let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
 renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
 renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
@@ -142,6 +140,22 @@ textAttributes.addStringAttributes([ .backgroundColor: UIColor(white: 0.9, alpha
                                    forElementWithKinds: [.inlineCode, .codeBlock])
 ```
 
+List styles can be customized using dedicated paragraph style attributes:
+
+```swift
+// Customize the list bullets
+textAttributes.addParagraphStyleAttributes([ .listItemBulletString: "🍏" ], 
+                                           forElementWithKinds: .unorderedList)
+textAttributes.addParagraphStyleAttributes([ .listItemBulletString: "🌼" ], 
+                                           forElementWithKinds: .unorderedSublist)
+
+// Customize numbered list item labels format and distance between label and paragraph
+textAttributes.addParagraphStyleAttributes([ .listItemNumberFormat: "(%02ld)", 
+                                             .listItemLabelIndent: 30 ],    
+                                           forElementWithKinds: .orderedList)
+
+```
+
 Font and paragraph attributes are incremental, meaning that they allow to modify only specific aspects of the default rendering styles.
 
 Additionally on iOS, Markdown elements styled using the font attributes API get automatic Dynamic-Type compliance in the generated attributed string, just like default rendering styles.
@@ -151,7 +165,7 @@ Additionally on iOS, Markdown elements styled using the font attributes API get 
 [`CMHTMLRenderer`](CocoaMarkdown/CMHTMLRenderer.h) provides the ability to render HTML from Markdown:
 
 ```swift
-let document = CMDocument(contentsOfFile: path, options: nil)
+let document = CMDocument(contentsOfFile: path, options: [])
 let renderer = CMHTMLRenderer(document: document)
 let HTML = renderer.render()
 ```
