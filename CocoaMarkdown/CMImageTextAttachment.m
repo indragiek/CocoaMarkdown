@@ -149,9 +149,12 @@ static NSImage* _placeholderImage;
     }    
     
 #if !TARGET_OS_IPHONE
-    if (! [NSProcessInfo.processInfo isOperatingSystemAtLeastVersion: (NSOperatingSystemVersion){10, 15, 0}]) {
+#ifdef __MAC_10_15
+    if (! [NSProcessInfo.processInfo isOperatingSystemAtLeastVersion: (NSOperatingSystemVersion){10, 15, 0}]) 
+#endif
+    {
         // On macOS 10.14.6 and below, the image attachment is dislayed vertically flipped, so we need to flip it again to display it correctly
-        // This issue has been fixed on macOS 10.15.
+        // This issue has been fixed on macOS 10.15 for applications compiled with Xcode 11 or later (SDK version >= 10.15)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         [self.image setFlipped:NSGraphicsContext.currentContext.isFlipped];
