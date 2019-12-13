@@ -11,10 +11,10 @@
 /**
  *  Array backed stack.
  */
-@interface CMStack : NSObject
-@property (nonatomic, readonly) NSArray *objects;
+@interface CMStack<ElementType> : NSObject
+@property (nonatomic, readonly) NSArray<ElementType> *objects;
 
-- (void)push:(id)object;
-- (id)pop;
-- (id)peek;
+- (void)push:(ElementType)object;
+- (ElementType)pop;
+- (ElementType)peek;
 @end

@@ -23,14 +23,15 @@
 
 
 @implementation CMCascadingAttributeStack {
-    CMStack *_stack;
-    NSDictionary *_cascadedAttributes;
+    CMStack<CMAttributeRun*> *_stack;
+    NSMutableArray<NSDictionary*> * _cascadedAttributes;
 }
 
 - (instancetype)init
 {
     if ((self = [super init])) {
         _stack = [[CMStack alloc] init];
+        _cascadedAttributes = [NSMutableArray new];
     }
     return self;
 }
@@ -45,16 +46,22 @@
     [self push:CMOrderedListAttributeRun(attributes, startingNumber)];
 }
 
+- (CMStyleAttributes*) attributesWithDepth:(NSUInteger)depth
+{
+    return (depth < _stack.objects.count) ? _stack.objects[_stack.objects.count - 1 - depth].attributes : nil;
+}
+
 - (void)push:(CMAttributeRun *)run
 {
     [_stack push:run];
-    _cascadedAttributes = nil;
 }
 
 - (void)pop
 {
-    _cascadedAttributes = nil;
     [_stack pop];
+    if (_cascadedAttributes.count > _stack.objects.count) {
+        [_cascadedAttributes removeLastObject];
+    }
 }
 
 - (CMAttributeRun *)peek
@@ -64,52 +71,57 @@
 
 - (NSDictionary *)cascadedAttributes
 {
-    if (_cascadedAttributes == nil) {
-        NSMutableDictionary *combinedAttributes = [[NSMutableDictionary alloc] init];
+    if (_cascadedAttributes.count < _stack.objects.count) {
         
-        for (CMAttributeRun *run in _stack.objects) {
-            CMStyleAttributes * currentStyleAttributes = run.attributes;
+        NSMutableDictionary *combinedAttributes = [NSMutableDictionary dictionaryWithDictionary:_cascadedAttributes.lastObject ?: @{}];
+        
+        for (NSUInteger level = _cascadedAttributes.count; level < _stack.objects.count; level += 1) {
+
+            CMStyleAttributes * currentStyleAttributes = _stack.objects[level].attributes;
             
-            // Set explicit string attributes
-            [combinedAttributes addEntriesFromDictionary:currentStyleAttributes.stringAttributes];
-            
-            // Set font attributes
-            if (currentStyleAttributes.fontAttributes.count > 0) {
-                CMFont *baseFont = combinedAttributes[NSFontAttributeName];
-                CMFont *adjustedFont = nil;
-                if (baseFont != nil) {
-                    adjustedFont = [baseFont fontByAddingCMAttributes:currentStyleAttributes.fontAttributes];
-                }
-                else {
-                    CMFontDescriptor * adjustedFontDescriptor = [CMFontDescriptor fontDescriptorWithFontAttributes:currentStyleAttributes.fontAttributes];
-                    if (adjustedFontDescriptor != nil) {
-                        adjustedFont = [CMFont fontWithDescriptor:adjustedFontDescriptor size:adjustedFontDescriptor.pointSize];
+            if (currentStyleAttributes != nil) {
+                
+                // Set explicit string attributes
+                [combinedAttributes addEntriesFromDictionary:currentStyleAttributes.stringAttributes];
+                
+                // Set font attributes
+                if (currentStyleAttributes.fontAttributes.count > 0) {
+                    CMFont *baseFont = combinedAttributes[NSFontAttributeName];
+                    CMFont *adjustedFont = nil;
+                    if (baseFont != nil) {
+                        adjustedFont = [baseFont fontByAddingCMAttributes:currentStyleAttributes.fontAttributes];
+                    }
+                    else {
+                        CMFontDescriptor * adjustedFontDescriptor = [CMFontDescriptor fontDescriptorWithFontAttributes:currentStyleAttributes.fontAttributes];
+                        if (adjustedFontDescriptor != nil) {
+                            adjustedFont = [CMFont fontWithDescriptor:adjustedFontDescriptor size:adjustedFontDescriptor.pointSize];
+                        }
+                    }
+                    if (adjustedFont != nil) {
+                        combinedAttributes[NSFontAttributeName] = adjustedFont;
                     }
                 }
-                if (adjustedFont != nil) {
-                    combinedAttributes[NSFontAttributeName] = adjustedFont;
+                
+                // Set paragraph style attributes
+                if (currentStyleAttributes.paragraphStyleAttributes.count > 0) {
+                    NSParagraphStyle* baseParagraphStyle = combinedAttributes[NSParagraphStyleAttributeName];
+                    NSParagraphStyle* adjustedParagraphStyle = nil;
+                    if (baseParagraphStyle != nil) {
+                        adjustedParagraphStyle = [baseParagraphStyle paragraphStyleByAddingCMAttributes:currentStyleAttributes.paragraphStyleAttributes];
+                    }
+                    else {
+                        adjustedParagraphStyle = [NSParagraphStyle paragraphStyleWithCMAttributes:currentStyleAttributes.paragraphStyleAttributes];
+                    }
+                    if (adjustedParagraphStyle != nil) {
+                        combinedAttributes[NSParagraphStyleAttributeName] = adjustedParagraphStyle;
+                    }
                 }
             }
             
-            // Set paragraph style attributes
-            if (currentStyleAttributes.paragraphStyleAttributes.count > 0) {
-                NSParagraphStyle* baseParagraphStyle = combinedAttributes[NSParagraphStyleAttributeName];
-                NSParagraphStyle* adjustedParagraphStyle = nil;
-                if (baseParagraphStyle != nil) {
-                    adjustedParagraphStyle = [baseParagraphStyle paragraphStyleByAddingCMAttributes:currentStyleAttributes.paragraphStyleAttributes];
-                }
-                else {
-                    adjustedParagraphStyle = [NSParagraphStyle paragraphStyleWithCMAttributes:currentStyleAttributes.paragraphStyleAttributes];
-                }
-                if (adjustedParagraphStyle != nil) {
-                    combinedAttributes[NSParagraphStyleAttributeName] = adjustedParagraphStyle;
-                }
-            }
+            [_cascadedAttributes addObject:combinedAttributes.copy];
         }
-        
-        _cascadedAttributes = combinedAttributes;
     }
-    return _cascadedAttributes;
+    return _cascadedAttributes.lastObject;
 }
 
 @end
@@ -291,6 +303,10 @@
            CMParagraphStyleAttributeHeadExtraIndent: ^(NSMutableParagraphStyle* paragraphStyle, id attribute){ paragraphStyle.headIndent += [attribute doubleValue]; },
            CMParagraphStyleAttributeTailExtraIndent: ^(NSMutableParagraphStyle* paragraphStyle, id attribute){ paragraphStyle.tailIndent += [attribute doubleValue]; },
            
+           // List-specific attributes (ignored)
+           CMParagraphStyleAttributeListItemLabelIndent: ^(NSMutableParagraphStyle* paragraphStyle, id attribute){},
+           CMParagraphStyleAttributeListItemBulletString: ^(NSMutableParagraphStyle* paragraphStyle, id attribute){},
+           CMParagraphStyleAttributeListItemNumberFormat: ^(NSMutableParagraphStyle* paragraphStyle, id attribute){},
         };
     });
     

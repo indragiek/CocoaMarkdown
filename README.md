@@ -140,6 +140,22 @@ textAttributes.addStringAttributes([ .backgroundColor: UIColor(white: 0.9, alpha
                                    forElementWithKinds: [.inlineCode, .codeBlock])
 ```
 
+List styles can be customized using dedicated paragraph style attributes:
+
+```swift
+// Customize the list bullets
+textAttributes.addParagraphStyleAttributes([ .listItemBulletString: "🍏" ], 
+                                           forElementWithKinds: .unorderedList)
+textAttributes.addParagraphStyleAttributes([ .listItemBulletString: "🌼" ], 
+                                           forElementWithKinds: .unorderedSublist)
+
+// Customize numbered list item labels format and distance between label and paragraph
+textAttributes.addParagraphStyleAttributes([ .listItemNumberFormat: "(%02ld)", 
+                                             .listItemLabelIndent: 30 ],    
+                                           forElementWithKinds: .orderedList)
+
+```
+
 Font and paragraph attributes are incremental, meaning that they allow to modify only specific aspects of the default rendering styles.
 
 Additionally on iOS, Markdown elements styled using the font attributes API get automatic Dynamic-Type compliance in the generated attributed string, just like default rendering styles.

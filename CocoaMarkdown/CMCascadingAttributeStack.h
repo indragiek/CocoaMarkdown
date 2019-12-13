@@ -12,6 +12,7 @@
 @class CMAttributeRun;
 
 @interface CMCascadingAttributeStack : NSObject
+
 @property (nonatomic, readonly) NSDictionary *cascadedAttributes;
 
 - (void) pushAttributes:(CMStyleAttributes*)attributes;
@@ -19,4 +20,5 @@
 - (void)pop;
 - (CMAttributeRun *)peek;
 
+- (CMStyleAttributes*) attributesWithDepth:(NSUInteger)depth; // depth=0 means stack top
 @end
